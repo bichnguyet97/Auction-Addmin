@@ -32,9 +32,6 @@
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(users.id)">SearchID</button>
                         </div>
-                        <!-- <div @click="openIn" class="col-2 offset-8">
-                          <button type="button" class="btn btn-primary" @click="close3=true">Tạo mới</button>
-                        </div> -->
                         <div id="smtaomoi1" class="col-2 offset-8">
                           <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button>
                           <b-modal id="modal-1" title="Tạo mới">
@@ -231,28 +228,28 @@
               <div class="card-text pt-1">
                 <div class="row">
                   <div class="col-12 col-xl-3 col-lg-3 col-md-4">
-                    <div class="user-sum ml-3">
+                    <div class="user-sum ml-7">
                       <b-avatar style="width:128px; height:128px" :src="Search.avatar"></b-avatar>
                     </div>
-                    <div class="user-sum ml-3">
+                    <div class="user-sum ml-7">
                       <h5><i class="fa fa-user" aria-hidden="true"></i>: {{Search.name}}</h5>
                     </div>
-                    <div class="user-sum ml-3">
+                    <div class="user-sum ml-7">
                       <h5><i class="fa fa-envelope" aria-hidden="true"></i>: {{Search.email}}</h5>
                     </div>
-                    <div class="user-sum ml-3">
+                    <div class="user-sum ml-7">
                       <h5><i class="fa fa-phone" aria-hidden="true"></i>: {{Search.mobile}}</h5>
                     </div>
-                    <div class="user-sum ml-3">
+                    <div class="user-sum ml-7">
                       <h5><i class="fa fa-home" aria-hidden="true"></i>: {{Search.province}}</h5>
                     </div>
-                    <div class="user-sum ml-3">
+                    <div class="user-sum ml-7">
                       <h5><i class="fa fa-transgender" aria-hidden="true"></i>: {{Search.gender}}</h5>
                     </div>
-                    <div class="user-sum ml-3">
+                    <div class="user-sum ml-7">
                       <h5><i class="fa fa-users" aria-hidden="true"></i>: {{Search.group}}</h5>
                     </div>
-                    <div class="user-sum ml-3">
+                    <div class="user-sum ml-7">
                       <h5><i class="fa fa-birthday-cake" aria-hidden="true"></i>: {{Search.dateofbirth}}</h5>
                     </div>
                   </div>
@@ -263,7 +260,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Tên đăng nhập<span class="text-danger">*</span>
                           </label>
-                          <input v-model="Search.name" type="" class="form-control form-control-user fs-090" maxlength="20">
+                          <input type="text" class="form-control form-control-user fs-090" :value="Search.name" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -271,7 +268,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Địa chỉ Email<span class="text-danger">*</span>
                           </label>
-                          <input v-model="Search.email" type="" class="form-control form-control-user fs-090" maxlength="20">
+                          <input v-model="email" type="" class="form-control form-control-user fs-090" :placeholder="Search.email" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -279,7 +276,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Họ và đệm<span class="text-danger">*</span>
                           </label>
-                          <input v-model="Search.lastname" type="" class="form-control form-control-user fs-090" maxlength="20">
+                          <input v-model="lastname" type="" class="form-control form-control-user fs-090" :placeholder="Search.lastname" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -287,7 +284,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Tên<span class="text-danger">*</span>
                           </label>
-                          <input v-model="Search.fullname" type="" class="form-control form-control-user fs-090" maxlength="20">
+                          <input v-model="fullname" type="" class="form-control form-control-user fs-090" :placeholder="Search.fullname" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -295,7 +292,13 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Giới tính<span class="text-danger">*</span>
                           </label>
-                          <input v-model="Search.gender" type="" class="form-control form-control-user fs-090" maxlength="20">
+                          <base-input>
+                          <select v-model="gender" class="form-control form-control-user fs-090">
+                            <option disable value="">Chọn</option>
+                            <option>Nam</option>
+                            <option>Nữ</option>
+                          </select>
+                          </base-input>
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -303,7 +306,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Ngày sinh<span class="text-danger">*</span>
                           </label>
-                          <input v-model="Search.dateofbirth" type="" class="form-control form-control-user fs-090" maxlength="20">
+                          <base-input v-model="dateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -311,7 +314,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Số điện thoại<span class="text-danger">*</span>
                           </label>
-                          <input v-model="Search.mobile" type="" class="form-control form-control-user fs-090" maxlength="20">
+                          <input v-model="mobile" type="" class="form-control form-control-user fs-090" :placeholder="Search.mobile" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -319,7 +322,17 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Tỉnh thành<span class="text-danger">*</span>
                           </label>
-                          <input v-model="Search.province" type="" class="form-control form-control-user fs-090" maxlength="20">
+                          <base-input>
+                          <select v-model="province" class="form-control form-control-user fs-090">
+                            <option disable value="">Chọn</option>
+                            <option>Hà Nội</option>
+                            <option>Hải Phòng</option>
+                            <option>Nam Định</option>
+                            <option>Hà Nam</option>
+                            <option>Quảng Ninh</option>
+                            <option>Đà nẵng</option>
+                          </select>
+                          </base-input>
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -336,7 +349,7 @@
                           </base-input>
                         </div>
                       </div>
-                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-primary mb-2" @click="clickEdit(users.id)">Cập nhật thông tin</button>
+                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-primary mb-2" @click="clickEdit(Search.id)">Cập nhật thông tin</button>
                       <b-modal id="modalPopover" title="Thông báo" ok-only>
                         <p>
                         Tạo tài khoản thành công !
@@ -449,11 +462,6 @@ Vue.use(VueClipboard)
        console.log(this.userSearch.data.name);
        this.searchCheck=true;
     },
-    // clickSearch2(id){
-    //   console.log(id)
-    //   this.axios.get(this.url+'/user/'+id).then((response) => this.Search = response.data);
-    //    console.log(this.Search.name);
-    // },
     clickEdit(id){
       this.axios.put(this.url+'/edit/user/'+id ,{ "avatar": this.avatar, "gender": this.gender,
         "province": this.province, "mobile": this.mobile, "lastname": this.lastname, "email": this.email, "group":this.group, "dateofbirth":this.dateofbirth, "fullname": this.fullname}, {

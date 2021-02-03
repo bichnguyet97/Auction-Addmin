@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4">
                                     <div class="user-avatar mb-3 text-center">
-                                        <img class="w-100" src="img/brand/th2.jpg" alt="">
+                                        <img class="w-100" src="img/brand/th4.jpg" alt="">
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-9 col-lg-9 col-md-8">

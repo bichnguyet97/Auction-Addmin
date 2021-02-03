@@ -14,20 +14,10 @@
                               <i class="fa fa-reply" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <!-- <div class="col-2 offset-8">
-                          <button type="button" class="btn btn-primary" @click="clickUpdate1">Update</button>
-                        </div> -->
-                        <!-- <form class="form-inline my-2 my-lg-0">
-                        <input v-model="auction" class="form-control mr-sm-2" type="auction" placeholder="Search a type" aria-label="Search">
-                        <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch(auction.category)">SearchType</button>
-                        </form> -->
                         <div id="smbutton2" class="col-2 offset-8">
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(auction.id)">SearchID</button>
                         </div>
-                        <!-- <div id="add" @click="openIn" class="col-2 offset-8">
-                          <button type="button" class="btn btn-primary" @click="close1=true">Tạo mới</button>
-                        </div> -->
                         <div class="col-2 offset-8">
                           <b-button id="button_add" v-b-modal.modal-1 variant="primary">Tạo mới</b-button>
                           <b-modal id="modal-1" title="Tạo mới">
@@ -110,7 +100,6 @@
                             <th scope="col">Giá dự thầu</th>
                             <th scope="col">Trạng thái</th>
                             <th scope="col">Người đăng</th>
-                            <!-- <th scope="col">Xác nhận</th> -->
                           </tr>
                         </thead>
                         <tbody class="test" v-if="searchCheck==1">
@@ -127,20 +116,6 @@
                                 <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="clickinfo">Xem</b-button>
                               </span>
                             </td>
-                            <!-- <td class="test1">
-                              <span>
-                                <base-input>
-                                  <select size="sm" v-model="status" class="form-control">
-                                    <option disable value="">Chọn</option>
-                                    <option>Kết thúc</option>
-                                    <option>Đang đấu giá</option>
-                                    <option>Sắp đấu giá</option>
-                                  </select>
-                                  <b-button style="margin-top:5px;" size="sm" v-on:click="clickConfirm(auction.id,status)" variant="primary">Xác nhận</b-button>
-                                  <base-button style="margin-top:5px;" size="sm" outline type="info" v-on:click="clickdelete1(auction.id)">Xoá</base-button>
-                                </base-input>
-                              </span>
-                            </td> -->
                           </tr>
                           <b-modal id="modal-3" title="Thông tin người đăng đấu giá">
                             <div class="form-group">
@@ -289,20 +264,6 @@ Vue.use(VueClipboard)
             this.clickUpdate1();
           });
     },
-    // clickSearch: async function(){
-    //    await this.axios.get(this.url+'/auction/category/'+this.category).then((response) => this.userSearch = response);
-    //    this.searchCate=this.userSearch;
-    //    this.searchCheck=3;
-    //    console.log(this.userSearch.data);
-    // },
-    // clickdelete1(id){
-    //   this.axios.delete(this.url+'/auction/delete/'+id , {
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);

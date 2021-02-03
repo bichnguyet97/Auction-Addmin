@@ -18,8 +18,8 @@
         <h6 id="tl" class="navbar-heading text-muted">Người Dùng</h6>
         <sidebar-item :link="{name: 'Danh Sách User', icon: 'ni ni-single-02 text-blue', path: '/user-controller'}"/>
         <sidebar-item :link="{name: 'Thêm User', icon: 'fa fa-user-plus text-blue', path: '/AddUser-controller'}"/>
-        <sidebar-item :link="{name: 'Block User', icon: 'fa fa-ban text-blue', path: '/block-user'}"/>
-        <sidebar-item :link="{name: 'Phân Quyền User', icon: 'fa fa-users text-blue', path: '/phanquyen-user'}"/>
+        <!-- <sidebar-item :link="{name: 'Block User', icon: 'fa fa-ban text-blue', path: '/block-user'}"/> -->
+        <!-- <sidebar-item :link="{name: 'Phân Quyền User', icon: 'fa fa-users text-blue', path: '/phanquyen-user'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">Thể Loại</h6>
         <sidebar-item :link="{name: 'Danh Sách Loại', icon: 'ni ni-bullet-list-67 text-blue', path: '/Category'}"/>
         <sidebar-item :link="{name: 'Thêm loại', icon: 'fa fa-cart-plus text-blue', path: '/addcategory-controller'}"/>

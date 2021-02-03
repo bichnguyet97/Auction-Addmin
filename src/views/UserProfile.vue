@@ -12,7 +12,8 @@
                 </div>
             </div>
         </base-header>
-        <div class="mt--7">
+        
+        <div class="mt--7" v-if="close3">
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
@@ -62,60 +63,6 @@
                           </b-modal>
                         </div>
                       </div>
-                      <!-- <div class="closeIn">
-                      <div v-if="close3" class="form-group">
-                        <label class="col-md-3 control-label" for="">Email<strong>*</strong></label>
-                        <div class="col-md-9"> 
-                        <input v-model="email" class="form-control" id="email" name="email" type="text" placeholder="hi@gmail.com" value>
-                        </div>
-                        <label class="col-md-3 control-label" for="">Name<strong>*</strong></label>
-                        <div class="col-md-9"> 
-                        <input v-model="name" class="form-control" id="name" name="name" type="text" placeholder="hi" value>
-                        </div>
-                        <label class="col-md-3 control-label" for="">Password <strong>*</strong></label>
-                        <div class="col-md-9"> 
-                        <input v-model="password" class="form-control" id="password" name="password" type="text" placeholder="12335fgg" value>
-                        </div>
-                        <div class="col-2 offset-8">
-                          <button type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
-                          <b-button variant="outline-primary" @click="close3=false">Exit</b-button>
-                        </div>
-                        <b-row class="form-group">
-                          <label for="example-datetime-local-input" class="col-md-2 col-form-label form-control-label">Datetime</label>
-                          <b-col md="10">
-                            <base-input type="datetime-local" value="2018-11-23T10:30:00" id="example-datetime-local-input"/>
-                          </b-col>
-                        </b-row>
-                      </div>
-                      </div> -->
-                      <!-- <div class="closeEdit">
-                      <div v-if="close4" class="form-group">
-                        <label class="col-md-3 control-label" for="">Nhập Tên<strong>*</strong></label>
-                        <div class="col-md-9"> 
-                        <input v-model="name" class="form-control" id="namee" name="namee" type="text" placeholder="hi" value>
-                        </div>
-                        <label class="col-md-3 control-label" for="">Nhập địa chỉ<strong>*</strong></label>
-                        <div class="col-md-9"> 
-                        <input v-model="address" class="form-control" id="address" name="address" type="text" placeholder="address" value>
-                        </div>
-                        <label class="col-md-3 control-label" for="">Ảnh<strong>*</strong></label>
-                        <div class="col-md-9"> 
-                        <input v-model="avatar" class="form-control" id="avatar" name="avatar" type="text" placeholder="avatar" value>
-                        </div>
-                        <label class="col-md-3 control-label" for="">Mobile<strong>*</strong></label>
-                        <div class="col-md-9"> 
-                        <input v-model="mobile" class="form-control" id="mobile" name="mobile" type="text" placeholder="mobile" value>
-                        </div>
-                        <label class="col-md-3 control-label" for="">Tel<strong>*</strong></label>
-                        <div class="col-md-9"> 
-                        <input v-model="tel" class="form-control" id="tel" name="tel" type="text" placeholder="tel" value>
-                        </div>
-                        <div class="col-2 offset-8">
-                          <button type="button" class="btn btn-primary" @click="clickEdit(buffer)">Save</button>
-                          <b-button variant="outline-primary" @click="close4=false">Exit</b-button>
-                        </div>
-                      </div>
-                      </div> -->
                       <div class="">
                       <table class="table table-striped">
                         <thead>
@@ -124,12 +71,10 @@
                             <th scope="col">Tên</th>
                             <th scope="col">Email</th>
                             <th scope="col">Ảnh</th>
-                            <!-- <th scope="col">Số ĐT</th>
-                            <th scope="col">Địa chỉ</th> -->
                             <th scope="col">Password</th>
                             <th scope="col">Nhóm</th>
                             <th scope="col">Ngày tạo</th>
-                            <!-- <th scope="col">Ngày cập nhật</th> -->
+                            <th scope="col">Ngày cập nhật</th>
                             <th scope="col">Xoá</th>
                             <th scope="col">Actions</th>
                           </tr>
@@ -140,49 +85,58 @@
                             <td class="test">{{users.name}}</td>
                             <td class="test">{{users.email}}</td>
                             <td class="test"><a :href="users.avatar">{{users.avatar}}</a></td>
-                            <!-- <td>{{users.mobile}}</td>
-                            <td class="test">{{users.address}}</td> -->
                             <td>{{users.password}}</td>
                             <td>{{users.group}}</td>
                             <td>{{users.created}}</td>
-                            <!-- <td class="test">{{users.updated}}</td> -->
+                            <td>{{users.updated}}</td>
                             <td style="color:red;">{{users.delete}}</td>
                             <td>
                               <span>
                                 <base-button size="sm" outline type="danger" v-on:click="clickdelete1(users.id)">Xoá</base-button>
-                                <span>
-                                  <!-- <b-button size="sm" variant="warning" @click="close4=true,buffer=users.id">Sửa</b-button> --> 
-                                  <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id">Sửa</b-button>
-                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="clickSearch2(users.id)">Thông tin chi tiết</b-button>
+                                <span> 
+                                  <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button>
+                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="close3=false,clickSearch2(users.id)">Thông tin chi tiết</b-button>
                                 </span>
                               </span>
                             </td>
                           </tr>
-                            <b-modal id="modal-3" title="Sửa người dùng">
+                            <b-modal id="modal-3" title="Sửa thông tin người dùng">
                               <div class="form-group">
-                                <label class="col-md-3 control-label" for="">Tên<strong>*</strong></label>
-                                <div class="col-md-9"> 
-                                <input v-model="name" class="form-control" id="namee" name="namee" type="text" placeholder="hi" value>
+                                <label class="col-md-3 control-label" for="">Fullname<strong>*</strong></label>
+                                <div class="col-md-9">
+                                <input v-model="fullname" class="form-control" id="fullname" name="fullname" type="text" :placeholder="Search.fullname" value>
+                                </div>
+                                <label class="col-md-3 control-label" for="">Lastname<strong>*</strong></label>
+                                <div class="col-md-9">
+                                <input v-model="lastname" class="form-control" id="lastname" name="lastname" type="text" :placeholder="Search.lastname" value>
+                                </div>
+                                <label class="col-md-3 control-label" for="">Ngày sinh<strong>*</strong></label>
+                                <div class="col-md-9">
+                                <base-input v-model="dateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
                                 </div>
                                 <label class="col-md-3 control-label" for="">Địa chỉ Email<strong>*</strong></label>
-                                <div class="col-md-9"> 
-                                <input v-model="email" class="form-control" id="email" name="email" type="text" placeholder="email" value>
+                                <div class="col-md-9">
+                                <input v-model="email" class="form-control" id="email" name="email" type="text" :placeholder="Search.email" value>
                                 </div>
                                 <label class="col-md-3 control-label" for="">Địa chỉ<strong>*</strong></label>
-                                <div class="col-md-9"> 
-                                <input v-model="address" class="form-control" id="address" name="address" type="text" placeholder="address" value>
+                                <div class="col-md-9">
+                                <input v-model="province" class="form-control" id="province" name="province" type="text" :placeholder="Search.province" value>
                                 </div>
                                 <label class="col-md-3 control-label" for="">Ảnh<strong>*</strong></label>
-                                <div class="col-md-9"> 
-                                <input v-model="avatar" class="form-control" id="avatar" name="avatar" type="text" placeholder="avatar" value>
+                                <div class="col-md-9">
+                                <input v-model="avatar" class="form-control" id="avatar" name="avatar" type="text" :placeholder="Search.avatar" value>
                                 </div>
                                 <label class="col-md-3 control-label" for="">Số điện thoại<strong>*</strong></label>
-                                <div class="col-md-9"> 
-                                <input v-model="mobile" class="form-control" id="mobile" name="mobile" type="text" placeholder="mobile" value>
+                                <div class="col-md-9">
+                                <input v-model="mobile" class="form-control" id="mobile" name="mobile" type="text" :placeholder="Search.mobile" value>
                                 </div>
                                 <label class="col-md-3 control-label" for="">Giới tính<strong>*</strong></label>
-                                <div class="col-md-9"> 
-                                <input v-model="gender" class="form-control" id="gender" name="gender" type="text" placeholder="gender" value>
+                                <div class="col-md-9">
+                                <input v-model="gender" class="form-control" id="gender" name="gender" type="text" :placeholder="Search.gender" value>
+                                </div>
+                                <label class="col-md-3 control-label" for="">Group<strong>*</strong></label>
+                                <div class="col-md-9">
+                                <input v-model="group" class="form-control" id="group" name="group" type="text" :placeholder="Search.group" value>
                                 </div>
                                 <div class="col-2 offset-8">
                                   <button v-b-modal.modalPopover1 type="button" class="btn btn-primary" @click="clickEdit(buffer)">Save</button>
@@ -196,8 +150,6 @@
                             <td class="test">{{userSearch.data.name}}</td>
                             <td class="test">{{userSearch.data.email}}</td>
                             <td><a :href="userSearch.data.avatar">{{userSearch.data.avatar}}</a></td>
-                            <td>{{userSearch.data.mobile}}</td>
-                            <td>{{userSearch.data.address}}</td>
                             <td>{{userSearch.data.password}}</td>
                             <td>{{userSearch.data.group}}</td>
                             <td class="test">{{userSearch.data.created}}</td>
@@ -207,13 +159,13 @@
                               <span>
                                 <base-button size="sm" outline type="danger" v-on:click="clickdelete1(users.id)">Xoá</base-button>
                                 <span>
-                                  <!-- <b-button size="sm" variant="warning" @click="close4=true">Sửa</b-button> -->
-                                  <b-button size="sm" v-b-modal.modal-4 variant="warning" @click="close4=true,buffer=users.id">Sửa</b-button>
+                                  <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button>
+                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="clickSearch2(users.id)">Thông tin chi tiết</b-button>
                                 </span>
                               </span>
                             </td>
                           </tr>
-                          <b-modal id="modal-4" title="Sửa người dùng">
+                          <!-- <b-modal id="modal-4" title="Sửa người dùng">
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="">Tên<strong>*</strong></label>
                               <div class="col-md-9"> 
@@ -239,7 +191,7 @@
                                 <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickEdit(buffer)">Save</button>
                               </div>
                             </div>
-                          </b-modal>
+                          </b-modal> -->
                           <b-modal id="modalPopover" title="Thông báo" ok-only>
                             <p>
                               Cập nhật thành công !
@@ -248,20 +200,22 @@
                         </tbody>
                       </table>
                       </div>
-                      <b-modal id="modal-5" title="Thông tin người dùng">
+                      <!-- <b-modal id="modal-5" title="Thông tin người dùng">
                         <div class="">
                           <div class="col-md-9">
                             <b-avatar :src="Search.avatar" size="6rem"></b-avatar>
                             <h5><i class="fa fa-user" aria-hidden="true"></i> {{Search.name}}</h5>
                             <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{Search.email}}</h5>
                             <h5><i class="fa fa-phone" aria-hidden="true"></i> {{Search.mobile}}</h5>
-                            <h5><i class="fa fa-home" aria-hidden="true"></i> {{Search.address}}</h5>
+                            <h5><i class="fa fa-home" aria-hidden="true"></i> {{Search.province}}</h5>
                             <h5> <i class="fa fa-transgender" aria-hidden="true"></i>: {{Search.gender}}</h5>
+                            <h5><i class="fa fa-users" aria-hidden="true"></i>: {{Search.group}}</h5>
+                            <h5>Ngày sinh nhật <i class="fa fa-birthday-cake" aria-hidden="true"></i>: {{Search.dateofbirth}}</h5>
                             <h5>Ngày tạo <i class="fa fa-calendar" aria-hidden="true"></i>: {{Search.created}}</h5>
                             <h5>Ngày cập nhật <i class="fa fa-calendar" aria-hidden="true"></i>: {{Search.updated}}</h5>
                           </div>
                         </div>
-                      </b-modal>
+                      </b-modal> -->
                       <b-modal id="modalPopover1" title="Thông báo" ok-only>
                         <p>
                           Cập nhật thành công !
@@ -270,6 +224,130 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else class="mt--7">
+          <div class="card border-0 rounded-0 shadow-sm">
+            <div class="card-body p-3 rounded-0 border-0">
+              <div class="card-text pt-1">
+                <div class="row">
+                  <div class="col-12 col-xl-3 col-lg-3 col-md-4">
+                    <div class="user-sum ml-3">
+                      <b-avatar style="width:128px; height:128px" :src="Search.avatar"></b-avatar>
+                    </div>
+                    <div class="user-sum ml-3">
+                      <h5><i class="fa fa-user" aria-hidden="true"></i>: {{Search.name}}</h5>
+                    </div>
+                    <div class="user-sum ml-3">
+                      <h5><i class="fa fa-envelope" aria-hidden="true"></i>: {{Search.email}}</h5>
+                    </div>
+                    <div class="user-sum ml-3">
+                      <h5><i class="fa fa-phone" aria-hidden="true"></i>: {{Search.mobile}}</h5>
+                    </div>
+                    <div class="user-sum ml-3">
+                      <h5><i class="fa fa-home" aria-hidden="true"></i>: {{Search.province}}</h5>
+                    </div>
+                    <div class="user-sum ml-3">
+                      <h5><i class="fa fa-transgender" aria-hidden="true"></i>: {{Search.gender}}</h5>
+                    </div>
+                    <div class="user-sum ml-3">
+                      <h5><i class="fa fa-users" aria-hidden="true"></i>: {{Search.group}}</h5>
+                    </div>
+                    <div class="user-sum ml-3">
+                      <h5><i class="fa fa-birthday-cake" aria-hidden="true"></i>: {{Search.dateofbirth}}</h5>
+                    </div>
+                  </div>
+                  <div class="col-12 col-xl-9 col-lg-9 col-md-8">
+                    <div class="row">
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Tên đăng nhập<span class="text-danger">*</span>
+                          </label>
+                          <input v-model="Search.name" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Địa chỉ Email<span class="text-danger">*</span>
+                          </label>
+                          <input v-model="Search.email" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Họ và đệm<span class="text-danger">*</span>
+                          </label>
+                          <input v-model="Search.lastname" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Tên<span class="text-danger">*</span>
+                          </label>
+                          <input v-model="Search.fullname" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Giới tính<span class="text-danger">*</span>
+                          </label>
+                          <input v-model="Search.gender" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Ngày sinh<span class="text-danger">*</span>
+                          </label>
+                          <input v-model="Search.dateofbirth" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Số điện thoại<span class="text-danger">*</span>
+                          </label>
+                          <input v-model="Search.mobile" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Tỉnh thành<span class="text-danger">*</span>
+                          </label>
+                          <input v-model="Search.province" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Phân quyền <span class="text-danger">*</span>
+                          </label>
+                          <base-input>
+                          <select v-model="group" class="form-control form-control-user fs-090">
+                            <option disable value="">Chọn</option>
+                            <option>Admin</option>
+                            <option>Agency</option>
+                          </select>
+                          </base-input>
+                        </div>
+                      </div>
+                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-primary mb-2" @click="clickEdit(users.id)">Cập nhật thông tin</button>
+                      <b-modal id="modalPopover" title="Thông báo" ok-only>
+                        <p>
+                        Tạo tài khoản thành công !
+                        </p>
+                      </b-modal>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
     </div>
 </template>
@@ -296,12 +374,17 @@ Vue.use(VueClipboard)
       id: '',
       name: '',
       created:'',
+      group: '',
+      province:'',
       updated:'',
       info:'',
       gender:'',
       users: [],
       add:true,
       Search:[],
+      dateofbirth:'',
+      fullname:'',
+      lastname:'',
       sessionId:'',
       save:true,
       saveof:false,
@@ -372,8 +455,8 @@ Vue.use(VueClipboard)
     //    console.log(this.Search.name);
     // },
     clickEdit(id){
-      this.axios.put(this.url+'/edit/user/'+id ,{ "avatar": this.avatar, "gender": this.tel,
-        "address": this.address, "mobile": this.mobile, "name": this.name, "email": this.email}, {
+      this.axios.put(this.url+'/edit/user/'+id ,{ "avatar": this.avatar, "gender": this.gender,
+        "province": this.province, "mobile": this.mobile, "lastname": this.lastname, "email": this.email, "group":this.group, "dateofbirth":this.dateofbirth, "fullname": this.fullname}, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then(() => {
@@ -477,6 +560,13 @@ employee-list{
 }
 #smtaomoi1{
   margin-top:35px;
+}
+#buttontt{
+  width: 177px;
+  height: 40px;
+  text-align: center;
+  margin-top: 28px;
+  margin-left: 21px;
 }
 </style>
 

@@ -9,9 +9,9 @@
                         <div v-for="auction in auction" v-bind:key="auction.id" class="card-text pt-1">
                             <div class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
-                                    <div class="user-avatar mb-3 text-center">
-                                      <img class="w-100" src="img/brand/th1.jpg" alt="">
-                                    </div>
+                                  <div class="user-avatar mb-3 text-center">
+                                    <img class="w-100" src="img/brand/th1.jpg" alt="">
+                                  </div>
                                 </div>
                                 <div class="col-12 col-lg-9 col-md-6 border-top">
                                     <div class="start-pro-info p-3 p-md-4 p-lg-3 h-100">
@@ -33,6 +33,9 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span>
                                                   <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm(auction.auction.id)" variant="info">Xác nhận</b-button>
+                                                  <!-- <h3>Nhập lý do không xác nhận</h3>
+                                                  <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
+                                                  <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Không xác nhận</b-button>
                                                 </span>
                                               </div>
                                             </div>
@@ -66,10 +69,10 @@
                             </div>
                         </div>
                         <b-modal id="modalPopover" title="Thông báo" ok-only>
-                              <p>
-                              Bạn đã xác nhận đấu giá thành công !
-                              </p>
-                          </b-modal>
+                          <p>
+                            Bạn đã xác nhận đấu giá thành công !
+                          </p>
+                        </b-modal>
                     </div>
                 </div>
             </div>
@@ -118,6 +121,7 @@ Vue.use(VueClipboard)
       auction: [],
       add:true,
       endAt:'',
+      note:'',
       save:true,
       close1:true,
       assest:'',
@@ -169,7 +173,17 @@ Vue.use(VueClipboard)
        this.searchCheck=2;
     },
     clickConfirm(id){
-      this.axios.post(this.url+'/auction/updateStatus/'+id+"?status=Active", {"status":this.status}, {
+      this.axios.post(this.url+'/auction/update/'+id+"?status=Active", {"status":this.status}, {
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY')
+        }
+      }).then(() => {
+        this.axios.get(this.url+'/auction/auction_status/new')
+        .then(response => this.auction=response.data);
+      });
+    },
+    clickConfirm1(id){
+      this.axios.post(this.url+'/auction/update/'+id+"?note=Thông tin tài sản của bạn bị thiếu hoặc sai, vui lòng nhập lại! cảm ơn!"+"&status=Unaccept", {"status":this.status, "note":this.note}, {
         headers: {
           Authorization: this.getCookie('AC-ACCESS-KEY')
         }

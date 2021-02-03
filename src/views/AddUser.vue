@@ -9,9 +9,9 @@
                         <div class="card-text pt-1">
                             <div class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4">
-                                    <div class="user-avatar mb-3 text-center">
-                                        <b-avatar style="width:128px; height:128px" src="https://placekitten.com/300/300"></b-avatar>
-                                    </div>
+                                  <div class="user-avatar mb-3 text-center">
+                                    <b-avatar style="width:128px; height:128px" src="https://placekitten.com/300/300"></b-avatar>
+                                  </div>
                                 </div>
                                 <div class="col-12 col-xl-9 col-lg-9 col-md-8">
                                     <div class="row">
@@ -20,7 +20,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Tên đăng nhập <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="name" type="" class="form-control form-control-user fs-090" value="bichnguyet" maxlength="20">
+                                                <input v-model="name" type="" class="form-control form-control-user fs-090" placeholder="hihi" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -28,7 +28,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Địa chỉ Email <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="email" type="" class="form-control form-control-user fs-090" value="bichnguyet@gmail.com" maxlength="20">
+                                                <input v-model="email" type="" class="form-control form-control-user fs-090" placeholder="hi123@gmail.com" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -36,7 +36,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Password <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="password" type="" class="form-control form-control-user fs-090" value="123456" maxlength="20">
+                                                <input v-model="password" type="" class="form-control form-control-user fs-090" placeholder="123456" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">

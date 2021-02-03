@@ -69,7 +69,7 @@
                             <div class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4">
                                     <div class="user-avatar mb-3 text-center">
-                                        <b-avatar style="width:128px; height:128px" src="https://placekitten.com/300/300"></b-avatar>
+                                        <img class="w-100" src="img/brand/s500.jpg" alt="">
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-9 col-lg-9 col-md-8">
@@ -79,7 +79,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Tên loại <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="name" type="" class="form-control form-control-user fs-090" value="ô tô" maxlength="20">
+                                                <input v-model="name" type="" class="form-control form-control-user fs-090" placeholder="ô tô" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -87,7 +87,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Alias <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="alias" type="" class="form-control form-control-user fs-090" value="o-to" maxlength="20">
+                                                <input v-model="alias" type="" class="form-control form-control-user fs-090" placeholder="o-to" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -95,7 +95,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Hình ảnh <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="avatar" type="" class="form-control form-control-user fs-090" value="https://placekitten.com/300/300" maxlength="20">
+                                                <input v-model="avatar" type="" class="form-control form-control-user fs-090" placeholder="https://placekitten.com/300/300" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">

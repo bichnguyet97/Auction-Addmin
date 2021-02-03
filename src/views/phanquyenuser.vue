@@ -58,76 +58,55 @@
                 </div>
             </div>
         </base-header>
-            <div class="card border-0 rounded-0 shadow-sm">
-                <div class="card-body p-3 rounded-0 border-0">
-                    <div class="card-text pt-1">
-                        <div class="row">
-                            <div class="col-12 col-xl-3 col-lg-3 col-md-4">
-                                <div class="user-avatar mb-3 text-center">
-                                    <b-avatar style="width:128px; height:128px" src="https://placekitten.com/300/300"></b-avatar>
-                                </div>
-                            </div>
-                            <div class="col-12 col-xl-9 col-lg-9 col-md-8">
-                                <div class="row">
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                Nhập ID <span class="text-danger">*</span>
-                                            </label>
-                                            <input v-model="id" type="" class="form-control form-control-user fs-090" maxlength="20">
-                                        </div>
-                                    </div>
-                                    <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                Chọn phân quyền <span class="text-danger">*</span>
-                                            </label>
-                                            <base-input>
-                                            <select v-model="status" class="form-control form-control-user fs-090">
-                                                <option disable value="">Chọn</option>
-                                                <option>Admin</option>
-                                                <option>Agency</option>
-                                            </select>
-                                            </base-input>
-                                        </div>
-                                    </div>
-                                    <!-- <div class="col-12 col-md-6">
-                                        <div class="form-group">
-                                            <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                Password <span class="text-danger">*</span>
-                                            </label>
-                                            <input v-model="password" type="" class="form-control form-control-user fs-090" value="123456" maxlength="20">
-                                        </div>
-                                    </div> -->
-                                    <div class="col-12 col-md-6">
-                                        <div class="col-2 offset-8">
-                                            <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
-                                        </div>
-                                    </div>
-                                    <b-modal id="modalPopover" title="Thông báo" ok-only>
-                                        <p>
-                                        Tạo tài khoản thành công !
-                                        </p>
-                                    </b-modal>
-                                </div>
-                            </div>
-                        </div>
+          <div class="card border-0 rounded-0 shadow-sm">
+            <div class="card-body p-3 rounded-0 border-0">
+              <div class="card-text pt-1">
+                <div class="row">
+                  <div class="col-12 col-xl-3 col-lg-3 col-md-4">
+                    <div class="user-avatar mb-3 text-center">
+                      <b-avatar style="width:128px; height:128px" src="https://placekitten.com/300/300"></b-avatar>
                     </div>
+                  </div>
+                  <div class="col-12 col-xl-9 col-lg-9 col-md-8">
+                    <div class="row">
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Nhập ID <span class="text-danger">*</span>
+                          </label>
+                          <input v-model="id" type="" class="form-control form-control-user fs-090" maxlength="20">
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="form-group">
+                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                            Chọn phân quyền <span class="text-danger">*</span>
+                          </label>
+                          <base-input>
+                          <select v-model="group" class="form-control form-control-user fs-090">
+                            <option disable value="">Chọn</option>
+                            <option>Admin</option>
+                            <option>Agency</option>
+                          </select>
+                          </base-input>
+                        </div>
+                      </div>
+                      <div class="col-12 col-md-6">
+                        <div class="col-2 offset-8">
+                          <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickEdit(users.id)">Save</button>
+                        </div>
+                      </div>
+                      <b-modal id="modalPopover" title="Thông báo" ok-only>
+                        <p>
+                        Tạo tài khoản thành công !
+                        </p>
+                      </b-modal>
+                    </div>
+                  </div>
                 </div>
+              </div>
             </div>
-        <div class="container-fluid mt--7">
-            <div class="row">
-                <div class="col">
-                    <projects-table title="Light Table"></projects-table>
-                </div>
-            </div>
-            <div class="row mt-5">
-                <div class="col">
-                    <projects-table type="dark" title="Dark Table"></projects-table>
-                </div>
-            </div>
-        </div>
-            
+          </div>    
     </div>
 </template>
 <script>
@@ -151,10 +130,14 @@ Vue.use(VueClipboard)
       email: '',
       password:'',
       id: '',
-      name: '',
       created:'',
       updated:'',
       info:'',
+      fullname:'',
+      lastname:'',
+      gender:'',
+      group:'',
+      province:'',
       users: [],
       add:true,
       sessionId:'',
@@ -181,67 +164,12 @@ Vue.use(VueClipboard)
   components: {
   },
   methods: {
-    clickUpdate:async function(){
-        this.axios.get(this.url+'/user',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.users=response.data});
-    //  console.log(this.url);
-    },
-    openIn: function () {
-      var close = document.querySelector('.closeIn')
-      close.classList.add('openIn')
-      this.save=true
-    },
-    openEdit: function () {
-      var close = document.querySelector('.closeEdit')
-      close.classList.add('openEdit')
-      this.save=true
-    },
-    clickAdd1:async function(){
-      await this.axios.post(this.url+'/user/register',{ "email": this.email,"name": this.name,
-      "password": this.password
-      },{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }
-      ).then((response) => console.log(response));
-      await this.axios.get(this.url+'/user',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.users=response.data});
-    },
-    clickSearch: async function(){
-       await this.axios.get(this.url+'/user/email/'+this.email).then((response) => this.userSearch = response);
-       console.log(this.userSearch.data.name);
-       this.searchCheck=true;
-    },
-    clickSearch1: async function(){
-       await this.axios.get(this.url+'/user/'+this.id).then((response) => this.userSearch = response);
-       console.log(this.userSearch.data.name);
-       this.searchCheck=true;
-    },
-    clickSearch2(id){
-       this.axios.get(this.url+'/user/'+id).then((response) => this.usersearch1 = response);
-       console.log(this.usersearch1.data.email);
-    },
     clickEdit(id){
-      this.axios.put(this.url+'/edit/user/'+id ,{ "avatar": this.avatar, "tel": this.tel,
-        "address": this.address, "mobile": this.mobile, "name": this.name }, {
+      this.axios.put(this.url+'/edit/user/'+id ,{ "avatar": this.avatar, "dateofbirth": this.dateofbirth,
+        "email": this.email, "mobile": this.mobile, "fullname": this.fullname, "lastname": this.lastname, "group":this.group, "province": this.province, "gender": this.gender}, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate();
-          });
-    },
-    clickdelete1(id){
-      this.axios.delete(this.url+'/user/'+id, {
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate();
-          });
-        console.log(this.hihi);
+        })
     },
     getCookie: function(cname) {
       var name = cname + "=";

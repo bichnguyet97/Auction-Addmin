@@ -99,6 +99,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/confirmAuction.vue')
         },
         {
+          path: '/active-controller',
+          name: 'active-controller',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Active.vue')
+        },
+        {
           path: '/bid-controller',
           name: 'bid-controller',
           component: () => import(/* webpackChunkName: "demo" */ './views/Bidcontroller.vue')

@@ -137,17 +137,19 @@
                         <tbody class="test" v-if="searchCheck==2">
                           <tr>
                             <th scope="row">{{userSearch.data.id}}</th>
-                            <td>{{userSearch.data.status}}</td>
-                            <td>{{userSearch.data.bidPrice}}</td>
+                            <!-- <td>{{userSearch.data.status}}</td> -->
+                            <!-- <td>{{userSearch.data.bidPrice}}</td> -->
                             <td>{{userSearch.data.created}}</td>
                             <td>{{userSearch.data.updated}}</td>
                             <td>{{userSearch.data.startAt}}</td>
                             <td>{{userSearch.data.endAt}}</td>
-                            <td style="color:red;">{{userSearch.data.confirm}}</td>
+                            <td>{{userSearch.data.bidPrice}}</td>
+                            <td style="color:red;">{{userSearch.data.status}}</td>
                             <td>
                               <span>
-                                <button type="button" class="btn btn-danger" v-on:click="clickConfirmtrue(auction.id)">Yes</button>
-                                <button type="button" class="btn btn-warning" @click="clickConfirmfalse(auction.id)">No</button>
+                                <!-- <button type="button" class="btn btn-danger" v-on:click="clickConfirmtrue(auction.id)">Yes</button>
+                                <button type="button" class="btn btn-warning" @click="clickConfirmfalse(auction.id)">No</button> -->
+                                <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="clickinfo">Xem</b-button>
                               </span>
                             </td>
                           </tr>

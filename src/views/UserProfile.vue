@@ -157,7 +157,7 @@
                                 <base-button size="sm" outline type="danger" v-on:click="clickdelete1(users.id)">Xoá</base-button>
                                 <span>
                                   <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button>
-                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="clickSearch2(users.id)">Thông tin chi tiết</b-button>
+                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="close3=false,clickSearch2(users.id)">Thông tin chi tiết</b-button>
                                 </span>
                               </span>
                             </td>

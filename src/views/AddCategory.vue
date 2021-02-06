@@ -388,7 +388,7 @@ Vue.use(VueClipboard)
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) =>  {  console.log(response.data)});
+        }).then((response) =>  { this.asset=response.data});
       console.log(this.asset);
       // console.log(response.data[0].auctions[0].id)
     // for(var i =0;i>auction.length;i++) {

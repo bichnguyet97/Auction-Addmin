@@ -331,6 +331,7 @@
                             <option>Hà Nam</option>
                             <option>Quảng Ninh</option>
                             <option>Đà nẵng</option>
+                            <option>Bắc ninh</option>
                           </select>
                           </base-input>
                         </div>

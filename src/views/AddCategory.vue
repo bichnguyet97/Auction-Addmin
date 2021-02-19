@@ -385,10 +385,10 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user',{
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) =>  { this.asset=response.data});
+        }).then((response) => console.log(response.data[90].images.split(',',1)));
       console.log(this.asset);
       // console.log(response.data[0].auctions[0].id)
     // for(var i =0;i>auction.length;i++) {

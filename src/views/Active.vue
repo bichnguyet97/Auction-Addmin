@@ -43,6 +43,7 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span>
                                                   <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auction.asset.currentPrice}} VNDT</strong></h3>
+                                                  <b-button style="margin-top:5px;" @click="clickConfirm2(auctions.auction.id)" size="sm" variant="info">Yêu cầu tham gia đấu giá</b-button>
                                                   <!-- <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auction.auction.id)" variant="danger">Thông tin người thắng</b-button> -->
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
@@ -196,6 +197,7 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctions.auction.endAt}}</span>
                                                   <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auctions.asset.currentPrice}} VNDT</strong></h3>
                                                   <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auctions.auction.id)" variant="danger">Thông tin người thắng</b-button>
+                                                  <b-button style="margin-top:5px;" size="sm" @click="clickConfirm1(auctions.auction.id)" variant="danger">Yêu cầu thanh toán</b-button>
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
                                                   <!-- <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Không xác nhận</b-button> -->
@@ -275,10 +277,10 @@
                       <h5><i class="fa fa-birthday-cake" aria-hidden="true"></i>: {{Search.dateofbirth}}</h5>
                     </div>
                     <div class="col-12 col-xl-9 col-lg-9 col-md-8">
-                    <div class="row">
+                    <!-- <div class="row">
                       <div class="col-12 col-md-6">
                         <div class="form-group">
-                          <b-button variant="success">Yêu cầu thanh toán</b-button>
+                          <b-button @click="clickConfirm1(auctions.auction.id)" id="confirm" variant="success">Yêu cầu thanh toán</b-button>
                         </div>
                       </div>
                       <b-modal id="modalPopover" title="Thông báo" ok-only>
@@ -286,7 +288,7 @@
                         Tạo tài khoản thành công !
                         </p>
                       </b-modal>
-                    </div>
+                    </div> -->
                   </div>
                   </div>
                 </div>
@@ -412,16 +414,26 @@ Vue.use(VueClipboard)
         .then(response => this.auction=response.data);
       });
     },
-    // clickConfirm1(id){
-    //   this.axios.post(this.url+'/auction/update/'+id+"?note=Thông tin tài sản của bạn bị thiếu hoặc sai, vui lòng nhập lại! cảm ơn!"+"&status=Unaccept", {"status":this.status, "note":this.note}, {
-    //     headers: {
-    //       Authorization: this.getCookie('AC-ACCESS-KEY')
-    //     }
-    //   }).then(() => {
-    //     this.axios.get(this.url+'/auction/auction_status/new')
-    //     .then(response => this.auction=response.data);
-    //   });
-    // },
+    clickConfirm1(id){
+      this.axios.post(this.url+'/auction/update/'+id+"?note=Chúc mừng bạn đã là người thắng trong cuộc đấu giá, vui lòng thanh toán để được nhận tài sản đã mua!", {"status":this.status, "note":this.note}, {
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY')
+        }
+      }).then(() => {
+        this.axios.get(this.url+'/auction/auction_status/new')
+        .then(response => this.auctions=response.data);
+      });
+    },
+    clickConfirm2(id){
+      this.axios.post(this.url+'/auction/update/'+id+"?note=Bạn có muốn tiếp tục đấu giá vào lần tiếp theo vui lòng đăng ký lại!"+"&status=timeout", {"status":this.status, "note":this.note}, {
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY')
+        }
+      }).then(() => {
+        this.axios.get(this.url+'/auction/auction_status/new')
+        .then(response => this.auctions=response.data);
+      });
+    },
     clickSearch2(id){
       this.axios.get(this.url+'/user/'+id)
       .then((response) => { this.Search=response.data});
@@ -530,5 +542,10 @@ employee-list{
 #active_center{
   margin-left: 993px;
   margin-top: -201px;
+}
+#confirm{
+  width: 194px;
+  height: 39px;
+  margin-left: 60px;
 }
 </style>

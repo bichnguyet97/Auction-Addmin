@@ -2,7 +2,7 @@
     <div>
         <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-8">
         </base-header>
-        <div class="col-12 col-xl-12 col-lg-12">
+        <div v-if="hinh" class="col-12 col-xl-12 col-lg-12">
             <div class="edit-profile">
                 <div class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
@@ -10,7 +10,7 @@
                             <div class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">
-                                    <img class="w-100" src="img/brand/th1.jpg" alt="">
+                                    <img @click="hinh=false,clickSearch2(auction.asset.id)" class="w-100" :src="auction.asset.images.split(',',1)" alt="">
                                   </div>
                                 </div>
                                 <div class="col-12 col-lg-9 col-md-6 border-top">
@@ -60,7 +60,7 @@
                                         </span>
                                         <span class="d-block">
                                           <i class="fa fa-share" aria-hidden="true"></i>
-                                          {{auction.user.address}}
+                                          {{auction.user.province}}
                                         </span>
                                       </p>
                                     </div>
@@ -76,6 +76,418 @@
                     </div>
                 </div>
             </div>
+        </div>
+        <div v-else class="col-12 col-xl-12 col-lg-12">
+          <div class="detail-box mg-b-30">
+            <!--Detail Sum-->
+            <div class="detail-sum p-0 p-sm-3 bg-white mg-b-20">
+                <div class="detail-sum-box mini-col">
+                    <div class="row">
+                        <div class="col-12 col-lg-8">
+                            <!--Photo-->
+                            <div class="detail-photo position-relative">
+                                <div class="photo-slide photo-box">
+                                    <!--Thumb-->
+                                    <!-- <div class="photo-thum">
+                                        <div id="secondary-slider" class="splide secondary-slider">
+                                            <div class="splide__track">
+                                                <ul class="splide__list">
+                                                    <li class="splide__slide">
+                                                        <img :src="Search.images.split(',',1)">
+                                                    </li>
+                                                </ul>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <div>
+                                    <b-carousel
+                                      id="carousel-fade"
+                                      style="text-shadow: 0px 0px 2px #000"
+                                      fade
+                                      indicators
+                                      img-width="1024"
+                                      img-height="480"
+                                    >
+                                      <b-carousel-slide 
+                                         
+                                        :img-src="Search.assets[0].images.split(',',1)"
+                                      ></b-carousel-slide>
+                                    </b-carousel>
+                                  </div>
+                                    <!--Thumb-->
+                                    <!--Photo View-->
+                                    <!-- <div class="photo-slide">
+                                        <div class="position-relative">
+                                            <div id="primary-slider" class="splide primary-slider">
+                                                <div class="splide__track">
+                                                    <ul class="splide__list">
+                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
+                                                            <img src="img/brand/s500.jpg">
+                                                        </li>
+                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
+                                                            <img src="img/brand/s500.jpg">
+                                                        </li>
+                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
+                                                            <img src="img/brand/s500.jpg">
+                                                        </li>
+                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
+                                                            <img src="img/brand/s500.jpg">
+                                                        </li>
+                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
+                                                            <img src="img/brand/s500.jpg">
+                                                        </li>
+                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
+                                                            <img src="img/brand/s500.jpg">
+                                                        </li>
+                                                    </ul>
+                                                </div>
+                                            </div>
+                                            <span class="like-box liked d-inline-block">
+                                                <i class="las la-heart"></i>
+                                            </span>
+                                        </div>
+                                    </div> -->
+                                    <!--Photo View-->
+
+                                </div>
+
+                            </div>
+                            <!--Photo-->
+                        </div>
+                        <div class="col-12 col-lg-4">
+                            <div class="detail-sum-info p-3 p-sm-0">
+                                <!--Time End-->
+                                <!--Time End-->
+                                 
+                                <!--Price current-->
+                                <div id="innit" class="price-cur text-center">
+                                    <span class="f-19 mr-1 d-block mb-0 text-dark font-weight-bold">Giá khởi điểm: </span>
+                                    <h3 class="text-warning f-23 mb-1">{{Search.assets[0].currentPrice}} VNDT</h3>
+                                </div>
+                                <!-- Estimate -->
+                                <div class="modal fade" id="MdlEstimate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header pt-3 pb-3">
+                                                <h5 class="modal-title f-15 mb-0" id="exampleModalLabel">Giá ước tính</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body f-13">
+                                                <p class="mb-0">Là giá được đánh giá và thẩm định bởi các tổ chức hoặc chuyên gia hàng đầu về mặt hàng hoặc tài sản đưa ra đấu giá.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Buy Now -->
+                                <div class="modal fade" id="MdlBuyNow" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header pt-3 pb-3">
+                                                <h5 class="modal-title f-15 mb-0" id="exampleModalLabel">Giá ước tính</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body f-13">
+                                                <p class="mb-0">Là giá bạn có thể trả để sở hữu ngay sản phẩm khi đấu giá bắt đầu.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!-- Estimate -->
+                                <div class="modal fade" id="MdlPriceStart" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                    <div class="modal-dialog" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header pt-3 pb-3">
+                                                <h5 class="modal-title f-15 mb-0" id="exampleModalLabel">Giá khởi điểm</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                    <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body f-13">
+                                                <p class="mb-0">Là giá được người bán đưa ra để bắt đầu cho người mua tham gia đấu giá.</p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <!--Price current-->
+                                <!--Bidding-->
+                                <!-- Estimate -->
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Detail Sum-->
+            <!--Detail Pro-->
+            <div class="detail-info p-3 bg-white mini-col">
+                <div class="row">
+                    <div class="col-12 col-lg-8 ">
+                        <div class="pro-info">
+                            <div class="info-list f-14 mb-4">
+                                <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin đấu giá</h3>
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá:</span>
+                                            <strong>{{Search.auctions[0].id}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại:</span>
+                                            <strong>Hà Nội</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng:</span>
+                                            <strong>1</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự:</span>
+                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Thương hiệu:</span>
+                                            <strong>Vinhome</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái:</span>
+                                            <strong>Đã qua sử dụng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục:</span>
+                                            <strong>Bất động sản</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Chủng loại:</span>
+                                            <strong>Nhà phố, biệt thự</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Diện tích:</span>
+                                            <strong>312 m2</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hướng:</span>
+                                            <strong>Đông Nam</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng tầng:</span>
+                                            <strong>3 tầng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số phòng ngủ:</span>
+                                            <strong>3</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số nhà vệ sinh:</span>
+                                            <strong>2</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Khu vực:</span>
+                                            <strong>Long Biên, Hà Nội</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="video-pro mb-3">
+                                <h3 class="f-17 border-bottom pb-3 mb-3">Video giới thiệu</h3>
+                                <div class="row">
+                                    <div class="col-12 col-md-4">
+                                        <a class="video-box d-block text-center bg-light mg-b-20" href="https://www.youtube.com/watch?v=YS4tMCCfifY" data-caption="Giới thiệu về sản phẩm" data-width="800" data-height="450" data-fancybox="room_video">
+                                            <span class="video mb-2 position-relative">
+                                                <img src="img/1234.jpg" class="w-100" />
+                                                <span class="play-icon">
+                                                    <i class="las la-play"></i>
+                                                </span>
+                                            </span>
+                                            <h6 class="font-weight-600 pt-2 mb-0 pb-2 f-14">
+                                                Giới thiệu về sản phẩm
+                                            </h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <a class="video-box d-block text-center bg-light mg-b-20" href="https://www.youtube.com/watch?v=YS4tMCCfifY" data-caption="Cơ quan thẩm định" data-width="800" data-height="450" data-fancybox="room_video">
+                                            <span class="video mb-2 position-relative">
+                                                <img src="img/v3.jpg" class="w-100" />
+                                                <span class="play-icon">
+                                                    <i class="las la-play"></i>
+                                                </span>
+                                            </span>
+                                            <h6 class="font-weight-600 pt-2 mb-0 pb-2 f-14">
+                                                Cơ quan thẩm định
+                                            </h6>
+                                        </a>
+                                    </div>
+                                    <div class="col-12 col-md-4">
+                                        <a class="video-box d-block text-center bg-light mg-b-20" href="https://www.youtube.com/watch?v=YS4tMCCfifY" data-caption="Đánh giá của chuyên gia" data-width="800" data-height="450" data-fancybox="room_video">
+                                            <span class="video mb-2 position-relative">
+                                                <img src="img/1235.jpg" class="w-100" />
+                                                <span class="play-icon">
+                                                    <i class="las la-play"></i>
+                                                </span>
+                                            </span>
+                                            <h6 class="font-weight-600 pt-2 mb-0 pb-2 f-14">
+                                                Đánh giá của chuyên gia
+                                            </h6>
+                                        </a>
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="info-detail">
+                                <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin sản phẩm</h3>
+                                <div>
+                                    <ul>
+                                        <li>Sản phẩm: Biệt thự Vinhome Riverside</li>
+                                        <li>Địa chỉ: Khu Đô Thị Vinhomes Riverside – Long Biên – Hà Nội</li>
+                                        <li>Diện tích: 140m2</li>
+                                        <li>Công trình: Nhà ở gia đình</li>
+                                        <li>Phong cách thiết kế: Tân cổ điển</li>
+                                        <li>Số tầng: 3 tầng</li>
+                                        <li>Đơn vị thiết kế: Công ty Cổ phần ARCHITEC VIỆT</li>
+                                    </ul>
+                                    <p>
+                                        Thiết kế biệt thự vinhomes riverside này được kiến trúc sư Vũ Huy Hiệp của Công ty thiết kế Architec Việt thiết kế hoàn thiện phần kiến trúc và nội thất cho gia đình anh Hà chị Thanh tại Khu Đô Thị Vinhomes Riverside. Ngay khi được kiến trúc sư Vũ Huy Hiệp tư vấn thiết kế, anh Hà chị Thanh đã rất yêu thích ngoại thất của ngôi biệt thự này. Mẫu biệt thự 3 tầng này vô cùng phù hợp với dải đất 10x14m tại Khu Đô thị Vinhomes Riverside.
+                                    </p> <p>
+
+                                        Hình ảnh ban đầu của ngôi biệt thự tân cổ điển được thiết kế với chiều cao 3 tầng. Xét vể tổng thể thì ngôi biệt thự 3 tầng này khá hài hòa, tuy nhiên, chưa toát lên được những nét đẹp đặc trưng của nét kiến trúc Pháp. Chính vì vậy, kiến trúc sư cần cải tạo lại để tôn lên vẻ sang trọng và đẳng cấp cho công trình.
+                                    </p> <p>
+                                        Mời quý vị và các bạn chiêm ngưỡng hình ảnh biệt thự 3 tầng được vẽ bằng 3D do kiến trúc sư Vũ Huy Hiệp vẽ thiết kế cho gia đình anh Hà chị Thanh.
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div class="detail-side">
+                            <div class="seller-box mg-b-20 bg-light p-3">
+                                <div class="seller-info pb-2">
+                                    <h3 class="f-17 border-bottom pb-3">Thông tin người bán</h3>
+                                    <div class="d-flex align-items-center">
+                                        <img :src="Search.avatar" class="rounded-circle edit-avatar" width="100" height="100">
+                                        <div class="user-sum ml-3">
+                                            <h5 class="f-15 mb-2 font-weight-600">{{Search.lastname}} {{Search.fullname}}</h5>
+                                            <p class="f-13 mb-0 text-secondary">
+                                                <span class="d-block">
+                                                    <i class="las la-phone mr-1"></i>
+                                                    {{Search.mobile}}
+                                                </span>
+                                                <span class="d-block">
+                                                    <i class="las la-envelope mr-1 mt-1"></i>
+                                                    {{Search.email}}
+                                                </span>
+                                                <span class="d-block">
+                                                    <i class="las la-directions mt-1"></i>
+                                                    {{Search.province}}
+                                                </span>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                            <div id="danh-sach-dang-ky" class="bid-history  bg-light p-3">
+                                <h3 class="f-17 border-bottom pb-3 mb-2">Đăng ký tham dự</h3>
+                                <ul class="list-group list-group-flush">
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
+                                        <span class="d-block d-sm-inline">
+                                            <span class="font-weight-600">hoahongdo</span>
+                                        </span>
+                                        <span class="f-13 text-muted float-right">1 giờ trước</span>
+                                    </li>
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
+                                        <span class="d-block d-sm-inline">
+                                            <span class="font-weight-600">bisovn</span>
+                                        </span>
+                                        <span class="f-13 text-muted float-right">3 Hôm qua</span>
+                                    </li>
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
+                                        <span class="d-block d-sm-inline">
+                                            <span class="font-weight-600">Hoangminh</span>
+                                        </span>
+                                        <span class="f-13 text-muted float-right">10:30 20-12-2020</span>
+                                    </li>
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
+                                        <span class="d-block d-sm-inline">
+                                            <span class="font-weight-600">hoangoclan</span>
+                                        </span>
+                                        <span class="f-13 text-muted float-right">13:30 21-12-2020</span>
+                                    </li>
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
+                                        <span class="d-block d-sm-inline">
+                                            <span class="font-weight-600">huongduong</span>
+                                        </span>
+                                        <span class="f-13 text-muted float-right">13:30 21-12-2020</span>
+                                    </li>
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
+                                        <span class="d-block d-sm-inline">
+                                            <span class="font-weight-600">tuanhung</span>
+                                        </span>
+                                        <span class="f-13 text-muted float-right">10:30 20-12-2020</span>
+                                    </li>
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
+                                        <span class="d-block d-sm-inline">
+                                            <span class="font-weight-600">anhyeuem</span>
+                                        </span>
+                                        <span class="f-13 text-muted float-right">13:30 21-12-2020</span>
+                                    </li>
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
+                                        <span class="d-block d-sm-inline">
+                                            <span class="font-weight-600">maimaila</span>
+                                        </span>
+                                        <span class="f-13 text-muted float-right">13:30 21-12-2020</span>
+                                    </li>
+                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 text-center bg-transparent">
+                                        <a href="#" class="btn btn-light bg-white btn-sm">
+                                            <i class="las la-sync-alt"></i>
+                                            Xem thêm
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!--Detail Pro-->
+
+        </div>
         </div>
     </div>
 </template>
@@ -111,11 +523,14 @@ Vue.use(VueClipboard)
       creaded:'',
       tags:'',
       asset:[],
+      province:'',
       confirm:'',
       actions:'',
       id: '',
       created:'',
       name: '',
+      mobile:'',
+      hinh:'true',
       updated:'',
       info:'',
       auction: [],
@@ -125,6 +540,7 @@ Vue.use(VueClipboard)
       save:true,
       close1:true,
       assest:'',
+      Search:'',
       searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',
@@ -191,6 +607,11 @@ Vue.use(VueClipboard)
         this.axios.get(this.url+'/auction/auction_status/new')
         .then(response => this.auction=response.data);
       });
+    },
+    clickSearch2(id){
+      this.axios.get(this.url+'/asset/id/'+id)
+      .then((response) => { this.Search=response.data});
+        console.log(this.Search);
     },
     // clickdelete1(id){
     //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=deleted",{
@@ -304,5 +725,8 @@ employee-list{
 #borde{
   margin-left: 903px;
   margin-top: -201px;
+}
+#innit{
+  margin-top: 180px;
 }
 </style>

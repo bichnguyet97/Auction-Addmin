@@ -388,8 +388,15 @@ Vue.use(VueClipboard)
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => console.log(response.data[90].images.split(',',1)));
-      console.log(this.asset);
+        }).then((response) => {
+         this.images = (response.data[90].images.split(','))
+         console.log(this.images[0])
+        }
+        );
+        // .then((response) => {
+        //  this.images = (response.data[90].images.split(','))
+        //  console.log(this.images[0])
+      // console.log(this.asset);
       // console.log(response.data[0].auctions[0].id)
     // for(var i =0;i>auction.length;i++) {
     //     for(var j =0;j<auction.lenght;j++) {

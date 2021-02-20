@@ -109,8 +109,8 @@
                                       img-height="480"
                                     >
                                       <b-carousel-slide 
-                                         
-                                        :img-src="Search.assets[0].images.split(',',1)"
+                                        v-for="image in image" v-bind:key="image.images"
+                                        :img-src="image"
                                       ></b-carousel-slide>
                                     </b-carousel>
                                   </div>
@@ -162,7 +162,7 @@
                                 <!--Price current-->
                                 <div id="innit" class="price-cur text-center">
                                     <span class="f-19 mr-1 d-block mb-0 text-dark font-weight-bold">Giá khởi điểm: </span>
-                                    <h3 class="text-warning f-23 mb-1">{{Search.assets[0].currentPrice}} VNDT</h3>
+                                    <h3 class="text-warning f-23 mb-1">{{Search.assets[0].currentPrice}}  VNDT</h3>
                                 </div>
                                 <!-- Estimate -->
                                 <div class="modal fade" id="MdlEstimate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -225,14 +225,14 @@
             <div class="detail-info p-3 bg-white mini-col">
                 <div class="row">
                     <div class="col-12 col-lg-8 ">
-                        <div class="pro-info">
+                        <div  class="pro-info">
                             <div class="info-list f-14 mb-4">
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin đấu giá</h3>
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>{{Search.auctions[0].id}}</strong>
+                                            <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -403,11 +403,11 @@
                                     <div class="d-flex align-items-center">
                                         <img :src="Search.avatar" class="rounded-circle edit-avatar" width="100" height="100">
                                         <div class="user-sum ml-3">
-                                            <h5 class="f-15 mb-2 font-weight-600">{{Search.lastname}} {{Search.fullname}}</h5>
+                                            <h5 class="f-15 mb-2 font-weight-600">{{Search.lastname}} {{Search.fullname}} </h5>
                                             <p class="f-13 mb-0 text-secondary">
                                                 <span class="d-block">
                                                     <i class="las la-phone mr-1"></i>
-                                                    {{Search.mobile}}
+                                                      {{Search.mobile}}
                                                 </span>
                                                 <span class="d-block">
                                                     <i class="las la-envelope mr-1 mt-1"></i>
@@ -415,71 +415,12 @@
                                                 </span>
                                                 <span class="d-block">
                                                     <i class="las la-directions mt-1"></i>
-                                                    {{Search.province}}
+                                                      {{Search.province}}
                                                 </span>
                                             </p>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
-                            <div id="danh-sach-dang-ky" class="bid-history  bg-light p-3">
-                                <h3 class="f-17 border-bottom pb-3 mb-2">Đăng ký tham dự</h3>
-                                <ul class="list-group list-group-flush">
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
-                                        <span class="d-block d-sm-inline">
-                                            <span class="font-weight-600">hoahongdo</span>
-                                        </span>
-                                        <span class="f-13 text-muted float-right">1 giờ trước</span>
-                                    </li>
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
-                                        <span class="d-block d-sm-inline">
-                                            <span class="font-weight-600">bisovn</span>
-                                        </span>
-                                        <span class="f-13 text-muted float-right">3 Hôm qua</span>
-                                    </li>
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
-                                        <span class="d-block d-sm-inline">
-                                            <span class="font-weight-600">Hoangminh</span>
-                                        </span>
-                                        <span class="f-13 text-muted float-right">10:30 20-12-2020</span>
-                                    </li>
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
-                                        <span class="d-block d-sm-inline">
-                                            <span class="font-weight-600">hoangoclan</span>
-                                        </span>
-                                        <span class="f-13 text-muted float-right">13:30 21-12-2020</span>
-                                    </li>
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
-                                        <span class="d-block d-sm-inline">
-                                            <span class="font-weight-600">huongduong</span>
-                                        </span>
-                                        <span class="f-13 text-muted float-right">13:30 21-12-2020</span>
-                                    </li>
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
-                                        <span class="d-block d-sm-inline">
-                                            <span class="font-weight-600">tuanhung</span>
-                                        </span>
-                                        <span class="f-13 text-muted float-right">10:30 20-12-2020</span>
-                                    </li>
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
-                                        <span class="d-block d-sm-inline">
-                                            <span class="font-weight-600">anhyeuem</span>
-                                        </span>
-                                        <span class="f-13 text-muted float-right">13:30 21-12-2020</span>
-                                    </li>
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 bg-transparent">
-                                        <span class="d-block d-sm-inline">
-                                            <span class="font-weight-600">maimaila</span>
-                                        </span>
-                                        <span class="f-13 text-muted float-right">13:30 21-12-2020</span>
-                                    </li>
-                                    <li class="list-group-item border-0 pl-0 pr-0 pt-1 pb-1 text-center bg-transparent">
-                                        <a href="#" class="btn btn-light bg-white btn-sm">
-                                            <i class="las la-sync-alt"></i>
-                                            Xem thêm
-                                        </a>
-                                    </li>
-                                </ul>
                             </div>
                         </div>
                     </div>
@@ -610,8 +551,8 @@ Vue.use(VueClipboard)
     },
     clickSearch2(id){
       this.axios.get(this.url+'/asset/id/'+id)
-      .then((response) => { this.Search=response.data});
-        console.log(this.Search);
+      .then((response) => {this.image=(response.data.assets[0].images.split(',')), this.Search=response.data, this.auc=response.data.auctions[0]});
+        console.log(this.auc);
     },
     // clickdelete1(id){
     //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=deleted",{

@@ -84,6 +84,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/confirmAsset.vue')
         },
         {
+          path: '/editasset-controller',
+          name: 'editasset-controller',
+          component: () => import(/* webpackChunkName: "demo" */ './views/EditAsset.vue')
+        },
+        {
           path: '/auction-controller',
           name: 'auction-controller',
           component: () => import(/* webpackChunkName: "demo" */ './views/Auctioncontroller.vue')

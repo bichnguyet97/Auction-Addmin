@@ -20,6 +20,7 @@ import VueCookies from 'vue-cookies';
 import App from './App.vue'
 import router from './router'
 import './registerServiceWorker'
+import firebase from "firebase"
 import ArgonDashboard from './plugins/argon-dashboard'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
@@ -32,6 +33,16 @@ Vue.config.productionTip = false
 Vue.use(ArgonDashboard)
 
 Vue.use(VueCookies);
+
+firebase.initializeApp({
+  apiKey: "AIzaSyAgT9AnK8vAq4HuiB0Ch4pJS8RafVjvtic",
+  authDomain: "achauauction.firebaseapp.com",
+  projectId: "achauauction",
+  storageBucket: "achauauction.appspot.com",
+  messagingSenderId: "461753979976",
+  appId: "1:461753979976:web:9c212c6c1d3e287d27f47d",
+  measurementId: "G-V5906GMSYT"
+})
 
 new Vue({
   router,

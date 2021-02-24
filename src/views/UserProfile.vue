@@ -380,7 +380,7 @@ Vue.use(VueClipboard)
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.users=response.data});
+        }).then((response) => {this.users=response.data});
     console.log(users);
     return {
       email: '',

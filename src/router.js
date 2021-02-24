@@ -79,6 +79,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Assetcontroller.vue')
         },
         {
+          path: '/addasset-controller',
+          name: 'addasset-controller',
+          component: () => import(/* webpackChunkName: "demo" */ './views/AddAsset.vue')
+        },
+        {
           path: '/cfirmasset-controller',
           name: 'masset-controller',
           component: () => import(/* webpackChunkName: "demo" */ './views/confirmAsset.vue')

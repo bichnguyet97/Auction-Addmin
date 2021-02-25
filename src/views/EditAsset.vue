@@ -131,7 +131,7 @@
                                                 </div>
                                                 <div class="col-12 col-md-4">
                                                     <div class="user-avatar mb-3 mb-sm-0 text-center">
-                                                        <img src="img/no-image.jpg" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
+                                                        <img :src="Search.assets[0].images" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
                                                     </div>
                                                 </div>
                                                 <div class="col-12 col-md-5">
@@ -156,7 +156,18 @@
                                                     <label class="col-form-label font-weight-600">Tên tài sản<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <input type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input type="text" class="form-control form-control-user fs-090" v-model="testName" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Nhập giá bán<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-9">
+                                                    <input  type="text" class="form-control form-control-user fs-090" v-model="testinitPrice" maxlength="200">
                                                 </div>
                                             </div>
                                         </div>
@@ -167,18 +178,20 @@
                                                     <label class="col-form-label font-weight-600">Danh mục đấu giá<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-9">
-                                                    <select class="form-control select-default selectpickernone" multiple data-actions-box="false" data-none-selected-text="Chưa chọn danh mục">
-                                                        <option value="1">Bất động sản</option>
-                                                        <option value="2">Xe hơi</option>
-                                                        <option value="4">Đồ cổ</option>
-                                                        <option value="5">Cây cảnh</option>
-                                                        <option value="5">Sim số</option>
-                                                        <option value="6">Đá quý</option>
+                                                    <select v-model="testcategory" class="form-control form-control-user fs-090">
+                                                        <option disable value="">Chọn</option>
+                                                        <option>Bất động sản</option>
+                                                        <option>Xe hơi</option>
+                                                        <option>Đồ cổ</option>
+                                                        <option>Cây cảnh</option>
+                                                        <option>Sim số</option>
+                                                        <option>Đá quý</option>
+                                                        <option>Nghệ thuật</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
-                                        <div class="form-group">
+                                        <!-- <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
                                                     <label class="col-form-label font-weight-600">Người bán<span class="text-danger">*</span></label>
@@ -196,7 +209,7 @@
                                                     </select>
                                                 </div>
                                             </div>
-                                        </div>
+                                        </div> -->
 
                                         <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                             Thư viện ảnh
@@ -211,17 +224,26 @@
                                         <div class="form-group">
                                             <div class="input-group rounded-0">
                                                 <div class="custom-file rounded-0">
-                                                    <input type="file" class="custom-file-input rounded-0" id="inputGroupFile02">
-                                                    <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
+                                                    <b-form-file
+                                                    class="z-index-inputFile"
+                                                    @change="previewImage"
+                                                    placeholder="Select file"
+                                                    drop-placeholder="Drop file here..."
+                                                    accept="image/*"
+                                                    ></b-form-file>
+                                                    <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">{{picture}}</label>
                                                 </div>
                                                 <div class="input-group-append">
-                                                    <button class="btn btn-warning">
+                                                    <button @click="onUpload" class="btn btn-warning">
                                                         <i class="las la-plus-circle"></i>
                                                         Thêm
                                                     </button>
                                                 </div>
                                             </div>
                                             <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
+                                            <div v-for="image in image" v-bind:key="image.images" class="user-avatar mb-3 mb-sm-0 text-center">
+                                                <img :src="picture" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
+                                            </div>
                                         </div>
 
                                         <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
@@ -693,7 +715,7 @@
                                             Chi tiết tài sản
                                         </h3>
                                         <div class="form-group">
-                                            <textarea class="form-control" rows="8"></textarea>
+                                            <textarea v-model="testdescription" class="form-control" rows="8"></textarea>
                                             <!-- <small id="emailHelp" class="form-text text-muted">Lập trình viên tự chọn TextEditor phù hợp vào ô trên</small> -->
                                         </div>
                                         <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
@@ -705,7 +727,7 @@
                                                     <label class="col-form-label font-weight-600">Tình trạng</label>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <select class="form-control select-default selectpickernone">
+                                                    <select v-model="testcurrentStatus"  class="form-control select-default selectpickernone">
                                                         <option value="0">Chọn tình trạng</option>
                                                         <option value="1">Cũ</option>
                                                         <option value="2">Mới</option>
@@ -844,9 +866,9 @@
                                         </div>
                                         <hr class="pt-3 mb-1" />
                                         <div class="clearfix">
-                                            <button class="btn btn-primary mb-2">
+                                            <button @click="clickEdit(Search.assets[0].id)" class="btn btn-primary mb-2">
                                                 <i class="las la-save"></i>
-                                                Thêm tài sản
+                                                Sửa tài sản
                                             </button>
                                             <em class="text-danger f-13 d-block d-sm-inline float-left float-sm-right">* là trường bắt buộc nhập dữ liệu</em>
                                         </div>
@@ -864,6 +886,7 @@
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
+import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
@@ -881,6 +904,7 @@ Vue.use(VueClipboard)
       currentPrice:'',
       finalPrice:'',
       images:'',
+      image:'',
       description:'',
       hinh:true,
       category:'',
@@ -899,12 +923,18 @@ Vue.use(VueClipboard)
       showInfo5:false,
       updated:'',
       info:'',
+      color:'',
       status:'',
       asset: [],
       add:true,
       sessionId:'',
       save:true,
+      currentStatus:'',
       searchCheck: 1,
+      direction:'',
+      acreage:'',
+      picture:null,
+      bedroomsNumber:'',
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:''
     };
@@ -919,18 +949,53 @@ Vue.use(VueClipboard)
     },
     clickSearch2(id){
       this.axios.get(this.url+'/asset/id/'+id)
-      .then((response) => { this.Search=response.data});
+      .then((response) => { this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,
+      this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.picture = response.data.assets[0].images.split(','),
+      this.testdirection = response.data.assets[0].direction, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber});
         console.log(this.Search);
     },
     clickEdit(id){
-      this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.name, "images": this.images,
-        "initPrice": this.initPrice }, {
+      this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,
+      "category": this.testcategory, "images":this.picture,"description":this.testdescription, "currentStatus": this.testcurrentStatus, 
+      "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.bedroomsNumber, 
+      }, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then(() => {
             this.clickUpdate();
           });
     },
+    previewImage(event){
+            // this.uploadValue=0;
+            
+                this.picture=null;
+                this.imageData =event.target.files[0];
+                this.uploadValue=0;
+            
+        },
+    onUpload(){
+            // var today = new Date();
+            // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+            // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+            // dateTime = date+' '+time;
+             
+                this.picture=null;
+                 
+                const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
+                storageRef.on(`state_changed`,snapshot=>{
+                    this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+                    }, error =>{console.log(error.message)},
+                    ()=>{this.uploadValue=100;
+                
+                    storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
+                        this.picture=url1;
+                        console.log(this.picture);
+                    });
+
+                    }
+                    );
+            
+        },
     // clickSearch1: async function(){
     //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);
     //   console.log(this.userSearch.data.name);

@@ -7,14 +7,15 @@
               <div>
                 <div class="mt-3">
                   <b-button-group>
-                    <b-button @click="check=1" variant="warning">Danh sách tài sản đã hết hạn đấu giá</b-button>
-                    <b-button  @click="check=2" variant="info">Danh sách tài sản còn hạn đấu giá</b-button>
+                    <b-button  @click="check=1" variant="info">Danh sách tài sản còn hạn đấu giá</b-button>
+                    <b-button @click="check=2" variant="warning">Danh sách tài sản đã hết hạn đấu giá</b-button>
+                    <!-- <b-button  @click="check=2" variant="info">Danh sách tài sản còn hạn đấu giá</b-button> -->
                     <b-button  @click="check=3" variant="success">Danh sách tài đã kết thúc đấu giá</b-button>
                     <!-- <b-button variant="warning">Warning</b-button> -->
                   </b-button-group>
                 </div>
               </div>
-                <div v-if="check==1" class="card border-0 rounded-0 shadow-sm">
+                <div v-if="check==2" class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
                         <div v-for="auction in auction" v-bind:key="auction.id" class="card-text pt-1">
                             <div v-if="Date.now() > Date.parse(auction.auction.endAt)" class="row">
@@ -91,13 +92,13 @@
                         </b-modal>
                     </div>
                 </div>
-                <div v-if="check==2" class="card border-0 rounded-0 shadow-sm">
+                <div v-if="check==1" class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
                         <div v-for="auction in auction" v-bind:key="auction.id" class="card-text pt-1">
                             <div v-if="Date.now() < Date.parse(auction.auction.endAt)" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">
-                                    <img class="w-100" src="img/brand/th2.jpg" alt="">
+                                    <img class="w-100" :src="auction.asset.images" alt="">
                                   </div>
                                 </div>
                                 <div class="col-12 col-lg-9 col-md-6 border-top">

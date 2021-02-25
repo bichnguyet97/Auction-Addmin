@@ -17,7 +17,7 @@
                                         Thông tin chung
                                     </h3>
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
                                                 <label class="col-form-label font-weight-600">Ảnh đại diện<span class="text-danger">*</span></label>
@@ -31,7 +31,7 @@
                                                 <p class="pt-2 f-13">Nhấp chuột vào ảnh để chọn hoặc thay đổi ảnh đại diện. Ảnh đại diện phải là: <span class="font-weight-bold">jpg, png, gif</span> dung lượng tối đa <span class="font-weight-bold">500Kb</span>. Kích thước tối đa <span class="font-weight-bold">300px</span></p>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <!-- <div class="form-group">
                                         <div class="row">
@@ -49,7 +49,7 @@
                                                 <label class="col-form-label font-weight-600">Tên tài sản<span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input v-model="name" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                <input v-model="name" type="text" class="form-control form-control-user fs-090" maxlength="200" value="">
                                             </div>
                                         </div>
                                     </div>
@@ -60,7 +60,7 @@
                                                 <label class="col-form-label font-weight-600">Nhập giá bán<span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input v-model="initPrice" type="text" class="form-control form-control-user fs-090">
+                                                <input v-model="initPrice" type="text" class="form-control form-control-user fs-090" value="0">
                                             </div>
                                         </div>
                                     </div>
@@ -71,14 +71,15 @@
                                                 <label class="col-form-label font-weight-600">Danh mục đấu giá<span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <select v-model="category" class="form-control select-default selectpickernone" multiple data-actions-box="false" data-none-selected-text="Chưa chọn danh mục">
-                                                    <option value="1">Bất động sản</option>
-                                                    <option value="2">Xe hơi</option>
-                                                    <option value="4">Đồ cổ</option>
-                                                    <option value="5">Cây cảnh</option>
-                                                    <option value="5">Sim số</option>
-                                                    <option value="6">Đá quý</option>
-                                                    <option value="7">Nghệ thuật</option>
+                                                <select v-model="category" class="form-control form-control-user fs-090">
+                                                    <option disable value="">Chọn</option>
+                                                    <option>Bất động sản</option>
+                                                    <option>Xe hơi</option>
+                                                    <option>Đồ cổ</option>
+                                                    <option>Cây cảnh</option>
+                                                    <option>Sim số</option>
+                                                    <option>Đá quý</option>
+                                                    <option>Nghệ thuật</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -131,6 +132,9 @@
                                                     Thêm
                                                 </button>
                                             </div>
+                                        </div>
+                                        <div class="user-avatar mb-3 text-center">
+                                            <img :src="picture" alt="">
                                         </div>
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
                                     </div>
@@ -196,84 +200,84 @@
                                                 <label class=" col-form-label pb-1 pt-0 font-weight-600">Khu vực<span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                <select class="form-control select-default selectpickernone">
-                                                    <option selected="selected" value="0">Chọn tỉnh thành</option>
-                                                    <option value="24">Hà Nội</option>
-                                                    <option value="30">Hồ Chí Minh</option>
-                                                    <option value="15">Đà Nẵng</option>
-                                                    <option value="28">Hải Phòng</option>
-                                                    <option value="14">Cần Thơ</option>
-                                                    <option value="58">Thừa Thiên - Huế</option>
-                                                    <option value="50">Quảng Ninh</option>
-                                                    <option value="1">An Giang</option>
-                                                    <option value="2">Bà Rịa-Vũng Tàu</option>
-                                                    <option value="5">Bắc Giang</option>
-                                                    <option value="4">Bắc Kạn</option>
-                                                    <option value="3">Bạc Liêu</option>
-                                                    <option value="6">Bắc Ninh</option>
-                                                    <option value="7">Bến Tre</option>
-                                                    <option value="8">Bình Dương</option>
-                                                    <option value="9">Bình Định</option>
-                                                    <option value="10">Bình Phước</option>
-                                                    <option value="11">Bình Thuận</option>
-                                                    <option value="12">Cà Mau</option>
-                                                    <option value="13">Cao Bằng</option>
-                                                    <option value="16">Đắk Lắk</option>
-                                                    <option value="17">Đắk Nông</option>
-                                                    <option value="18">Điện Biên</option>
-                                                    <option value="19">Đồng Nai</option>
-                                                    <option value="20">Đồng Tháp</option>
-                                                    <option value="21">Gia Lai</option>
-                                                    <option value="22">Hà Giang</option>
-                                                    <option value="23">Hà Nam</option>
-                                                    <option value="26">Hà Tĩnh</option>
-                                                    <option value="27">Hải Dương</option>
-                                                    <option value="31">Hậu Giang</option>
-                                                    <option value="29">Hòa Bình</option>
-                                                    <option value="32">Hưng Yên</option>
-                                                    <option value="34">Kiên Giang</option>
-                                                    <option value="35">Kon Tum</option>
-                                                    <option value="33">Khánh Hòa</option>
-                                                    <option value="36">Lai Châu</option>
-                                                    <option value="38">Lạng Sơn</option>
-                                                    <option value="37">Lào Cai</option>
-                                                    <option value="39">Lâm Đồng</option>
-                                                    <option value="40">Long An</option>
-                                                    <option value="41">Nam Định</option>
-                                                    <option value="43">Ninh Bình</option>
-                                                    <option value="44">Ninh Thuận</option>
-                                                    <option value="42">Nghệ An</option>
-                                                    <option value="45">Phú Thọ</option>
-                                                    <option value="46">Phú Yên</option>
-                                                    <option value="47">Quảng Bình</option>
-                                                    <option value="48">Quảng Nam</option>
-                                                    <option value="49">Quảng Ngãi</option>
-                                                    <option value="51">Quảng Trị</option>
-                                                    <option value="52">Sóc Trăng</option>
-                                                    <option value="53">Sơn La</option>
-                                                    <option value="54">Tây Ninh</option>
-                                                    <option value="59">Tiền Giang</option>
-                                                    <option value="61">Tuyên Quang</option>
-                                                    <option value="55">Thái Bình</option>
-                                                    <option value="56">Thái Nguyên</option>
-                                                    <option value="57">Thanh Hóa</option>
-                                                    <option value="60">Trà Vinh</option>
-                                                    <option value="62">Vĩnh Long</option>
-                                                    <option value="63">Vĩnh Phúc</option>
-                                                    <option value="64">Yên Bái</option>
+                                                <select v-model="area" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn khu vực</option>
+                                                    <option >Hà Nội</option>
+                                                    <option>Hồ Chí Minh</option>
+                                                    <option>Đà Nẵng</option>
+                                                    <option>Hải Phòng</option>
+                                                    <option>Cần Thơ</option>
+                                                    <option>Thừa Thiên - Huế</option>
+                                                    <option>Quảng Ninh</option>
+                                                    <option>An Giang</option>
+                                                    <option>Bà Rịa-Vũng Tàu</option>
+                                                    <option>Bắc Giang</option>
+                                                    <option>Bắc Kạn</option>
+                                                    <option>Bạc Liêu</option>
+                                                    <option>Bắc Ninh</option>
+                                                    <option>Bến Tre</option>
+                                                    <option>Bình Dương</option>
+                                                    <option>Bình Định</option>
+                                                    <option>Bình Phước</option>
+                                                    <option>Bình Thuận</option>
+                                                    <option>Cà Mau</option>
+                                                    <option>Cao Bằng</option>
+                                                    <option>Đắk Lắk</option>
+                                                    <option>Đắk Nông</option>
+                                                    <option>Điện Biên</option>
+                                                    <option>Đồng Nai</option>
+                                                    <option>Đồng Tháp</option>
+                                                    <option>Gia Lai</option>
+                                                    <option>Hà Giang</option>
+                                                    <option>Hà Nam</option>
+                                                    <option>Hà Tĩnh</option>
+                                                    <option>Hải Dương</option>
+                                                    <option>Hậu Giang</option>
+                                                    <option>Hòa Bình</option>
+                                                    <option>Hưng Yên</option>
+                                                    <option>Kiên Giang</option>
+                                                    <option>Kon Tum</option>
+                                                    <option>Khánh Hòa</option>
+                                                    <option>Lai Châu</option>
+                                                    <option>Lạng Sơn</option>
+                                                    <option>Lào Cai</option>
+                                                    <option>Lâm Đồng</option>
+                                                    <option>Long An</option>
+                                                    <option>Nam Định</option>
+                                                    <option>Ninh Bình</option>
+                                                    <option>Ninh Thuận</option>
+                                                    <option>Nghệ An</option>
+                                                    <option>Phú Thọ</option>
+                                                    <option>Phú Yên</option>
+                                                    <option>Quảng Bình</option>
+                                                    <option>Quảng Nam</option>
+                                                    <option>Quảng Ngãi</option>
+                                                    <option>Quảng Trị</option>
+                                                    <option>Sóc Trăng</option>
+                                                    <option>Sơn La</option>
+                                                    <option>Tây Ninh</option>
+                                                    <option>Tiền Giang</option>
+                                                    <option>Tuyên Quang</option>
+                                                    <option>Thái Bình</option>
+                                                    <option>Thái Nguyên</option>
+                                                    <option>Thanh Hóa</option>
+                                                    <option>Trà Vinh</option>
+                                                    <option>Vĩnh Long</option>
+                                                    <option>Vĩnh Phúc</option>
+                                                    <option>Yên Bái</option>
 
                                                 </select>
                                             </div>
-                                            <div class="col-12 col-md-5">
+                                            <!-- <div class="col-12 col-md-5">
                                                 <select class="form-control select-default selectpickernone">
-                                                    <option value="0">Chọn quận huyện</option>
-                                                    <option value="1">Hoàn Kiếm</option>
-                                                    <option value="2">Hai bà trưng</option>
-                                                    <option value="4">Đống đa</option>
-                                                    <option value="5">Hoàng Mai</option>
-                                                    <option value="5">Thanh Xuân</option>
+                                                    <option disable value="">Chọn quận huyện</option>
+                                                    <option>Hoàn Kiếm</option>
+                                                    <option>Hai bà trưng</option>
+                                                    <option>Đống đa</option>
+                                                    <option>Hoàng Mai</option>
+                                                    <option>Thanh Xuân</option>
                                                 </select>
-                                            </div>
+                                            </div> -->
                                         </div>
                                     </div>
 
@@ -283,12 +287,12 @@
                                                 <label class="col-form-label font-weight-600">Chủng loại</label>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <select class="form-control select-default selectpickernone">
-                                                    <option value="1">Đất thổ cư, đất dự án</option>
-                                                    <option value="2">Căn hộ chung cư</option>
-                                                    <option value="4">Nhà riêng, nhà phố, biệt thự</option>
-                                                    <option value="5">Khu nghỉ dưỡng, trang trại</option>
-                                                    <option value="5">Nhà kho, nhà xưởng</option>
+                                                <select v-model="type" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Đất thổ cư, đất dự án</option>
+                                                    <option>Căn hộ chung cư</option>
+                                                    <option>Nhà riêng, nhà phố, biệt thự</option>
+                                                    <option>Khu nghỉ dưỡng, trang trại</option>
+                                                    <option>Nhà kho, nhà xưởng</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -300,7 +304,7 @@
                                                 <label class="col-form-label font-weight-600">Diện tích</label>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <input v-model="acreage" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <input v-model="acreage" type="text" class="form-control form-control-user fs-090" value="0" maxlength="20">
                                                 <small id="emailHelp" class="form-text text-muted">Đơn vị là m2</small>
                                             </div>
                                         </div>
@@ -312,13 +316,31 @@
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <select v-model="bedroomsNumber" class="form-control select-default selectpickernone">
-                                                    <option value="0">Chọn số phòng</option>
-                                                    <option value="1">1</option>
-                                                    <option value="2">2</option>
-                                                    <option value="4">3</option>
-                                                    <option value="5">4</option>
-                                                    <option value="5">5</option>
-                                                    <option value="5">6</option>
+                                                    <option disable value="">Chọn số phòng</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Số phòng vệ sinh</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select v-model="toiletsNumber" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn số phòng</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -330,15 +352,15 @@
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <select v-model="direction" class="form-control select-default selectpickernone">
-                                                    <option value="0">Chọn hướng</option>
-                                                    <option value="1">Đông</option>
-                                                    <option value="2">Tây</option>
-                                                    <option value="4">Nam</option>
-                                                    <option value="5">Bắc</option>
-                                                    <option value="6">Đông-Bắc</option>
-                                                    <option value="7">Tây-Bắc</option>
-                                                    <option value="8">Tây-Nam</option>
-                                                    <option value="8">Đông-Nam</option>
+                                                    <option disable value="">Chọn hướng</option>
+                                                    <option>Đông</option>
+                                                    <option>Tây</option>
+                                                    <option>Nam</option>
+                                                    <option>Bắc</option>
+                                                    <option>Đông-Bắc</option>
+                                                    <option>Tây-Bắc</option>
+                                                    <option>Tây-Nam</option>
+                                                    <option>Đông-Nam</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -349,12 +371,13 @@
                                                 <label class="col-form-label font-weight-600">Thương hiệu</label>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <select class="form-control select-default selectpickernone">
-                                                    <option value="0">Chọn hướng</option>
-                                                    <option value="1">Vinhome</option>
-                                                    <option value="2">Imperia</option>
-                                                    <option value="4">Sungroup</option>
-                                                    <option value="5">T&T</option>
+                                                <select v-model="trademark" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn thương hiệu</option>
+                                                    <option>Vin</option>
+                                                    <option>Green city</option>
+                                                    <option>Vin ocean park</option>
+                                                    <option>Time city</option>
+                                                    <option>Roy city</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -367,19 +390,29 @@
                                                     <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu xe<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option selected="selected" value="0">Chọn màu sắc</option>
-                                                        <option value="1">Màu đỏ</option>
-                                                        <option value="2">Màu trắng</option>
-                                                        <option value="4">Màu đen</option>
-                                                        <option value="5">Màu xanh nước biển</option>
-                                                        <option value="6">Màu xanh lá</option>
-                                                        <option value="7">Màu hồng</option>
-                                                        <option value="8">Màu vàng</option>
-                                                        <option value="9">Màu da cam</option>
-                                                        <option value="10">Màu tím</option>
-                                                        <option value="11">Màu nâu đen</option>
+                                                    <select v-model="color" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh nước biển</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu nâu đen</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Màu nội thất</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="interiorColor" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 </div>
                                             </div>
                                         </div>
@@ -389,8 +422,55 @@
                                                     <label class="col-form-label font-weight-600">Năm sản xuất</label>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="manufactureYear" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Hộp số<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="gear" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn hộp số</option>
+                                                        <option>Hộp số sàn/ số tay</option>
+                                                        <option>Hộp số tự động</option>
+                                                        <option>Hộp số tự động vô cấp CVT</option>
+                                                        <option>Hộp số ly hợp kép</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhiên liệu<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="fuel" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn nhiên liệu</option>
+                                                        <option>Khí hóa lỏng (LPG)</option>
+                                                        <option>Hydrogen</option>
+                                                        <option>Xăng sinh học Bioethanol</option>
+                                                        <option>Khí thiên nhiên nén CNG</option>
+                                                        <option>Dầu sinh học Biodiesel</option>
+                                                        <option>Propane (C3H8)</option>
+                                                        <option>Nước</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Tiêu thụ</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="consume" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <small id="emailHelp" class="form-text text-muted">Tiêu thụ bao nhiêu lít xăng/100km</small>
+                                                </div>
+                                        
                                             </div>
                                         </div>
                                         <div class="form-group">
@@ -399,64 +479,64 @@
                                                     <label class=" col-form-label pb-1 pt-0 font-weight-600">Hãng xe<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option selected="selected" value="0">Chọn hãng xe</option>
-                                                        <option value="1">Abarth</option>
-                                                        <option value="2"> Zenos</option>
-                                                        <option value="4">Alfa Romeo</option>
-                                                        <option value="5">Volvo</option>
-                                                        <option value="6">Aston Martin</option>
-                                                        <option value="7">Volkswagen</option>
-                                                        <option value="8">Audi</option>
-                                                        <option value="9">Vauxhall</option>
-                                                        <option value="10">Bentley</option>
-                                                        <option value="11">Toyota</option>
-                                                        <option value="12">BMW</option>
-                                                        <option value="13">Tesla</option>
-                                                        <option value="14">Bugatti</option>
-                                                        <option value="15">Suzuki</option>
-                                                        <option value="16">Cadillac</option>
-                                                        <option value="17">Subaru</option>
-                                                        <option value="18">Caterham</option>
-                                                        <option value="19">SsangYong</option>
-                                                        <option value="20">Chevrolet</option>
-                                                        <option value="21">Smart</option>
-                                                        <option value="22">Chrysler</option>
-                                                        <option value="23">Skoda</option>
-                                                        <option value="24">Citroen</option>
-                                                        <option value="25">Vinfast</option>
-                                                        <option value="26">Dacia</option>
-                                                        <option value="27">Seat</option>
-                                                        <option value="28">Ferrari</option>
-                                                        <option value="29">Saab</option>
-                                                        <option value="30">Fiat</option>
-                                                        <option value="31">Rolls-Royce</option>
-                                                        <option value="32">Ford</option>
-                                                        <option value="33">Renault</option>
-                                                        <option value="34">Honda</option>
-                                                        <option value="35">Radical</option>
-                                                        <option value="36">Hyundai</option>
-                                                        <option value="37">Porsche</option>
-                                                        <option value="38">Infiniti</option>
-                                                        <option value="39">Peugeot</option>
-                                                        <option value="40">Jaguar</option>
-                                                        <option value="41">Pagani</option>
-                                                        <option value="42">Jeep</option>
-                                                        <option value="43">Noble</option>
-                                                        <option value="44">Kia</option>
-                                                        <option value="45">Nissan</option>
-                                                        <option value="46">Lamborghini</option>
-                                                        <option value="47">Morgan</option>
-                                                        <option value="48">Land Rover</option>
-                                                        <option value="49">Mitsubishi</option>
-                                                        <option value="50">Lexus</option>
-                                                        <option value="51">Mini</option>
-                                                        <option value="52">Lotus</option>
-                                                        <option value="53">MG</option>
-                                                        <option value="54">Maserati</option>
-                                                        <option value="55">Mercedes-Benz</option>
-                                                        <option value="56">Mazda</option>
-                                                        <option value="57">Mclaren</option>
+                                                    <select v-model="trademark" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn hãng xe</option>
+                                                        <option>Abarth</option>
+                                                        <option> Zenos</option>
+                                                        <option>Alfa Romeo</option>
+                                                        <option>Volvo</option>
+                                                        <option>Aston Martin</option>
+                                                        <option>Volkswagen</option>
+                                                        <option>Audi</option>
+                                                        <option>Vauxhall</option>
+                                                        <option>Bentley</option>
+                                                        <option>Toyota</option>
+                                                        <option>BMW</option>
+                                                        <option>Tesla</option>
+                                                        <option>Bugatti</option>
+                                                        <option>Suzuki</option>
+                                                        <option>Cadillac</option>
+                                                        <option>Subaru</option>
+                                                        <option>Caterham</option>
+                                                        <option>SsangYong</option>
+                                                        <option>Chevrolet</option>
+                                                        <option>Smart</option>
+                                                        <option>Chrysler</option>
+                                                        <option>Skoda</option>
+                                                        <option>Citroen</option>
+                                                        <option>Vinfast</option>
+                                                        <option>Dacia</option>
+                                                        <option>Seat</option>
+                                                        <option>Ferrari</option>
+                                                        <option>Saab</option>
+                                                        <option>Fiat</option>
+                                                        <option>Rolls-Royce</option>
+                                                        <option>Ford</option>
+                                                        <option>Renault</option>
+                                                        <option>Honda</option>
+                                                        <option>Radical</option>
+                                                        <option>Hyundai</option>
+                                                        <option>Porsche</option>
+                                                        <option>Infiniti</option>
+                                                        <option>Peugeot</option>
+                                                        <option>Jaguar</option>
+                                                        <option>Pagani</option>
+                                                        <option>Jeep</option>
+                                                        <option>Noble</option>
+                                                        <option>Kia</option>
+                                                        <option>Nissan</option>
+                                                        <option>Lamborghini</option>
+                                                        <option>Morgan</option>
+                                                        <option>Land Rover</option>
+                                                        <option>Mitsubishi</option>
+                                                        <option>Lexus</option>
+                                                        <option>Mini</option>
+                                                        <option>Lotus</option>
+                                                        <option>MG</option>
+                                                        <option>Maserati</option>
+                                                        <option>Mercedes-Benz</option>
+                                                        <option>Mazda</option>
+                                                        <option>Mclaren</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -467,13 +547,13 @@
                                                     <label class=" col-form-label pb-1 pt-0 font-weight-600">Số chỗ<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option selected="selected" value="0">Chọn số chỗ</option>
-                                                        <option value="1">2</option>
-                                                        <option value="2">4</option>
-                                                        <option value="4">6</option>
-                                                        <option value="5">14</option>
-                                                        <option value="6">24</option> 
+                                                    <select v-model="seatsNumber" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn số chỗ</option>
+                                                        <option>2</option>
+                                                        <option>4</option>
+                                                        <option>6</option>
+                                                        <option>14</option>
+                                                        <option>24</option> 
                                                     </select>
                                                 </div>
                                             </div>
@@ -484,17 +564,17 @@
                                                     <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option selected="selected" value="0">Chọn xuất xứ</option>
-                                                        <option value="1">Hàn quốc</option>
-                                                        <option value="2">Nhật bản</option>
-                                                        <option value="4">Trung quốc</option>
-                                                        <option value="5">Mỹ</option>
-                                                        <option value="6">Việt nam</option>
-                                                        <option value="7">Đức</option>
-                                                        <option value="8">Thuỵ điển</option>
-                                                        <option value="9">Úc</option>
-                                                        <option value="10">Ấn độ</option>
+                                                    <select v-model="origin" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn xuất xứ</option>
+                                                        <option>Hàn quốc</option>
+                                                        <option>Nhật bản</option>
+                                                        <option>Trung quốc</option>
+                                                        <option>Mỹ</option>
+                                                        <option>Việt nam</option>
+                                                        <option>Đức</option>
+                                                        <option>Thuỵ điển</option>
+                                                        <option>Úc</option>
+                                                        <option>Ấn độ</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -507,13 +587,13 @@
                                                     <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option selected="selected" value="0">Chọn nhà mạng</option>
-                                                        <option value="1">Viettel</option>
-                                                        <option value="2">MobiFone</option>
-                                                        <option value="4">Vietnamobile</option>
-                                                        <option value="5">Vinaphone</option>
-                                                        <option value="6">Gmobile(Beeline)</option>
+                                                    <select v-model="homeNetwork" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn nhà mạng</option>
+                                                        <option>Viettel</option>
+                                                        <option>MobiFone</option>
+                                                        <option>Vietnamobile</option>
+                                                        <option>Vinaphone</option>
+                                                        <option>Gmobile(Beeline)</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -524,7 +604,7 @@
                                                     <label class="col-form-label font-weight-600">Loại sim</label>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" maxlength="20">
                                                 </div>
                                             </div>
                                         </div>
@@ -537,17 +617,17 @@
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
                                                     <select class="form-control select-default selectpickernone">
-                                                        <option selected="selected" value="0">Chọn màu sắc</option>
-                                                        <option value="1">Màu đỏ</option>
-                                                        <option value="2">Màu trắng</option>
-                                                        <option value="4">Màu đen</option>
-                                                        <option value="5">Màu xanh nước biển</option>
-                                                        <option value="6">Màu xanh lá</option>
-                                                        <option value="7">Màu hồng</option>
-                                                        <option value="8">Màu vàng</option>
-                                                        <option value="9">Màu da cam</option>
-                                                        <option value="10">Màu tím</option>
-                                                        <option value="11">Màu nâu đen</option>
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh nước biển</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu nâu đen</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -558,7 +638,7 @@
                                                     <label class="col-form-label font-weight-600">Loại đá quý</label>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 </div>
                                             </div>
                                         </div>
@@ -573,7 +653,7 @@
                                                     <label class="col-form-label font-weight-600">Loại đồ cổ</label>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 </div>
                                             </div>
                                         </div>
@@ -585,7 +665,7 @@
                                                     <label class="col-form-label font-weight-600">Loại cây</label>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 </div>
                                             </div>
                                             <div class="form-group">
@@ -594,7 +674,7 @@
                                                         <label class="col-form-label font-weight-600">Kiểu dáng</label>
                                                     </div>
                                                     <div class="col-12 col-md-4">
-                                                        <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                        <input  type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                     </div>
                                                 </div>
                                             </div>
@@ -617,28 +697,28 @@
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <select v-model="currentStatus" class="form-control select-default selectpickernone">
-                                                    <option value="0">Chọn tình trạng</option>
-                                                    <option value="1">Cũ</option>
-                                                    <option value="2">Mới</option>
+                                                    <option disable value="">Chọn tình trạng</option>
+                                                    <option>Cũ</option>
+                                                    <option>Mới</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
                                                 <label class="col-form-label font-weight-600">Trạng thái</label>
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <select class="form-control select-default selectpickernone">
-                                                    <option value="1">Đang hoạt động</option>
-                                                    <option value="2">Đã vô hiệu</option>
+                                                    <option>Đang hoạt động</option>
+                                                    <option>Đã vô hiệu</option>
                                                 </select>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
-                                    <div class="form-group">
+                                    <!-- <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
                                                 <label class="col-form-label font-weight-600">Thời gian đăng</label>
@@ -752,15 +832,20 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
                                     <hr class="pt-3 mb-1" />
-                                    <div  class="clearfix">
-                                        <button @click="clickAdd1" class="btn btn-primary mb-2">
+                                    <div class="clearfix">
+                                        <button v-b-modal.modalPopover @click="clickAdd1" class="btn btn-primary mb-2">
                                             <i class="las la-save"></i>
                                             Thêm tài sản
                                         </button>
                                         <em class="text-danger f-13 d-block d-sm-inline float-left float-sm-right">* là trường bắt buộc nhập dữ liệu</em>
                                     </div>
+                                    <b-modal id="modalPopover" title="Thông báo" ok-only>
+                                            <p>
+                                            Tạo tài sản thành công !
+                                            </p>
+                                    </b-modal>
                                 </div>
                             </div>
                         </div>
@@ -792,20 +877,23 @@ Vue.use(VueClipboard)
       currentPrice:'',
       finalPrice:'',
       images:'',
+      origin:'',
       description:'',
       hinh:true,
       category:'',
-      direction:'',
       creaded:'',
       tags:'',
+      gear:'',
+      consume:'',
       seller:'',
       actions:'',
       id: '',
-      acreage:'',
+      trademark:'',
       bedroomsNumber:'',
       name: '',
       Search:'',
       check:1,
+      toiletsNumber:'',
       showInfo1:false,
       showInfo2:false,
       showInfo3:false,
@@ -813,12 +901,23 @@ Vue.use(VueClipboard)
       showInfo5:false,
       updated:'',
       info:'',
+      interiorColor:'',
+      acreage:'',
+      direction:'',
+      seatsNumber:'',
+      area:'',
+      fuel:'',
+      homeNetwork:'',
       currentStatus:'',
       status:'',
+      manufactureYear:'',
       asset: [],
       picture: null,
       add:true,
       sessionId:'',
+      type:'',
+      color:'',
+      imagess: [],
       save:true,
       searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
@@ -848,19 +947,16 @@ Vue.use(VueClipboard)
           });
     },
     clickAdd1:async function(){
-     await this.axios.post(this.url+'/asset',{ "name": this.name,
+     await this.axios.post(this.url+'/asset',{ "name": this.name,"initPrice": this.initPrice,
       "category": this.category, "images":this.picture,"description":this.description, "currentStatus": this.currentStatus, 
-      "direction": this.direction,"acreage":this.acreage, "bedroomsNumber": this.bedroomsNumber,
+      "direction": this.direction,"acreage":this.acreage, "bedroomsNumber": this.bedroomsNumber, "homeNetwork": this.homeNetwork, "type": this.type,
+      "seatsNumber": this.seatsNumber,"origin": this.origin,"color": this.color, "manufactureYear": this.manufactureYear, "trademark": this.trademark,
+      "toiletsNumber": this.toiletsNumber, "interiorColor": this.interiorColor,"gear": this.gear, "fuel": this.fuel, "consume": this.consume
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }
       ).then((response) => console.log(response));
-     await this.axios.get(this.url+'/asset',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }
-      ).then((response) => { this.category=response.data})
     },
     previewImage(event){
             // this.uploadValue=0;

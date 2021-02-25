@@ -231,6 +231,16 @@
                     <div class="user-sum ml-7">
                       <b-avatar style="width:128px; height:128px" :src="Search.avatar"></b-avatar>
                     </div>
+                    <div class="user-sum ml-6">
+                        <button v-b-modal.modal-1 class="btn btn-warning btn-sm" @click="changeAvatar=true">
+                            <b-icon icon="check2" font-scale="1.5"></b-icon>
+                            Thay đổi
+                        </button>
+                        <button class="btn btn-default btn-sm">
+                            <b-icon icon="x" font-scale="1.5"></b-icon>
+                            Hủy bỏ
+                        </button>
+                    </div>
                     <div class="user-sum ml-7">
                       <h5><i class="fa fa-user" aria-hidden="true"></i>: {{Search.name}}</h5>
                     </div>
@@ -325,13 +335,69 @@
                           <base-input>
                           <select v-model="province" class="form-control form-control-user fs-090">
                             <option disable value="">Chọn</option>
-                            <option>Hà Nội</option>
-                            <option>Hải Phòng</option>
-                            <option>Nam Định</option>
-                            <option>Hà Nam</option>
-                            <option>Quảng Ninh</option>
+                            <option >Hà Nội</option>
+                            <option>Hồ Chí Minh</option>
                             <option>Đà Nẵng</option>
+                            <option>Hải Phòng</option>
+                            <option>Cần Thơ</option>
+                            <option>Thừa Thiên - Huế</option>
+                            <option>Quảng Ninh</option>
+                            <option>An Giang</option>
+                            <option>Bà Rịa-Vũng Tàu</option>
+                            <option>Bắc Giang</option>
+                            <option>Bắc Kạn</option>
+                            <option>Bạc Liêu</option>
                             <option>Bắc Ninh</option>
+                            <option>Bến Tre</option>
+                            <option>Bình Dương</option>
+                            <option>Bình Định</option>
+                            <option>Bình Phước</option>
+                            <option>Bình Thuận</option>
+                            <option>Cà Mau</option>
+                            <option>Cao Bằng</option>
+                            <option>Đắk Lắk</option>
+                            <option>Đắk Nông</option>
+                            <option>Điện Biên</option>
+                            <option>Đồng Nai</option>
+                            <option>Đồng Tháp</option>
+                            <option>Gia Lai</option>
+                            <option>Hà Giang</option>
+                            <option>Hà Nam</option>
+                            <option>Hà Tĩnh</option>
+                            <option>Hải Dương</option>
+                            <option>Hậu Giang</option>
+                            <option>Hòa Bình</option>
+                            <option>Hưng Yên</option>
+                            <option>Kiên Giang</option>
+                            <option>Kon Tum</option>
+                            <option>Khánh Hòa</option>
+                            <option>Lai Châu</option>
+                            <option>Lạng Sơn</option>
+                            <option>Lào Cai</option>
+                            <option>Lâm Đồng</option>
+                            <option>Long An</option>
+                            <option>Nam Định</option>
+                            <option>Ninh Bình</option>
+                            <option>Ninh Thuận</option>
+                            <option>Nghệ An</option>
+                            <option>Phú Thọ</option>
+                            <option>Phú Yên</option>
+                            <option>Quảng Bình</option>
+                            <option>Quảng Nam</option>
+                            <option>Quảng Ngãi</option>
+                            <option>Quảng Trị</option>
+                            <option>Sóc Trăng</option>
+                            <option>Sơn La</option>
+                            <option>Tây Ninh</option>
+                            <option>Tiền Giang</option>
+                            <option>Tuyên Quang</option>
+                            <option>Thái Bình</option>
+                            <option>Thái Nguyên</option>
+                            <option>Thanh Hóa</option>
+                            <option>Trà Vinh</option>
+                            <option>Vĩnh Long</option>
+                            <option>Vĩnh Phúc</option>
+                            <option>Yên Bái</option>
                           </select>
                           </base-input>
                         </div>
@@ -356,6 +422,27 @@
                         Tạo tài khoản thành công !
                         </p>
                       </b-modal>
+                      <b-modal id="modal-1" title="Chọn ảnh của tài sản bạn muốn đăng" hide-footer>
+                       <div class="input-group rounded-0">
+                          <div class="custom-file rounded-0">
+                              <b-form-file
+                              class="z-index-inputFile"
+                              @change="previewImage"
+                              placeholder="Select file"
+                              drop-placeholder="Drop file here..."
+                              accept="image/*"
+                              ></b-form-file>
+                              <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">{{picture}}</label>
+                          </div>
+                          <div class="input-group-append">
+                              <button @click="onUpload" class="btn btn-warning">
+                                  <i class="las la-plus-circle"></i>
+                                  Thay đổi
+                              </button>
+                          </div>
+                      </div>
+                      <!-- <base-button v-if="uploadValue==0" outline type="success"  @click="onUpload()">Xem ảnh</base-button> -->
+                    </b-modal>
                     </div>
                   </div>
                 </div>
@@ -369,6 +456,7 @@
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
+import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
@@ -405,6 +493,7 @@ Vue.use(VueClipboard)
       close3:true,
       close4:true,
       search: '',
+      picture:'',
       showInfo1:false,
       showInfo2:false,
       showInfo3:false,
@@ -464,7 +553,7 @@ Vue.use(VueClipboard)
        this.searchCheck=true;
     },
     clickEdit(id){
-      this.axios.put(this.url+'/edit/user/'+id ,{ "avatar": this.avatar, "gender": this.gender,
+      this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.picture, "gender": this.gender,
         "province": this.province, "mobile": this.mobile, "lastname": this.lastname, "email": this.email, "group":this.group, "dateofbirth":this.dateofbirth, "fullname": this.fullname}, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -489,6 +578,37 @@ Vue.use(VueClipboard)
             this.clickUpdate();
           });
         console.log(this.hihi);
+    },
+    previewImage(event){
+        // this.uploadValue=0;
+        
+            this.picture=null;
+            this.imageData =event.target.files[0];
+            this.uploadValue=0;
+        
+    },
+    onUpload(){
+        // var today = new Date();
+        // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        // dateTime = date+' '+time;
+          
+            this.picture=null;
+              
+            const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
+            storageRef.on(`state_changed`,snapshot=>{
+                this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+                }, error =>{console.log(error.message)},
+                ()=>{this.uploadValue=100;
+            
+                storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
+                    this.picture=url1;
+                    console.log(this.picture);
+                });
+
+                }
+                );
+        
     },
     getCookie: function(cname) {
       var name = cname + "=";

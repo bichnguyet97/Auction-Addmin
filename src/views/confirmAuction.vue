@@ -114,40 +114,6 @@
                                       ></b-carousel-slide>
                                     </b-carousel>
                                   </div>
-                                    <!--Thumb-->
-                                    <!--Photo View-->
-                                    <!-- <div class="photo-slide">
-                                        <div class="position-relative">
-                                            <div id="primary-slider" class="splide primary-slider">
-                                                <div class="splide__track">
-                                                    <ul class="splide__list">
-                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
-                                                            <img src="img/brand/s500.jpg">
-                                                        </li>
-                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
-                                                            <img src="img/brand/s500.jpg">
-                                                        </li>
-                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
-                                                            <img src="img/brand/s500.jpg">
-                                                        </li>
-                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
-                                                            <img src="img/brand/s500.jpg">
-                                                        </li>
-                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
-                                                            <img src="img/brand/s500.jpg">
-                                                        </li>
-                                                        <li class="splide__slide" data-src="img/brand/s500.jpg" data-lightbox="photo" data-title="Biệt thự Vinhome Riverside" data-caption="Biệt thự Vinhome Riverside" data-fancybox="photo-list" data-height="600" data-thumb-type="image" data-thumbs="{&quot;autoStart&quot;:true}">
-                                                            <img src="img/brand/s500.jpg">
-                                                        </li>
-                                                    </ul>
-                                                </div>
-                                            </div>
-                                            <span class="like-box liked d-inline-block">
-                                                <i class="las la-heart"></i>
-                                            </span>
-                                        </div>
-                                    </div> -->
-                                    <!--Photo View-->
 
                                 </div>
 
@@ -228,17 +194,415 @@
                         <div  class="pro-info">
                             <div class="info-list f-14 mb-4">
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin đấu giá</h3>
+                                <div v-if="asse.assets[0].category=='Sim số'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>{{auc.id}}</strong>
+                                            <strong>auc</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại:</span>
-                                            <strong>Hà Nội</strong>
+                                            <strong>ha noi</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng:</span>
+                                            <strong>1</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự:</span>
+                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Nhà mạng</span>
+                                            <strong>Viettel</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái:</span>
+                                            <strong>Đã qua sử dụng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục:</span>
+                                            <strong>Bất động sản</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Loại sim</span>
+                                            <strong>Sim theo năm sinh</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Bất động sản'">
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá:</span>
+                                            <strong>auc</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại:</span>
+                                            <strong>ha noi</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng:</span>
+                                            <strong>1</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự:</span>
+                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Thương hiệu:</span>
+                                            <strong>Vinhome</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái:</span>
+                                            <strong>Đã qua sử dụng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục:</span>
+                                            <strong>Bất động sản</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Chủng loại:</span>
+                                            <strong>Nhà phố, biệt thự</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Diện tích:</span>
+                                            <strong>312 m2</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hướng:</span>
+                                            <strong>Đông Nam</strong>
+                                        </span>
+                                    </div>
+                                    <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng tầng:</span>
+                                            <strong>3 tầng</strong>
+                                        </span>
+                                    </div> -->
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số phòng ngủ:</span>
+                                            <strong>3</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số nhà vệ sinh:</span>
+                                            <strong>2</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Khu vực:</span>
+                                            <strong>Long Biên, Hà Nội</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Đá quý'">
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá:</span>
+                                            <strong>auc</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại:</span>
+                                            <strong>ha noi</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng:</span>
+                                            <strong>1</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự:</span>
+                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái:</span>
+                                            <strong>Đã qua sử dụng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục:</span>
+                                            <strong>Bất động sản</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Loại Đá quý:</span>
+                                            <strong>Ruby</strong>
+                                        </span>
+                                    </div>
+                                    
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Màu Đá quý:</span>
+                                            <strong>đỏ</strong>
+                                        </span>
+                                    </div>
+                                
+                                </div>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Xe hơi'">
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá:</span>
+                                            <strong>auc</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại:</span>
+                                            <strong>ha noi</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng:</span>
+                                            <strong>1</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự:</span>
+                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Thương hiệu:</span>
+                                            <strong>Lambogini</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái:</span>
+                                            <strong>Đã qua sử dụng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục:</span>
+                                            <strong>Xe hơi</strong>
+                                        </span>
+                                    </div>
+                                     
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Màu xe:</span>
+                                            <strong>Đỏ cam</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Màu nội thất:</span>
+                                            <strong>Nâu</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Năm sản xuất:</span>
+                                            <strong>2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hộp số:</span>
+                                            <strong>tự động</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Nhiên liệu:</span>
+                                            <strong>Xăng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Tiêu thụ:</span>
+                                            <strong>1 lít/100km</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số chỗ:</span>
+                                            <strong>2</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Xuất xứ:</span>
+                                            <strong>Đức</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
+                                <div v-if="asse.assets[0].category=='đồ cổ'">
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá:</span>
+                                            <strong>auc</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại:</span>
+                                            <strong>ha noi</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng:</span>
+                                            <strong>1</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự:</span>
+                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                     
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái:</span>
+                                            <strong>Đã qua sử dụng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục:</span>
+                                            <strong>Đồ cổ</strong>
+                                        </span>
+                                    </div>
+                                     
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Loại đồ cổ:</span>
+                                            <strong>Bình phong thuỷ</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Cây cảnh'">
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá:</span>
+                                            <strong>auc</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại:</span>
+                                            <strong>ha noi</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -326,6 +690,107 @@
                                         </span>
                                     </div>
                                 </div>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Nghệ thuật'">
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá:</span>
+                                            <strong>auc</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại:</span>
+                                            <strong>ha noi</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng:</span>
+                                            <strong>1</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự:</span>
+                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá:</span>
+                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Thương hiệu:</span>
+                                            <strong>Vinhome</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái:</span>
+                                            <strong>Đã qua sử dụng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục:</span>
+                                            <strong>Bất động sản</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Chủng loại:</span>
+                                            <strong>Nhà phố, biệt thự</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Diện tích:</span>
+                                            <strong>312 m2</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hướng:</span>
+                                            <strong>Đông Nam</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng tầng:</span>
+                                            <strong>3 tầng</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số phòng ngủ:</span>
+                                            <strong>3</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số nhà vệ sinh:</span>
+                                            <strong>2</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Khu vực:</span>
+                                            <strong>Long Biên, Hà Nội</strong>
+                                        </span>
+                                    </div>
+                                </div>
+                                </div>
                             </div>
                             <div class="video-pro mb-3">
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Video giới thiệu</h3>
@@ -375,7 +840,7 @@
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin sản phẩm</h3>
                                 <div>
                                     <ul>
-                                        <li>Sản phẩm: Biệt thự Vinhome Riverside</li>
+                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
                                         <li>Địa chỉ: Khu Đô Thị Vinhomes Riverside – Long Biên – Hà Nội</li>
                                         <li>Diện tích: 140m2</li>
                                         <li>Công trình: Nhà ở gia đình</li>
@@ -383,14 +848,15 @@
                                         <li>Số tầng: 3 tầng</li>
                                         <li>Đơn vị thiết kế: Công ty Cổ phần ARCHITEC VIỆT</li>
                                     </ul>
-                                    <p>
+                                    <!-- <p>
                                         Thiết kế biệt thự vinhomes riverside này được kiến trúc sư Vũ Huy Hiệp của Công ty thiết kế Architec Việt thiết kế hoàn thiện phần kiến trúc và nội thất cho gia đình anh Hà chị Thanh tại Khu Đô Thị Vinhomes Riverside. Ngay khi được kiến trúc sư Vũ Huy Hiệp tư vấn thiết kế, anh Hà chị Thanh đã rất yêu thích ngoại thất của ngôi biệt thự này. Mẫu biệt thự 3 tầng này vô cùng phù hợp với dải đất 10x14m tại Khu Đô thị Vinhomes Riverside.
                                     </p> <p>
 
                                         Hình ảnh ban đầu của ngôi biệt thự tân cổ điển được thiết kế với chiều cao 3 tầng. Xét vể tổng thể thì ngôi biệt thự 3 tầng này khá hài hòa, tuy nhiên, chưa toát lên được những nét đẹp đặc trưng của nét kiến trúc Pháp. Chính vì vậy, kiến trúc sư cần cải tạo lại để tôn lên vẻ sang trọng và đẳng cấp cho công trình.
                                     </p> <p>
                                         Mời quý vị và các bạn chiêm ngưỡng hình ảnh biệt thự 3 tầng được vẽ bằng 3D do kiến trúc sư Vũ Huy Hiệp vẽ thiết kế cho gia đình anh Hà chị Thanh.
-                                    </p>
+                                    </p> -->
+                                    <p>{{asse.assets[0].description}}</p>
                                 </div>
                             </div>
                         </div>
@@ -470,6 +936,7 @@ Vue.use(VueClipboard)
       id: '',
       created:'',
       name: '',
+      image:[],
       mobile:'',
       hinh:'true',
       updated:'',
@@ -551,9 +1018,16 @@ Vue.use(VueClipboard)
     },
     clickSearch2(id){
       this.axios.get(this.url+'/asset/id/'+id)
-      .then((response) => {this.image=(response.data.assets[0].images.split(',')), this.Search=response.data, this.auc=response.data.auctions[0]});
+      .then((response) => {this.image=(response.data.assets[0].images.split(',')), this.Search=response.data, this.auc=response.data.auctions[0], this.asse=response.data
+      });
         console.log(this.auc);
     },
+    // clickSearch3(id){
+    //   this.axios.get(this.url+'/auction/id/'+id)
+    //   .then((response) => {this., this.Search=response.data, this.auc=response.data.auctions[0], this.asse=response.data
+    //   });
+    //     console.log(this.auc);
+    // },
     // clickdelete1(id){
     //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=deleted",{
     //   headers: {

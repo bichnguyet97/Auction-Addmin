@@ -133,8 +133,8 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div class="user-avatar mb-3 text-center">
-                                            <img :src="picture" alt="">
+                                        <div id="topimage" class="user-avatar mb-3 text-center">
+                                            <img id="sizeimage" :src="picture" alt="">
                                         </div>
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
                                     </div>
@@ -1085,4 +1085,11 @@ employee-list{
 //     white-space: nowrap; 
 //     text-overflow: ellipsis;
 // }
+#sizeimage{
+    height: 125px;
+    width: 201px;
+}
+#topimage{
+    margin-top:10px;
+}
 </style>

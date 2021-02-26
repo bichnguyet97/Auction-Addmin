@@ -105,7 +105,7 @@
                                       style="text-shadow: 0px 0px 2px #000"
                                       fade
                                       indicators
-                                      img-width="1024"
+                                      img-width="1000"
                                       img-height="480"
                                     >
                                       <b-carousel-slide 
@@ -129,6 +129,8 @@
                                 <div id="innit" class="price-cur text-center">
                                     <span class="f-19 mr-1 d-block mb-0 text-dark font-weight-bold">Giá khởi điểm: </span>
                                     <h3 class="text-warning f-23 mb-1">{{Search.assets[0].currentPrice}}  VNDT</h3>
+                                    <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm2(Search.auctions[0].id)" variant="info">Xác nhận showInBaner</b-button>
+                                    <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm2(Search.auctions[0].id)" variant="info">Không xác nhận showInBaner</b-button>
                                 </div>
                                 <!-- Estimate -->
                                 <div class="modal fade" id="MdlEstimate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -199,13 +201,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>auc</strong>
+                                            <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại:</span>
-                                            <strong>ha noi</strong>
+                                            <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -217,25 +219,25 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hạn tham dự:</span>
-                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Bắt đầu đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Kết thúc đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Nhà mạng</span>
-                                            <strong>Viettel</strong>
+                                            <strong>{{asse.assets[0].homeNetwork}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -247,13 +249,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục:</span>
-                                            <strong>Bất động sản</strong>
+                                            <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Loại sim</span>
-                                            <strong>Sim theo năm sinh</strong>
+                                            <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -263,13 +265,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>auc</strong>
+                                            <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại:</span>
-                                            <strong>ha noi</strong>
+                                            <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -281,25 +283,25 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hạn tham dự:</span>
-                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Bắt đầu đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Kết thúc đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Thương hiệu:</span>
-                                            <strong>Vinhome</strong>
+                                            <strong>{{asse.assets[0].trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -311,25 +313,25 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục:</span>
-                                            <strong>Bất động sản</strong>
+                                            <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Chủng loại:</span>
-                                            <strong>Nhà phố, biệt thự</strong>
+                                            <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Diện tích:</span>
-                                            <strong>312 m2</strong>
+                                            <strong>{{asse.assets[0].acreage}}</strong>
                                         </span>
                                     </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hướng:</span>
-                                            <strong>Đông Nam</strong>
+                                            <strong>{{asse.assets[0].direction}}</strong>
                                         </span>
                                     </div>
                                     <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -341,19 +343,19 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số phòng ngủ:</span>
-                                            <strong>3</strong>
+                                            <strong>{{asse.assets[0].bedroomsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số nhà vệ sinh:</span>
-                                            <strong>2</strong>
+                                            <strong>{{asse.assets[0].toiletsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Khu vực:</span>
-                                            <strong>Long Biên, Hà Nội</strong>
+                                            <strong>{{asse.assets[0].area}}</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -363,13 +365,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>auc</strong>
+                                            <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại:</span>
-                                            <strong>ha noi</strong>
+                                            <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -381,19 +383,19 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hạn tham dự:</span>
-                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Bắt đầu đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Kết thúc đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -405,20 +407,20 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục:</span>
-                                            <strong>Bất động sản</strong>
+                                            <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Loại Đá quý:</span>
-                                            <strong>Ruby</strong>
+                                            <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
                                     
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Màu Đá quý:</span>
-                                            <strong>đỏ</strong>
+                                            <strong>{{asse.assets[0].color}}</strong>
                                         </span>
                                     </div>
                                 
@@ -429,13 +431,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>auc</strong>
+                                            <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại:</span>
-                                            <strong>ha noi</strong>
+                                            <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -447,25 +449,25 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hạn tham dự:</span>
-                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Bắt đầu đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Kết thúc đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Thương hiệu:</span>
-                                            <strong>Lambogini</strong>
+                                            <strong>{{asse.assets[0].trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -477,56 +479,56 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục:</span>
-                                            <strong>Xe hơi</strong>
+                                            <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                      
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Màu xe:</span>
-                                            <strong>Đỏ cam</strong>
+                                            <strong>{{asse.assets[0].color}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Màu nội thất:</span>
-                                            <strong>Nâu</strong>
+                                            <strong>{{asse.assets[0].interiorColor}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Năm sản xuất:</span>
-                                            <strong>2021</strong>
+                                            <strong>{{asse.assets[0].manufactureYear}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hộp số:</span>
-                                            <strong>tự động</strong>
+                                            <strong>{{asse.assets[0].gear}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Nhiên liệu:</span>
-                                            <strong>Xăng</strong>
+                                            <strong>{{asse.assets[0].fuel}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Tiêu thụ:</span>
-                                            <strong>1 lít/100km</strong>
+                                            <strong>{{asse.assets[0].consume}} lít/100km</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số chỗ:</span>
-                                            <strong>2</strong>
+                                            <strong>{{asse.assets[0].seatsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Xuất xứ:</span>
-                                            <strong>Đức</strong>
+                                            <strong>{{asse.assets[0].origin}}</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -536,13 +538,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>auc</strong>
+                                            <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại:</span>
-                                            <strong>ha noi</strong>
+                                            <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -554,19 +556,19 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hạn tham dự:</span>
-                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Bắt đầu đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Kết thúc đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                      
@@ -579,14 +581,14 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục:</span>
-                                            <strong>Đồ cổ</strong>
+                                            <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                      
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Loại đồ cổ:</span>
-                                            <strong>Bình phong thuỷ</strong>
+                                            <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -596,13 +598,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>auc</strong>
+                                            <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại:</span>
-                                            <strong>ha noi</strong>
+                                            <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -614,25 +616,25 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hạn tham dự:</span>
-                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Bắt đầu đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Kết thúc đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Thương hiệu:</span>
-                                            <strong>Vinhome</strong>
+                                            <strong>{{asse.assets[0].trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -644,49 +646,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục:</span>
-                                            <strong>Bất động sản</strong>
+                                            <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Chủng loại:</span>
-                                            <strong>Nhà phố, biệt thự</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Diện tích:</span>
-                                            <strong>312 m2</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Hướng:</span>
-                                            <strong>Đông Nam</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Số lượng tầng:</span>
-                                            <strong>3 tầng</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Số phòng ngủ:</span>
-                                            <strong>3</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Số nhà vệ sinh:</span>
-                                            <strong>2</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Khu vực:</span>
-                                            <strong>Long Biên, Hà Nội</strong>
+                                            <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
                                 </div>
@@ -696,13 +662,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá:</span>
-                                            <strong>auc</strong>
+                                            <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại:</span>
-                                            <strong>ha noi</strong>
+                                            <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -714,27 +680,22 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hạn tham dự:</span>
-                                            <strong class="text-danger">10:20 20-11-2021</strong>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Bắt đầu đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Kết thúc đấu giá:</span>
-                                            <strong class="text-danger">10:20 22-11-2021</strong>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Thương hiệu:</span>
-                                            <strong>Vinhome</strong>
-                                        </span>
-                                    </div>
+                                     
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trạng thái:</span>
@@ -744,51 +705,16 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục:</span>
-                                            <strong>Bất động sản</strong>
+                                            <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Chủng loại:</span>
-                                            <strong>Nhà phố, biệt thự</strong>
+                                            <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Diện tích:</span>
-                                            <strong>312 m2</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Hướng:</span>
-                                            <strong>Đông Nam</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Số lượng tầng:</span>
-                                            <strong>3 tầng</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Số phòng ngủ:</span>
-                                            <strong>3</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Số nhà vệ sinh:</span>
-                                            <strong>2</strong>
-                                        </span>
-                                    </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Khu vực:</span>
-                                            <strong>Long Biên, Hà Nội</strong>
-                                        </span>
-                                    </div>
+                                     
                                 </div>
                                 </div>
                             </div>
@@ -838,24 +764,65 @@
                             </div>
                             <div class="info-detail">
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin sản phẩm</h3>
-                                <div>
+                                <div v-if="asse.assets[0].category=='Bất động sản'">
                                     <ul>
                                         <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Địa chỉ: Khu Đô Thị Vinhomes Riverside – Long Biên – Hà Nội</li>
-                                        <li>Diện tích: 140m2</li>
-                                        <li>Công trình: Nhà ở gia đình</li>
-                                        <li>Phong cách thiết kế: Tân cổ điển</li>
-                                        <li>Số tầng: 3 tầng</li>
-                                        <li>Đơn vị thiết kế: Công ty Cổ phần ARCHITEC VIỆT</li>
+                                        <li>Địa chỉ: {{asse.assets[0].area}}</li>
+                                        <li>Diện tích: {{asse.assets[0].acreage}} m2</li>
+                                        <li>Số phòng ngủ: {{asse.assets[0].bedroomsNumber}} phòng</li>
+                                        <li>Số nhà vệ sinh: {{asse.assets[0].toiletsNumber}} phòng</li>
                                     </ul>
-                                    <!-- <p>
-                                        Thiết kế biệt thự vinhomes riverside này được kiến trúc sư Vũ Huy Hiệp của Công ty thiết kế Architec Việt thiết kế hoàn thiện phần kiến trúc và nội thất cho gia đình anh Hà chị Thanh tại Khu Đô Thị Vinhomes Riverside. Ngay khi được kiến trúc sư Vũ Huy Hiệp tư vấn thiết kế, anh Hà chị Thanh đã rất yêu thích ngoại thất của ngôi biệt thự này. Mẫu biệt thự 3 tầng này vô cùng phù hợp với dải đất 10x14m tại Khu Đô thị Vinhomes Riverside.
-                                    </p> <p>
-
-                                        Hình ảnh ban đầu của ngôi biệt thự tân cổ điển được thiết kế với chiều cao 3 tầng. Xét vể tổng thể thì ngôi biệt thự 3 tầng này khá hài hòa, tuy nhiên, chưa toát lên được những nét đẹp đặc trưng của nét kiến trúc Pháp. Chính vì vậy, kiến trúc sư cần cải tạo lại để tôn lên vẻ sang trọng và đẳng cấp cho công trình.
-                                    </p> <p>
-                                        Mời quý vị và các bạn chiêm ngưỡng hình ảnh biệt thự 3 tầng được vẽ bằng 3D do kiến trúc sư Vũ Huy Hiệp vẽ thiết kế cho gia đình anh Hà chị Thanh.
-                                    </p> -->
+                                    <p>{{asse.assets[0].description}}</p>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Xe hơi'">
+                                    <ul>
+                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
+                                        <li>Màu xe: {{asse.assets[0].color}}</li>
+                                        <li>Màu nội thất: {{asse.assets[0].interiorColor}}</li>
+                                        <li>Năm sản xuất: {{asse.assets[0].manufactureYear}}</li>
+                                        <li>Hộp số: {{asse.assets[0].gear}}</li>
+                                        <li>Nhiên liệu: {{asse.assets[0].fuel}}</li>
+                                        <li>Tiêu thụ: {{asse.assets[0].consume}} lít/100km</li>
+                                        <li>Số chỗ: {{asse.assets[0].seatsNumber}}</li>
+                                        <li>Xuất xứ: {{asse.assets[0].origin}}</li>
+                                    </ul>
+                                    <p>{{asse.assets[0].description}}</p>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Đá quý'">
+                                    <ul>
+                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
+                                        <li>Màu Đá quý: {{asse.assets[0].color}}</li>
+                                        <li>Loại Đá quý: {{asse.assets[0].type}}</li>
+                                    </ul>
+                                    <p>{{asse.assets[0].description}}</p>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Sim số'">
+                                    <ul>
+                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
+                                        <li>Loại sim: {{asse.assets[0].type}}</li>
+                                        <li>Nhà mạng: {{asse.assets[0].homeNetwork}}</li>
+                                    </ul>
+                                    <p>{{asse.assets[0].description}}</p>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Cây cảnh'">
+                                    <ul>
+                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
+                                        <li>Loại cây: {{asse.assets[0].type}}</li>
+                                    </ul>
+                                    <p>{{asse.assets[0].description}}</p>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Đồ cổ'">
+                                    <ul>
+                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
+                                        <li>Loại Đồ cổ: {{asse.assets[0].type}}</li>
+                                    </ul>
+                                    <p>{{asse.assets[0].description}}</p>
+                                </div>
+                                <div v-if="asse.assets[0].category=='Nghệ thuật'">
+                                    <ul>
+                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
+                                        <li>Loại: {{asse.assets[0].type}}</li>
+                                    </ul>
                                     <p>{{asse.assets[0].description}}</p>
                                 </div>
                             </div>
@@ -929,23 +896,32 @@ Vue.use(VueClipboard)
       startAt:'',
       creaded:'',
       tags:'',
+      toiletsNumber:'',
+      bedroomsNumber:'',
       asset:[],
       province:'',
       confirm:'',
       actions:'',
       id: '',
+      showInBaner:'',
+      attendanceDeadline:'',
       created:'',
       name: '',
+      acreage:'',
       image:[],
       mobile:'',
       hinh:'true',
       updated:'',
       info:'',
+      area:'',
       auction: [],
       add:true,
       endAt:'',
+      homeNetwork:'',
       note:'',
+      direction:'',
       save:true,
+      trademark:'',
       close1:true,
       assest:'',
       Search:'',
@@ -998,6 +974,16 @@ Vue.use(VueClipboard)
     },
     clickConfirm(id){
       this.axios.post(this.url+'/auction/update/'+id+"?status=Active", {"status":this.status}, {
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY')
+        }
+      }).then(() => {
+        this.axios.get(this.url+'/auction/auction_status/new')
+        .then(response => this.auction=response.data);
+      });
+    },
+    clickConfirm2(id){
+      this.axios.post(this.url+'/auction/showInBaner/'+id+"?showInBaner=1", {"showInBaner":this.showInBaner}, {
         headers: {
           Authorization: this.getCookie('AC-ACCESS-KEY')
         }
@@ -1143,5 +1129,9 @@ employee-list{
 }
 #innit{
   margin-top: 180px;
+}
+.sze{
+    height:900px;
+    width:400px;
 }
 </style>

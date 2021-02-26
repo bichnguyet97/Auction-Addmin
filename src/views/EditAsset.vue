@@ -110,775 +110,846 @@
             </div>
             </div> -->
             <div class="col-12 col-lg-12">
-                <div class="edit-profile">
-                    <div class="card border-0 rounded-0 shadow-sm">
+            <div class="edit-profile">
+                <div class="card border-0 rounded-0 shadow-sm">
 
-                        <div class="card-body p-3 rounded-0 border-0">
+                    <div class="card-body p-3 rounded-0 border-0">
 
-                            <div class="card-text pt-1">
-                                <div class="row justify-content-center">
+                        <div class="card-text pt-1">
+                            <div class="row justify-content-center">
 
-                                    <div class="col-12 col-xl-9 col-lg-10 col-md-12">
+                                <div class="col-12 col-xl-9 col-lg-10 col-md-12">
 
-                                        <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3">
-                                            Thông tin chung
-                                        </h3>
+                                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3">
+                                        Thông tin chung
+                                    </h3>
 
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Ảnh đại diện<span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <div class="user-avatar mb-3 mb-sm-0 text-center">
-                                                        <img :src="Search.assets[0].images" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-md-5">
-                                                    <p class="pt-2 f-13">Nhấp chuột vào ảnh để chọn hoặc thay đổi ảnh đại diện. Ảnh đại diện phải là: <span class="font-weight-bold">jpg, png, gif</span> dung lượng tối đa <span class="font-weight-bold">500Kb</span>. Kích thước tối đa <span class="font-weight-bold">300px</span></p>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <!-- <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Mã tài sản<span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <input type="text" class="form-control form-control-user fs-090" maxlength="20">
-                                                </div>
-                                            </div>
-                                        </div> -->
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Tên tài sản<span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <input type="text" class="form-control form-control-user fs-090" v-model="testName" maxlength="200">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Nhập giá bán<span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <input  type="text" class="form-control form-control-user fs-090" v-model="testinitPrice" maxlength="200">
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Danh mục đấu giá<span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <select v-model="testcategory" class="form-control form-control-user fs-090">
-                                                        <option disable value="">Chọn</option>
-                                                        <option>Bất động sản</option>
-                                                        <option>Xe hơi</option>
-                                                        <option>Đồ cổ</option>
-                                                        <option>Cây cảnh</option>
-                                                        <option>Sim số</option>
-                                                        <option>Đá quý</option>
-                                                        <option>Nghệ thuật</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <!-- <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Người bán<span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="0">Chọn người bán</option>
-                                                        <option value="1">Admin</option>
-                                                        <option value="2">Nguyễn Văn Hưng</option>
-                                                        <option value="3">Nguyễn Tuấn Ngọc</option>
-                                                        <option value="4">Hoàng Anh Mạnh</option>
-                                                        <option value="5">Quách Tuấn Du</option>
-                                                        <option value="6">Hoàng Ngọc Linh</option>
-                                                        <option value="7">Trương Vĩnh Kiệt</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div> -->
-
-                                        <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
-                                            Thư viện ảnh
-                                        </h3>
+                                    <div class="form-group">
                                         <div class="row">
-                                            <div class="col-12">
-                                                <div class="list-photo-pro mini-col">
-                                                    <!--Chưa có ảnh-->
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Ảnh đại diện<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="user-avatar mb-3 mb-sm-0 text-center">
+                                                    <img :src="tespicture" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
                                                 </div>
+                                            </div>
+                                            <div class="col-12 col-md-5">
+                                                <p class="pt-2 f-13">Nhấp chuột vào ảnh để chọn hoặc thay đổi ảnh đại diện. Ảnh đại diện phải là: <span class="font-weight-bold">jpg, png, gif</span> dung lượng tối đa <span class="font-weight-bold">500Kb</span>. Kích thước tối đa <span class="font-weight-bold">300px</span></p>
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="input-group rounded-0">
-                                                <div class="custom-file rounded-0">
-                                                    <b-form-file
-                                                    class="z-index-inputFile"
-                                                    @change="previewImage"
-                                                    placeholder="Select file"
-                                                    drop-placeholder="Drop file here..."
-                                                    accept="image/*"
-                                                    ></b-form-file>
-                                                    <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">{{picture}}</label>
-                                                </div>
-                                                <div class="input-group-append">
-                                                    <button @click="onUpload" class="btn btn-warning">
-                                                        <i class="las la-plus-circle"></i>
-                                                        Thêm
-                                                    </button>
-                                                </div>
-                                            </div>
-                                            <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
-                                            <div v-for="image in image" v-bind:key="image.images" class="user-avatar mb-3 mb-sm-0 text-center">
-                                                <img :src="picture" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
-                                            </div>
-                                        </div>
+                                    </div>
 
-                                        <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
-                                            Video gới thiệu
-                                        </h3>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Giới thiệu tài sản</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="500">
-                                                    <small id="emailHelp" class="form-text text-muted">Link youtube video</small>
-                                                </div>
+                                    <!-- <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Mã tài sản<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <input type="text" class="form-control form-control-user fs-090" maxlength="20">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Cơ quan thẩm định </label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="500">
-                                                    <small id="emailHelp" class="form-text text-muted">Link youtube video</small>
-                                                </div>
+                                    </div> -->
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Tên tài sản<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input v-model="testName" type="text" class="form-control form-control-user fs-090" maxlength="200" value="">
                                             </div>
                                         </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Chuyên gia đánh giá</label>
-                                                </div>
-                                                <div class="col-12 col-md-9">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="500">
-                                                    <small id="emailHelp" class="form-text text-muted">Link youtube video</small>
-                                                </div>
+                                    </div>
+                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Nhập giá bán<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input v-model="testinitPrice" type="text" class="form-control form-control-user fs-090" value="0">
                                             </div>
                                         </div>
+                                    </div>
 
-                                        <div class="d-block d-md-flex align-items-center border-bottom mb-3 pb-2 mt-5 ">
-                                            <h3 class="card-title f-17 font-weight-700 bd-highlight mb-3 mb-sm-0">
-                                                Thuộc tính tài sản
-                                            </h3>
-                                            <div class="bd-highlight ml-auto">
-                                                <select v-model="check" class="form-control select-default selectpickernone ">
-                                                    <option value="">Chọn loại tài sản</option>
-                                                    <option  value="1" selected="selected">Bất động sản</option>
-                                                    <option value="2">Xe hơi</option>
-                                                    <option value="3">Đá quý</option>
-                                                    <option value="4">Nghệ thuật</option>
-                                                    <option value="5">Đồ cổ</option>
-                                                    <option value="6">Cây cảnh</option>
-                                                    <option value="7">Sim số đẹp</option>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Danh mục đấu giá<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <select v-model="testcategory" class="form-control form-control-user fs-090">
+                                                    <option disable value="">Chọn</option>
+                                                    <option>Bất động sản</option>
+                                                    <option>Xe hơi</option>
+                                                    <option>Đồ cổ</option>
+                                                    <option>Cây cảnh</option>
+                                                    <option>Sim số</option>
+                                                    <option>Đá quý</option>
+                                                    <option>Nghệ thuật</option>
                                                 </select>
                                             </div>
                                         </div>
-                                        <div v-if="check==1">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Khu vực<span class="text-danger">*</span></label>
-                                                </div>
-                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option selected="selected" value="0">Chọn tỉnh thành</option>
-                                                        <option value="24">Hà Nội</option>
-                                                        <option value="30">Hồ Chí Minh</option>
-                                                        <option value="15">Đà Nẵng</option>
-                                                        <option value="28">Hải Phòng</option>
-                                                        <option value="14">Cần Thơ</option>
-                                                        <option value="58">Thừa Thiên - Huế</option>
-                                                        <option value="50">Quảng Ninh</option>
-                                                        <option value="1">An Giang</option>
-                                                        <option value="2">Bà Rịa-Vũng Tàu</option>
-                                                        <option value="5">Bắc Giang</option>
-                                                        <option value="4">Bắc Kạn</option>
-                                                        <option value="3">Bạc Liêu</option>
-                                                        <option value="6">Bắc Ninh</option>
-                                                        <option value="7">Bến Tre</option>
-                                                        <option value="8">Bình Dương</option>
-                                                        <option value="9">Bình Định</option>
-                                                        <option value="10">Bình Phước</option>
-                                                        <option value="11">Bình Thuận</option>
-                                                        <option value="12">Cà Mau</option>
-                                                        <option value="13">Cao Bằng</option>
-                                                        <option value="16">Đắk Lắk</option>
-                                                        <option value="17">Đắk Nông</option>
-                                                        <option value="18">Điện Biên</option>
-                                                        <option value="19">Đồng Nai</option>
-                                                        <option value="20">Đồng Tháp</option>
-                                                        <option value="21">Gia Lai</option>
-                                                        <option value="22">Hà Giang</option>
-                                                        <option value="23">Hà Nam</option>
-                                                        <option value="26">Hà Tĩnh</option>
-                                                        <option value="27">Hải Dương</option>
-                                                        <option value="31">Hậu Giang</option>
-                                                        <option value="29">Hòa Bình</option>
-                                                        <option value="32">Hưng Yên</option>
-                                                        <option value="34">Kiên Giang</option>
-                                                        <option value="35">Kon Tum</option>
-                                                        <option value="33">Khánh Hòa</option>
-                                                        <option value="36">Lai Châu</option>
-                                                        <option value="38">Lạng Sơn</option>
-                                                        <option value="37">Lào Cai</option>
-                                                        <option value="39">Lâm Đồng</option>
-                                                        <option value="40">Long An</option>
-                                                        <option value="41">Nam Định</option>
-                                                        <option value="43">Ninh Bình</option>
-                                                        <option value="44">Ninh Thuận</option>
-                                                        <option value="42">Nghệ An</option>
-                                                        <option value="45">Phú Thọ</option>
-                                                        <option value="46">Phú Yên</option>
-                                                        <option value="47">Quảng Bình</option>
-                                                        <option value="48">Quảng Nam</option>
-                                                        <option value="49">Quảng Ngãi</option>
-                                                        <option value="51">Quảng Trị</option>
-                                                        <option value="52">Sóc Trăng</option>
-                                                        <option value="53">Sơn La</option>
-                                                        <option value="54">Tây Ninh</option>
-                                                        <option value="59">Tiền Giang</option>
-                                                        <option value="61">Tuyên Quang</option>
-                                                        <option value="55">Thái Bình</option>
-                                                        <option value="56">Thái Nguyên</option>
-                                                        <option value="57">Thanh Hóa</option>
-                                                        <option value="60">Trà Vinh</option>
-                                                        <option value="62">Vĩnh Long</option>
-                                                        <option value="63">Vĩnh Phúc</option>
-                                                        <option value="64">Yên Bái</option>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Người bán<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select class="form-control select-default selectpickernone">
+                                                    <option value="0">Chọn người bán</option>
+                                                    <option value="1">Admin</option>
+                                                    <option value="2">Nguyễn Văn Hưng</option>
+                                                    <option value="3">Nguyễn Tuấn Ngọc</option>
+                                                    <option value="4">Hoàng Anh Mạnh</option>
+                                                    <option value="5">Quách Tuấn Du</option>
+                                                    <option value="6">Hoàng Ngọc Linh</option>
+                                                    <option value="7">Trương Vĩnh Kiệt</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> -->
 
-                                                    </select>
-                                                </div>
-                                                <div class="col-12 col-md-5">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="0">Chọn quận huyện</option>
-                                                        <option value="1">Hoàn Kiếm</option>
-                                                        <option value="2">Hai bà trưng</option>
-                                                        <option value="4">Đống đa</option>
-                                                        <option value="5">Hoàng Mai</option>
-                                                        <option value="5">Thanh Xuân</option>
-                                                    </select>
-                                                </div>
+                                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
+                                        Thư viện ảnh
+                                    </h3>
+                                    <div class="row">
+                                        <div class="col-12">
+                                            <div class="list-photo-pro mini-col">
+                                                <!--Chưa có ảnh-->
                                             </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Chủng loại</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="1">Đất thổ cư, đất dự án</option>
-                                                        <option value="2">Căn hộ chung cư</option>
-                                                        <option value="4">Nhà riêng, nhà phố, biệt thự</option>
-                                                        <option value="5">Khu nghỉ dưỡng, trang trại</option>
-                                                        <option value="5">Nhà kho, nhà xưởng</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Diện tích</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                    <small id="emailHelp" class="form-text text-muted">Đơn vị là m2</small>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Số phòng ngủ</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="0">Chọn số phòng</option>
-                                                        <option value="1">1</option>
-                                                        <option value="2">2</option>
-                                                        <option value="4">3</option>
-                                                        <option value="5">4</option>
-                                                        <option value="5">5</option>
-                                                        <option value="5">6</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Hướng</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="0">Chọn hướng</option>
-                                                        <option value="1">Đông</option>
-                                                        <option value="2">Tây</option>
-                                                        <option value="4">Nam</option>
-                                                        <option value="5">Bắc</option>
-                                                        <option value="6">Đông-Bắc</option>
-                                                        <option value="7">Tây-Bắc</option>
-                                                        <option value="8">Tây-Nam</option>
-                                                        <option value="8">Đông-Nam</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Thương hiệu</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="0">Chọn hướng</option>
-                                                        <option value="1">Vinhome</option>
-                                                        <option value="2">Imperia</option>
-                                                        <option value="4">Sungroup</option>
-                                                        <option value="5">T&T</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        </div >
-                                        <div v-if="check==2">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu xe<span class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                        <select class="form-control select-default selectpickernone">
-                                                            <option selected="selected" value="0">Chọn màu sắc</option>
-                                                            <option value="1">Màu đỏ</option>
-                                                            <option value="2">Màu trắng</option>
-                                                            <option value="4">Màu đen</option>
-                                                            <option value="5">Màu xanh nước biển</option>
-                                                            <option value="6">Màu xanh lá</option>
-                                                            <option value="7">Màu hồng</option>
-                                                            <option value="8">Màu vàng</option>
-                                                            <option value="9">Màu da cam</option>
-                                                            <option value="10">Màu tím</option>
-                                                            <option value="11">Màu nâu đen</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class="col-form-label font-weight-600">Năm sản xuất</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4">
-                                                        <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class=" col-form-label pb-1 pt-0 font-weight-600">Hãng xe<span class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                        <select class="form-control select-default selectpickernone">
-                                                            <option selected="selected" value="0">Chọn hãng xe</option>
-                                                            <option value="1">Abarth</option>
-                                                            <option value="2"> Zenos</option>
-                                                            <option value="4">Alfa Romeo</option>
-                                                            <option value="5">Volvo</option>
-                                                            <option value="6">Aston Martin</option>
-                                                            <option value="7">Volkswagen</option>
-                                                            <option value="8">Audi</option>
-                                                            <option value="9">Vauxhall</option>
-                                                            <option value="10">Bentley</option>
-                                                            <option value="11">Toyota</option>
-                                                            <option value="12">BMW</option>
-                                                            <option value="13">Tesla</option>
-                                                            <option value="14">Bugatti</option>
-                                                            <option value="15">Suzuki</option>
-                                                            <option value="16">Cadillac</option>
-                                                            <option value="17">Subaru</option>
-                                                            <option value="18">Caterham</option>
-                                                            <option value="19">SsangYong</option>
-                                                            <option value="20">Chevrolet</option>
-                                                            <option value="21">Smart</option>
-                                                            <option value="22">Chrysler</option>
-                                                            <option value="23">Skoda</option>
-                                                            <option value="24">Citroen</option>
-                                                            <option value="25">Vinfast</option>
-                                                            <option value="26">Dacia</option>
-                                                            <option value="27">Seat</option>
-                                                            <option value="28">Ferrari</option>
-                                                            <option value="29">Saab</option>
-                                                            <option value="30">Fiat</option>
-                                                            <option value="31">Rolls-Royce</option>
-                                                            <option value="32">Ford</option>
-                                                            <option value="33">Renault</option>
-                                                            <option value="34">Honda</option>
-                                                            <option value="35">Radical</option>
-                                                            <option value="36">Hyundai</option>
-                                                            <option value="37">Porsche</option>
-                                                            <option value="38">Infiniti</option>
-                                                            <option value="39">Peugeot</option>
-                                                            <option value="40">Jaguar</option>
-                                                            <option value="41">Pagani</option>
-                                                            <option value="42">Jeep</option>
-                                                            <option value="43">Noble</option>
-                                                            <option value="44">Kia</option>
-                                                            <option value="45">Nissan</option>
-                                                            <option value="46">Lamborghini</option>
-                                                            <option value="47">Morgan</option>
-                                                            <option value="48">Land Rover</option>
-                                                            <option value="49">Mitsubishi</option>
-                                                            <option value="50">Lexus</option>
-                                                            <option value="51">Mini</option>
-                                                            <option value="52">Lotus</option>
-                                                            <option value="53">MG</option>
-                                                            <option value="54">Maserati</option>
-                                                            <option value="55">Mercedes-Benz</option>
-                                                            <option value="56">Mazda</option>
-                                                            <option value="57">Mclaren</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class=" col-form-label pb-1 pt-0 font-weight-600">Số chỗ<span class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                        <select class="form-control select-default selectpickernone">
-                                                            <option selected="selected" value="0">Chọn số chỗ</option>
-                                                            <option value="1">2</option>
-                                                            <option value="2">4</option>
-                                                            <option value="4">6</option>
-                                                            <option value="5">14</option>
-                                                            <option value="6">24</option> 
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                        <select class="form-control select-default selectpickernone">
-                                                            <option selected="selected" value="0">Chọn xuất xứ</option>
-                                                            <option value="1">Hàn quốc</option>
-                                                            <option value="2">Nhật bản</option>
-                                                            <option value="4">Trung quốc</option>
-                                                            <option value="5">Mỹ</option>
-                                                            <option value="6">Việt nam</option>
-                                                            <option value="7">Đức</option>
-                                                            <option value="8">Thuỵ điển</option>
-                                                            <option value="9">Úc</option>
-                                                            <option value="10">Ấn độ</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div v-if="check==7">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                        <select class="form-control select-default selectpickernone">
-                                                            <option selected="selected" value="0">Chọn nhà mạng</option>
-                                                            <option value="1">Viettel</option>
-                                                            <option value="2">MobiFone</option>
-                                                            <option value="4">Vietnamobile</option>
-                                                            <option value="5">Vinaphone</option>
-                                                            <option value="6">Gmobile(Beeline)</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class="col-form-label font-weight-600">Loại sim</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4">
-                                                        <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div v-if="check==3">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu<span class="text-danger">*</span></label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                        <select class="form-control select-default selectpickernone">
-                                                            <option selected="selected" value="0">Chọn màu sắc</option>
-                                                            <option value="1">Màu đỏ</option>
-                                                            <option value="2">Màu trắng</option>
-                                                            <option value="4">Màu đen</option>
-                                                            <option value="5">Màu xanh nước biển</option>
-                                                            <option value="6">Màu xanh lá</option>
-                                                            <option value="7">Màu hồng</option>
-                                                            <option value="8">Màu vàng</option>
-                                                            <option value="9">Màu da cam</option>
-                                                            <option value="10">Màu tím</option>
-                                                            <option value="11">Màu nâu đen</option>
-                                                        </select>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class="col-form-label font-weight-600">Loại đá quý</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4">
-                                                        <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div v-if="check==4">
-                                            helo
-                                        </div>
-                                        <div v-if="check==5">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class="col-form-label font-weight-600">Loại đồ cổ</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4">
-                                                        <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div v-if="check==6">
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class="col-form-label font-weight-600">Loại cây</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4">
-                                                        <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                    </div>
-                                                </div>
-                                                <div class="form-group">
-                                                    <div class="row">
-                                                        <div class="col-12 col-md-3">
-                                                            <label class="col-form-label font-weight-600">Kiểu dáng</label>
-                                                        </div>
-                                                        <div class="col-12 col-md-4">
-                                                            <input type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
-                                            Chi tiết tài sản
-                                        </h3>
-                                        <div class="form-group">
-                                            <textarea v-model="testdescription" class="form-control" rows="8"></textarea>
-                                            <!-- <small id="emailHelp" class="form-text text-muted">Lập trình viên tự chọn TextEditor phù hợp vào ô trên</small> -->
-                                        </div>
-                                        <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
-                                            Thông tin khác
-                                        </h3>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Tình trạng</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <select v-model="testcurrentStatus"  class="form-control select-default selectpickernone">
-                                                        <option value="0">Chọn tình trạng</option>
-                                                        <option value="1">Cũ</option>
-                                                        <option value="2">Mới</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Trạng thái</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="1">Đang hoạt động</option>
-                                                        <option value="2">Đã vô hiệu</option>
-                                                    </select>
-                                                </div>
-                                            </div>
-                                        </div>
-
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Thời gian đăng</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <div class="input-group mb-3">
-                                                        <select class="form-control select-default selectpickernone">
-                                                            <option value="0">Giờ</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                            <option>7</option>
-                                                            <option>8</option>
-                                                            <option>9</option>
-                                                            <option>10</option>
-                                                            <option>11</option>
-                                                            <option>12</option>
-                                                            <option>13</option>
-                                                            <option>14</option>
-                                                            <option>15</option>
-                                                            <option>16</option>
-                                                            <option>17</option>
-                                                            <option>18</option>
-                                                            <option>19</option>
-                                                            <option>20</option>
-                                                            <option>21</option>
-                                                            <option>22</option>
-                                                            <option>23</option>
-                                                            <option>24</option>
-                                                        </select>
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text f-13 border-right-0">:</span>
-                                                        </div>
-                                                        <select class="form-control select-default selectpickernone">
-                                                            <option value="0">Phút</option>
-                                                            <option>1</option>
-                                                            <option>2</option>
-                                                            <option>3</option>
-                                                            <option>4</option>
-                                                            <option>5</option>
-                                                            <option>6</option>
-                                                            <option>7</option>
-                                                            <option>8</option>
-                                                            <option>9</option>
-                                                            <option>10</option>
-                                                            <option>11</option>
-                                                            <option>12</option>
-                                                            <option>13</option>
-                                                            <option>14</option>
-                                                            <option>15</option>
-                                                            <option>16</option>
-                                                            <option>17</option>
-                                                            <option>18</option>
-                                                            <option>19</option>
-                                                            <option>20</option>
-                                                            <option>21</option>
-                                                            <option>22</option>
-                                                            <option>23</option>
-                                                            <option>24</option>
-                                                            <option>25</option>
-                                                            <option>26</option>
-                                                            <option>27</option>
-                                                            <option>28</option>
-                                                            <option>29</option>
-                                                            <option>30</option>
-                                                            <option>31</option>
-                                                            <option>32</option>
-                                                            <option>33</option>
-                                                            <option>34</option>
-                                                            <option>35</option>
-                                                            <option>36</option>
-                                                            <option>37</option>
-                                                            <option>38</option>
-                                                            <option>39</option>
-                                                            <option>40</option>
-                                                            <option>41</option>
-                                                            <option>42</option>
-                                                            <option>43</option>
-                                                            <option>44</option>
-                                                            <option>45</option>
-                                                            <option>46</option>
-                                                            <option>47</option>
-                                                            <option>48</option>
-                                                            <option>49</option>
-                                                            <option>50</option>
-                                                            <option>51</option>
-                                                            <option>52</option>
-                                                            <option>53</option>
-                                                            <option>54</option>
-                                                            <option>55</option>
-                                                            <option>56</option>
-                                                            <option>57</option>
-                                                            <option>58</option>
-                                                            <option>59</option>
-                                                            <option>60</option>
-                                                        </select>
-
-                                                    </div>
-                                                </div>
-                                                <div class="col-12 col-md-5">
-                                                    <div class="input-group dateranger-one mb-3 mb-sm-3">
-                                                        <input type="text" class="form-control date-use bg-white" value="12-11-1986" readonly="">
-                                                        <div class="input-group-append">
-                                                            <span class="input-group-text bg-white pl-2 pr-2">
-                                                                <i class="las la-calendar"></i>
-                                                            </span>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <hr class="pt-3 mb-1" />
-                                        <div class="clearfix">
-                                            <button @click="clickEdit(Search.assets[0].id)" class="btn btn-primary mb-2">
-                                                <i class="las la-save"></i>
-                                                Sửa tài sản
-                                            </button>
-                                            <em class="text-danger f-13 d-block d-sm-inline float-left float-sm-right">* là trường bắt buộc nhập dữ liệu</em>
                                         </div>
                                     </div>
+                                    <div class="form-group">
+                                        <div class="input-group rounded-0">
+                                            <div class="custom-file rounded-0">
+                                                <b-form-file
+                                                class="z-index-inputFile"
+                                                @change="previewImage"
+                                                placeholder="Select file"
+                                                drop-placeholder="Drop file here..."
+                                                accept="image/*"
+                                                ></b-form-file>
+                                                <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
+                                            </div>
+                                            <div class="input-group-append">
+                                                <button @click="onUpload" class="btn btn-warning">
+                                                    <i class="las la-plus-circle"></i>
+                                                    Thêm
+                                                </button>
+                                            </div>
+                                        </div>
+                                        <div id="topimage" class="user-avatar mb-3 text-center">
+                                            <img id="sizeimage" :src="tespicture" alt="">
+                                        </div>
+                                        <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
+                                    </div>
+
+                                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
+                                        Video gới thiệu
+                                    </h3>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Giới thiệu tài sản</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" class="form-control form-control-user fs-090" value="" maxlength="500">
+                                                <small id="emailHelp" class="form-text text-muted">Link youtube video</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Cơ quan thẩm định </label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" class="form-control form-control-user fs-090" value="" maxlength="500">
+                                                <small id="emailHelp" class="form-text text-muted">Link youtube video</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Chuyên gia đánh giá</label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input type="text" class="form-control form-control-user fs-090" value="" maxlength="500">
+                                                <small id="emailHelp" class="form-text text-muted">Link youtube video</small>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="d-block d-md-flex align-items-center border-bottom mb-3 pb-2 mt-5 ">
+                                        <h3 class="card-title f-17 font-weight-700 bd-highlight mb-3 mb-sm-0">
+                                            Thuộc tính tài sản
+                                        </h3>
+                                        <!-- <div class="bd-highlight ml-auto">
+                                            <select v-model="check" class="form-control select-default selectpickernone ">
+                                                <option value="">Chọn loại tài sản</option>
+                                                <option  value="1" selected="selected">Bất động sản</option>
+                                                <option value="2">Xe hơi</option>
+                                                <option value="3">Đá quý</option>
+                                                <option value="4">Nghệ thuật</option>
+                                                <option value="5">Đồ cổ</option>
+                                                <option value="6">Cây cảnh</option>
+                                                <option value="7">Sim số đẹp</option>
+                                            </select>
+                                        </div> -->
+                                    </div>
+                                    <div v-if="Search.assets[0].category=='Bất động sản'">
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class=" col-form-label pb-1 pt-0 font-weight-600">Khu vực<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                <select v-model="testarea" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn khu vực</option>
+                                                    <option >Hà Nội</option>
+                                                    <option>Hồ Chí Minh</option>
+                                                    <option>Đà Nẵng</option>
+                                                    <option>Hải Phòng</option>
+                                                    <option>Cần Thơ</option>
+                                                    <option>Thừa Thiên - Huế</option>
+                                                    <option>Quảng Ninh</option>
+                                                    <option>An Giang</option>
+                                                    <option>Bà Rịa-Vũng Tàu</option>
+                                                    <option>Bắc Giang</option>
+                                                    <option>Bắc Kạn</option>
+                                                    <option>Bạc Liêu</option>
+                                                    <option>Bắc Ninh</option>
+                                                    <option>Bến Tre</option>
+                                                    <option>Bình Dương</option>
+                                                    <option>Bình Định</option>
+                                                    <option>Bình Phước</option>
+                                                    <option>Bình Thuận</option>
+                                                    <option>Cà Mau</option>
+                                                    <option>Cao Bằng</option>
+                                                    <option>Đắk Lắk</option>
+                                                    <option>Đắk Nông</option>
+                                                    <option>Điện Biên</option>
+                                                    <option>Đồng Nai</option>
+                                                    <option>Đồng Tháp</option>
+                                                    <option>Gia Lai</option>
+                                                    <option>Hà Giang</option>
+                                                    <option>Hà Nam</option>
+                                                    <option>Hà Tĩnh</option>
+                                                    <option>Hải Dương</option>
+                                                    <option>Hậu Giang</option>
+                                                    <option>Hòa Bình</option>
+                                                    <option>Hưng Yên</option>
+                                                    <option>Kiên Giang</option>
+                                                    <option>Kon Tum</option>
+                                                    <option>Khánh Hòa</option>
+                                                    <option>Lai Châu</option>
+                                                    <option>Lạng Sơn</option>
+                                                    <option>Lào Cai</option>
+                                                    <option>Lâm Đồng</option>
+                                                    <option>Long An</option>
+                                                    <option>Nam Định</option>
+                                                    <option>Ninh Bình</option>
+                                                    <option>Ninh Thuận</option>
+                                                    <option>Nghệ An</option>
+                                                    <option>Phú Thọ</option>
+                                                    <option>Phú Yên</option>
+                                                    <option>Quảng Bình</option>
+                                                    <option>Quảng Nam</option>
+                                                    <option>Quảng Ngãi</option>
+                                                    <option>Quảng Trị</option>
+                                                    <option>Sóc Trăng</option>
+                                                    <option>Sơn La</option>
+                                                    <option>Tây Ninh</option>
+                                                    <option>Tiền Giang</option>
+                                                    <option>Tuyên Quang</option>
+                                                    <option>Thái Bình</option>
+                                                    <option>Thái Nguyên</option>
+                                                    <option>Thanh Hóa</option>
+                                                    <option>Trà Vinh</option>
+                                                    <option>Vĩnh Long</option>
+                                                    <option>Vĩnh Phúc</option>
+                                                    <option>Yên Bái</option>
+
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Chủng loại</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select v-model="testtype" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Đất thổ cư, đất dự án</option>
+                                                    <option>Căn hộ chung cư</option>
+                                                    <option>Nhà riêng, nhà phố, biệt thự</option>
+                                                    <option>Khu nghỉ dưỡng, trang trại</option>
+                                                    <option>Nhà kho, nhà xưởng</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Diện tích</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <input v-model="testacreage" type="text" class="form-control form-control-user fs-090" value="0" maxlength="20">
+                                                <small id="emailHelp" class="form-text text-muted">Đơn vị là m2</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Số phòng ngủ</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select v-model="testbedroomsNumber" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn số phòng</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Số phòng vệ sinh</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select v-model="testtoiletsNumber" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn số phòng</option>
+                                                    <option>1</option>
+                                                    <option>2</option>
+                                                    <option>3</option>
+                                                    <option>4</option>
+                                                    <option>5</option>
+                                                    <option>6</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Hướng</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select v-model="testdirection" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn hướng</option>
+                                                    <option>Đông</option>
+                                                    <option>Tây</option>
+                                                    <option>Nam</option>
+                                                    <option>Bắc</option>
+                                                    <option>Đông-Bắc</option>
+                                                    <option>Tây-Bắc</option>
+                                                    <option>Tây-Nam</option>
+                                                    <option>Đông-Nam</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Thương hiệu</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select v-model="testtrademark" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn thương hiệu</option>
+                                                    <option>Vin</option>
+                                                    <option>Green city</option>
+                                                    <option>Vin ocean park</option>
+                                                    <option>Time city</option>
+                                                    <option>Roy city</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    </div >
+                                    <div v-if="Search.assets[0].category=='Xe hơi'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu xe<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="tescolor" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh nước biển</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu nâu đen</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Màu nội thất</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesinteriorColor" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Năm sản xuất</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesmanufactureYear" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Hộp số<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="tesgear" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn hộp số</option>
+                                                        <option>Hộp số sàn/ số tay</option>
+                                                        <option>Hộp số tự động</option>
+                                                        <option>Hộp số tự động vô cấp CVT</option>
+                                                        <option>Hộp số ly hợp kép</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhiên liệu<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="tesfuel" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn nhiên liệu</option>
+                                                        <option>Khí hóa lỏng (LPG)</option>
+                                                        <option>Hydrogen</option>
+                                                        <option>Xăng sinh học Bioethanol</option>
+                                                        <option>Khí thiên nhiên nén CNG</option>
+                                                        <option>Dầu sinh học Biodiesel</option>
+                                                        <option>Propane (C3H8)</option>
+                                                        <option>Nước</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Tiêu thụ</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesconsume" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <small id="emailHelp" class="form-text text-muted">Tiêu thụ bao nhiêu lít xăng/100km</small>
+                                                </div>
+                                        
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Hãng xe<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="testtrademark" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn hãng xe</option>
+                                                        <option>Abarth</option>
+                                                        <option> Zenos</option>
+                                                        <option>Alfa Romeo</option>
+                                                        <option>Volvo</option>
+                                                        <option>Aston Martin</option>
+                                                        <option>Volkswagen</option>
+                                                        <option>Audi</option>
+                                                        <option>Vauxhall</option>
+                                                        <option>Bentley</option>
+                                                        <option>Toyota</option>
+                                                        <option>BMW</option>
+                                                        <option>Tesla</option>
+                                                        <option>Bugatti</option>
+                                                        <option>Suzuki</option>
+                                                        <option>Cadillac</option>
+                                                        <option>Subaru</option>
+                                                        <option>Caterham</option>
+                                                        <option>SsangYong</option>
+                                                        <option>Chevrolet</option>
+                                                        <option>Smart</option>
+                                                        <option>Chrysler</option>
+                                                        <option>Skoda</option>
+                                                        <option>Citroen</option>
+                                                        <option>Vinfast</option>
+                                                        <option>Dacia</option>
+                                                        <option>Seat</option>
+                                                        <option>Ferrari</option>
+                                                        <option>Saab</option>
+                                                        <option>Fiat</option>
+                                                        <option>Rolls-Royce</option>
+                                                        <option>Ford</option>
+                                                        <option>Renault</option>
+                                                        <option>Honda</option>
+                                                        <option>Radical</option>
+                                                        <option>Hyundai</option>
+                                                        <option>Porsche</option>
+                                                        <option>Infiniti</option>
+                                                        <option>Peugeot</option>
+                                                        <option>Jaguar</option>
+                                                        <option>Pagani</option>
+                                                        <option>Jeep</option>
+                                                        <option>Noble</option>
+                                                        <option>Kia</option>
+                                                        <option>Nissan</option>
+                                                        <option>Lamborghini</option>
+                                                        <option>Morgan</option>
+                                                        <option>Land Rover</option>
+                                                        <option>Mitsubishi</option>
+                                                        <option>Lexus</option>
+                                                        <option>Mini</option>
+                                                        <option>Lotus</option>
+                                                        <option>MG</option>
+                                                        <option>Maserati</option>
+                                                        <option>Mercedes-Benz</option>
+                                                        <option>Mazda</option>
+                                                        <option>Mclaren</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Số chỗ<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="tesseatsNumber" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn số chỗ</option>
+                                                        <option>2</option>
+                                                        <option>4</option>
+                                                        <option>6</option>
+                                                        <option>14</option>
+                                                        <option>24</option> 
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn xuất xứ</option>
+                                                        <option>Hàn quốc</option>
+                                                        <option>Nhật bản</option>
+                                                        <option>Trung quốc</option>
+                                                        <option>Mỹ</option>
+                                                        <option>Việt nam</option>
+                                                        <option>Đức</option>
+                                                        <option>Thuỵ điển</option>
+                                                        <option>Úc</option>
+                                                        <option>Ấn độ</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="Search.assets[0].category=='Sim số'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="teshomeNetwork" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn nhà mạng</option>
+                                                        <option>Viettel</option>
+                                                        <option>MobiFone</option>
+                                                        <option>Vietnamobile</option>
+                                                        <option>Vinaphone</option>
+                                                        <option>Gmobile(Beeline)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Loại sim</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="Search.assets[0].category=='Đá quý'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="tescolor" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh nước biển</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu nâu đen</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Loại đá quý</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="Search.assets[0].category=='Nghệ thuật'">
+                                        helo
+                                    </div>
+                                    <div v-if="Search.assets[0].category=='Đồ cổ'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Loại đồ cổ</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="Search.assets[0].category=='Cây cảnh'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Loại cây</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-3">
+                                                        <label class="col-form-label font-weight-600">Kiểu dáng</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-4">
+                                                        <input  type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
+                                        Chi tiết tài sản
+                                    </h3>
+                                    <div class="form-group">
+                                        <textarea v-model="testdescription" class="form-control" rows="8"></textarea>
+                                        <!-- <small id="emailHelp" class="form-text text-muted">Lập trình viên tự chọn TextEditor phù hợp vào ô trên</small> -->
+                                    </div>
+                                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
+                                        Thông tin khác
+                                    </h3>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Tình trạng</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select v-model="testcurrentStatus" class="form-control select-default selectpickernone">
+                                                    <option disable value="">Chọn tình trạng</option>
+                                                    <option>Cũ</option>
+                                                    <option>Mới</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <!-- <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Trạng thái</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <select class="form-control select-default selectpickernone">
+                                                    <option>Đang hoạt động</option>
+                                                    <option>Đã vô hiệu</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                    </div> -->
+
+                                    <!-- <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Thời gian đăng</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <div class="input-group mb-3">
+                                                    <select class="form-control select-default selectpickernone">
+                                                        <option value="0">Giờ</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                        <option>13</option>
+                                                        <option>14</option>
+                                                        <option>15</option>
+                                                        <option>16</option>
+                                                        <option>17</option>
+                                                        <option>18</option>
+                                                        <option>19</option>
+                                                        <option>20</option>
+                                                        <option>21</option>
+                                                        <option>22</option>
+                                                        <option>23</option>
+                                                        <option>24</option>
+                                                    </select>
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text f-13 border-right-0">:</span>
+                                                    </div>
+                                                    <select class="form-control select-default selectpickernone">
+                                                        <option value="0">Phút</option>
+                                                        <option>1</option>
+                                                        <option>2</option>
+                                                        <option>3</option>
+                                                        <option>4</option>
+                                                        <option>5</option>
+                                                        <option>6</option>
+                                                        <option>7</option>
+                                                        <option>8</option>
+                                                        <option>9</option>
+                                                        <option>10</option>
+                                                        <option>11</option>
+                                                        <option>12</option>
+                                                        <option>13</option>
+                                                        <option>14</option>
+                                                        <option>15</option>
+                                                        <option>16</option>
+                                                        <option>17</option>
+                                                        <option>18</option>
+                                                        <option>19</option>
+                                                        <option>20</option>
+                                                        <option>21</option>
+                                                        <option>22</option>
+                                                        <option>23</option>
+                                                        <option>24</option>
+                                                        <option>25</option>
+                                                        <option>26</option>
+                                                        <option>27</option>
+                                                        <option>28</option>
+                                                        <option>29</option>
+                                                        <option>30</option>
+                                                        <option>31</option>
+                                                        <option>32</option>
+                                                        <option>33</option>
+                                                        <option>34</option>
+                                                        <option>35</option>
+                                                        <option>36</option>
+                                                        <option>37</option>
+                                                        <option>38</option>
+                                                        <option>39</option>
+                                                        <option>40</option>
+                                                        <option>41</option>
+                                                        <option>42</option>
+                                                        <option>43</option>
+                                                        <option>44</option>
+                                                        <option>45</option>
+                                                        <option>46</option>
+                                                        <option>47</option>
+                                                        <option>48</option>
+                                                        <option>49</option>
+                                                        <option>50</option>
+                                                        <option>51</option>
+                                                        <option>52</option>
+                                                        <option>53</option>
+                                                        <option>54</option>
+                                                        <option>55</option>
+                                                        <option>56</option>
+                                                        <option>57</option>
+                                                        <option>58</option>
+                                                        <option>59</option>
+                                                        <option>60</option>
+                                                    </select>
+
+                                                </div>
+                                            </div>
+                                            <div class="col-12 col-md-5">
+                                                <div class="input-group dateranger-one mb-3 mb-sm-3">
+                                                    <input type="text" class="form-control date-use bg-white" value="12-11-1986" readonly="">
+                                                    <div class="input-group-append">
+                                                        <span class="input-group-text bg-white pl-2 pr-2">
+                                                            <i class="las la-calendar"></i>
+                                                        </span>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div> -->
+                                    <hr class="pt-3 mb-1" />
+                                    <div class="clearfix">
+                                        <button v-b-modal.modalPopover @click="clickEdit(Search.assets[0].id)" class="btn btn-primary mb-2">
+                                            <i class="las la-save"></i>
+                                            Sửa tài sản
+                                        </button>
+                                        <em class="text-danger f-13 d-block d-sm-inline float-left float-sm-right">* là trường bắt buộc nhập dữ liệu</em>
+                                    </div>
+                                    <b-modal id="modalPopover" title="Thông báo" ok-only>
+                                            <p>
+                                            Sửa tài sản thành công !
+                                            </p>
+                                    </b-modal>
                                 </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
+        </div>
         </div>
     </div>
 </template>
@@ -905,17 +976,26 @@ Vue.use(VueClipboard)
       finalPrice:'',
       images:'',
       image:'',
+      gear:'',
       description:'',
       hinh:true,
       category:'',
       creaded:'',
       tags:'',
+      consume:'',
       seller:'',
+      homeNetwork:'',
+      interiorColor:'',
       actions:'',
       id: '',
+      trademark:'',
+      toiletsNumber:'',
       name: '',
+      manufactureYear:'',
       Search:'',
       check:1,
+      fuel:'',
+      seatsNumber:'',
       showInfo1:false,
       showInfo2:false,
       showInfo3:false,
@@ -925,10 +1005,18 @@ Vue.use(VueClipboard)
       info:'',
       color:'',
       status:'',
+      type:'',
+      area:'',
+      origin:'',
       asset: [],
       add:true,
       sessionId:'',
       save:true,
+      testinitPrice:'',
+      tespicture:'',
+      testName:'',
+      assets:[],
+      testcategory:'',
       currentStatus:'',
       searchCheck: 1,
       direction:'',
@@ -949,26 +1037,29 @@ Vue.use(VueClipboard)
     },
     clickSearch2(id){
       this.axios.get(this.url+'/asset/id/'+id)
-      .then((response) => { this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,
-      this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.picture = response.data.assets[0].images.split(','),
-      this.testdirection = response.data.assets[0].direction, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber});
-        console.log(this.Search);
+      .then((response) => { this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
+      this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
+      this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
+      this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,
+      this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork
+      });
+        console.log(this.testdescription);
     },
     clickEdit(id){
-      this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,
-      "category": this.testcategory, "images":this.picture,"description":this.testdescription, "currentStatus": this.testcurrentStatus, 
-      "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.bedroomsNumber, 
+      this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,
+      "category": this.testcategory,"description":this.testdescription, "currentStatus": this.testcurrentStatus, "trademark": this.testtrademark,
+      "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.testbedroomsNumber, "gear": this.tesgear, "fuel": this.tesfuel,
+      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.testpicture
+      
       }, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate();
-          });
+        }).then((response) => console.log(response));
     },
     previewImage(event){
             // this.uploadValue=0;
             
-                this.picture=null;
+                this.testpicture=null;
                 this.imageData =event.target.files[0];
                 this.uploadValue=0;
             
@@ -988,8 +1079,8 @@ Vue.use(VueClipboard)
                     ()=>{this.uploadValue=100;
                 
                     storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
-                        this.picture=url1;
-                        console.log(this.picture);
+                        this.testpicture=url1;
+                        console.log(this.testpicture);
                     });
 
                     }
@@ -1100,5 +1191,12 @@ employee-list{
 #edit{
     margin-left: 880px;
     margin-top: -144px;
+}
+#sizeimage{
+    height: 125px;
+    width: 201px;
+}
+#topimage{
+    margin-top:10px;
 }
 </style>

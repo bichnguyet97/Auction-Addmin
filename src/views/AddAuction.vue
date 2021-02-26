@@ -173,6 +173,14 @@
                                                 <input v-model="mobile" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
                                             </div>
                                         </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                    Nhập ID người đăng bán <span class="text-danger">*</span>
+                                                </label>
+                                                <input v-model="seller" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                            </div>
+                                        </div>
                                         
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
@@ -188,6 +196,14 @@
                                                     Nhập giá bán ngay <span class="text-danger">*</span>
                                                 </label>
                                                 <input v-model="buyPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                    Hạn tham dự <span class="text-danger">*</span>
+                                                </label>
+                                                <base-input v-model="attendanceDeadline" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -319,7 +335,7 @@ Vue.use(VueClipboard)
     clickAdd1:async function(){
     await this.axios.post(this.url+'/auction/',{ "assest": this.assest,
       "bidPrice": this.bidPrice,"endAt": this.endAt, "startAt": this.startAt, "warranty": this.warranty, "stepPrice": this.stepPrice, "buyPrice": this.buyPrice,
-        "area": this.area, "email": this.email, "mobile": this.mobile, "note": this.note,
+        "area": this.area, "email": this.email, "mobile": this.mobile, "note": this.note,"attendanceDeadline":this.attendanceDeadline, "seller": this.seller
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }

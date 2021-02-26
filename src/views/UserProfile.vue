@@ -91,7 +91,7 @@
                               <span>
                                 <base-button size="sm" outline type="danger" v-on:click="clickdelete1(users.id)">Xoá</base-button>
                                 <span> 
-                                  <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button>
+                                  <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button> -->
                                   <b-button size="sm" v-b-modal.modal-5 variant="info" @click="close3=false,clickSearch2(users.id)">Thông tin chi tiết</b-button>
                                 </span>
                               </span>
@@ -270,7 +270,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Tên đăng nhập<span class="text-danger">*</span>
                           </label>
-                          <input type="text" class="form-control form-control-user fs-090" :value="Search.name" maxlength="20">
+                          <input type="text" class="form-control form-control-user fs-090" :value="inname" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -278,7 +278,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Địa chỉ Email<span class="text-danger">*</span>
                           </label>
-                          <input v-model="email" type="" class="form-control form-control-user fs-090" :placeholder="Search.email" maxlength="20">
+                          <input v-model="inemail" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -286,7 +286,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Họ và đệm<span class="text-danger">*</span>
                           </label>
-                          <input v-model="lastname" type="" class="form-control form-control-user fs-090" :placeholder="Search.lastname" maxlength="20">
+                          <input v-model="inlastname" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -294,7 +294,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Tên<span class="text-danger">*</span>
                           </label>
-                          <input v-model="fullname" type="" class="form-control form-control-user fs-090" :placeholder="Search.fullname" maxlength="20">
+                          <input v-model="infullname" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -303,7 +303,7 @@
                             Giới tính<span class="text-danger">*</span>
                           </label>
                           <base-input>
-                          <select v-model="gender" class="form-control form-control-user fs-090">
+                          <select v-model="ingender" class="form-control form-control-user fs-090">
                             <option disable value="">Chọn</option>
                             <option>Nam</option>
                             <option>Nữ</option>
@@ -316,7 +316,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Ngày sinh<span class="text-danger">*</span>
                           </label>
-                          <base-input v-model="dateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
+                          <base-input v-model="indateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -324,7 +324,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Số điện thoại<span class="text-danger">*</span>
                           </label>
-                          <input v-model="mobile" type="" class="form-control form-control-user fs-090" :placeholder="Search.mobile" maxlength="20">
+                          <input v-model="inmobile" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -333,7 +333,7 @@
                             Tỉnh thành<span class="text-danger">*</span>
                           </label>
                           <base-input>
-                          <select v-model="province" class="form-control form-control-user fs-090">
+                          <select v-model="inprovince" class="form-control form-control-user fs-090">
                             <option disable value="">Chọn</option>
                             <option >Hà Nội</option>
                             <option>Hồ Chí Minh</option>
@@ -408,10 +408,11 @@
                             Phân quyền <span class="text-danger">*</span>
                           </label>
                           <base-input>
-                          <select v-model="group" class="form-control form-control-user fs-090">
+                          <select v-model="ingroup" class="form-control form-control-user fs-090">
                             <option disable value="">Chọn</option>
                             <option>Admin</option>
                             <option>Agency</option>
+                            <option>User</option>
                           </select>
                           </base-input>
                         </div>
@@ -419,7 +420,7 @@
                         <button id="buttontt" v-b-modal.modalPopover class="btn btn-primary mb-2" @click="clickEdit(Search.id)">Cập nhật thông tin</button>
                       <b-modal id="modalPopover" title="Thông báo" ok-only>
                         <p>
-                        Tạo tài khoản thành công !
+                        Cập nhật thông tin tài khoản thành công !
                         </p>
                       </b-modal>
                       <b-modal id="modal-1" title="Chọn ảnh của tài sản bạn muốn đăng" hide-footer>
@@ -553,8 +554,8 @@ Vue.use(VueClipboard)
        this.searchCheck=true;
     },
     clickEdit(id){
-      this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.picture, "gender": this.gender,
-        "province": this.province, "mobile": this.mobile, "lastname": this.lastname, "email": this.email, "group":this.group, "dateofbirth":this.dateofbirth, "fullname": this.fullname}, {
+      this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.picture, "gender": this.ingender,
+        "province": this.inprovince, "mobile": this.inmobile, "lastname": this.inlastname, "email": this.inemail, "group":this.ingroup, "dateofbirth":this.indateofbirth, "fullname": this.infullname}, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then(() => {
@@ -563,7 +564,10 @@ Vue.use(VueClipboard)
     },
     clickSearch2(id){
       this.axios.get(this.url+'/user/'+id)
-      .then((response) => { this.Search=response.data});
+      .then((response) => { this.Search=response.data, this.inlastname= response.data.lastname,this.infullname= response.data.fullname, this.indateofbirth= response.data.dateofbirth,
+                            this.inname=response.data.name,this.inmobile=response.data.mobile,this.inprovince=response.data.province,
+                            this.inemail=response.data.email,this.ingroup=response.data.group,
+                            this.ingender= response.data.gender});
         console.log(this.Search);
       this.axios.get(this.url+'/user',{
       headers: {

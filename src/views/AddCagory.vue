@@ -111,6 +111,9 @@
                                                     </button>
                                                 </div>
                                             </div>
+                                            <div id="topimage" class="user-avatar mb-3 text-center">
+                                                <img id="sizeimage" :src="picture" alt="">
+                                            </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="col-2 offset-8">
@@ -281,5 +284,12 @@ Vue.use(VueClipboard)
 }
 #right{
   margin-top:-137px;
+}
+#sizeimage{
+    height: 125px;
+    width: 201px;
+}
+#topimage{
+    margin-top:10px;
 }
 </style>

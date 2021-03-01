@@ -171,7 +171,7 @@
                 <div v-if="check==3" class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
                         <div v-for="auctions in auctions" v-bind:key="auctions.id" class="card-text pt-1">
-                            <div v-if="Date.now() > Date.parse(auctions.auction.endAt)" class="row">
+                            <div v-if="Date.now() < Date.parse(auctions.auction.endAt)" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">
                                     <img class="w-100" src="img/brand/s500.jpg" alt="">
@@ -197,8 +197,9 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auctions.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctions.auction.endAt}}</span>
                                                   <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auctions.asset.currentPrice}} VNDT</strong></h3>
-                                                  <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auctions.auction.id)" variant="danger">Thông tin người thắng</b-button>
-                                                  <b-button style="margin-top:5px;" size="sm" @click="clickConfirm1(auctions.auction.id)" variant="danger">Yêu cầu thanh toán</b-button>
+                                                  <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auctions.auction.id)" variant="info">Thông tin người thắng</b-button>
+                                                  <b-button v-b-modal.modal2 style="margin-top:5px;" size="sm" @click="clickConfirm1(auctions.auction.id)" variant="warning">Yêu cầu thanh toán</b-button>
+                                                  <b-button v-b-modal.modal1 style="margin-top:5px;" size="sm" @click="clickConfirmn(auctions.auction.id)" variant="danger">Xác nhận thanh toán</b-button>
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
                                                   <!-- <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Không xác nhận</b-button> -->
@@ -210,7 +211,7 @@
                                 </div>
                                 <div id="active_center" class="seller-info pb-2">
                                   <h3 class="f-17 border-bottom pb-3">Trạng thái</h3>
-                                  <b-button style="margin-top:5px;" size="sm" variant="info">{{auctions.auction.status}}</b-button>
+                                  <b-button style="margin-top:5px;" size="sm" variant="success">{{auctions.auction.status}}</b-button>
                                 </div>
                                 <div id="borde" class="seller-info pb-2">
                                   <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
@@ -231,6 +232,78 @@
                                         <span class="d-block">
                                           <i class="fa fa-share" aria-hidden="true"></i>
                                           {{auctions.user.province}}
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <b-modal id="modal1" title="Thông báo" ok-only>
+                          <p>
+                            Xác nhận thanh toán thành công !
+                          </p>
+                        </b-modal>
+                        <b-modal id="modal2" title="Thông báo" ok-only>
+                          <p>
+                            Bạn đã gửi yêu cầu thanh toán thành công !
+                          </p>
+                        </b-modal>
+                    </div>
+                    <div class="card-body p-3 rounded-0 border-0">
+                        <div v-for="auctionss in auctionss" v-bind:key="auctionss.id" class="card-text pt-1">
+                            <div v-if="Date.now() < Date.parse(auctionss.auction.endAt)" class="row">
+                                <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
+                                  <div class="user-avatar mb-3 text-center">
+                                    <img class="w-100" :src="auctionss.asset.images" alt="">
+                                  </div>
+                                </div>
+                                <div class="col-12 col-lg-9 col-md-6 border-top">
+                                    <div class="start-pro-info p-3 p-md-4 p-lg-3 h-100">
+                                        <div class="row h-100 align-items-center">
+                                            <div class="col-12 col-xl-7 col-lg-7">
+                                              <h3 class="f-17 mb-2 font-weight-bold">Tên tài sản: {{auctionss.asset.name}}</h3>
+                                              <div class="pri-bid mb-3 mb-sm-0">
+                                                <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auctionss.asset.id}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Loại: {{auctionss.asset.category}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auctionss.asset.created}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auctionss.asset.updated}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">
+                                                  <h3 class="f-17 mb-2 font-weight-bold">Thông tin đấu giá</h3>
+                                                  <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auctionss.auction.id}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auctionss.auction.startAt}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctionss.auction.endAt}}</span>
+                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auctionss.asset.currentPrice}} VNDT</strong></h3>
+                                                  <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auctionss.auction.id)" variant="info">Thông tin người thắng</b-button>
+                                                </span>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="active_center" class="seller-info pb-2">
+                                  <h3 class="f-17 border-bottom pb-3">Trạng thái</h3>
+                                  <b-button style="margin-top:5px;" size="sm" variant="success">{{auctionss.auction.status}}</b-button>
+                                </div>
+                                <div id="borde" class="seller-info pb-2">
+                                  <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
+                                  <div class="d-flex align-items-center">
+                                    <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
+                                    <b-avatar :src="auctionss.user.avatar" size="6rem"></b-avatar>
+                                    <div class="user-sum ml-3">
+                                      <h5 class="f-15 mb-2 font-weight-600">{{auctionss.user.name}}</h5>
+                                      <p class="f-13 mb-0">
+                                        <span class="d-block">
+                                          <i class="fa fa-phone" aria-hidden="true"></i>
+                                          {{auctionss.user.mobile}}
+                                        </span>
+                                        <span class="d-block">
+                                          <i class="fa fa-envelope" aria-hidden="true"></i>
+                                          {{auctionss.user.email}}
+                                        </span>
+                                        <span class="d-block">
+                                          <i class="fa fa-share" aria-hidden="true"></i>
+                                          {{auctionss.user.province}}
                                         </span>
                                       </p>
                                     </div>
@@ -319,6 +392,10 @@ Vue.use(VueClipboard)
     headers: {
       Authorization: this.getCookie('AC-ACCESS-KEY') }
       }).then((response) =>  { this.auctions=response.data});
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/Đã thanh toán',{
+    headers: {
+      Authorization: this.getCookie('AC-ACCESS-KEY') }
+      }).then((response) =>  { this.auctionss=response.data});
     // var auction = [];
     // this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction',{
     //   headers: {
@@ -416,7 +493,17 @@ Vue.use(VueClipboard)
       });
     },
     clickConfirm1(id){
-      this.axios.post(this.url+'/auction/update/'+id+"?note=Chúc mừng bạn đã là người thắng trong cuộc đấu giá, vui lòng thanh toán để được nhận tài sản đã mua!", {"status":this.status, "note":this.note}, {
+      this.axios.post(this.url+'/auction/update/'+id+"?note=Chúc mừng bạn đã là người thắng trong cuộc đấu giá, vui lòng thanh toán để được nhận tài sản đã mua!"+"&status=Ended", {"status":this.status, "note":this.note}, {
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY')
+        }
+      }).then(() => {
+        this.axios.get(this.url+'/auction/auction_status/new')
+        .then(response => this.auctions=response.data);
+      });
+    },
+    clickConfirmn(id){
+      this.axios.post(this.url+'/auction/update/'+id+"?status=Đã thanh toán", {"status":this.status, "note":this.note}, {
         headers: {
           Authorization: this.getCookie('AC-ACCESS-KEY')
         }
@@ -537,7 +624,7 @@ employee-list{
   margin-top:-179px;
 }
 #borde{
-  margin-left: 1263px;
+  margin-left: 1200px;
   margin-top: -201px;
 }
 #active_center{

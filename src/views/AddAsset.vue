@@ -616,7 +616,7 @@
                                                     <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select class="form-control select-default selectpickernone">
+                                                    <select v-model="color" class="form-control select-default selectpickernone">
                                                         <option disable value="">Chọn màu sắc</option>
                                                         <option>Màu đỏ</option>
                                                         <option>Màu trắng</option>

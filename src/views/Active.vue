@@ -63,7 +63,7 @@
                                   <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
                                   <div class="d-flex align-items-center">
                                     <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
-                                    <b-avatar src="https://placekitten.com/300/300" size="6rem"></b-avatar>
+                                    <b-avatar :src="auction.user.avatar" size="6rem"></b-avatar>
                                     <div class="user-sum ml-3">
                                       <h5 class="f-15 mb-2 font-weight-600">{{auction.user.name}}</h5>
                                       <p class="f-13 mb-0">
@@ -139,7 +139,7 @@
                                   <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
                                   <div class="d-flex align-items-center">
                                     <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
-                                    <b-avatar src="https://placekitten.com/300/300" size="6rem"></b-avatar>
+                                    <b-avatar :src="auction.user.avatar" size="6rem"></b-avatar>
                                     <div class="user-sum ml-3">
                                       <h5 class="f-15 mb-2 font-weight-600">{{auction.user.name}}</h5>
                                       <p class="f-13 mb-0">
@@ -174,7 +174,7 @@
                             <div v-if="Date.now() < Date.parse(auctions.auction.endAt)" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">
-                                    <img class="w-100" src="img/brand/s500.jpg" alt="">
+                                    <img class="w-100" :src="auctions.asset.images" alt="">
                                   </div>
                                 </div>
                                 <div class="col-12 col-lg-9 col-md-6 border-top">
@@ -217,7 +217,7 @@
                                   <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
                                   <div class="d-flex align-items-center">
                                     <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
-                                    <b-avatar src="https://placekitten.com/300/300" size="6rem"></b-avatar>
+                                    <b-avatar :src="auctions.user.avatar" size="6rem"></b-avatar>
                                     <div class="user-sum ml-3">
                                       <h5 class="f-15 mb-2 font-weight-600">{{auctions.user.name}}</h5>
                                       <p class="f-13 mb-0">
@@ -503,7 +503,7 @@ Vue.use(VueClipboard)
       });
     },
     clickConfirmn(id){
-      this.axios.post(this.url+'/auction/update/'+id+"?status=Đã thanh toán", {"status":this.status, "note":this.note}, {
+      this.axios.post(this.url+'/auction/update/'+id+"?note=Đã thanh toán thành công!"+"&status=Đã thanh toán", {"status":this.status, "note":this.note}, {
         headers: {
           Authorization: this.getCookie('AC-ACCESS-KEY')
         }
@@ -624,11 +624,11 @@ employee-list{
   margin-top:-179px;
 }
 #borde{
-  margin-left: 1200px;
+  margin-left: 1145px;
   margin-top: -201px;
 }
 #active_center{
-  margin-left: 993px;
+  margin-left: 942px;
   margin-top: -201px;
 }
 #confirm{

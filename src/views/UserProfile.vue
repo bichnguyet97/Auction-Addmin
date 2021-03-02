@@ -433,7 +433,7 @@
                               drop-placeholder="Drop file here..."
                               accept="image/*"
                               ></b-form-file>
-                              <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">{{picture}}</label>
+                              <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
                           </div>
                           <div class="input-group-append">
                               <button @click="onUpload" class="btn btn-warning">
@@ -441,6 +441,9 @@
                                   Thay đổi
                               </button>
                           </div>
+                      </div>
+                      <div id="topimage" class="user-avatar mb-3 text-center">
+                        <img id="sizeimage" :src="picture" alt="">
                       </div>
                       <!-- <base-button v-if="uploadValue==0" outline type="success"  @click="onUpload()">Xem ảnh</base-button> -->
                     </b-modal>
@@ -700,6 +703,13 @@ employee-list{
   text-align: center;
   margin-top: 28px;
   margin-left: 21px;
+}
+#sizeimage{
+    height: 125px;
+    width: 201px;
+}
+#topimage{
+    margin-top:10px;
 }
 </style>
 

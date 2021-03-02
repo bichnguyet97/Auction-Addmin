@@ -14,7 +14,7 @@
           }"
         />
         
-        <sidebar-item :link="{name: 'AddCategory', icon: 'ni ni-planet text-blue', path: '/AddCategory'}"/>
+        <!-- <sidebar-item :link="{name: 'AddCategory', icon: 'ni ni-planet text-blue', path: '/AddCategory'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">Người Dùng</h6>
         <sidebar-item :link="{name: 'Danh Sách User', icon: 'ni ni-single-02 text-blue', path: '/user-controller'}"/>
         <sidebar-item :link="{name: 'Thêm User', icon: 'fa fa-user-plus text-blue', path: '/AddUser-controller'}"/>
@@ -34,7 +34,7 @@
         <sidebar-item :link="{name: 'Thêm Đấu Giá', icon: 'fa fa-plus text-blue', path: '/addauction-controller'}"/>
         <sidebar-item :link="{name: 'Xác Nhận Đấu Giá', icon: 'fa fa-check text-blue', path: '/cfaution-controller'}"/>
         <sidebar-item :link="{name: 'Đấu Giá Đã Xác Nhận', icon: 'fa fa-check-circle text-green', path: '/active-controller'}"/>
-        <sidebar-item :link="{name: 'Kiểm soát đấu giá', icon: 'fa fa-balance-scale text-blue', path: '/bid-controller'}"/>
+        <!-- <sidebar-item :link="{name: 'Kiểm soát đấu giá', icon: 'fa fa-balance-scale text-blue', path: '/bid-controller'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">Admin</h6>
         <sidebar-item :link="{name: 'login', icon: 'ni ni-key-25 text-info', path: '/login'}"/>
         <!-- <sidebar-item :link="{name: 'Maps', icon: 'ni ni-pin-3 text-orange', path: '/maps'}"/> -->

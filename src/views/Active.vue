@@ -21,7 +21,7 @@
                             <div v-if="Date.now() > Date.parse(auction.auction.endAt)" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">
-                                    <img class="w-100" src="img/brand/s500.jpg" alt="">
+                                    <img class="w-100" :src="auction.asset.images" alt="">
                                   </div>
                                 </div>
                                 <div class="col-12 col-lg-9 col-md-6 border-top">
@@ -44,7 +44,7 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span>
                                                   <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auction.asset.currentPrice}} VNDT</strong></h3>
-                                                  <b-button style="margin-top:5px;" @click="clickConfirm2(auctions.auction.id)" size="sm" variant="info">Yêu cầu tham gia đấu giá</b-button>
+                                                  <b-button v-b-modal.modall style="margin-top:5px;" @click="clickConfirm2(auction.auction.id)" size="sm" variant="info">Yêu cầu tham gia đấu giá</b-button>
                                                   <!-- <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auction.auction.id)" variant="danger">Thông tin người thắng</b-button> -->
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
@@ -57,7 +57,7 @@
                                 </div>
                                 <div id="active_center" class="seller-info pb-2">
                                   <h3 class="f-17 border-bottom pb-3">Trạng thái</h3>
-                                  <b-button style="margin-top:5px;" size="sm" variant="info">{{auction.auction.status}}</b-button>
+                                  <b-button style="margin-top:5px;" size="sm" variant="success">{{auction.auction.status}}</b-button>
                                 </div>
                                 <div id="borde" class="seller-info pb-2">
                                   <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
@@ -88,6 +88,11 @@
                         <b-modal id="modalPopover" title="Thông báo" ok-only>
                           <p>
                             Bạn đã xác nhận đấu giá thành công !
+                          </p>
+                        </b-modal>
+                        <b-modal id="modall" title="Thông báo" ok-only>
+                          <p>
+                            Bạn đã gửi yêu cầu thành công !
                           </p>
                         </b-modal>
                     </div>
@@ -133,7 +138,7 @@
                                 </div>
                                 <div id="active_center" class="seller-info pb-2">
                                   <h3 class="f-17 border-bottom pb-3">Trạng thái</h3>
-                                  <b-button style="margin-top:5px;" size="sm" variant="info">{{auction.auction.status}}</b-button>
+                                  <b-button style="margin-top:5px;" size="sm" variant="success">{{auction.auction.status}}</b-button>
                                 </div>
                                 <div id="borde" class="seller-info pb-2">
                                   <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>

@@ -99,7 +99,7 @@
                             <th scope="col">Kết thúc</th>
                             <th scope="col">Giá dự thầu</th>
                             <th scope="col">Trạng thái</th>
-                            <th scope="col">Người đăng</th>
+                            <!-- <th scope="col">Người đăng</th> -->
                           </tr>
                         </thead>
                         <tbody class="test" v-if="searchCheck==1">
@@ -111,11 +111,11 @@
                             <td>{{auction.endAt}}</td>
                             <td>{{auction.bidPrice}}</td>
                             <td style="color:red;">{{auction.status}}</td>
-                            <td>
+                            <!-- <td>
                               <span>
                                 <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="clickinfo">Xem</b-button>
                               </span>
-                            </td>
+                            </td> -->
                           </tr>
                           <b-modal id="modal-3" title="Thông tin người đăng đấu giá">
                             <div class="form-group">

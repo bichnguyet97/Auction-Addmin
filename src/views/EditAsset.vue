@@ -160,7 +160,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Nhập số lượng<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input v-model="tesamount" type="text" class="form-control form-control-user fs-090" maxlength="200" value="">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
@@ -739,6 +748,36 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Hình dạng</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesshape" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Trọng lượng</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesweight" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Độ sáng</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesbrightness" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div v-if="Search.assets[0].category=='Nghệ thuật'">
                                         helo
@@ -754,6 +793,16 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Tuổi đời</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesyearOld" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div v-if="Search.assets[0].category=='Cây cảnh'">
                                         <div class="form-group">
@@ -765,14 +814,34 @@
                                                     <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 </div>
                                             </div>
-                                            <div class="form-group">
-                                                <div class="row">
-                                                    <div class="col-12 col-md-3">
-                                                        <label class="col-form-label font-weight-600">Kiểu dáng</label>
-                                                    </div>
-                                                    <div class="col-12 col-md-4">
-                                                        <input  type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                    </div>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Kiểu dáng</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model=""  type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Chiều cao của cây</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesheight" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Đường kính gốc cây</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="tesstumpDiameter" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 </div>
                                             </div>
                                         </div>
@@ -977,10 +1046,12 @@ Vue.use(VueClipboard)
       images:'',
       image:'',
       gear:'',
+      amount:'',
       description:'',
       hinh:true,
       category:'',
       creaded:'',
+      stumpDiameter:'',
       tags:'',
       consume:'',
       seller:'',
@@ -991,10 +1062,14 @@ Vue.use(VueClipboard)
       trademark:'',
       toiletsNumber:'',
       name: '',
+      shape:'',
+      weight:'',
+      brightness:'',
       manufactureYear:'',
       Search:'',
       check:1,
       fuel:'',
+      yearOld:'',
       seatsNumber:'',
       showInfo1:false,
       showInfo2:false,
@@ -1021,6 +1096,7 @@ Vue.use(VueClipboard)
       searchCheck: 1,
       direction:'',
       acreage:'',
+      tesamount:'',
       picture:null,
       bedroomsNumber:'',
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
@@ -1040,16 +1116,18 @@ Vue.use(VueClipboard)
       .then((response) => { this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
       this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
       this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
-      this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,
-      this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork
+      this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
+      this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld,
+      this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter
       });
         console.log(this.testdescription);
     },
     clickEdit(id){
       this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,
-      "category": this.testcategory,"description":this.testdescription, "currentStatus": this.testcurrentStatus, "trademark": this.testtrademark,
-      "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.testbedroomsNumber, "gear": this.tesgear, "fuel": this.tesfuel,
-      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.testpicture
+      "category": this.testcategory,"description":this.testdescription, "currentStatus": this.testcurrentStatus, "trademark": this.testtrademark, "amount": this.tesamount,"stumpDiameter": this.tesstumpDiameter,"height": this.tesheight,
+      "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.testbedroomsNumber, "gear": this.tesgear, "fuel": this.tesfuel, "yearOld": this.tesyearold,
+      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.testpicture,
+      "shape": this.tesshape,"weight": this.tesweight, "birghtness":this.tesbirghtness
       
       }, {
       headers: {

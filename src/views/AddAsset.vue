@@ -53,7 +53,16 @@
                                             </div>
                                         </div>
                                     </div>
-                                    
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Nhập số lượng<span class="text-danger">*</span></label>
+                                            </div>
+                                            <div class="col-12 col-md-9">
+                                                <input v-model="amount" type="text" class="form-control form-control-user fs-090" maxlength="200" value="">
+                                            </div>
+                                        </div>
+                                    </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
@@ -642,6 +651,36 @@
                                                 </div>
                                             </div>
                                         </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Hình dạng</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="shape" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Trọng lượng</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="weight" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Độ sáng</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="brightness" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
                                     </div>
                                     <div v-if="check==4">
                                         helo
@@ -654,6 +693,18 @@
                                                 </div>
                                                 <div class="col-12 col-md-4">
                                                     <input v-model="type" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="check==5">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Tuổi đời</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="yearOld" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 </div>
                                             </div>
                                         </div>
@@ -671,10 +722,20 @@
                                             <div class="form-group">
                                                 <div class="row">
                                                     <div class="col-12 col-md-3">
-                                                        <label class="col-form-label font-weight-600">Kiểu dáng</label>
+                                                        <label class="col-form-label font-weight-600">Chiều cao của cây</label>
                                                     </div>
                                                     <div class="col-12 col-md-4">
-                                                        <input  type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                        <input v-model="height" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="form-group">
+                                                <div class="row">
+                                                    <div class="col-12 col-md-3">
+                                                        <label class="col-form-label font-weight-600">Đường kính gốc cây</label>
+                                                    </div>
+                                                    <div class="col-12 col-md-4">
+                                                        <input v-model="stumpDiameter" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                     </div>
                                                 </div>
                                             </div>
@@ -888,7 +949,12 @@ Vue.use(VueClipboard)
       seller:'',
       actions:'',
       id: '',
+      yearOld:'',
+      amount:'',
       trademark:'',
+      shape:'',
+      weight:'',
+      brightness:'',
       bedroomsNumber:'',
       name: '',
       Search:'',
@@ -910,6 +976,8 @@ Vue.use(VueClipboard)
       homeNetwork:'',
       currentStatus:'',
       status:'',
+      height:'',
+      stumpDiameter:'',
       manufactureYear:'',
       asset: [],
       picture: null,
@@ -947,11 +1015,12 @@ Vue.use(VueClipboard)
           });
     },
     clickAdd1:async function(){
-     await this.axios.post(this.url+'/asset',{ "name": this.name,"initPrice": this.initPrice,
-      "category": this.category, "images":this.picture,"description":this.description, "currentStatus": this.currentStatus, 
+     await this.axios.post(this.url+'/asset',{ "name": this.name,"initPrice": this.initPrice,"weight": this.weight,"brightness":this.brightness,
+      "category": this.category, "images":this.picture,"description":this.description, "currentStatus": this.currentStatus, "area": this.area,
       "direction": this.direction,"acreage":this.acreage, "bedroomsNumber": this.bedroomsNumber, "homeNetwork": this.homeNetwork, "type": this.type,
       "seatsNumber": this.seatsNumber,"origin": this.origin,"color": this.color, "manufactureYear": this.manufactureYear, "trademark": this.trademark,
-      "toiletsNumber": this.toiletsNumber, "interiorColor": this.interiorColor,"gear": this.gear, "fuel": this.fuel, "consume": this.consume
+      "toiletsNumber": this.toiletsNumber, "interiorColor": this.interiorColor,"gear": this.gear, "fuel": this.fuel, "consume": this.consume, "shape": this.shape,
+      "amount": this.amount,"yearOld":this.yearOld, "height":this.height, "stumpDiameter": this.stumpDiameter
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }

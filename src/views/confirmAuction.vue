@@ -46,7 +46,7 @@
                                   <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
                                   <div class="d-flex align-items-center">
                                     <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
-                                    <b-avatar src="https://placekitten.com/300/300" size="6rem"></b-avatar>
+                                    <b-avatar :src="auction.user.avatar" size="6rem"></b-avatar>
                                     <div class="user-sum ml-3">
                                       <h5 class="f-15 mb-2 font-weight-600">{{auction.user.name}}</h5>
                                       <p class="f-13 mb-0">
@@ -200,61 +200,61 @@
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Mã đấu giá:</span>
+                                            <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Đấu giá tại:</span>
+                                            <span>Đấu giá tại: </span>
                                             <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số lượng:</span>
-                                            <strong>1</strong>
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.assets[0].amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hạn tham dự:</span>
+                                            <span>Hạn tham dự: </span>
                                             <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Bắt đầu đấu giá:</span>
+                                            <span>Bắt đầu đấu giá: </span>
                                             <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Kết thúc đấu giá:</span>
+                                            <span>Kết thúc đấu giá: </span>
                                             <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Nhà mạng</span>
+                                            <span>Nhà mạng: </span>
                                             <strong>{{asse.assets[0].homeNetwork}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Trạng thái:</span>
+                                            <span>Trạng thái: </span>
                                             <strong>Đã qua sử dụng</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Danh mục:</span>
+                                            <span>Danh mục: </span>
                                             <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Loại sim</span>
+                                            <span>Loại sim: </span>
                                             <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
@@ -264,73 +264,73 @@
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Mã đấu giá:</span>
+                                            <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Đấu giá tại:</span>
+                                            <span>Đấu giá tại: </span>
                                             <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số lượng:</span>
-                                            <strong>1</strong>
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.assets[0].amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hạn tham dự:</span>
+                                            <span>Hạn tham dự: </span>
                                             <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Bắt đầu đấu giá:</span>
+                                            <span>Bắt đầu đấu giá: </span>
                                             <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Kết thúc đấu giá:</span>
+                                            <span>Kết thúc đấu giá: </span>
                                             <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Thương hiệu:</span>
+                                            <span>Thương hiệu: </span>
                                             <strong>{{asse.assets[0].trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Trạng thái:</span>
+                                            <span>Trạng thái: </span>
                                             <strong>Đã qua sử dụng</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Danh mục:</span>
+                                            <span>Danh mục: </span>
                                             <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Chủng loại:</span>
+                                            <span>Chủng loại: </span>
                                             <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Diện tích:</span>
+                                            <span>Diện tích: </span>
                                             <strong>{{asse.assets[0].acreage}}</strong>
                                         </span>
                                     </div>
                                      <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hướng:</span>
+                                            <span>Hướng: </span>
                                             <strong>{{asse.assets[0].direction}}</strong>
                                         </span>
                                     </div>
@@ -342,19 +342,19 @@
                                     </div> -->
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số phòng ngủ:</span>
+                                            <span>Số phòng ngủ: </span>
                                             <strong>{{asse.assets[0].bedroomsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số nhà vệ sinh:</span>
+                                            <span>Số nhà vệ sinh: </span>
                                             <strong>{{asse.assets[0].toiletsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Khu vực:</span>
+                                            <span>Khu vực: </span>
                                             <strong>{{asse.assets[0].area}}</strong>
                                         </span>
                                     </div>
@@ -364,170 +364,187 @@
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Mã đấu giá:</span>
+                                            <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Đấu giá tại:</span>
+                                            <span>Đấu giá tại: </span>
                                             <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số lượng:</span>
-                                            <strong>1</strong>
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.assets[0].amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hạn tham dự:</span>
+                                            <span>Hạn tham dự: </span>
                                             <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Bắt đầu đấu giá:</span>
+                                            <span>Bắt đầu đấu giá: </span>
                                             <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Kết thúc đấu giá:</span>
+                                            <span>Kết thúc đấu giá: </span>
                                             <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Trạng thái:</span>
+                                            <span>Trạng thái: </span>
                                             <strong>Đã qua sử dụng</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Danh mục:</span>
+                                            <span>Danh mục: </span>
                                             <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Loại Đá quý:</span>
+                                            <span>Loại đá quý: </span>
                                             <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
                                     
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Màu Đá quý:</span>
+                                            <span>Màu đá quý: </span>
                                             <strong>{{asse.assets[0].color}}</strong>
                                         </span>
                                     </div>
-                                
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trọng lượng đá quý: </span>
+                                            <strong>{{asse.assets[0].weight}} g</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Độ sáng đá quý: </span>
+                                            <strong>{{asse.assets[0].brightness}} F</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hình dạng đá quý: </span>
+                                            <strong>{{asse.assets[0].shape}}</strong>
+                                        </span>
+                                    </div>
                                 </div>
                                 </div>
                                 <div v-if="asse.assets[0].category=='Xe hơi'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Mã đấu giá:</span>
+                                            <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Đấu giá tại:</span>
+                                            <span>Đấu giá tại: </span>
                                             <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số lượng:</span>
-                                            <strong>1</strong>
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.assets[0].amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hạn tham dự:</span>
+                                            <span>Hạn tham dự: </span>
                                             <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Bắt đầu đấu giá:</span>
+                                            <span>Bắt đầu đấu giá: </span>
                                             <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Kết thúc đấu giá:</span>
+                                            <span>Kết thúc đấu giá: </span>
                                             <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Thương hiệu:</span>
+                                            <span>Thương hiệu: </span>
                                             <strong>{{asse.assets[0].trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Trạng thái:</span>
+                                            <span>Trạng thái: </span>
                                             <strong>Đã qua sử dụng</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Danh mục:</span>
+                                            <span>Danh mục: </span>
                                             <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                      
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Màu xe:</span>
+                                            <span>Màu xe: </span>
                                             <strong>{{asse.assets[0].color}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Màu nội thất:</span>
+                                            <span>Màu nội thất: </span>
                                             <strong>{{asse.assets[0].interiorColor}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Năm sản xuất:</span>
+                                            <span>Năm sản xuất: </span>
                                             <strong>{{asse.assets[0].manufactureYear}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hộp số:</span>
+                                            <span>Hộp số: </span>
                                             <strong>{{asse.assets[0].gear}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Nhiên liệu:</span>
+                                            <span>Nhiên liệu: </span>
                                             <strong>{{asse.assets[0].fuel}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Tiêu thụ:</span>
+                                            <span>Tiêu thụ: </span>
                                             <strong>{{asse.assets[0].consume}} lít/100km</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số chỗ:</span>
+                                            <span>Số chỗ: </span>
                                             <strong>{{asse.assets[0].seatsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Xuất xứ:</span>
+                                            <span>Xuất xứ: </span>
                                             <strong>{{asse.assets[0].origin}}</strong>
                                         </span>
                                     </div>
@@ -537,57 +554,57 @@
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Mã đấu giá:</span>
+                                            <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Đấu giá tại:</span>
+                                            <span>Đấu giá tại: </span>
                                             <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số lượng:</span>
-                                            <strong>1</strong>
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.assets[0].amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hạn tham dự:</span>
+                                            <span>Hạn tham dự: </span>
                                             <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Bắt đầu đấu giá:</span>
+                                            <span>Bắt đầu đấu giá: </span>
                                             <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Kết thúc đấu giá:</span>
+                                            <span>Kết thúc đấu giá: </span>
                                             <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                      
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Trạng thái:</span>
+                                            <span>Trạng thái: </span>
                                             <strong>Đã qua sử dụng</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Danh mục:</span>
+                                            <span>Danh mục: </span>
                                             <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                      
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Loại đồ cổ:</span>
+                                            <span>Loại đồ cổ: </span>
                                             <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
@@ -597,61 +614,61 @@
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Mã đấu giá:</span>
+                                            <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Đấu giá tại:</span>
+                                            <span>Đấu giá tại: </span>
                                             <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số lượng:</span>
-                                            <strong>1</strong>
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.assets[0].amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hạn tham dự:</span>
+                                            <span>Hạn tham dự: </span>
                                             <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Bắt đầu đấu giá:</span>
+                                            <span>Bắt đầu đấu giá: </span>
                                             <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Kết thúc đấu giá:</span>
+                                            <span>Kết thúc đấu giá: </span>
                                             <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Thương hiệu:</span>
+                                            <span>Thương hiệu: </span>
                                             <strong>{{asse.assets[0].trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Trạng thái:</span>
+                                            <span>Trạng thái: </span>
                                             <strong>Đã qua sử dụng</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Danh mục:</span>
+                                            <span>Danh mục: </span>
                                             <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Chủng loại:</span>
+                                            <span>Chủng loại: </span>
                                             <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
@@ -661,56 +678,56 @@
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Mã đấu giá:</span>
+                                            <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Đấu giá tại:</span>
+                                            <span>Đấu giá tại: </span>
                                             <strong>{{auc.area}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Số lượng:</span>
-                                            <strong>1</strong>
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.assets[0].amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Hạn tham dự:</span>
+                                            <span>Hạn tham dự: </span>
                                             <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Bắt đầu đấu giá:</span>
+                                            <span>Bắt đầu đấu giá: </span>
                                             <strong class="text-danger">{{auc.startAt}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Kết thúc đấu giá:</span>
+                                            <span>Kết thúc đấu giá: </span>
                                             <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
                                      
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Trạng thái:</span>
+                                            <span>Trạng thái: </span>
                                             <strong>Đã qua sử dụng</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Danh mục:</span>
+                                            <span>Danh mục: </span>
                                             <strong>{{asse.assets[0].category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
-                                            <span>Chủng loại:</span>
+                                            <span>Chủng loại: </span>
                                             <strong>{{asse.assets[0].type}}</strong>
                                         </span>
                                     </div>
@@ -791,8 +808,11 @@
                                 <div v-if="asse.assets[0].category=='Đá quý'">
                                     <ul>
                                         <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Màu Đá quý: {{asse.assets[0].color}}</li>
-                                        <li>Loại Đá quý: {{asse.assets[0].type}}</li>
+                                        <li>Màu đá quý: {{asse.assets[0].color}}</li>
+                                        <li>Loại đá quý: {{asse.assets[0].type}}</li>
+                                        <li>Độ sáng đá quý: {{asse.assets[0].brightness}}</li>
+                                        <li>Trọng lượng đá quý: {{asse.assets[0].weight}}</li>
+                                        <li>Hình dạng đá quý: {{asse.assets[0].shape}}</li>
                                     </ul>
                                     <p>{{asse.assets[0].description}}</p>
                                 </div>
@@ -815,6 +835,7 @@
                                     <ul>
                                         <li>Sản phẩm: {{asse.assets[0].name}}</li>
                                         <li>Loại Đồ cổ: {{asse.assets[0].type}}</li>
+                                        <li>Tuổi đời đồ cổ: {{asse.assets[0].yearOld}}</li>
                                     </ul>
                                     <p>{{asse.assets[0].description}}</p>
                                 </div>
@@ -840,15 +861,15 @@
                                             <p class="f-13 mb-0 text-secondary">
                                                 <span class="d-block">
                                                     <i class="las la-phone mr-1"></i>
-                                                      {{Search.mobile}}
+                                                        {{Search.mobile}}
                                                 </span>
                                                 <span class="d-block">
                                                     <i class="las la-envelope mr-1 mt-1"></i>
-                                                    {{Search.email}}
+                                                        {{Search.email}}
                                                 </span>
                                                 <span class="d-block">
                                                     <i class="las la-directions mt-1"></i>
-                                                      {{Search.province}}
+                                                        {{Search.province}}
                                                 </span>
                                             </p>
                                         </div>
@@ -896,6 +917,9 @@ Vue.use(VueClipboard)
       startAt:'',
       creaded:'',
       tags:'',
+      shape:'',
+      weight:'',
+      brightness:'',
       toiletsNumber:'',
       bedroomsNumber:'',
       asset:[],
@@ -924,7 +948,9 @@ Vue.use(VueClipboard)
       trademark:'',
       close1:true,
       assest:'',
+      yearOld:'',
       Search:'',
+      amount:'',
       searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',

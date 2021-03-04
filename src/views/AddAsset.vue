@@ -561,8 +561,14 @@
                                                         <option>2</option>
                                                         <option>4</option>
                                                         <option>6</option>
+                                                        <option>7</option>
                                                         <option>14</option>
-                                                        <option>24</option> 
+                                                        <option>16</option>
+                                                        <option>24</option>
+                                                        <option>29</option>
+                                                        <option>30</option>
+                                                        <option>45</option>
+                                                        <option>47</option>
                                                     </select>
                                                 </div>
                                             </div>

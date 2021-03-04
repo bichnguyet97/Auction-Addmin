@@ -27,7 +27,7 @@
         <h6 id="tl" class="navbar-heading text-muted">Tài Sản</h6>
         <sidebar-item :link="{name: 'Danh Sách Tài Sản', icon: 'fa fa-anchor text-blue', path: '/asset-controller'}"/>
         <sidebar-item :link="{name: 'Thêm tài sản', icon: 'fa fa-cart-plus text-blue', path: '/addasset-controller'}"/>
-        <!-- <sidebar-item :link="{name: 'Xác Nhận Tài Sản', icon: 'fa fa-check text-blue', path: '/cfirmasset-controller'}"/> -->
+        <sidebar-item :link="{name: 'Xác Nhận Tài Sản', icon: 'fa fa-check text-blue', path: '/cfirmasset-controller'}"/>
         <sidebar-item :link="{name: 'Sửa Tài Sản', icon: 'fa fa-wrench text-blue', path: '/editasset-controller'}"/>
         <h6 id="tl" class="navbar-heading text-muted">Đấu Giá</h6>
         <sidebar-item :link="{name: 'Danh Sách Đấu Giá', icon: 'fa fa-gavel text-blue', path: '/auction-controller'}"/>

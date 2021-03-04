@@ -346,8 +346,6 @@
                               <label class="col-md-3 control-label" for="">Images<strong>*</strong></label>
                               <div class="col-md-9"> 
                               <input v-model="images" class="form-control" id="images" name="images" type="text" placeholder="Link ảnh" value>
-                              <!-- <input type="file" class="form-control" id="inputGroupFile01" @change="clickAdd1"> -->
-                              <!-- <input v-model="images" class="form-control" type="file" id="formFileMultiple" multiple> -->
                               </div>
                               <label class="col-md-3 control-label" for="">Category<strong>*</strong></label>
                               <div class="col-md-9"> 

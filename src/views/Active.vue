@@ -129,7 +129,7 @@
                                                   <!-- <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auction.auction.id)" variant="danger">Thông tin người thắng</b-button> -->
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
-                                                  <!-- <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Không xác nhận</b-button> -->
+                                                  <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm(auction.auction.id)" variant="danger">Kết thúc</b-button>
                                                 </span>
                                               </div>
                                             </div>
@@ -629,12 +629,12 @@ employee-list{
   margin-top:-179px;
 }
 #borde{
-  margin-left: 1145px;
+  margin-left: 938px;
   margin-top: -201px;
 }
 #active_center{
-  margin-left: 942px;
-  margin-top: -201px;
+  margin-left: 940px;
+  margin-top: -337px;
 }
 #confirm{
   width: 194px;

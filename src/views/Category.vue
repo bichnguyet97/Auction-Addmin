@@ -130,7 +130,25 @@
                               </div>
                               <label class="col-md-3 control-label" for="">Ảnh</label>
                               <div class="col-md-9"> 
-                              <input v-model="avatar" class="form-control" id="avatar" name="avatar" type="text" placeholder="avatar">
+                              <!-- <input v-model="avatar" class="form-control" id="avatar" name="avatar" type="text" placeholder="avatar"> -->
+                              <div class="input-group rounded-0">
+                                  <div class="custom-file rounded-0">
+                                      <b-form-file
+                                      class="z-index-inputFile"
+                                      @change="previewImage"
+                                      placeholder="Select file"
+                                      drop-placeholder="Drop file here..."
+                                      accept="image/*"
+                                      ></b-form-file>
+                                      <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
+                                  </div>
+                                  <div class="input-group-append">
+                                      <button @click="onUpload" class="btn btn-warning">
+                                          <i class="las la-plus-circle"></i>
+                                          Thêm
+                                      </button>
+                                  </div>
+                              </div>
                               </div>
                               <div class="col-2 offset-8">
                                 <button type="button" class="btn btn-primary" @click="clickEdit(buffer)">Save</button>
@@ -159,6 +177,7 @@
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
+import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
@@ -186,6 +205,7 @@ Vue.use(VueClipboard)
       sessionId:'',
       save:true,
       avatar:'',
+      picture:'',
       hihi:'true',
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
     };
@@ -244,7 +264,7 @@ Vue.use(VueClipboard)
       ).then((response) => { this.category=response.data})
     },
     clickEdit(id){
-      this.axios.put(this.url+'/edit/category/'+id ,{ "name": this.name,"avatar":this.avatar,
+      this.axios.put(this.url+'/edit/category/'+id ,{ "name": this.name,"avatar":this.picture,
         "alias": this.alias, "category":this.category}, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -262,6 +282,32 @@ Vue.use(VueClipboard)
             this.clickUpdate1();
           });
       console.log(this.hihi);
+    },
+    previewImage(event){
+      // this.uploadValue=0;
+      this.picture=null;
+      this.imageData=event.target.files[0];
+      this.uploadValue=0;
+    },
+    onUpload(){
+      // var today = new Date();
+      // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+      // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+      // dateTime = date+' '+time;
+      this.picture=null;
+      const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
+      storageRef.on(`state_changed`,snapshot=>{
+          this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+          }, error =>{console.log(error.message)},
+          ()=>{this.uploadValue=100;
+      
+          storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+              this.picture=url;
+              console.log(this.picture);
+          });
+
+          }
+          );
     },
     getCookie: function(cname) {
       var name = cname + "=";

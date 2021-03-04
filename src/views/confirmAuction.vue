@@ -32,7 +32,7 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auction.auction.id}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span>
-                                                  <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm(auction.auction.id)" variant="info">Xác nhận</b-button>
+                                                  <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm3(auction.auction.id)" variant="info">Xác nhận</b-button>
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
                                                   <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Không xác nhận</b-button>
@@ -68,6 +68,67 @@
                                 </div>
                             </div>
                         </div>
+                        <div v-for="auctionnn in auctionnn" v-bind:key="auctionnn.id" class="card-text pt-1">
+                            <div class="row">
+                                <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
+                                  <div class="user-avatar mb-3 text-center">
+                                    <img @click="hinh=false,clickSearch2(auctionnn.asset.id)" class="w-100" :src="auctionnn.asset.images.split(',',1)" alt="">
+                                  </div>
+                                </div>
+                                <div class="col-12 col-lg-9 col-md-6 border-top">
+                                    <div class="start-pro-info p-3 p-md-4 p-lg-3 h-100">
+                                        <div class="row h-100 align-items-center">
+                                            <div class="col-12 col-xl-7 col-lg-7">
+                                              <h3 class="f-17 mb-2 font-weight-bold">Tên tài sản: {{auctionnn.asset.name}}</h3>
+                                              <div class="pri-bid mb-3 mb-sm-0">
+                                                <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auctionnn.asset.id}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Loại: {{auctionnn.asset.category}}</span>
+                                                <!-- <span class="f-13 mr-1 d-block mb-1">Giá niêm yết:{{auction.initPrice}}</span> -->
+                                                <!-- <span class="f-13 mr-1 d-block mb-1">Giá hiện tại: {{asset.currentPrice}}</span> -->
+                                                <!-- <span class="f-13 mr-1 d-block mb-1">Ngày đăng:{{auction.created}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật:{{auction.updated}}</span> -->
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auctionnn.asset.created}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auctionnn.asset.updated}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">
+                                                  <h3 class="f-17 mb-2 font-weight-bold">Thông tin đấu giá</h3>
+                                                  <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auctionnn.auction.id}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auctionnn.auction.startAt}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctionnn.auction.endAt}}</span>
+                                                  <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm(auctionnn.auction.id)" variant="info">Xác nhận</b-button>
+                                                  <!-- <h3>Nhập lý do không xác nhận</h3>
+                                                  <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
+                                                </span>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="borde" class="seller-info pb-2">
+                                  <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
+                                  <div class="d-flex align-items-center">
+                                    <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
+                                    <b-avatar :src="auctionnn.user.avatar" size="6rem"></b-avatar>
+                                    <div class="user-sum ml-3">
+                                      <h5 class="f-15 mb-2 font-weight-600">{{auctionnn.user.name}}</h5>
+                                      <p class="f-13 mb-0">
+                                        <span class="d-block">
+                                          <i class="fa fa-phone" aria-hidden="true"></i>
+                                          {{auctionnn.user.mobile}}
+                                        </span>
+                                        <span class="d-block">
+                                          <i class="fa fa-envelope" aria-hidden="true"></i>
+                                          {{auctionnn.user.email}}
+                                        </span>
+                                        <span class="d-block">
+                                          <i class="fa fa-share" aria-hidden="true"></i>
+                                          {{auctionnn.user.province}}
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
                         <b-modal id="modalPopover" title="Thông báo" ok-only>
                           <p>
                             Bạn đã xác nhận đấu giá thành công !
@@ -87,18 +148,6 @@
                             <!--Photo-->
                             <div class="detail-photo position-relative">
                                 <div class="photo-slide photo-box">
-                                    <!--Thumb-->
-                                    <!-- <div class="photo-thum">
-                                        <div id="secondary-slider" class="splide secondary-slider">
-                                            <div class="splide__track">
-                                                <ul class="splide__list">
-                                                    <li class="splide__slide">
-                                                        <img :src="Search.images.split(',',1)">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div>
                                     <b-carousel
                                       id="carousel-fade"
@@ -550,7 +599,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <div v-if="asse.assets[0].category=='đồ cổ'">
+                                <div v-if="asse.assets[0].category=='Đồ cổ'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
@@ -898,11 +947,16 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/new',{
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/New',{
     headers: {
       Authorization: this.getCookie('AC-ACCESS-KEY') }
       }).then((response) =>  { this.auction=response.data});
     console.log(this.auction);
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/Upcoming',{
+    headers: {
+      Authorization: this.getCookie('AC-ACCESS-KEY') }
+      }).then((response) =>  { this.auctionnn=response.data});
+    console.log(this.auctionnn);
     // var auction = [];
     // this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction',{
     //   headers: {
@@ -915,6 +969,7 @@ Vue.use(VueClipboard)
       finalPrice:'',
       status:'',
       startAt:'',
+      auctionnn:[],
       creaded:'',
       tags:'',
       shape:'',
@@ -1000,6 +1055,16 @@ Vue.use(VueClipboard)
     },
     clickConfirm(id){
       this.axios.post(this.url+'/auction/update/'+id+"?status=Active", {"status":this.status}, {
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY')
+        }
+      }).then(() => {
+        this.axios.get(this.url+'/auction/auction_status/new')
+        .then(response => this.auction=response.data);
+      });
+    },
+    clickConfirm3(id){
+      this.axios.post(this.url+'/auction/update/'+id+"?status=Upcoming", {"status":this.status}, {
         headers: {
           Authorization: this.getCookie('AC-ACCESS-KEY')
         }

@@ -43,7 +43,7 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auction.auction.id}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span>
-                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auction.asset.currentPrice}} VNDT</strong></h3>
+                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(auction.asset.currentPrice)}} VNDT</strong></h3>
                                                   <b-button v-b-modal.modall style="margin-top:5px;" @click="clickConfirm2(auction.auction.id)" size="sm" variant="info">Yêu cầu tham gia đấu giá</b-button>
                                                   <!-- <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auction.auction.id)" variant="danger">Thông tin người thắng</b-button> -->
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
@@ -125,7 +125,7 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auction.auction.id}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span>
-                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auction.asset.currentPrice}} VNDT</strong></h3>
+                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(auction.asset.currentPrice)}} VNDT</strong></h3>
                                                   <!-- <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auction.auction.id)" variant="danger">Thông tin người thắng</b-button> -->
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
@@ -201,7 +201,7 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auctions.auction.id}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auctions.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctions.auction.endAt}}</span>
-                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auctions.asset.currentPrice}} VNDT</strong></h3>
+                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(auctions.asset.currentPrice)}} VNDT</strong></h3>
                                                   <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auctions.auction.id)" variant="info">Thông tin người thắng</b-button>
                                                   <b-button v-b-modal.modal2 style="margin-top:5px;" size="sm" @click="clickConfirm1(auctions.auction.id)" variant="warning">Yêu cầu thanh toán</b-button>
                                                   <b-button v-b-modal.modal1 style="margin-top:5px;" size="sm" @click="clickConfirmn(auctions.auction.id)" variant="danger">Xác nhận thanh toán</b-button>
@@ -278,7 +278,7 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auctionss.auction.id}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auctionss.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctionss.auction.endAt}}</span>
-                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{auctionss.asset.currentPrice}} VNDT</strong></h3>
+                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(auctionss.asset.currentPrice)}} VNDT</strong></h3>
                                                   <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auctionss.auction.id)" variant="info">Thông tin người thắng</b-button>
                                                 </span>
                                               </div>
@@ -540,6 +540,10 @@ Vue.use(VueClipboard)
       this.axios.get(this.url+'/auction/winner/'+id)
       .then((response) => { this.Search=response.data});
         console.log(this.Search);
+    },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     getCookie: function(cname) {
       var name = cname + "=";

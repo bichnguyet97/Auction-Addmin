@@ -418,8 +418,8 @@
                             <td>{{asset.name}}</td>
                             <td>{{asset.category}}</td>
                             <td class="test"><a :href="asset.images">{{asset.images}}</a></td>
-                            <td>{{asset.initPrice}}</td>
-                            <td>{{asset.currentPrice}}</td>
+                            <td>{{formatPrice(asset.initPrice)}}</td>
+                            <td>{{formatPrice(asset.currentPrice)}}</td>
                             <!-- <td>{{asset.auctions}}</td> -->
                             <!-- <td>{{asset.finalPrice}}</td> -->
                             <td>{{asset.created}}</td>
@@ -608,6 +608,10 @@ Vue.use(VueClipboard)
         }).then(() => {
             this.clickUpdate1();
           });
+    },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     // clickEdit: async function(){
     //   await this.axios.put(this.url+'/category/'+this.id ,{ "name": this.name,"id":this.id,

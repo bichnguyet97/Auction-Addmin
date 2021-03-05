@@ -30,6 +30,7 @@
                                                 <span class="f-13 mr-1 d-block mb-1">
                                                   <h3 class="f-17 mb-2 font-weight-bold">Thông tin đấu giá</h3>
                                                   <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auction.auction.id}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Đấu giá tại: {{auction.auction.area}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span>
                                                   <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm3(auction.auction.id)" variant="info">Xác nhận</b-button>
@@ -177,9 +178,9 @@
                                 <!--Price current-->
                                 <div id="innit" class="price-cur text-center">
                                     <span class="f-19 mr-1 d-block mb-0 text-dark font-weight-bold">Giá khởi điểm: </span>
-                                    <h3 class="text-warning f-23 mb-1">{{Search.assets[0].currentPrice}}  VNDT</h3>
+                                    <h3 class="text-warning f-23 mb-1">{{formatPrice(Search.assets[0].currentPrice)}}  VNDT</h3>
                                     <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm2(Search.auctions[0].id)" variant="info">Xác nhận showInBaner</b-button>
-                                    <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm2(Search.auctions[0].id)" variant="info">Không xác nhận showInBaner</b-button>
+                                    <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm22(Search.auctions[0].id)" variant="info">Không xác nhận showInBaner</b-button>
                                 </div>
                                 <!-- Estimate -->
                                 <div class="modal fade" id="MdlEstimate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -247,12 +248,12 @@
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin đấu giá</h3>
                                 <div v-if="asse.assets[0].category=='Sim số'">
                                 <div class="row">
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                    <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại: </span>
@@ -292,7 +293,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trạng thái: </span>
-                                            <strong>Đã qua sử dụng</strong>
+                                            <strong>{{asse.assets[0].currentStatus}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -356,7 +357,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trạng thái: </span>
-                                            <strong>Đã qua sử dụng</strong>
+                                            <strong>{{asse.assets[0].currentStatus}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -450,7 +451,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trạng thái: </span>
-                                            <strong>Đã qua sử dụng</strong>
+                                            <strong>{{asse.assets[0].currentStatus}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -494,12 +495,12 @@
                                 </div>
                                 <div v-if="asse.assets[0].category=='Xe hơi'">
                                 <div class="row">
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                    <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại: </span>
@@ -539,7 +540,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trạng thái: </span>
-                                            <strong>Đã qua sử dụng</strong>
+                                            <strong>{{asse.assets[0].currentStatus}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -601,12 +602,12 @@
                                 </div>
                                 <div v-if="asse.assets[0].category=='Đồ cổ'">
                                 <div class="row">
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                    <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại: </span>
@@ -641,7 +642,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trạng thái: </span>
-                                            <strong>Đã qua sử dụng</strong>
+                                            <strong>{{asse.assets[0].currentStatus}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -661,12 +662,12 @@
                                 </div>
                                 <div v-if="asse.assets[0].category=='Cây cảnh'">
                                 <div class="row">
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                    <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại: </span>
@@ -697,16 +698,16 @@
                                             <strong class="text-danger">{{auc.endAt}}</strong>
                                         </span>
                                     </div>
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                    <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Thương hiệu: </span>
                                             <strong>{{asse.assets[0].trademark}}</strong>
                                         </span>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trạng thái: </span>
-                                            <strong>Đã qua sử dụng</strong>
+                                            <strong>{{asse.assets[0].currentStatus}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -725,12 +726,12 @@
                                 </div>
                                 <div v-if="asse.assets[0].category=='Nghệ thuật'">
                                 <div class="row">
-                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                    <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Mã đấu giá: </span>
                                             <strong>{{auc.id}}</strong>
                                         </span>
-                                    </div>
+                                    </div> -->
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Đấu giá tại: </span>
@@ -765,7 +766,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trạng thái: </span>
-                                            <strong>Đã qua sử dụng</strong>
+                                            <strong>{{asse.assets[0].currentStatus}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -1006,6 +1007,8 @@ Vue.use(VueClipboard)
       yearOld:'',
       Search:'',
       amount:'',
+      currentStatus:'',
+      hihi:'ok',
       searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',
@@ -1082,6 +1085,18 @@ Vue.use(VueClipboard)
         this.axios.get(this.url+'/auction/auction_status/new')
         .then(response => this.auction=response.data);
       });
+      console.log(this.hihi);
+    },
+    clickConfirm22(id){
+      this.axios.post(this.url+'/auction/showInBaner/'+id+"?showInBaner=0", {"showInBaner":this.showInBaner}, {
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY')
+        }
+      }).then(() => {
+        this.axios.get(this.url+'/auction/auction_status/new')
+        .then(response => this.auction=response.data);
+      });
+      console.log(this.hihi);
     },
     clickConfirm1(id){
       this.axios.post(this.url+'/auction/update/'+id+"?note=Thông tin tài sản của bạn bị thiếu hoặc sai, vui lòng nhập lại! cảm ơn!"+"&status=Unaccept", {"status":this.status, "note":this.note}, {
@@ -1098,6 +1113,10 @@ Vue.use(VueClipboard)
       .then((response) => {this.image=(response.data.assets[0].images.split(',')), this.Search=response.data, this.auc=response.data.auctions[0], this.asse=response.data
       });
         console.log(this.auc);
+    },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     // clickSearch3(id){
     //   this.axios.get(this.url+'/auction/id/'+id)

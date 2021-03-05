@@ -12,7 +12,7 @@
                             <div v-for="asset in asset" v-bind:key="asset.id" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                     <div class="user-avatar mb-3 text-center">
-                                      <img @click="hihi=false,clickSearch2(asset.id)" class="w-100" :src="asset.images.split(',',1)" alt="">
+                                      <img @click="hihi=false,clickSearch2(asset.id)" class="w-100" :src="asset.images" alt="">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-9 col-md-6 border-top">
@@ -23,7 +23,7 @@
                                               <div class="pri-bid mb-3 mb-sm-0">
                                                 <span class="f-13 mr-1 d-block mb-1">Mã: {{asset.id}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">Loại: {{asset.category}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Giá niêm yết: {{asset.initPrice}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Giá niêm yết: {{ formatPrice(asset.initPrice)}}</span>
                                                 <!-- <span class="f-13 mr-1 d-block mb-1">Giá hiện tại: {{asset.currentPrice}}</span> -->
                                                 <span class="f-13 mr-1 d-block mb-1">Ngày đăng: {{asset.created}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật: {{asset.updated}}</span>
@@ -36,7 +36,7 @@
                                   <div class="text-right bid-pri-box">
                                     <div class="pri-bid mb-3">
                                       <span class="f-13 mr-1 d-block mb-1">Giá hiện tại:</span>
-                                      <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{asset.currentPrice}} VNDT</strong>
+                                      <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(asset.currentPrice)}} VNDT</strong>
                                     </div>
                                     <div class="link-box">
                                       <span>
@@ -114,7 +114,7 @@
                                 <!--Price current-->
                                 <div id="innit" class="price-cur text-center">
                                     <span class="f-19 mr-1 d-block mb-0 text-dark font-weight-bold">Giá khởi điểm: </span>
-                                    <h3 class="text-warning f-23 mb-1">{{Search.assets[0].currentPrice}}  VNDT</h3>
+                                    <h3 class="text-warning f-23 mb-1">{{formatPrice(Search.assets[0].currentPrice)}}  VNDT</h3>
                                 </div>
                                 <!-- Estimate -->
                                 <div class="modal fade" id="MdlEstimate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -952,6 +952,10 @@ Vue.use(VueClipboard)
     clickUpdate1:async function(){
       this.axios.get(this.url+'/asset'
        ).then((response) => { this.asset=response.data})
+    },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     // clickSearch1: async function(){
     //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);

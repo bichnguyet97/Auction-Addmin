@@ -176,7 +176,7 @@
                 <div v-if="check==3" class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
                         <div v-for="auctions in auctions" v-bind:key="auctions.id" class="card-text pt-1">
-                            <div v-if="Date.now() < Date.parse(auctions.auction.endAt)" class="row">
+                            <div v-if="Date.now() > Date.parse(auctions.auction.endAt)" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">
                                     <img class="w-100" :src="auctions.asset.images" alt="">
@@ -257,7 +257,7 @@
                     </div>
                     <div class="card-body p-3 rounded-0 border-0">
                         <div v-for="auctionss in auctionss" v-bind:key="auctionss.id" class="card-text pt-1">
-                            <div v-if="Date.now() < Date.parse(auctionss.auction.endAt)" class="row">
+                            <div v-if="Date.now() > Date.parse(auctionss.auction.endAt)" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">
                                     <img class="w-100" :src="auctionss.asset.images" alt="">
@@ -417,7 +417,7 @@ Vue.use(VueClipboard)
       tags:'',
       asset:[],
       confirm:'',
-      actions:'',
+      auctions:[],
       mobile:'',
       province:'',
       id: '',

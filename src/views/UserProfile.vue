@@ -72,7 +72,7 @@
                             <th scope="col">Nhóm</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Ngày cập nhật</th>
-                            <th scope="col">Xoá</th>
+                            <th scope="col">Trạng thái</th>
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>
@@ -86,7 +86,7 @@
                             <td>{{users.group}}</td>
                             <td>{{users.created}}</td>
                             <td>{{users.updated}}</td>
-                            <td style="color:red;">{{users.delete}}</td>
+                            <td style="color:red;">{{users.isActive}}</td>
                             <td>
                               <span>
                                 <base-button size="sm" outline type="danger" v-on:click="clickdelete1(users.id)">Xoá</base-button>
@@ -499,6 +499,7 @@ Vue.use(VueClipboard)
       search: '',
       inprovince:'',
       ingroup:'',
+      isActive:'',
       inmobile:'',
       indateofbirth:'',
       ingender:'',

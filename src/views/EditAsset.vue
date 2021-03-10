@@ -309,7 +309,7 @@
                                             </select>
                                         </div> -->
                                     </div>
-                                    <div v-if="Search.assets[0].category=='Bất động sản'">
+                                    <div v-if="testcategory=='Bất động sản'">
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
@@ -489,7 +489,7 @@
                                         </div>
                                     </div>
                                     </div >
-                                    <div v-if="Search.assets[0].category=='Xe hơi'">
+                                    <div v-if="testcategory=='Xe hơi'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -692,7 +692,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="Search.assets[0].category=='Sim số'">
+                                    <div v-if="testcategory=='Sim số'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -721,7 +721,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="Search.assets[0].category=='Đá quý'">
+                                    <div v-if="testcategory=='Đá quý'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -785,10 +785,10 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="Search.assets[0].category=='Nghệ thuật'">
+                                    <div v-if="testcategory=='Nghệ thuật'">
                                         helo
                                     </div>
-                                    <div v-if="Search.assets[0].category=='Đồ cổ'">
+                                    <div v-if="testcategory=='Đồ cổ'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -810,7 +810,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="Search.assets[0].category=='Cây cảnh'">
+                                    <div v-if="testcategory=='Cây cảnh'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -872,139 +872,13 @@
                                                     <option disable value="">Chọn tình trạng</option>
                                                     <option>Cũ</option>
                                                     <option>Mới</option>
+                                                    <option>Đã kích hoạt</option>
+                                                    <option>Chưa kích hoạt</option>
                                                 </select>
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Trạng thái</label>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <select class="form-control select-default selectpickernone">
-                                                    <option>Đang hoạt động</option>
-                                                    <option>Đã vô hiệu</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Thời gian đăng</label>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <div class="input-group mb-3">
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="0">Giờ</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
-                                                        <option>11</option>
-                                                        <option>12</option>
-                                                        <option>13</option>
-                                                        <option>14</option>
-                                                        <option>15</option>
-                                                        <option>16</option>
-                                                        <option>17</option>
-                                                        <option>18</option>
-                                                        <option>19</option>
-                                                        <option>20</option>
-                                                        <option>21</option>
-                                                        <option>22</option>
-                                                        <option>23</option>
-                                                        <option>24</option>
-                                                    </select>
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text f-13 border-right-0">:</span>
-                                                    </div>
-                                                    <select class="form-control select-default selectpickernone">
-                                                        <option value="0">Phút</option>
-                                                        <option>1</option>
-                                                        <option>2</option>
-                                                        <option>3</option>
-                                                        <option>4</option>
-                                                        <option>5</option>
-                                                        <option>6</option>
-                                                        <option>7</option>
-                                                        <option>8</option>
-                                                        <option>9</option>
-                                                        <option>10</option>
-                                                        <option>11</option>
-                                                        <option>12</option>
-                                                        <option>13</option>
-                                                        <option>14</option>
-                                                        <option>15</option>
-                                                        <option>16</option>
-                                                        <option>17</option>
-                                                        <option>18</option>
-                                                        <option>19</option>
-                                                        <option>20</option>
-                                                        <option>21</option>
-                                                        <option>22</option>
-                                                        <option>23</option>
-                                                        <option>24</option>
-                                                        <option>25</option>
-                                                        <option>26</option>
-                                                        <option>27</option>
-                                                        <option>28</option>
-                                                        <option>29</option>
-                                                        <option>30</option>
-                                                        <option>31</option>
-                                                        <option>32</option>
-                                                        <option>33</option>
-                                                        <option>34</option>
-                                                        <option>35</option>
-                                                        <option>36</option>
-                                                        <option>37</option>
-                                                        <option>38</option>
-                                                        <option>39</option>
-                                                        <option>40</option>
-                                                        <option>41</option>
-                                                        <option>42</option>
-                                                        <option>43</option>
-                                                        <option>44</option>
-                                                        <option>45</option>
-                                                        <option>46</option>
-                                                        <option>47</option>
-                                                        <option>48</option>
-                                                        <option>49</option>
-                                                        <option>50</option>
-                                                        <option>51</option>
-                                                        <option>52</option>
-                                                        <option>53</option>
-                                                        <option>54</option>
-                                                        <option>55</option>
-                                                        <option>56</option>
-                                                        <option>57</option>
-                                                        <option>58</option>
-                                                        <option>59</option>
-                                                        <option>60</option>
-                                                    </select>
-
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-5">
-                                                <div class="input-group dateranger-one mb-3 mb-sm-3">
-                                                    <input type="text" class="form-control date-use bg-white" value="12-11-1986" readonly="">
-                                                    <div class="input-group-append">
-                                                        <span class="input-group-text bg-white pl-2 pr-2">
-                                                            <i class="las la-calendar"></i>
-                                                        </span>
-                                                    </div>
-                                                </div>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                     
                                     <hr class="pt-3 mb-1" />
                                     <div class="clearfix">
                                         <button v-b-modal.modalPopover @click="clickEdit(Search.assets[0].id)" class="btn btn-primary mb-2">
@@ -1086,6 +960,7 @@ Vue.use(VueClipboard)
       info:'',
       color:'',
       status:'',
+      teshomeNetwork:'',
       type:'',
       area:'',
       origin:'',
@@ -1102,6 +977,8 @@ Vue.use(VueClipboard)
       searchCheck: 1,
       direction:'',
       acreage:'',
+      testdescription:'',
+      testcurrentStatus:'',
       tesamount:'',
       picture:null,
       bedroomsNumber:'',
@@ -1119,14 +996,14 @@ Vue.use(VueClipboard)
     },
     clickSearch2(id){
       this.axios.get(this.url+'/asset/id/'+id)
-      .then((response) => { this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
+      .then((response) => {if(response.data){ this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
       this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
       this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
       this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
-      this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld,
+      this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
       this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter
-      });
-        console.log(this.testdescription);
+      }});
+        console.log(this.testid);
     },
     clickEdit(id){
       this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,

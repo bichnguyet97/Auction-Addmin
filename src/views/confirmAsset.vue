@@ -180,7 +180,7 @@
                         <div  class="pro-info">
                             <div class="info-list f-14 mb-4">
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin đấu giá</h3>
-                                <div v-if="asse.assets[0].category=='Sim số'">
+                                <div v-if="asse.category=='Sim số'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
@@ -197,7 +197,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số lượng: </span>
-                                            <strong>{{asse.assets[0].amount}}</strong>
+                                            <strong>{{asse.amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -221,7 +221,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Nhà mạng: </span>
-                                            <strong>{{asse.assets[0].homeNetwork}}</strong>
+                                            <strong>{{asse.homeNetwork}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -233,18 +233,18 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục: </span>
-                                            <strong>{{asse.assets[0].category}}</strong>
+                                            <strong>{{asse.category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Loại sim: </span>
-                                            <strong>{{asse.assets[0].type}}</strong>
+                                            <strong>{{asse.type}}</strong>
                                         </span>
                                     </div>
                                 </div>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Bất động sản'">
+                                <div v-if="asse.category=='Bất động sản'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
@@ -261,7 +261,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số lượng: </span>
-                                            <strong>{{asse.assets[0].amount}}</strong>
+                                            <strong>{{asse.amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -285,7 +285,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Thương hiệu: </span>
-                                            <strong>{{asse.assets[0].trademark}}</strong>
+                                            <strong>{{asse.trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -297,25 +297,25 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục: </span>
-                                            <strong>{{asse.assets[0].category}}</strong>
+                                            <strong>{{asse.category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Chủng loại: </span>
-                                            <strong>{{asse.assets[0].type}}</strong>
+                                            <strong>{{asse.type}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Diện tích: </span>
-                                            <strong>{{asse.assets[0].acreage}}</strong>
+                                            <strong>{{asse.acreage}}</strong>
                                         </span>
                                     </div>
                                      <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hướng: </span>
-                                            <strong>{{asse.assets[0].direction}}</strong>
+                                            <strong>{{asse.direction}}</strong>
                                         </span>
                                     </div>
                                     <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -327,24 +327,24 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số phòng ngủ: </span>
-                                            <strong>{{asse.assets[0].bedroomsNumber}}</strong>
+                                            <strong>{{asse.bedroomsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số nhà vệ sinh: </span>
-                                            <strong>{{asse.assets[0].toiletsNumber}}</strong>
+                                            <strong>{{asse.toiletsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Khu vực: </span>
-                                            <strong>{{asse.assets[0].area}}</strong>
+                                            <strong>{{asse.area}}</strong>
                                         </span>
                                     </div>
                                 </div>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Đá quý'">
+                                <div v-if="asse.category=='Đá quý'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
@@ -361,7 +361,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số lượng: </span>
-                                            <strong>{{asse.assets[0].amount}}</strong>
+                                            <strong>{{asse.amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -391,43 +391,43 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục: </span>
-                                            <strong>{{asse.assets[0].category}}</strong>
+                                            <strong>{{asse.category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Loại đá quý: </span>
-                                            <strong>{{asse.assets[0].type}}</strong>
+                                            <strong>{{asse.type}}</strong>
                                         </span>
                                     </div>
                                     
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Màu đá quý: </span>
-                                            <strong>{{asse.assets[0].color}}</strong>
+                                            <strong>{{asse.color}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Trọng lượng đá quý: </span>
-                                            <strong>{{asse.assets[0].weight}} g</strong>
+                                            <strong>{{asse.weight}} g</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Độ sáng đá quý: </span>
-                                            <strong>{{asse.assets[0].brightness}} F</strong>
+                                            <strong>{{asse.brightness}} F</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hình dạng đá quý: </span>
-                                            <strong>{{asse.assets[0].shape}}</strong>
+                                            <strong>{{asse.shape}}</strong>
                                         </span>
                                     </div>
                                 </div>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Xe hơi'">
+                                <div v-if="asse.category=='Xe hơi'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
@@ -444,7 +444,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số lượng: </span>
-                                            <strong>{{asse.assets[0].amount}}</strong>
+                                            <strong>{{asse.amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -468,7 +468,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Thương hiệu: </span>
-                                            <strong>{{asse.assets[0].trademark}}</strong>
+                                            <strong>{{asse.trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -480,61 +480,61 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục: </span>
-                                            <strong>{{asse.assets[0].category}}</strong>
+                                            <strong>{{asse.category}}</strong>
                                         </span>
                                     </div>
                                      
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Màu xe: </span>
-                                            <strong>{{asse.assets[0].color}}</strong>
+                                            <strong>{{asse.color}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Màu nội thất: </span>
-                                            <strong>{{asse.assets[0].interiorColor}}</strong>
+                                            <strong>{{asse.interiorColor}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Năm sản xuất: </span>
-                                            <strong>{{asse.assets[0].manufactureYear}}</strong>
+                                            <strong>{{asse.manufactureYear}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Hộp số: </span>
-                                            <strong>{{asse.assets[0].gear}}</strong>
+                                            <strong>{{asse.gear}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Nhiên liệu: </span>
-                                            <strong>{{asse.assets[0].fuel}}</strong>
+                                            <strong>{{asse.fuel}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Tiêu thụ: </span>
-                                            <strong>{{asse.assets[0].consume}} lít/100km</strong>
+                                            <strong>{{asse.consume}} lít/100km</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số chỗ: </span>
-                                            <strong>{{asse.assets[0].seatsNumber}}</strong>
+                                            <strong>{{asse.seatsNumber}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Xuất xứ: </span>
-                                            <strong>{{asse.assets[0].origin}}</strong>
+                                            <strong>{{asse.origin}}</strong>
                                         </span>
                                     </div>
                                 </div>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Đồ cổ'">
+                                <div v-if="asse.category=='Đồ cổ'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
@@ -594,7 +594,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Cây cảnh'">
+                                <div v-if="asse.category=='Cây cảnh'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
@@ -611,7 +611,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số lượng: </span>
-                                            <strong>{{asse.assets[0].amount}}</strong>
+                                            <strong>{{asse.amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -635,7 +635,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Thương hiệu: </span>
-                                            <strong>{{asse.assets[0].trademark}}</strong>
+                                            <strong>{{asse.trademark}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -647,18 +647,18 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục: </span>
-                                            <strong>{{asse.assets[0].category}}</strong>
+                                            <strong>{{asse.category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Chủng loại: </span>
-                                            <strong>{{asse.assets[0].type}}</strong>
+                                            <strong>{{asse.type}}</strong>
                                         </span>
                                     </div>
                                 </div>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Nghệ thuật'">
+                                <div v-if="asse.category=='Nghệ thuật'">
                                 <div class="row">
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
@@ -675,7 +675,7 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số lượng: </span>
-                                            <strong>{{asse.assets[0].amount}}</strong>
+                                            <strong>{{asse.amount}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
@@ -706,13 +706,13 @@
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Danh mục: </span>
-                                            <strong>{{asse.assets[0].category}}</strong>
+                                            <strong>{{asse.category}}</strong>
                                         </span>
                                     </div>
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Chủng loại: </span>
-                                            <strong>{{asse.assets[0].type}}</strong>
+                                            <strong>{{asse.type}}</strong>
                                         </span>
                                     </div>
                                      
@@ -765,70 +765,70 @@
                             </div>
                             <div class="info-detail">
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Thông tin sản phẩm</h3>
-                                <div v-if="asse.assets[0].category=='Bất động sản'">
+                                <div v-if="asse.category=='Bất động sản'">
                                     <ul>
-                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Địa chỉ: {{asse.assets[0].area}}</li>
-                                        <li>Diện tích: {{asse.assets[0].acreage}} m2</li>
-                                        <li>Số phòng ngủ: {{asse.assets[0].bedroomsNumber}} phòng</li>
-                                        <li>Số nhà vệ sinh: {{asse.assets[0].toiletsNumber}} phòng</li>
+                                        <li>Sản phẩm: {{asse.name}}</li>
+                                        <li>Địa chỉ: {{asse.area}}</li>
+                                        <li>Diện tích: {{asse.acreage}} m2</li>
+                                        <li>Số phòng ngủ: {{asse.bedroomsNumber}} phòng</li>
+                                        <li>Số nhà vệ sinh: {{asse.toiletsNumber}} phòng</li>
                                     </ul>
-                                    <p>{{asse.assets[0].description}}</p>
+                                    <p>{{asse.description}}</p>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Xe hơi'">
+                                <div v-if="asse.category=='Xe hơi'">
                                     <ul>
-                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Màu xe: {{asse.assets[0].color}}</li>
-                                        <li>Màu nội thất: {{asse.assets[0].interiorColor}}</li>
-                                        <li>Năm sản xuất: {{asse.assets[0].manufactureYear}}</li>
-                                        <li>Hộp số: {{asse.assets[0].gear}}</li>
-                                        <li>Nhiên liệu: {{asse.assets[0].fuel}}</li>
-                                        <li>Tiêu thụ: {{asse.assets[0].consume}} lít/100km</li>
-                                        <li>Số chỗ: {{asse.assets[0].seatsNumber}}</li>
-                                        <li>Xuất xứ: {{asse.assets[0].origin}}</li>
+                                        <li>Sản phẩm: {{asse.name}}</li>
+                                        <li>Màu xe: {{asse.color}}</li>
+                                        <li>Màu nội thất: {{asse.interiorColor}}</li>
+                                        <li>Năm sản xuất: {{asse.manufactureYear}}</li>
+                                        <li>Hộp số: {{asse.gear}}</li>
+                                        <li>Nhiên liệu: {{asse.fuel}}</li>
+                                        <li>Tiêu thụ: {{asse.consume}} lít/100km</li>
+                                        <li>Số chỗ: {{asse.seatsNumber}}</li>
+                                        <li>Xuất xứ: {{asse.origin}}</li>
                                     </ul>
-                                    <p>{{asse.assets[0].description}}</p>
+                                    <p>{{asse.description}}</p>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Đá quý'">
+                                <div v-if="asse.category=='Đá quý'">
                                     <ul>
-                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Màu đá quý: {{asse.assets[0].color}}</li>
-                                        <li>Loại đá quý: {{asse.assets[0].type}}</li>
-                                        <li>Độ sáng đá quý: {{asse.assets[0].brightness}}</li>
-                                        <li>Trọng lượng đá quý: {{asse.assets[0].weight}}</li>
-                                        <li>Hình dạng đá quý: {{asse.assets[0].shape}}</li>
+                                        <li>Sản phẩm: {{asse.name}}</li>
+                                        <li>Màu đá quý: {{asse.color}}</li>
+                                        <li>Loại đá quý: {{asse.type}}</li>
+                                        <li>Độ sáng đá quý: {{asse.brightness}}</li>
+                                        <li>Trọng lượng đá quý: {{asse.weight}}</li>
+                                        <li>Hình dạng đá quý: {{asse.shape}}</li>
                                     </ul>
-                                    <p>{{asse.assets[0].description}}</p>
+                                    <p>{{asse.description}}</p>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Sim số'">
+                                <div v-if="asse.category=='Sim số'">
                                     <ul>
-                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Loại sim: {{asse.assets[0].type}}</li>
-                                        <li>Nhà mạng: {{asse.assets[0].homeNetwork}}</li>
+                                        <li>Sản phẩm: {{asse.name}}</li>
+                                        <li>Loại sim: {{asse.type}}</li>
+                                        <li>Nhà mạng: {{asse.homeNetwork}}</li>
                                     </ul>
-                                    <p>{{asse.assets[0].description}}</p>
+                                    <p>{{asse.description}}</p>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Cây cảnh'">
+                                <div v-if="asse.category=='Cây cảnh'">
                                     <ul>
-                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Loại cây: {{asse.assets[0].type}}</li>
+                                        <li>Sản phẩm: {{asse.name}}</li>
+                                        <li>Loại cây: {{asse.type}}</li>
                                     </ul>
-                                    <p>{{asse.assets[0].description}}</p>
+                                    <p>{{asse.description}}</p>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Đồ cổ'">
+                                <div v-if="asse.category=='Đồ cổ'">
                                     <ul>
-                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Loại Đồ cổ: {{asse.assets[0].type}}</li>
-                                        <li>Tuổi đời đồ cổ: {{asse.assets[0].yearOld}}</li>
+                                        <li>Sản phẩm: {{asse.name}}</li>
+                                        <li>Loại Đồ cổ: {{asse.type}}</li>
+                                        <li>Tuổi đời đồ cổ: {{asse.yearOld}}</li>
                                     </ul>
-                                    <p>{{asse.assets[0].description}}</p>
+                                    <p>{{asse.description}}</p>
                                 </div>
-                                <div v-if="asse.assets[0].category=='Nghệ thuật'">
+                                <div v-if="asse.category=='Nghệ thuật'">
                                     <ul>
-                                        <li>Sản phẩm: {{asse.assets[0].name}}</li>
-                                        <li>Loại: {{asse.assets[0].type}}</li>
+                                        <li>Sản phẩm: {{asse.name}}</li>
+                                        <li>Loại: {{asse.type}}</li>
                                     </ul>
-                                    <p>{{asse.assets[0].description}}</p>
+                                    <p>{{asse.description}}</p>
                                 </div>
                             </div>
                         </div>
@@ -986,8 +986,8 @@ Vue.use(VueClipboard)
     // },
     clickSearch2(id){
       this.axios.get(this.url+'/asset/id/'+id)
-      .then((response) => {this.image=(response.data.assets[0].images.split(',')), this.Search=response.data, this.auc=response.data.auctions[0], this.asse=response.data
-      });
+      .then((response) => { if(response.data){ this.image=(response.data.assets[0].images.split(',')), this.Search=response.data, this.auc=response.data.auctions[0], this.asse=response.data.assets[0]
+      }});
         console.log(this.auc);
     },
     clickconfirm(id){
@@ -997,14 +997,16 @@ Vue.use(VueClipboard)
         }).then(() => {
             this.clickUpdate1();
           });
+      console.log(this.hihi);
     },
     clickconfirmn(id){
-      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=illegal",{
+      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=Illegal",{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then(() => {
             this.clickUpdate1();
           });
+      console.log(this.hihi);
     },
     getCookie: function(cname) {
       var name = cname + "=";
@@ -1081,5 +1083,8 @@ employee-list{
 }
 #right{
   margin-top:-137px;
+}
+#innit{
+  margin-top: 180px;
 }
 </style>

@@ -17,34 +17,34 @@
               </div>
                 <div v-if="check==2" class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
-                        <div v-for="auction in auction" v-bind:key="auction.id" class="card-text pt-1">
-                            <div v-if="Date.now() > Date.parse(auction.auction.endAt)" class="row">
+                        <div v-for="auctiontimeout in auctiontimeout" v-bind:key="auctiontimeout.id" class="card-text pt-1">
+                            <div  class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">
-                                    <img class="w-100" :src="auction.asset.images" alt="">
+                                    <img class="w-100" :src="auctiontimeout.asset.images" alt="">
                                   </div>
                                 </div>
                                 <div class="col-12 col-lg-9 col-md-6 border-top">
                                     <div class="start-pro-info p-3 p-md-4 p-lg-3 h-100">
                                         <div class="row h-100 align-items-center">
                                             <div class="col-12 col-xl-7 col-lg-7">
-                                              <h3 class="f-17 mb-2 font-weight-bold">Tên tài sản: {{auction.asset.name}}</h3>
+                                              <h3 class="f-17 mb-2 font-weight-bold">Tên tài sản: {{auctiontimeout.asset.name}}</h3>
                                               <div class="pri-bid mb-3 mb-sm-0">
-                                                <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auction.asset.id}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Loại: {{auction.asset.category}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auctiontimeout.asset.id}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Loại: {{auctiontimeout.asset.category}}</span>
                                                 <!-- <span class="f-13 mr-1 d-block mb-1">Giá niêm yết:{{auction.initPrice}}</span> -->
                                                 <!-- <span class="f-13 mr-1 d-block mb-1">Giá hiện tại: {{asset.currentPrice}}</span> -->
                                                 <!-- <span class="f-13 mr-1 d-block mb-1">Ngày đăng:{{auction.created}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật:{{auction.updated}}</span> -->
-                                                <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auction.asset.created}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auction.asset.updated}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auctiontimeout.asset.created}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auctiontimeout.asset.updated}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">
                                                   <h3 class="f-17 mb-2 font-weight-bold">Thông tin đấu giá</h3>
-                                                  <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auction.auction.id}}</span>
-                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
-                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span>
-                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(auction.asset.currentPrice)}} VNDT</strong></h3>
-                                                  <b-button v-b-modal.modall style="margin-top:5px;" @click="clickConfirm2(auction.auction.id)" size="sm" variant="info">Yêu cầu tham gia đấu giá</b-button>
+                                                  <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auctiontimeout.auction.id}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auctiontimeout.auction.startAt}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctiontimeout.auction.endAt}}</span>
+                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(auctiontimeout.asset.currentPrice)}} VNDT</strong></h3>
+                                                  <b-button v-b-modal.modall style="margin-top:5px;" @click="clickConfirm2(auctiontimeout.auction.id)" size="sm" variant="info">Yêu cầu tham gia đấu giá</b-button>
                                                   <!-- <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auction.auction.id)" variant="danger">Thông tin người thắng</b-button> -->
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
@@ -57,27 +57,27 @@
                                 </div>
                                 <div id="active_center" class="seller-info pb-2">
                                   <h3 class="f-17 border-bottom pb-3">Trạng thái</h3>
-                                  <b-button style="margin-top:5px;" size="sm" variant="success">{{auction.auction.status}}</b-button>
+                                  <b-button style="margin-top:5px;" size="sm" variant="success">{{auctiontimeout.auction.status}}</b-button>
                                 </div>
                                 <div id="borde" class="seller-info pb-2">
                                   <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
                                   <div class="d-flex align-items-center">
                                     <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
-                                    <b-avatar :src="auction.user.avatar" size="6rem"></b-avatar>
+                                    <b-avatar :src="auctiontimeout.user.avatar" size="6rem"></b-avatar>
                                     <div class="user-sum ml-3">
-                                      <h5 class="f-15 mb-2 font-weight-600">{{auction.user.name}}</h5>
+                                      <h5 class="f-15 mb-2 font-weight-600">{{auctiontimeout.user.name}}</h5>
                                       <p class="f-13 mb-0">
                                         <span class="d-block">
                                           <i class="fa fa-phone" aria-hidden="true"></i>
-                                          {{auction.user.mobile}}
+                                          {{auctiontimeout.user.mobile}}
                                         </span>
                                         <span class="d-block">
                                           <i class="fa fa-envelope" aria-hidden="true"></i>
-                                          {{auction.user.email}}
+                                          {{auctiontimeout.user.email}}
                                         </span>
                                         <span class="d-block">
                                           <i class="fa fa-share" aria-hidden="true"></i>
-                                          {{auction.user.province}}
+                                          {{auctiontimeout.user.province}}
                                         </span>
                                       </p>
                                     </div>
@@ -405,6 +405,10 @@ Vue.use(VueClipboard)
     headers: {
       Authorization: this.getCookie('AC-ACCESS-KEY') }
       }).then((response) =>  { this.auction=response.data});
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/Timeout',{
+    headers: {
+      Authorization: this.getCookie('AC-ACCESS-KEY') }
+      }).then((response) =>  { this.auctiontimeout=response.data});
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/Ended',{
     headers: {
       Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -430,6 +434,7 @@ Vue.use(VueClipboard)
       asset:[],
       confirm:'',
       auctions:[],
+      auctiontimeout:[],
       mobile:'',
       province:'',
       id: '',

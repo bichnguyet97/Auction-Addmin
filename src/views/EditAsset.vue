@@ -22,7 +22,7 @@
                                               <div class="pri-bid mb-3 mb-sm-0">
                                                 <span class="f-13 mr-1 d-block mb-1">Mã: {{asset.id}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">Loại: {{asset.category}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Giá niêm yết: {{asset.initPrice}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Giá niêm yết: {{formatPrice(asset.initPrice)}}</span>
                                                 <!-- <span class="f-13 mr-1 d-block mb-1">Giá hiện tại: {{asset.currentPrice}}</span> -->
                                                 <span class="f-13 mr-1 d-block mb-1">Ngày đăng: {{asset.created}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật: {{asset.updated}}</span>
@@ -1082,6 +1082,10 @@ Vue.use(VueClipboard)
         }).then(() => {
             this.clickUpdate1();
           });
+    },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     getCookie: function(cname) {
       var name = cname + "=";

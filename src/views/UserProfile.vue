@@ -146,17 +146,17 @@
                             <th scope="row">{{userSearch.data.id}}</th>
                             <td class="test">{{userSearch.data.name}}</td>
                             <td class="test">{{userSearch.data.email}}</td>
-                            <td><a :href="userSearch.data.avatar">{{userSearch.data.avatar}}</a></td>
+                            <td class="test"><a :href="userSearch.data.avatar">{{userSearch.data.avatar}}</a></td>
                             <td>{{userSearch.data.password}}</td>
                             <td>{{userSearch.data.group}}</td>
                             <td class="test">{{userSearch.data.created}}</td>
                             <td class="test">{{userSearch.data.updated}}</td>
-                            <td style="color:red;">{{userSearch.data.delete}}</td>
+                            <td style="color:red;">{{userSearch.data.isActive}}</td>
                             <td>
                               <span>
                                 <base-button size="sm" outline type="danger" v-on:click="clickdelete1(users.id)">Xoá</base-button>
                                 <span>
-                                  <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button>
+                                  <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button> -->
                                   <b-button size="sm" v-b-modal.modal-5 variant="info" @click="close3=false,clickSearch2(users.id)">Thông tin chi tiết</b-button>
                                 </span>
                               </span>

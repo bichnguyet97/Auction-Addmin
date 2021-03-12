@@ -185,7 +185,7 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                    Nhập giá dự thầu <span class="text-danger">*</span>
+                                                    Nhập giá khởi điểm <span class="text-danger">*</span>
                                                 </label>
                                                 <input v-model="bidPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
                                             </div>
@@ -228,6 +228,14 @@
                                                     Bước giá <span class="text-danger">*</span>
                                                 </label>
                                                 <input v-model="stepPrice" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                    Tiền huỷ cọc <span class="text-danger">*</span>
+                                                </label>
+                                                <input v-model="cancelRegisterFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -295,8 +303,10 @@ Vue.use(VueClipboard)
       creaded:'',
       area:'',
       warranty:'',
+      regulation:'',
       auctions:[],
       tags:'',
+      cancelRegisterFee:'',
       stepPrice:'',
       confirm:'',
       avatar:'',
@@ -335,7 +345,7 @@ Vue.use(VueClipboard)
     clickAdd1:async function(){
     await this.axios.post(this.url+'/auction/',{ "assest": this.assest,
       "bidPrice": this.bidPrice,"endAt": this.endAt, "startAt": this.startAt, "warranty": this.warranty, "stepPrice": this.stepPrice, "buyPrice": this.buyPrice,
-        "area": this.area, "note": this.note,"attendanceDeadline":this.attendanceDeadline, "seller": this.seller
+        "area": this.area, "note": this.note,"attendanceDeadline":this.attendanceDeadline, "seller": this.seller, "cancelRegisterFee": this.cancelRegisterFee
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }

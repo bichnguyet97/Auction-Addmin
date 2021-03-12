@@ -129,7 +129,7 @@
                                                   <!-- <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auction.auction.id)" variant="danger">Thông tin người thắng</b-button> -->
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
-                                                  <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm(auction.auction.id)" variant="danger">Kết thúc</b-button>
+                                                  <!-- <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm(auction.auction.id)" variant="danger">Kết thúc</b-button> -->
                                                 </span>
                                               </div>
                                             </div>
@@ -202,8 +202,17 @@
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auctions.auction.startAt}}</span>
                                                   <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctions.auction.endAt}}</span>
                                                   <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(auctions.asset.currentPrice)}} VNDT</strong></h3>
+                                                  <div class="col-12 col-md-6">
+                                                      <div class="form-group">
+                                                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                              Nhập ID người thắng <span class="text-danger">*</span>
+                                                          </label>
+                                                          <input v-model="id1" type="" class="form-control form-control-user fs-090" placeholder="" maxlength="20">
+                                                      </div>
+                                                  </div>
                                                   <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auctions.auction.id)" variant="info">Thông tin người thắng</b-button>
-                                                  <b-button v-b-modal.modal2 style="margin-top:5px;" size="sm" @click="clickConfirm1(auctions.auction.id)" variant="warning">Yêu cầu thanh toán</b-button>
+                                                  <b-button v-b-modal.modal2 style="margin-top:5px;" size="sm" @click="clickpay(id1,payauction=auctions.auction.id)" variant="warning">Thanh toán</b-button>
+                                                  <!-- <b-button v-b-modal.modal2 style="margin-top:5px;" size="sm" @click="clickConfirm1(auctions.auction.id)" variant="warning">Yêu cầu thanh toán</b-button> -->
                                                   <b-button v-b-modal.modal1 style="margin-top:5px;" size="sm" @click="clickConfirmn(auctions.auction.id)" variant="danger">Xác nhận thanh toán</b-button>
                                                   <!-- <h3>Nhập lý do không xác nhận</h3>
                                                   <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
@@ -335,6 +344,9 @@
                       <b-avatar style="width:128px; height:128px" :src="Search.avatar"></b-avatar>
                     </div>
                     <div class="user-sum ml-7">
+                      <h5><i class="fa fa-user" aria-hidden="true"></i>: {{Search.id}}</h5>
+                    </div>
+                    <div class="user-sum ml-7">
                       <h5><i class="fa fa-user" aria-hidden="true"></i>: {{Search.name}}</h5>
                     </div>
                     <div class="user-sum ml-7">
@@ -428,12 +440,15 @@ Vue.use(VueClipboard)
       updated:'',
       avatar:'',
       info:'',
+      hii:'ok',
       group:'',
       dateofbirth:'',
       win:true,
       auction: [],
       add:true,
       Search:[],
+      id1:'',
+      id2:'',
       endAt:'',
       note:'',
       save:true,
@@ -506,6 +521,17 @@ Vue.use(VueClipboard)
         this.axios.get(this.url+'/auction/auction_status/new')
         .then(response => this.auctions=response.data);
       });
+    },
+    clickpay(id1,id2){
+      this.axios.get(this.url+'/auction/pay/dl/'+id1+"/"+id2 , {"id1":this.payid, "id2":this.payauction}, {
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY')
+        }
+      }).then(() => {
+        this.axios.get(this.url+'/auction/auction_status/new')
+        .then(response => this.auctions=response.data);
+      });
+      console.log(this.hii);
     },
     clickConfirmn(id){
       this.axios.post(this.url+'/auction/update/'+id+"?note=Đã thanh toán thành công!"+"&status=Đã thanh toán", {"status":this.status, "note":this.note}, {

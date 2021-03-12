@@ -453,11 +453,12 @@
                             <td>{{userSearch.data.currentPrice}}</td>
                             <td class="test">{{userSearch.data.created}}</td>
                             <td class="test">{{userSearch.data.updated}}</td>
-                            <td>{{userSearch.data.seller}}</td>
+                            <!-- <td>{{userSearch.data.seller}}</td> -->
                             <td style="color:red;">{{userSearch.data.status}}</td>
                             <td>
                               <span>
-                                <base-input>
+                                <base-button size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
+                                <!-- <base-input>
                                   <select id="select" v-model="status" class="form-control">
                                     <option disable value="">Chọn</option>
                                     <option>Đã xác nhận</option>
@@ -465,8 +466,7 @@
                                     <option>Đã đăng báo</option>
                                   </select>
                                   <b-button style="margin-top:5px;" size="sm" v-on:click="clickConfirm(asset.id,status)" variant="primary">Xác nhận</b-button>
-                                  <base-button style="margin-top:5px;" size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
-                                </base-input>
+                                </base-input> -->
                               </span>
                             </td>
                           </tr>
@@ -484,11 +484,11 @@
                             <td class="test">{{searchCate.data[n-1].created}}</td>
                             <td class="test">{{searchCate.data[n-1].updated}}</td>
                             <!-- <td>{{searchCate.data[n-1].tags}}</td> -->
-                            <td>{{searchCate.data[n-1].seller}}</td>
+                            <!-- <td>{{searchCate.data[n-1].seller}}</td> -->
                             <td>{{searchCate.data[n-1].status}}</td>
                             <td>
                               <span>
-                                <base-input>
+                                <!-- <base-input>
                                   <select v-model="status" class="form-control">
                                     <option disable value="">Chọn</option>
                                     <option>Đã xác nhận</option>
@@ -498,9 +498,10 @@
                                     <option>Đã xoá</option>
                                   </select>
                                   <b-button style="margin-top:5px;" size="sm" v-on:click="clickConfirm(asset.id,status)" variant="primary">Xác nhận</b-button>
-                                  <!-- <b-button size="sm" v-on:click="clickdelete1(asset.id)" variant="Danger">Xoá</b-button> -->
-                                  <base-button style="margin-top:5px;" size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
-                                </base-input>
+                                  <b-button size="sm" v-on:click="clickdelete1(asset.id)" variant="Danger">Xoá</b-button>
+                                  
+                                </base-input> -->
+                                <base-button style="margin-top:5px;" size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
                               </span>
                             </td>
                           </tr>

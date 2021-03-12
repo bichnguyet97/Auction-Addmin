@@ -48,7 +48,7 @@
                           </div>
                           </b-modal>
                         </div>
-                        <div class="col-2 offset-8">
+                        <!-- <div class="col-2 offset-8">
                           <div class="form-group">
                             <b-input-group id="add1">
                             <b-input-group-prepend>
@@ -62,7 +62,7 @@
                               </select>
                             </b-input-group>
                           </div>
-                        </div>
+                        </div> -->
                       </div>
                       <div class="closeIn">
                         <div v-if="close1" class="form-group">
@@ -109,7 +109,7 @@
                             <td>{{auction.updated}}</td>
                             <td>{{auction.startAt}}</td>
                             <td>{{auction.endAt}}</td>
-                            <td>{{auction.bidPrice}}</td>
+                            <td>{{formatPrice(auction.bidPrice)}}</td>
                             <td style="color:red;">{{auction.status}}</td>
                             <!-- <td>
                               <span>
@@ -145,13 +145,13 @@
                             <td>{{userSearch.data.endAt}}</td>
                             <td>{{userSearch.data.bidPrice}}</td>
                             <td style="color:red;">{{userSearch.data.status}}</td>
-                            <td>
+                            <!-- <td>
                               <span>
-                                <!-- <button type="button" class="btn btn-danger" v-on:click="clickConfirmtrue(auction.id)">Yes</button>
-                                <button type="button" class="btn btn-warning" @click="clickConfirmfalse(auction.id)">No</button> -->
+                                <button type="button" class="btn btn-danger" v-on:click="clickConfirmtrue(auction.id)">Yes</button>
+                                <button type="button" class="btn btn-warning" @click="clickConfirmfalse(auction.id)">No</button>
                                 <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="clickinfo">Xem</b-button>
                               </span>
-                            </td>
+                            </td> -->
                           </tr>
                         </tbody>
                       </table>
@@ -265,6 +265,10 @@ Vue.use(VueClipboard)
         }).then(() => {
             this.clickUpdate1();
           });
+    },
+	formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     getCookie: function(cname) {
       var name = cname + "=";

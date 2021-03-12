@@ -110,7 +110,7 @@
                                     <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
                                     <b-avatar :src="auctionnn.user.avatar" size="6rem"></b-avatar>
                                     <div class="user-sum ml-3">
-                                      <h5 class="f-15 mb-2 font-weight-600">{{auctionnn.user.name}}</h5>
+                                      <h5 class="f-15 mb-2 font-weight-600">{{auctionnn.user.lastname}} {{auctionnn.user.fullname}}</h5>
                                       <p class="f-13 mb-0">
                                         <span class="d-block">
                                           <i class="fa fa-phone" aria-hidden="true"></i>
@@ -179,8 +179,8 @@
                                 <div id="innit" class="price-cur text-center">
                                     <span class="f-19 mr-1 d-block mb-0 text-dark font-weight-bold">Giá khởi điểm: </span>
                                     <h3 class="text-warning f-23 mb-1">{{formatPrice(Search.currentPrice)}}  VNDT</h3>
-                                    <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm2(Searchh.id)" variant="info">Xác nhận showInBaner</b-button>
-                                    <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm22(Searchh.id)" variant="info">Không xác nhận showInBaner</b-button>
+                                    <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm2(teid)" variant="info">Xác nhận showInBaner</b-button>
+                                    <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm22(teid)" variant="info">Không xác nhận showInBaner</b-button>
                                 </div>
                                 <!-- Estimate -->
                                 <div class="modal fade" id="MdlEstimate" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -907,7 +907,7 @@
                                     <div class="d-flex align-items-center">
                                         <img :src="Search1.avatar" class="rounded-circle edit-avatar" width="100" height="100">
                                         <div class="user-sum ml-3">
-                                            <h5 class="f-15 mb-2 font-weight-600">{{Search1.lastname}} {{Search1.fullname}} </h5>
+                                            <h5 class="f-15 mb-2 font-weight-600">{{Search1.lastname}} {{Search1.fullname}}</h5>
                                             <p class="f-13 mb-0 text-secondary">
                                                 <span class="d-block">
                                                     <i class="fa fa-phone" aria-hidden="true"></i>
@@ -1081,7 +1081,7 @@ Vue.use(VueClipboard)
       });
     },
     clickConfirm2(id){
-      this.axios.post(this.url+'/auction/showInBaner/'+id+"?showInBaner=1", {"showInBaner":this.showInBaner}, {
+      this.axios.post(this.url+'/auction/showInBaner/'+id+'?showInBaner=1', {"showInBaner":this.showInBaner}, {
         headers: {
           Authorization: this.getCookie('AC-ACCESS-KEY')
         }
@@ -1092,7 +1092,7 @@ Vue.use(VueClipboard)
       console.log(this.hihi);
     },
     clickConfirm22(id){
-      this.axios.post(this.url+'/auction/showInBaner/'+id+"?showInBaner=0", {"showInBaner":this.showInBaner}, {
+      this.axios.post(this.url+'/auction/showInBaner/'+id+'?showInBaner=0', {"showInBaner":this.showInBaner}, {
         headers: {
           Authorization: this.getCookie('AC-ACCESS-KEY')
         }
@@ -1115,9 +1115,9 @@ Vue.use(VueClipboard)
     clickSearch2(id){
       this.axios.get(this.url+'/asset/id/'+id)
       .then((response) => {if(response.data){ this.image=(response.data.assets[0].images.split(',')), this.Search1=response.data, this.Search=response.data.assets[0],this.Searchh=response.data.auctions[0],
-       this.auc=response.data.auctions[0], this.asse=response.data.assets[0]
+       this.auc=response.data.auctions[0], this.asse=response.data.assets[0], this.teid=response.data.assets[0].auctions[0].id
       }});
-        console.log(this.auc);
+        console.log(this.Searchh);
     },
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')

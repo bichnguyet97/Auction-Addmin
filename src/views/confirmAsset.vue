@@ -844,15 +844,15 @@
                                             <h5 class="f-15 mb-2 font-weight-600">{{Search.lastname}} {{Search.fullname}} </h5>
                                             <p class="f-13 mb-0 text-secondary">
                                                 <span class="d-block">
-                                                    <i class="las la-phone mr-1"></i>
+                                                    <i class="fa fa-phone" aria-hidden="true"></i>
                                                         {{Search.mobile}}
                                                 </span>
                                                 <span class="d-block">
-                                                    <i class="las la-envelope mr-1 mt-1"></i>
+                                                    <i class="fa fa-envelope" aria-hidden="true"></i>
                                                         {{Search.email}}
                                                 </span>
                                                 <span class="d-block">
-                                                    <i class="las la-directions mt-1"></i>
+                                                    <i class="fa fa-share" aria-hidden="true"></i>
                                                         {{Search.province}}
                                                 </span>
                                             </p>
@@ -952,6 +952,7 @@ Vue.use(VueClipboard)
     clickUpdate1:async function(){
       this.axios.get(this.url+'/asset'
        ).then((response) => { this.asset=response.data})
+       
     },
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')

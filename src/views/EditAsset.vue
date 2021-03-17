@@ -1019,11 +1019,11 @@ Vue.use(VueClipboard)
     },
     previewImage(event){
             // this.uploadValue=0;
-            
+            for( var i = 0; i < document.querySelector("#inputGroupFile02").files.length; i++ ){  
                 this.testpicture=null;
                 this.imageData =event.target.files[0];
                 this.uploadValue=0;
-            
+            }
         },
     onUpload(){
             // var today = new Date();

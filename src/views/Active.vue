@@ -176,6 +176,96 @@
                 <div v-if="check==3" class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
                         <div v-for="auctions in auctions" v-bind:key="auctions.id" class="card-text pt-1">
+                            <div v-if="Date.now() < Date.parse(auctions.auction.endAt)" class="row">
+                                <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
+                                  <div class="user-avatar mb-3 text-center">
+                                    <img class="w-100" :src="auctions.asset.images" alt="">
+                                  </div>
+                                </div>
+                                <div class="col-12 col-lg-9 col-md-6 border-top">
+                                    <div class="start-pro-info p-3 p-md-4 p-lg-3 h-100">
+                                        <div class="row h-100 align-items-center">
+                                            <div class="col-12 col-xl-7 col-lg-7">
+                                              <h3 class="f-17 mb-2 font-weight-bold">Tên tài sản: {{auctions.asset.name}}</h3>
+                                              <div class="pri-bid mb-3 mb-sm-0">
+                                                <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auctions.asset.id}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Loại: {{auctions.asset.category}}</span>
+                                                <!-- <span class="f-13 mr-1 d-block mb-1">Giá niêm yết:{{auction.initPrice}}</span> -->
+                                                <!-- <span class="f-13 mr-1 d-block mb-1">Giá hiện tại: {{asset.currentPrice}}</span> -->
+                                                <!-- <span class="f-13 mr-1 d-block mb-1">Ngày đăng:{{auction.created}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật:{{auction.updated}}</span> -->
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auctions.asset.created}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auctions.asset.updated}}</span>
+                                                <span class="f-13 mr-1 d-block mb-1">
+                                                  <h3 class="f-17 mb-2 font-weight-bold">Thông tin đấu giá</h3>
+                                                  <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auctions.auction.id}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auctions.auction.startAt}}</span>
+                                                  <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auctions.auction.endAt}}</span>
+                                                  <h3>Giá hiện tại: <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{formatPrice(auctions.asset.currentPrice)}} VNDT</strong></h3>
+                                                  <div class="col-12 col-md-6">
+                                                      <div class="form-group">
+                                                          <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                              Nhập ID người thắng <span class="text-danger">*</span>
+                                                          </label>
+                                                          <input v-model="id1" type="" class="form-control form-control-user fs-090" placeholder="" maxlength="20">
+                                                      </div>
+                                                  </div>
+                                                  <b-button style="margin-top:5px;" size="sm" @click="win=false,clickWin(auctions.auction.id)" variant="info">Thông tin người thắng</b-button>
+                                                  <b-button v-b-modal.modal2 style="margin-top:5px;" size="sm" @click="clickpay(id1,payauction=auctions.auction.id)" variant="warning">Thanh toán</b-button>
+                                                  <!-- <b-button v-b-modal.modal2 style="margin-top:5px;" size="sm" @click="clickConfirm1(auctions.auction.id)" variant="warning">Yêu cầu thanh toán</b-button> -->
+                                                  <b-button v-b-modal.modal1 style="margin-top:5px;" size="sm" @click="clickConfirmn(auctions.auction.id)" variant="danger">Xác nhận thanh toán</b-button>
+                                                  <!-- <h3>Nhập lý do không xác nhận</h3>
+                                                  <input v-model="note" class="mr-sm-2" id="note" name="note" type="text" value> -->
+                                                  <!-- <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Không xác nhận</b-button> -->
+                                                </span>
+                                              </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div id="active_center" class="seller-info pb-2">
+                                  <h3 class="f-17 border-bottom pb-3">Trạng thái</h3>
+                                  <b-button style="margin-top:5px;" size="sm" variant="success">{{auctions.auction.status}}</b-button>
+                                </div>
+                                <div id="borde" class="seller-info pb-2">
+                                  <h3 class="f-17 border-bottom pb-3">Thông tin đại lý</h3>
+                                  <div class="d-flex align-items-center">
+                                    <!-- <img style="width=100px;height=100px;" class="rounded-circle edit-avatar" src="" alt=""> -->
+                                    <b-avatar :src="auctions.user.avatar" size="6rem"></b-avatar>
+                                    <div class="user-sum ml-3">
+                                      <h5 class="f-15 mb-2 font-weight-600">{{auctions.user.name}}</h5>
+                                      <p class="f-13 mb-0">
+                                        <span class="d-block">
+                                          <i class="fa fa-phone" aria-hidden="true"></i>
+                                          {{auctions.user.mobile}}
+                                        </span>
+                                        <span class="d-block">
+                                          <i class="fa fa-envelope" aria-hidden="true"></i>
+                                          {{auctions.user.email}}
+                                        </span>
+                                        <span class="d-block">
+                                          <i class="fa fa-share" aria-hidden="true"></i>
+                                          {{auctions.user.province}}
+                                        </span>
+                                      </p>
+                                    </div>
+                                  </div>
+                                </div>
+                            </div>
+                        </div>
+                        <b-modal id="modal1" title="Thông báo" ok-only>
+                          <p>
+                            Xác nhận thanh toán thành công !
+                          </p>
+                        </b-modal>
+                        <b-modal id="modal2" title="Thông báo" ok-only>
+                          <p>
+                            Bạn đã gửi yêu cầu thanh toán thành công !
+                          </p>
+                        </b-modal>
+                    </div>
+                    <div class="card-body p-3 rounded-0 border-0">
+                        <div v-for="auctions in auctions" v-bind:key="auctions.id" class="card-text pt-1">
                             <div v-if="Date.now() > Date.parse(auctions.auction.endAt)" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                   <div class="user-avatar mb-3 text-center">

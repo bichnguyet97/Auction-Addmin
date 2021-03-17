@@ -132,8 +132,10 @@
                                                 placeholder="Select file"
                                                 drop-placeholder="Drop file here..."
                                                 accept="image/*"
+                                                multiple
+                                                id="inputGroupFile02"
                                                 ></b-form-file>
-                                                <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
+                                                <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFile02">chọn ảnh</label>
                                             </div>
                                             <div class="input-group-append">
                                                 <button @click="onUpload" class="btn btn-warning">
@@ -143,11 +145,17 @@
                                             </div>
                                         </div>
                                         <div id="topimage" class="user-avatar mb-3 text-center">
-                                            <img id="sizeimage" :src="picture" alt="">
+                                            <img :src="picture" alt="">
                                         </div>
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
+                                        <!-- <input type="file" ref="file" multiple="multiple">
+                                        <button @click="submitFiles" class="btn btn-warning">
+                                            <i class="las la-plus-circle"></i>
+                                            Thêm
+                                        </button> -->
+                                        
                                     </div>
-
+                                        
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Video gới thiệu
                                     </h3>
@@ -802,6 +810,7 @@ import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import Firebase from 'firebase';
 import VueAxios from 'vue-axios'
+ 
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
@@ -866,10 +875,14 @@ Vue.use(VueClipboard)
       type:'',
       color:'',
       imagess: [],
+      file1:[],
       save:true,
       searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
-      searchCate:''
+      searchCate:'',
+      imageSrc: '',
+      imageData:[],
+      image:null
     };
   },
   components: {
@@ -908,58 +921,69 @@ Vue.use(VueClipboard)
       ).then((response) => console.log(response));
     },
     previewImage(event){
-            // this.uploadValue=0;
-            this.picture=null;
-            this.imageData=event.target.files[0];
-            this.uploadValue=0;
-        },
+        // this.uploadValue=0;
+         
+        for( var i = 0; i < document.querySelector("#inputGroupFile02").files.length; i++ ){     
+        this.picture=null;
+        this.imageData[i]=event.target.files[i];
+        this.uploadValue=0;
+        console.log(this.i)
+        }
+    },
     onUpload(){
-            // var today = new Date();
-            // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-            // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            // dateTime = date+' '+time;
-            this.picture=null;
-            const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
-            storageRef.on(`state_changed`,snapshot=>{
-                this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                }, error =>{console.log(error.message)},
-                ()=>{this.uploadValue=100;
-            
-                storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-                    this.picture=url;
-                    console.log(this.picture);
-                });
-
+        // var today = new Date();
+        // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        // dateTime = date+' '+time;
+        for( var i = 0; i < this.imageData.length; i++ ){
+        console.log(this.file1)
+        this.picture='';
+        const storageRef=Firebase.storage().ref(`${this.imageData[i].name}`+`${this.imageData[i].lastModified}`).put(this.imageData[i]);
+        storageRef.on(`state_changed`,snapshot=>{
+            this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+            }, error =>{console.log(error.message)},
+            ()=>{this.uploadValue=100;
+        
+            storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+                if(this.picture==this.picture){
+                    this.picture=this.picture + url + ',' ;
+                }else {
+                    return this.picture=url;
                 }
-                );
-        },
-    // clickSearch1: async function(){
-    //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);
-    //   console.log(this.userSearch.data.name);
-    //   this.searchCheck=2;
-    // },
-    // clickSearch: async function(){
-    //   await this.axios.get(this.url+'/asset/byCategory/'+this.category).then((response) => this.userSearch = response);
-    //   this.searchCate=this.userSearch;
-    //   this.searchCheck=3;
-    //   console.log(this.userSearch.data);
-    // }
-    // clickConfirm(id){
-    //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status="+this.status,{"status":this.status},{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
-    // clickdelete1(id){
-    //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=deleted",{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
+
+                // if(this.picture==0){
+                //   return  this.picture=url
+                // }
+                 
+                console.log(this.picture);
+            });
+
+            }
+            );
+        }
+    },
+    
+    submitFiles() {
+
+        let formData = new FormData();
+
+        for( var i = 0; i < this.$refs.file.files.length; i++ ){
+            let file = this.$refs.file.files[i];
+            formData.append('files[' + i + ']', file);
+        }
+
+        axios.post(this.url+'/asset', {
+            headers: {
+                Authorization: this.getCookie('AC-ACCESS-KEY')
+            },
+        }
+        ).then(function(){
+        })
+        .catch(function(){
+        });
+    },
+    
+     
     clickconfirm(id){
       this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=Đã xác nhận",{
       headers: {

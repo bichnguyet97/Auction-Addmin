@@ -992,7 +992,7 @@ Vue.use(VueClipboard)
         console.log(this.auc);
     },
     clickconfirm(id){
-      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=Invalid",{
+      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=Valid",{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then(() => {
@@ -1001,7 +1001,7 @@ Vue.use(VueClipboard)
       console.log(this.hihi);
     },
     clickconfirmn(id){
-      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=Illegal",{
+      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=Invalid",{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then(() => {

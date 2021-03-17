@@ -248,6 +248,17 @@
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
+                                            <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                Kiểu đấu giá <span class="text-danger">*</span>
+                                            </label>
+                                            <div class="form-check">
+                                            <input v-model="traditional" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Truyền thống
+                                            </label>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
                                             <div class="col-2 offset-8">
                                                 <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
                                             </div>
@@ -326,6 +337,7 @@ Vue.use(VueClipboard)
       seller:'',
       save:true,
       assest:'',
+      traditional:'',
       showInfo1:false,
       showInfo2:false,
       showInfo3:false,

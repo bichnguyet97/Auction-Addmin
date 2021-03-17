@@ -239,6 +239,8 @@
                                                 placeholder="Select file"
                                                 drop-placeholder="Drop file here..."
                                                 accept="image/*"
+                                                multiple
+                                                id="inputGroupFile02"
                                                 ></b-form-file>
                                                 <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
                                             </div>
@@ -983,7 +985,8 @@ Vue.use(VueClipboard)
       picture:null,
       bedroomsNumber:'',
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
-      searchCate:''
+      searchCate:'',
+      imageData:[]
     };
   },
   components: {
@@ -1021,8 +1024,9 @@ Vue.use(VueClipboard)
             // this.uploadValue=0;
             for( var i = 0; i < document.querySelector("#inputGroupFile02").files.length; i++ ){  
                 this.testpicture=null;
-                this.imageData =event.target.files[0];
+                this.imageData[i] =event.target.files[i];
                 this.uploadValue=0;
+                console.log(this.i)
             }
         },
     onUpload(){
@@ -1030,23 +1034,28 @@ Vue.use(VueClipboard)
             // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
             // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
             // dateTime = date+' '+time;
-             
-                this.picture=null;
+            for( var i = 0; i < this.imageData.length; i++ ){
+                this.testpicture='';
                  
-                const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
+                const storageRef=Firebase.storage().ref(`${this.imageData[i].name}`+`${this.imageData[i].lastModified}`).put(this.imageData[i]);
                 storageRef.on(`state_changed`,snapshot=>{
                     this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
                     }, error =>{console.log(error.message)},
                     ()=>{this.uploadValue=100;
                 
                     storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
-                        this.testpicture=url1;
+                        if(this.testpicture==this.testpicture){
+                            this.testpicture=this.testpicture + url1 + ',' ;
+                        }else {
+                            return this.testpicture=url1;
+                        } 
+                        // this.testpicture=url1;
                         console.log(this.testpicture);
                     });
 
                     }
                     );
-            
+            }
         },
     // clickSearch1: async function(){
     //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);

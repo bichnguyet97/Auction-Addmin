@@ -355,7 +355,7 @@ Vue.use(VueClipboard)
   },
   methods: { 
     clickAdd1:async function(){
-    await this.axios.post(this.url+'/auction/',{ "assest": this.assest,
+    await this.axios.post(this.url+'/auction/',{ "assest": this.assest,"traditional":this.traditional,
       "bidPrice": this.bidPrice,"endAt": this.endAt, "startAt": this.startAt, "warranty": this.warranty, "stepPrice": this.stepPrice, "buyPrice": this.buyPrice,
         "area": this.area, "note": this.note,"attendanceDeadline":this.attendanceDeadline, "seller": this.seller, "cancelRegisterFee": this.cancelRegisterFee
       },{

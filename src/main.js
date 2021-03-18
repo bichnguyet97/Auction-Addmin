@@ -16,6 +16,7 @@
 
 */
 import Vue from 'vue'
+import VueLazyload from 'vue-lazyload'
 import VueCookies from 'vue-cookies';
 import App from './App.vue'
 import router from './router'
@@ -32,7 +33,12 @@ Vue.config.productionTip = false
 
 Vue.use(ArgonDashboard)
 
+var Paginate = require('vuejs-paginate')
+Vue.component('paginate', Paginate)
+
 Vue.use(VueCookies);
+
+Vue.use(VueLazyload)
 
 firebase.initializeApp({
   apiKey: "AIzaSyAgT9AnK8vAq4HuiB0Ch4pJS8RafVjvtic",

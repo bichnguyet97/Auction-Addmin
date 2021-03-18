@@ -144,7 +144,7 @@
                                                 </button>
                                             </div>
                                         </div>
-                                        <div id="topimage" class="user-avatar mb-3 text-center">
+                                        <div  class="user-avatar mb-3 text-center">
                                             <img :src="picture" alt="">
                                         </div>
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
@@ -156,7 +156,7 @@
                                         
                                     </div>
                                         
-                                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
+                                    <!-- <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Video gới thiệu
                                     </h3>
                                     <div class="form-group">
@@ -191,13 +191,13 @@
                                                 <small id="emailHelp" class="form-text text-muted">Link youtube video</small>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="d-block d-md-flex align-items-center border-bottom mb-3 pb-2 mt-5 ">
                                         <h3 class="card-title f-17 font-weight-700 bd-highlight mb-3 mb-sm-0">
                                             Thuộc tính tài sản
                                         </h3>
-                                        <div class="bd-highlight ml-auto">
+                                        <!-- <div class="bd-highlight ml-auto">
                                             <select v-model="check" class="form-control select-default selectpickernone ">
                                                 <option value="">Chọn loại tài sản</option>
                                                 <option  value="1" selected="selected">Bất động sản</option>
@@ -208,9 +208,9 @@
                                                 <option value="6">Cây cảnh</option>
                                                 <option value="7">Sim số đẹp</option>
                                             </select>
-                                        </div>
+                                        </div> -->
                                     </div>
-                                    <div v-if="check==1">
+                                    <div v-if="category=='Bất động sản'">
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
@@ -400,7 +400,7 @@
                                         </div>
                                     </div>
                                     </div >
-                                    <div v-if="check==2">
+                                    <div v-if="category=='Xe hơi'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -603,7 +603,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="check==7">
+                                    <div v-if="category=='Sim số đẹp'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -632,7 +632,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="check==3">
+                                    <div v-if="category=='Đá quý'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -696,34 +696,36 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="check==4">
+                                    <div v-if="category=='Nghệ thuật'">
                                         helo
                                     </div>
-                                    <div v-if="check==5">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Loại đồ cổ</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                </div>
+                                    <div v-if="category=='Đồ cổ'">
+                                     
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Loại đồ cổ</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <input v-model="type" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="check==5">
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Tuổi đời</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <input v-model="yearOld" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                </div>
+                                     
+                                     
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Tuổi đời</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <input v-model="yearOld" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="check==6">
+                                    
+                                    </div>
+                                    <div v-if="category=='Cây cảnh'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">

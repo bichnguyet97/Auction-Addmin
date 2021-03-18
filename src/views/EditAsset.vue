@@ -257,7 +257,7 @@
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
                                     </div>
 
-                                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
+                                    <!-- <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Video gới thiệu
                                     </h3>
                                     <div class="form-group">
@@ -292,7 +292,7 @@
                                                 <small id="emailHelp" class="form-text text-muted">Link youtube video</small>
                                             </div>
                                         </div>
-                                    </div>
+                                    </div> -->
 
                                     <div class="d-block d-md-flex align-items-center border-bottom mb-3 pb-2 mt-5 ">
                                         <h3 class="card-title f-17 font-weight-700 bd-highlight mb-3 mb-sm-0">

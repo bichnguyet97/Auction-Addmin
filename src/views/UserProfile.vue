@@ -454,6 +454,13 @@
             </div>
           </div>
         </div>
+        <b-pagination
+          v-model="currentPage"
+          :total-rows="rows"
+          :per-page="perPage"
+          aria-controls="users"
+          align="center"
+        ></b-pagination>
     </div>
 </template>
 <script>
@@ -462,6 +469,8 @@ import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
@@ -472,18 +481,24 @@ Vue.use(VueClipboard)
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => {this.users=response.data});
+        }).then((response) => {this.users=response.data, this.rows = response.data.length,this.data.slice((this.currentPage - 1) * this.perPage,this.currentPage * this.perPage,)
+    });
     console.log(users);
+      
     return {
       email: '',
       password:'',
       id: '',
+      page: 10,
       name: '',
       created:'',
       group: '',
+      currentPage : 1,
+      perPage : 20,
       province:'',
       updated:'',
       info:'',
+      rows:[],
       gender:'',
       users: [],
       add:true,
@@ -627,6 +642,12 @@ Vue.use(VueClipboard)
                 );
         
     },
+    
+    // get itemsForList() {
+    //   return this.data.slice(
+    //     (this.currentPage - 1) * this.perPage,
+    //     this.currentPage * this.perPage,
+    //   );},
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);

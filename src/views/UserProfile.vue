@@ -77,22 +77,22 @@
                           </tr>
                         </thead>
                         <tbody v-if="searchCheck==false" >
-                          <tr v-for="users in users" v-bind:key="users.id">
-                            <th scope="row">{{users.id}}</th>
-                            <td class="test">{{users.name}}</td>
-                            <td class="test">{{users.email}}</td>
-                            <td class="test"><a :href="users.avatar">{{users.avatar}}</a></td>
-                            <td>{{users.password}}</td>
-                            <td>{{users.group}}</td>
-                            <td>{{users.created}}</td>
-                            <td>{{users.updated}}</td>
-                            <td style="color:red;">{{users.isActive}}</td>
+                          <tr v-for="user in users2" v-bind:key="user.id">
+                            <th scope="row">{{user.id}}</th>
+                            <td class="test">{{user.name}}</td>
+                            <td class="test">{{user.email}}</td>
+                            <td class="test"><a :href="user.avatar">{{user.avatar}}</a></td>
+                            <td>{{user.password}}</td>
+                            <td>{{user.group}}</td>
+                            <td>{{user.created}}</td>
+                            <td>{{user.updated}}</td>
+                            <td style="color:red;">{{user.isActive}}</td>
                             <td>
                               <span>
-                                <base-button size="sm" outline type="danger" v-on:click="clickdelete1(users.id)">Xoá</base-button>
+                                <base-button size="sm" outline type="danger" v-on:click="clickdelete1(user.id)">Xoá</base-button>
                                 <span> 
                                   <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button> -->
-                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="close3=false,clickSearch2(users.id)">Thông tin chi tiết</b-button>
+                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="close3=false,clickSearch2(user.id)">Thông tin chi tiết</b-button>
                                 </span>
                               </span>
                             </td>
@@ -221,6 +221,13 @@
                     </div>
                 </div>
             </div>
+            <paginate
+            :page-count="totalPage"
+            :click-handler="onclick"
+            :prev-text="'Prev'"
+            :next-text="'Next'"
+            class="pagination">
+          </paginate>
         </div>
         <div v-else class="mt--7">
           <div class="card border-0 rounded-0 shadow-sm">
@@ -454,13 +461,9 @@
             </div>
           </div>
         </div>
-        <b-pagination
-          v-model="currentPage"
-          :total-rows="rows"
-          :per-page="perPage"
-          aria-controls="users"
-          align="center"
-        ></b-pagination>
+         
+        
+        
     </div>
 </template>
 <script>
@@ -477,13 +480,14 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    var users= [];
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => {this.users=response.data, this.rows = response.data.length,this.data.slice((this.currentPage - 1) * this.perPage,this.currentPage * this.perPage,)
-    });
-    console.log(users);
+        }).then((response) => {
+          this.users = response.data, 
+          this.users2 = response.data.slice(0, this.perPage-1), 
+          this.totalPage = Math.ceil(response.data.length / this.perPage)
+         });
       
     return {
       email: '',
@@ -491,6 +495,8 @@ Vue.use(VueClipboard)
       id: '',
       page: 10,
       name: '',
+      rows: 0,
+      results: [],
       created:'',
       group: '',
       currentPage : 1,
@@ -498,9 +504,10 @@ Vue.use(VueClipboard)
       province:'',
       updated:'',
       info:'',
-      rows:[],
       gender:'',
       users: [],
+      users2:[],
+      totalPage:0,
       add:true,
       Search:[],
       dateofbirth:'',
@@ -643,6 +650,10 @@ Vue.use(VueClipboard)
         
     },
     
+    onclick(page){
+      console.log(page);
+      this.users2 = this.users.slice((page-1)*this.perPage,page*this.perPage-1)
+    },
     // get itemsForList() {
     //   return this.data.slice(
     //     (this.currentPage - 1) * this.perPage,
@@ -664,10 +675,40 @@ Vue.use(VueClipboard)
       return "";
     }
     },
-  
   }
 </script>
 <style lang="scss">
+
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  
+}
+
+.pagination li {
+  border: 0.1rem solid green;
+  display: block;
+  margin: 0 0.5rem;
+  height: 1.5rem;
+  width: 3rem;
+  text-align: center;
+  border-radius:2.5rem;
+}
+
+.pagination li a {
+  display: block;
+}
+
+.pagination li a:focus {
+  outline: none;
+}
+
+.pagination li.active {
+  background-color: #4CAF50;
+  color: white;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

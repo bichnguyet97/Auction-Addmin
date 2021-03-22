@@ -8,7 +8,7 @@
                 <div class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
                         <div class="card-text pt-1">
-                            <div v-for="asset in asset" v-bind:key="asset.id" class="row">
+                            <div v-for="asset in asset2" v-bind:key="asset.id" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                     <div class="user-avatar mb-3 text-center">
                                       <img @click="hinh=false,clickSearch2(asset.id)" class="w-100" :src="asset.images" alt="">
@@ -68,6 +68,13 @@
                     </div>
                 </div>
             </div>
+            <paginate
+            :page-count="totalPage"
+            :click-handler="onclick"
+            :prev-text="'Prev'"
+            :next-text="'Next'"
+            class="pagination">
+            </paginate>
         </div>
         <div v-else>
             <!-- <div class="row">
@@ -918,7 +925,9 @@ Vue.use(VueClipboard)
   data() {
     var asset = [];
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset'
-        ).then((response) => { this.asset=response.data});
+        ).then((response) => { this.asset=response.data, this.asset2 = response.data.slice(0, this.perPage-1), 
+          this.totalPage = Math.ceil(response.data.length / this.perPage)  
+          });
     console.log(asset);
     return {
       initPrice: '',
@@ -927,6 +936,7 @@ Vue.use(VueClipboard)
       finalPrice:'',
       images:'',
       image:'',
+      asset2:[],
       gear:'',
       amount:'',
       description:'',
@@ -986,7 +996,10 @@ Vue.use(VueClipboard)
       bedroomsNumber:'',
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',
-      imageData:[]
+      imageData:[],
+      totalPage:0,
+      currentPage : 1,
+      perPage : 10
     };
   },
   components: {
@@ -1057,6 +1070,10 @@ Vue.use(VueClipboard)
                     );
             }
         },
+    onclick(page){
+    console.log(page);
+      this.asset2 = this.asset.slice((page-1)*this.perPage,page*this.perPage-1)
+    },
     // clickSearch1: async function(){
     //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);
     //   console.log(this.userSearch.data.name);
@@ -1116,6 +1133,37 @@ Vue.use(VueClipboard)
 </script>
 
 <style lang="scss">
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  
+}
+
+.pagination li {
+  border: 0.1rem solid green;
+  display: block;
+  margin: 0 0.5rem;
+  height: 1.5rem;
+  width: 3rem;
+  text-align: center;
+  border-radius:2.5rem;
+}
+.pagination li a {
+  display: block;
+}
+
+.pagination li a:focus {
+  outline: none;
+}
+.pagination li a {
+  margin-top: 2px;
+}
+.pagination li.active {
+  background-color: #4CAF50;
+  color: white;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

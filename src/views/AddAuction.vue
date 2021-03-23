@@ -157,22 +157,7 @@
                                             </base-input>
                                             </div>
                                         </div>
-                                        <!-- <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                    Nhập Email <span class="text-danger">*</span>
-                                                </label>
-                                                <input v-model="email" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
-                                            </div>
-                                        </div> -->
-                                        <!-- <div class="col-12 col-md-6">
-                                            <div class="form-group">
-                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                    Nhập số điện thoại <span class="text-danger">*</span>
-                                                </label>
-                                                <input v-model="mobile" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
-                                            </div>
-                                        </div> -->
+                                         
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">

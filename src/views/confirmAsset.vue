@@ -12,7 +12,7 @@
                             <div v-for="asset in asset2" v-bind:key="asset.id" class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
                                     <div class="user-avatar mb-3 text-center">
-                                      <img @click="hihi=false,clickSearch2(asset.id)" class="w-100" :src="asset.images" alt="">
+                                      <img @click="clickSearch2(asset.id),hihi=false" class="w-100" :src="asset.images" alt="">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-9 col-md-6 border-top">
@@ -42,6 +42,7 @@
                                       <span>
                                         <i class="fa fa-check-circle-o" aria-hidden="true"></i>
                                       </span>
+                                      <b-button style="margin-top:5px;" size="sm" v-on:click="clickSearch2(asset.id,hihi=false)" variant="primary">Xem chi tiết</b-button>
                                       <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickconfirm(asset.id)" variant="primary">Xác nhận</b-button>
                                       <b-button v-b-modal.modal2 style="margin-top:5px;" size="sm" v-on:click="clickconfirmn(asset.id)" variant="danger">Không xác nhận</b-button>
                                     </div>
@@ -81,17 +82,7 @@
                             <div class="detail-photo position-relative">
                                 <div class="photo-slide photo-box">
                                     <!--Thumb-->
-                                    <!-- <div class="photo-thum">
-                                        <div id="secondary-slider" class="splide secondary-slider">
-                                            <div class="splide__track">
-                                                <ul class="splide__list">
-                                                    <li class="splide__slide">
-                                                        <img :src="Search.images.split(',',1)">
-                                                    </li>
-                                                </ul>
-                                            </div>
-                                        </div>
-                                    </div> -->
+                                     
                                     <div>
                                     <b-carousel
                                       id="carousel-fade"
@@ -325,12 +316,7 @@
                                             <strong>{{asse.direction}}</strong>
                                         </span>
                                     </div>
-                                    <!-- <div class="col-12 col-xl-4 col-lg-4 col-md-6">
-                                        <span class="mb-2 d-block">
-                                            <span>Số lượng tầng:</span>
-                                            <strong>3 tầng</strong>
-                                        </span>
-                                    </div> -->
+                                    
                                     <div class="col-12 col-xl-4 col-lg-4 col-md-6">
                                         <span class="mb-2 d-block">
                                             <span>Số phòng ngủ: </span>

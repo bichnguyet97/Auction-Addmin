@@ -162,33 +162,7 @@
                               </span>
                             </td>
                           </tr>
-                          <!-- <b-modal id="modal-4" title="Sửa người dùng">
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="">Tên<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="name" class="form-control" id="namee" name="namee" type="text" placeholder="hi" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Địa chỉ<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="address" class="form-control" id="address" name="address" type="text" placeholder="address" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Ảnh<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="avatar" class="form-control" id="avatar" name="avatar" type="text" placeholder="avatar" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Số điện thoại<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="mobile" class="form-control" id="mobile" name="mobile" type="text" placeholder="mobile" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Giới tính<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="gender" class="form-control" id="gender" name="gender" type="text" placeholder="gender" value>
-                              </div>
-                              <div class="col-2 offset-8">
-                                <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickEdit(buffer)">Save</button>
-                              </div>
-                            </div>
-                          </b-modal> -->
+                           
                           <b-modal id="modalPopover" title="Thông báo" ok-only>
                             <p>
                               Cập nhật thành công !
@@ -197,22 +171,7 @@
                         </tbody>
                       </table>
                       </div>
-                      <!-- <b-modal id="modal-5" title="Thông tin người dùng">
-                        <div class="">
-                          <div class="col-md-9">
-                            <b-avatar :src="Search.avatar" size="6rem"></b-avatar>
-                            <h5><i class="fa fa-user" aria-hidden="true"></i> {{Search.name}}</h5>
-                            <h5><i class="fa fa-envelope" aria-hidden="true"></i> {{Search.email}}</h5>
-                            <h5><i class="fa fa-phone" aria-hidden="true"></i> {{Search.mobile}}</h5>
-                            <h5><i class="fa fa-home" aria-hidden="true"></i> {{Search.province}}</h5>
-                            <h5> <i class="fa fa-transgender" aria-hidden="true"></i>: {{Search.gender}}</h5>
-                            <h5><i class="fa fa-users" aria-hidden="true"></i>: {{Search.group}}</h5>
-                            <h5>Ngày sinh nhật <i class="fa fa-birthday-cake" aria-hidden="true"></i>: {{Search.dateofbirth}}</h5>
-                            <h5>Ngày tạo <i class="fa fa-calendar" aria-hidden="true"></i>: {{Search.created}}</h5>
-                            <h5>Ngày cập nhật <i class="fa fa-calendar" aria-hidden="true"></i>: {{Search.updated}}</h5>
-                          </div>
-                        </div>
-                      </b-modal> -->
+                       
                       <b-modal id="modalPopover1" title="Thông báo" ok-only>
                         <p>
                           Cập nhật thành công !

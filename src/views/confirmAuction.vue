@@ -84,10 +84,6 @@
                                               <div class="pri-bid mb-3 mb-sm-0">
                                                 <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auctionnn.asset.id}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">Loại: {{auctionnn.asset.category}}</span>
-                                                <!-- <span class="f-13 mr-1 d-block mb-1">Giá niêm yết:{{auction.initPrice}}</span> -->
-                                                <!-- <span class="f-13 mr-1 d-block mb-1">Giá hiện tại: {{asset.currentPrice}}</span> -->
-                                                <!-- <span class="f-13 mr-1 d-block mb-1">Ngày đăng:{{auction.created}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật:{{auction.updated}}</span> -->
                                                 <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auctionnn.asset.created}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auctionnn.asset.updated}}</span>
                                                 <span class="f-13 mr-1 d-block mb-1">
@@ -937,7 +933,7 @@
     </div>
 </template>
 <script>
-// import Login from './views/Login.vue';
+
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'

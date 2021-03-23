@@ -401,14 +401,9 @@
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Giá niêm yết</th>
                             <th scope="col">Giá hiện tại</th>
-                            <!-- <th scope="col">Auctions</th> -->
-                            <!-- <th scope="col">Final Price</th> -->
                             <th scope="col">Tạo</th>
                             <th scope="col">Cập nhật</th>
-                            <!-- <th scope="col">Tags</th> -->
-                            <!-- <th scope="col">Người bán</th> -->
                             <th scope="col">Trạng thái</th>
-                            <!-- <th scope="col">Xác nhận</th> -->
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>
@@ -420,12 +415,8 @@
                             <td class="test"><a :href="asset.images">{{asset.images}}</a></td>
                             <td>{{formatPrice(asset.initPrice)}}</td>
                             <td>{{formatPrice(asset.currentPrice)}}</td>
-                            <!-- <td>{{asset.auctions}}</td> -->
-                            <!-- <td>{{asset.finalPrice}}</td> -->
                             <td>{{asset.created}}</td>
                             <td>{{asset.updated}}</td>
-                            <!-- <td>{{asset.tags}}</td> -->
-                            <!-- <td>{{asset.seller}}</td> -->
                             <td style="color:red;">{{asset.status}}</td>
                             <td>
                               <span>
@@ -453,7 +444,7 @@
                             <td>{{userSearch.data.currentPrice}}</td>
                             <td class="test">{{userSearch.data.created}}</td>
                             <td class="test">{{userSearch.data.updated}}</td>
-                            <!-- <td>{{userSearch.data.seller}}</td> -->
+                             
                             <td style="color:red;">{{userSearch.data.status}}</td>
                             <td>
                               <span>
@@ -479,28 +470,11 @@
                             <td class="test"><a :href="searchCate.data[n-1].images">{{searchCate.data[n-1].images}}</a></td>
                             <td>{{searchCate.data[n-1].initPrice}}</td>
                             <td>{{searchCate.data[n-1].currentPrice}}</td>
-                            <!-- <td>{{asset.auctions}}</td> -->
-                            <!-- <td>{{asset.finalPrice}}</td> -->
                             <td class="test">{{searchCate.data[n-1].created}}</td>
                             <td class="test">{{searchCate.data[n-1].updated}}</td>
-                            <!-- <td>{{searchCate.data[n-1].tags}}</td> -->
-                            <!-- <td>{{searchCate.data[n-1].seller}}</td> -->
                             <td>{{searchCate.data[n-1].status}}</td>
                             <td>
                               <span>
-                                <!-- <base-input>
-                                  <select v-model="status" class="form-control">
-                                    <option disable value="">Chọn</option>
-                                    <option>Đã xác nhận</option>
-                                    <option>Chờ xác nhận</option>
-                                    <option>Chờ đăng báo</option>
-                                    <option>Đã đăng báo</option>
-                                    <option>Đã xoá</option>
-                                  </select>
-                                  <b-button style="margin-top:5px;" size="sm" v-on:click="clickConfirm(asset.id,status)" variant="primary">Xác nhận</b-button>
-                                  <b-button size="sm" v-on:click="clickdelete1(asset.id)" variant="Danger">Xoá</b-button>
-                                  
-                                </base-input> -->
                                 <base-button style="margin-top:5px;" size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
                               </span>
                             </td>

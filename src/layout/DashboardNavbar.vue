@@ -46,10 +46,11 @@
                             <span>Support</span>
                         </router-link>
                         <div class="dropdown-divider"></div>
-                        <router-link to="/profile" class="dropdown-item">
+                        <!-- <router-link to="/profile" class="dropdown-item">
                             <i class="ni ni-user-run"></i>
                             <span>Logout</span>
-                        </router-link>
+                        </router-link> -->
+                        <a href="/login" class="dropdown-item"><i class="ni ni-user-run"></i><span class="nav-link-text">Logout</span></a>
                     </template>
                 </base-dropdown>
             </li>

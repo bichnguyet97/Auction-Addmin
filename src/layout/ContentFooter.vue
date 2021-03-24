@@ -6,7 +6,7 @@
         Bản quyền  © {{year}} <a href="https://www.creative-tim.com" class="font-weight-bold ml-1" target="_blank">Công ty Đấu giá Hợp danh Số 1 Á Châu.</a>
         </div>
       </div>
-      <div class="col-lg-6">
+      <!-- <div class="col-lg-6">
         <ul class="nav nav-footer justify-content-center justify-content-lg-end">
           <li class="nav-item">
             <a href="https://www.creative-tim.com" class="nav-link" target="_blank">Creative Tim</a>
@@ -21,7 +21,7 @@
             <a href="https://www.creative-tim.com/license" class="nav-link" target="_blank">License</a>
           </li>
         </ul>
-      </div>
+      </div> -->
     </div>
   </footer>
 </template>

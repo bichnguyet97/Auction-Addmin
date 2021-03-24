@@ -44,20 +44,7 @@
                                     </div>
                                 </div>
                                 </div>
-                                <!-- <div class="col12 col-xl-11 col-lg-5" id="right">
-                                  <div class="text-right bid-pri-box">
-                                    <div class="pri-bid mb-3">
-                                      <span class="f-13 mr-1 d-block mb-1">Giá hiện tại:</span>
-                                      <strong class="text-danger font-weight-800 d-block lh-1 f-17">{{asset.currentPrice}} VNDT</strong>
-                                    </div>
-                                    <div class="link-box">
-                                      <span>
-                                        <i class="fa fa-check-circle-o" aria-hidden="true"></i>
-                                      </span>
-                                      <b-button v-b-modal.modalPopover style="margin-top:5px;" size="sm" v-on:click="clickconfirm(asset.id)" variant="primary">Xác nhận</b-button>
-                                    </div>
-                                  </div>
-                                </div> -->
+                                 
                             </div>
                             <b-modal id="modalPopover" title="Thông báo" ok-only>
                               <p>
@@ -77,45 +64,6 @@
             </paginate>
         </div>
         <div v-else>
-            <!-- <div class="row">
-            <div class="col-12 col-xl-3 col-lg-3 col-md-4">
-                <div class="user-avatar mb-3 text-center">
-                    <img class="w-100" :src="Search.assets[0].images" alt="">
-                </div>
-            </div>
-            </div>
-            <div class="col-12 col-xl-9 col-lg-9 col-md-8">
-            <div class="row">
-                <div class="col-12 col-md-6">
-                <div class="form-group">
-                    <label class="col-form-label pb-1 pt-0 font-weight-600">
-                    Tên tài sản<span class="text-danger">*</span>
-                    </label>
-                    <input v-model="name" type="" class="form-control form-control-user fs-090" :placeholder="Search.name" maxlength="20">
-                </div>
-                </div>
-                <div class="col-12 col-md-6">
-                <div class="form-group">
-                    <label class="col-form-label pb-1 pt-0 font-weight-600">
-                    Ảnh<span class="text-danger">*</span>
-                    </label>
-                    <input v-model="images" type="" class="form-control form-control-user fs-090" :placeholder="Search.images" maxlength="20">
-                </div>
-                <div class="form-group">
-                    <label class="col-form-label pb-1 pt-0 font-weight-600">
-                    Giá<span class="text-danger">*</span>
-                    </label>
-                    <input v-model="initPrice" type="" class="form-control form-control-user fs-090" :placeholder="Search.initPrice" maxlength="20">
-                </div>
-                </div>
-                <button id="buttontt" v-b-modal.modalPopover class="btn btn-primary mb-2" @click="clickEdit(Search.id)">Cập nhật tài sản</button>
-                <b-modal id="modalPopover" title="Thông báo" ok-only>
-                <p>
-                Cập nhật tài khoản thành công !
-                </p>
-                </b-modal>
-            </div>
-            </div> -->
             <div class="col-12 col-lg-12">
             <div class="edit-profile">
                 <div class="card border-0 rounded-0 shadow-sm">
@@ -147,16 +95,6 @@
                                         </div>
                                     </div>
 
-                                    <!-- <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Mã tài sản<span class="text-danger">*</span></label>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <input type="text" class="form-control form-control-user fs-090" maxlength="20">
-                                            </div>
-                                        </div>
-                                    </div> -->
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
@@ -207,25 +145,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Người bán<span class="text-danger">*</span></label>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <select class="form-control select-default selectpickernone">
-                                                    <option value="0">Chọn người bán</option>
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Nguyễn Văn Hưng</option>
-                                                    <option value="3">Nguyễn Tuấn Ngọc</option>
-                                                    <option value="4">Hoàng Anh Mạnh</option>
-                                                    <option value="5">Quách Tuấn Du</option>
-                                                    <option value="6">Hoàng Ngọc Linh</option>
-                                                    <option value="7">Trương Vĩnh Kiệt</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
 
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Thư viện ảnh
@@ -1071,8 +990,8 @@ Vue.use(VueClipboard)
             }
         },
     onclick(page){
-    console.log(page);
-      this.asset2 = this.asset.slice((page-1)*this.perPage,page*this.perPage-1)
+        console.log(page);
+        this.asset2 = this.asset.slice((page-1)*this.perPage,page*this.perPage-1)
     },
     // clickSearch1: async function(){
     //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);

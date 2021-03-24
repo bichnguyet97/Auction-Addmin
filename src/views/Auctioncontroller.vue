@@ -18,7 +18,7 @@
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(auction.id)">SearchID</button>
                         </div>
-                        <div class="col-2 offset-8">
+                        <!-- <div class="col-2 offset-8">
                           <b-button id="button_add" v-b-modal.modal-1 variant="primary">Tạo mới</b-button>
                           <b-modal id="modal-1" title="Tạo mới">
                             <div v-if="close1" class="form-group">
@@ -47,7 +47,7 @@
                             </div>
                           </div>
                           </b-modal>
-                        </div>
+                        </div> -->
                         <!-- <div class="col-2 offset-8">
                           <div class="form-group">
                             <b-input-group id="add1">
@@ -64,7 +64,7 @@
                           </div>
                         </div> -->
                       </div>
-                      <div class="closeIn">
+                      <!-- <div class="closeIn">
                         <div v-if="close1" class="form-group">
                           <label class="col-md-3 control-label" for="">Assest<strong>*</strong></label>
                           <div class="col-md-9"> 
@@ -87,7 +87,7 @@
                             <b-button variant="outline-primary" @click="close1=false">Thoát</b-button>
                           </div>
                         </div>
-                      </div>
+                      </div> -->
                       <div class="">
                       <table class="table table-striped">
                         <thead>
@@ -102,8 +102,8 @@
                             <!-- <th scope="col">Người đăng</th> -->
                           </tr>
                         </thead>
-                        <tbody class="test" v-if="searchCheck==1">
-                          <tr v-for="auction in auction" v-bind:key="auction.id">
+                        <tbody class="test">
+                          <tr v-for="auction in auction2" v-bind:key="auction.id">
                             <th scope="row">{{auction.id}}</th>
                             <td>{{auction.created}}</td>
                             <td>{{auction.updated}}</td>
@@ -150,6 +150,13 @@
                     </div>
                 </div>
             </div>
+            <paginate
+            :page-count="totalPage"
+            :click-handler="onclick"
+            :prev-text="'Prev'"
+            :next-text="'Next'"
+            class="pagination">
+            </paginate>
         </div>
 <!-- <vue /> -->
     </div>
@@ -160,6 +167,8 @@ import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
@@ -170,7 +179,9 @@ Vue.use(VueClipboard)
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.auction=response.data});
+        }).then((response) => { this.auction=response.data, this.auction2 = response.data.slice(0, this.perPage-1), console.log(response),
+          this.totalPage = Math.ceil(response.data.length / this.perPage)
+        });
     console.log(auction);
     return {
       bidPrice: '',
@@ -198,6 +209,10 @@ Vue.use(VueClipboard)
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',
       users:[],
+      auction2:'',
+      totalPage:0,
+      currentPage : 1,
+      perPage : 20
     };
   },
   components: {
@@ -261,6 +276,10 @@ Vue.use(VueClipboard)
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
+    onclick(page){
+      console.log(page);
+      this.auction2 = this.auction.slice((page-1)*this.perPage,page*this.perPage-1)
+    },
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
@@ -281,6 +300,36 @@ Vue.use(VueClipboard)
 </script>
 
 <style lang="scss">
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  
+}
+
+.pagination li {
+  border: 0.1rem solid green;
+  display: block;
+  margin: 0 0.5rem;
+  height: 1.5rem;
+  width: 3rem;
+  text-align: center;
+  border-radius:2.5rem;
+}
+
+.pagination li a {
+  display: block;
+}
+
+.pagination li a:focus {
+  outline: none;
+}
+
+.pagination li.active {
+  background-color: #4CAF50;
+  color: white;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

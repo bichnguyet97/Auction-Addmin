@@ -195,7 +195,7 @@
                 <div class="row">
                   <div class="col-12 col-xl-3 col-lg-3 col-md-4">
                     <div class="user-sum ml-7">
-                      <b-avatar style="width:128px; height:128px" :src="Search.avatar"></b-avatar>
+                      <b-avatar style="width:128px; height:128px" :src="inavatar"></b-avatar>
                     </div>
                     <div class="user-sum ml-6">
                         <button v-b-modal.modal-1 class="btn btn-warning btn-sm" @click="changeAvatar=true">
@@ -458,6 +458,7 @@ Vue.use(VueClipboard)
       results: [],
       created:'',
       group: '',
+      inavatar:'',
       currentPage : 1,
       perPage : 20,
       province:'',
@@ -560,7 +561,7 @@ Vue.use(VueClipboard)
       this.axios.get(this.url+'/user/'+id)
       .then((response) => { this.Search=response.data, this.inlastname= response.data.lastname,this.infullname= response.data.fullname, this.indateofbirth= response.data.dateofbirth,
                             this.inname=response.data.name,this.inmobile=response.data.mobile,this.inprovince=response.data.province,
-                            this.inemail=response.data.email,this.ingroup=response.data.group,
+                            this.inemail=response.data.email,this.ingroup=response.data.group,this.inavatar=response.data.avatar,
                             this.ingender= response.data.gender});
         console.log(this.Search);
       this.axios.get(this.url+'/user',{
@@ -578,34 +579,28 @@ Vue.use(VueClipboard)
         console.log(this.hihi);
     },
     previewImage(event){
-        // this.uploadValue=0;
-        
-            this.picture=null;
-            this.imageData =event.target.files[0];
-            this.uploadValue=0;
+      // this.uploadValue=0;
+      this.picture=null;
+      this.imageData =event.target.files[0];
+      this.uploadValue=0;
         
     },
     onUpload(){
-        // var today = new Date();
-        // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-        // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-        // dateTime = date+' '+time;
-          
-            this.picture=null;
-              
-            const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
-            storageRef.on(`state_changed`,snapshot=>{
-                this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                }, error =>{console.log(error.message)},
-                ()=>{this.uploadValue=100;
-            
-                storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
-                    this.picture=url1;
-                    console.log(this.picture);
-                });
+      this.picture=null;
+        
+      const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
+      storageRef.on(`state_changed`,snapshot=>{
+        this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+        }, error =>{console.log(error.message)},
+        ()=>{this.uploadValue=100;
+    
+        storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
+          this.picture=url1;
+          console.log(this.picture);
+        });
 
-                }
-                );
+        }
+        );
         
     },
     

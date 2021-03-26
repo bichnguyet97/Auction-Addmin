@@ -18,76 +18,9 @@
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(auction.id)">SearchID</button>
                         </div>
-                        <!-- <div class="col-2 offset-8">
-                          <b-button id="button_add" v-b-modal.modal-1 variant="primary">Tạo mới</b-button>
-                          <b-modal id="modal-1" title="Tạo mới">
-                            <div v-if="close1" class="form-group">
-                            <label class="col-md-3 control-label" for="">Assest<strong>*</strong></label>
-                            <div class="col-md-9"> 
-                            <input v-model="assest" class="form-control" id="assest" name="assest" type="text" placeholder="assest" value>
-                            </div>
-                            <label class="col-md-3 control-label" for="">Bid Price<strong>*</strong></label>
-                            <div class="col-md-9"> 
-                            <input v-model="bidPrice" class="form-control" id="bidPrice" name="bidPrice" type="text" placeholder="bidPrice" value>
-                            </div>
-                            <label class="col-md-3 control-label" for="">Thời gian bắt đầu<strong>*</strong></label>
-                            <div class="col-md-9">
-                            <base-input v-model="startAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
-                            </div>
-                            <label class="col-md-3 control-label" for="">Thời gian kết thúc<strong>*</strong></label>
-                            <div class="col-md-9">
-                            <base-input v-model="endAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
-                            </div>
-                            <label class="col-md-3 control-label" for="">Tiền cọc tham gia dự thầu<strong>*</strong></label>
-                            <div class="col-md-9">
-                            <input v-model="warranty" class="form-control" id="bidPrice" name="bidPrice" type="text" placeholder="bidPrice" value>
-                            </div>
-                            <div class="col-2 offset-8">
-                              <button type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
-                            </div>
-                          </div>
-                          </b-modal>
-                        </div> -->
-                        <!-- <div class="col-2 offset-8">
-                          <div class="form-group">
-                            <b-input-group id="add1">
-                            <b-input-group-prepend>
-                              <b-button variant="outline-primary">Status</b-button>
-                            </b-input-group-prepend>
-                              <select v-model="status" class="form-control">
-                                <option disable value="">All</option>
-                                <option>Kết thúc</option>
-                                <option>Đang đấu giá</option>
-                                <option>Sắp đấu giá</option>
-                              </select>
-                            </b-input-group>
-                          </div>
-                        </div> -->
+                         
                       </div>
-                      <!-- <div class="closeIn">
-                        <div v-if="close1" class="form-group">
-                          <label class="col-md-3 control-label" for="">Assest<strong>*</strong></label>
-                          <div class="col-md-9"> 
-                          <input v-model="assest" class="form-control" id="assest" name="assest" type="text" placeholder="assest" value>
-                          </div>
-                          <label class="col-md-3 control-label" for="">Bid Price<strong>*</strong></label>
-                          <div class="col-md-9"> 
-                          <input v-model="bidPrice" class="form-control" id="bidPrice" name="bidPrice" type="text" placeholder="bidPrice" value>
-                          </div>
-                          <label class="col-md-3 control-label" for="">End At<strong>*</strong></label>
-                          <div class="col-md-9"> 
-                          <input v-model="endAt" class="form-control" id="endAt" name="endAt" type="text" placeholder="endAt" value>
-                          </div>
-                          <label class="col-md-3 control-label" for="">Start At<strong>*</strong></label>
-                          <div class="col-md-9"> 
-                          <input v-model="startAt" class="form-control" id="startAt" name="startAt" type="text" placeholder="startAt" value>
-                          </div>
-                          <div class="col-2 offset-8">
-                            <button type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
-                            <b-button variant="outline-primary" @click="close1=false">Thoát</b-button>
-                          </div>
-                        </div>
-                      </div> -->
+                       
                       <div class="">
                       <table class="table table-striped">
                         <thead>
@@ -99,7 +32,6 @@
                             <th scope="col">Kết thúc</th>
                             <th scope="col">Giá dự thầu</th>
                             <th scope="col">Trạng thái</th>
-                            <!-- <th scope="col">Người đăng</th> -->
                           </tr>
                         </thead>
                         <tbody class="test">
@@ -111,11 +43,6 @@
                             <td>{{auction.endAt}}</td>
                             <td>{{formatPrice(auction.bidPrice)}}</td>
                             <td style="color:red;">{{auction.status}}</td>
-                            <!-- <td>
-                              <span>
-                                <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="clickinfo">Xem</b-button>
-                              </span>
-                            </td> -->
                           </tr>
                           <b-modal id="modal-3" title="Thông tin người đăng đấu giá">
                             <div class="form-group">

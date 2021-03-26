@@ -93,25 +93,6 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <!-- <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Người bán<span class="text-danger">*</span></label>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <select class="form-control select-default selectpickernone">
-                                                    <option value="0">Chọn người bán</option>
-                                                    <option value="1">Admin</option>
-                                                    <option value="2">Nguyễn Văn Hưng</option>
-                                                    <option value="3">Nguyễn Tuấn Ngọc</option>
-                                                    <option value="4">Hoàng Anh Mạnh</option>
-                                                    <option value="5">Quách Tuấn Du</option>
-                                                    <option value="6">Hoàng Ngọc Linh</option>
-                                                    <option value="7">Trương Vĩnh Kiệt</option>
-                                                </select>
-                                            </div>
-                                        </div>
-                                    </div> -->
 
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Thư viện ảnh

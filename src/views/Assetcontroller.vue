@@ -332,9 +332,7 @@
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(asset.id)">SearchID</button>
                         </div>
-                        <!-- <div @click="openIn" class="col-2 offset-8">
-                          <button type="button" class="btn btn-primary" @click="close2=true">Thêm mới</button>
-                        </div> -->
+                         
                         <div id="smtaomoi" class="col-2 offset-8">
                           <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button>
                           <b-modal id="modal-1" title="Tạo mới">
@@ -421,15 +419,7 @@
                             <td>
                               <span>
                                 <base-button size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
-                                <!-- <base-input>
-                                  <select size="sm" v-model="status" class="form-select form-select-sm">
-                                    <option disable value="">Chọn</option>
-                                    <option>Đã xác nhận</option>
-                                    <option>Chờ đăng báo</option>
-                                    <option>Đã đăng báo</option>
-                                  </select>
-                                  <b-button style="margin-top:59px; margin-left:-108px" size="sm" v-on:click="clickConfirm(asset.id,status)" variant="primary">Xác nhận</b-button>
-                                </base-input> -->
+                                 
                               </span>
                             </td>
                           </tr>
@@ -449,15 +439,7 @@
                             <td>
                               <span>
                                 <base-button size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
-                                <!-- <base-input>
-                                  <select id="select" v-model="status" class="form-control">
-                                    <option disable value="">Chọn</option>
-                                    <option>Đã xác nhận</option>
-                                    <option>Chờ đăng báo</option>
-                                    <option>Đã đăng báo</option>
-                                  </select>
-                                  <b-button style="margin-top:5px;" size="sm" v-on:click="clickConfirm(asset.id,status)" variant="primary">Xác nhận</b-button>
-                                </base-input> -->
+                                 
                               </span>
                             </td>
                           </tr>
@@ -490,7 +472,7 @@
     </div>
 </template>
 <script>
-// import Login from './views/Login.vue';
+
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'

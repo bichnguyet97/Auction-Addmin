@@ -13,6 +13,36 @@
                     <b-button  @click="check=3" variant="success">Danh sách tài đã kết thúc đấu giá</b-button>
                     <!-- <b-button variant="warning">Warning</b-button> -->
                   </b-button-group>
+                  <!-- <div class="card-body">
+                    <div class="vue-tabs">
+                      <div class="nav-tabs-navigation">
+                        <div class="nav-tabs-wrapper">
+                          <ul class="nav nav-tabs  ">
+                            <li class="tab">
+                              <a href="" class="tabs__link">
+                                <span class="title title_center">info</span>
+                              </a>
+                            </li>
+                            <li class="tab">
+                              <a href="" class="tabs__link">
+                                <span class="title title_center">info</span>
+                              </a>
+                            </li>
+                            <li class="tab">
+                              <a href="" class="tabs__link">
+                                <span class="title title_center">info</span>
+                              </a>
+                            </li>
+                            <li class="tab">
+                              <a href="" class="tabs__link">
+                                <span class="title title_center">info</span>
+                              </a>
+                            </li>
+                          </ul>
+                        </div>
+                      </div>
+                    </div>
+                  </div> -->
                 </div>
               </div>
                 <div v-if="check==2" class="card border-0 rounded-0 shadow-sm">

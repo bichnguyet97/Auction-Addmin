@@ -14,9 +14,7 @@
                             <i class="fa fa-reply" aria-hidden="true"></i>
                           </span>
                         </div>
-                        <!-- <div @click="openIn" class="col-2 offset-8">
-                          <button type="button" class="btn btn-primary" @click="close3=true">Thêm mới</button>
-                        </div> -->
+                         
                         <div class="col-2 offset-8">
                           <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button>
                           <b-modal id="modal-1" title="Tạo mới">
@@ -50,14 +48,7 @@
                           <div class="col-md-9">
                           <input v-model="alias" class="form-control" id="alias" name="alias" type="text" placeholder="May-bay" value>
                           </div>
-                          <!-- <label for="example-datetime-local-input" class="col-md-2 col-form-label form-control-label">Thời gian bắt đầu</label>
-                          <b-col md="9">
-                            <base-input v-model="created" type="datetime-local" value="2021-1-15T10:30:00" id="example-datetime-local-input"/>
-                          </b-col>
-                          <label for="example-datetime-local-input" class="col-md-2 col-form-label form-control-label">Thời gian kết thúc</label>
-                          <b-col md="9">
-                            <base-input v-model="updated" type="datetime-local" value="2021-1-15T10:30:00" id="example-datetime-local-input"/>
-                          </b-col> -->
+                           
                           <div class="col-2 offset-8">
                             <button type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
                             <b-button variant="outline-primary" @click="close3=false">Thoát</b-button>
@@ -173,7 +164,7 @@
     </div>
 </template>
 <script>
-// import Login from './views/Login.vue';
+ 
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'

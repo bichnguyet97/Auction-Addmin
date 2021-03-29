@@ -406,7 +406,7 @@
                           </tr>
                         </thead>
                         <tbody v-if="searchCheck==1">
-                          <tr v-for="asset in asset" v-bind:key="asset.id">
+                          <tr v-for="asset in asset2" v-bind:key="asset.id">
                             <th scope="row">{{asset.id}}</th>
                             <td>{{asset.name}}</td>
                             <td>{{asset.category}}</td>
@@ -467,6 +467,13 @@
                     </div>
                 </div>
             </div>
+            <paginate
+            :page-count="totalPage"
+            :click-handler="onclick"
+            :prev-text="'Prev'"
+            :next-text="'Next'"
+            class="pagination">
+            </paginate>
         </div>
 <!-- <vue /> -->
     </div>
@@ -477,6 +484,8 @@ import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
@@ -485,7 +494,9 @@ Vue.use(VueClipboard)
   data() {
     var asset = [];
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset'
-        ).then((response) => { this.asset=response.data});
+        ).then((response) => { this.asset=response.data, this.asset2 = response.data.slice(0, this.perPage-1), 
+          this.totalPage = Math.ceil(response.data.length / this.perPage)
+        });
     console.log(asset);
     return {
       initPrice: '',
@@ -510,12 +521,16 @@ Vue.use(VueClipboard)
       status:'',
       staus1:'đã xoá',
       asset: [],
+      asset2:[],
       add:true,
       sessionId:'',
       save:true,
       searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
-      searchCate:''
+      searchCate:'',
+      totalPage:0,
+      currentPage : 1,
+      perPage : 10
     };
   },
   components: {
@@ -569,6 +584,10 @@ Vue.use(VueClipboard)
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
+    },
+    onclick(page){
+        console.log(page);
+        this.asset2 = this.asset.slice((page-1)*this.perPage,page*this.perPage-1)
     },
     // clickEdit: async function(){
     //   await this.axios.put(this.url+'/category/'+this.id ,{ "name": this.name,"id":this.id,

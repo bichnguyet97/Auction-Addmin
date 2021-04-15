@@ -89,6 +89,9 @@
                                                     <option>Sim số</option>
                                                     <option>Đá quý</option>
                                                     <option>Nghệ thuật</option>
+                                                    <option>Điện thoại</option>
+                                                    <option>Đồ gia dụng</option>
+                                                    <option>Nghe nhìn</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -758,6 +761,231 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div v-if="category=='Điện thoại'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Độ phân giải</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="resolution" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Ram</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="ram" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Rom</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="rom" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!-- <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">CPU</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="cpu" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div> -->
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Kích thước màn hình</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="screenSize" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Hệ điều hành</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="operatingSystem" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Độ phân giải camera</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="camera" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Sim</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="sim" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Dung lượng pin</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="batteryCapacity" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Hãng điện thoại</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="trademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc điện thoại<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="color" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh dương</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu Bạc</option>
+                                                        <option>Màu nâu đen</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="origin" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn xuất xứ</option>
+                                                        <option>Hàn quốc</option>
+                                                        <option>Nhật bản</option>
+                                                        <option>Trung quốc</option>
+                                                        <option>Mỹ</option>
+                                                        <option>Việt nam</option>
+                                                        <option>Đức</option>
+                                                        <option>Thuỵ điển</option>
+                                                        <option>Úc</option>
+                                                        <option>Ấn độ</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="category=='Đồ gia dụng'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="homeNetwork" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn nhà mạng</option>
+                                                        <option>Viettel</option>
+                                                        <option>MobiFone</option>
+                                                        <option>Vietnamobile</option>
+                                                        <option>Vinaphone</option>
+                                                        <option>Gmobile(Beeline)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Số sim</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="simNumber" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Loại sim</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="category=='Nghe nhìn'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="homeNetwork" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn nhà mạng</option>
+                                                        <option>Viettel</option>
+                                                        <option>MobiFone</option>
+                                                        <option>Vietnamobile</option>
+                                                        <option>Vinaphone</option>
+                                                        <option>Gmobile(Beeline)</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Số sim</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="simNumber" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Loại sim</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Chi tiết tài sản
                                     </h3>
@@ -888,7 +1116,16 @@ Vue.use(VueClipboard)
       image:null,
       antiques:'',
       simNumber:'',
-      floorsNumber:''
+      floorsNumber:'',
+      resolution:'',
+      screenSize:'',
+      operatingSystem:'',
+      camera:'',
+      batteryCapacity:'',
+      sim:'',
+      ram:'',
+      rom:'',
+      cpu:''
     };
   },
   components: {
@@ -914,16 +1151,17 @@ Vue.use(VueClipboard)
           });
     },
     clickAdd1:async function(){
-     await this.axios.post(this.url+'/asset',{ "name": this.name,"initPrice": this.initPrice,"weight": this.weight,"brightness":this.brightness,
+     await this.axios.post(this.url+'/asset',{ "name": this.name,"initPrice": this.initPrice,"weight": this.weight,"brightness":this.brightness,"ram":this.ram,"rom":this.rom,"cpu":this.cpu,
       "category": this.category, "images":this.picture,"description":this.description, "currentStatus": this.currentStatus, "area": this.area,
       "direction": this.direction,"acreage":this.acreage, "bedroomsNumber": this.bedroomsNumber, "homeNetwork": this.homeNetwork, "type": this.type,
       "seatsNumber": this.seatsNumber,"origin": this.origin,"color": this.color, "manufactureYear": this.manufactureYear, "trademark": this.trademark,
       "toiletsNumber": this.toiletsNumber, "interiorColor": this.interiorColor,"gear": this.gear, "fuel": this.fuel, "consume": this.consume, "shape": this.shape,
-      "amount": this.amount,"yearOld":this.yearOld, "height":this.height, "stumpDiameter": this.stumpDiameter,"simNumber":this.simNumber,"floorsNumber":this.floorsNumber
+      "amount": this.amount,"yearOld":this.yearOld, "height":this.height, "stumpDiameter": this.stumpDiameter,"simNumber":this.simNumber,"floorsNumber":this.floorsNumber,
+      "resolution":this.resolution,"screenSize":this.screenSize,"operatingSystem":this.operatingSystem,"camera":this.camera,"batteryCapacity":this.batteryCapacity,"sim":this.sim
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }
+      }
       ).then((response) => console.log(response));
     },
     previewImage(event){
@@ -969,6 +1207,7 @@ Vue.use(VueClipboard)
         }
     },
     
+
     submitFiles() {
 
         let formData = new FormData();

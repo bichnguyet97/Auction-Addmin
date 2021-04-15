@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="testLinh">
         <base-header class="header pb-8 pt-5 pt-lg-8 d-flex align-items-center"
                      style="min-height: 600px; background-image: url(img/theme/profile-cover.jpg); background-size: cover; background-position: center top;">
             <span class="mask bg-gradient-success opacity-8"></span>
@@ -421,8 +421,6 @@
           </div>
         </div>
          
-        
-        
     </div>
 </template>
 <script>
@@ -736,6 +734,11 @@ employee-list{
 }
 #topimage{
     margin-top:10px;
+}
+@media (max-width: 768px) {
+  .testLinh{
+    display:none;
+  }
 }
 </style>
 

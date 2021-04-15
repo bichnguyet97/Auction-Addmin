@@ -364,6 +364,16 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Số tầng</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <input v-model="testfloorsNumber" type="text" class="form-control form-control-user fs-090" value="0" maxlength="500">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
                                                 <label class="col-form-label font-weight-600">Số phòng vệ sinh</label>
                                             </div>
                                             <div class="col-12 col-md-4">
@@ -635,6 +645,16 @@
                                                         <option>Vinaphone</option>
                                                         <option>Gmobile(Beeline)</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Số sim</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="testsimNumber" type="text" class="form-control form-control-user fs-090" maxlength="20">
                                                 </div>
                                             </div>
                                         </div>
@@ -918,7 +938,9 @@ Vue.use(VueClipboard)
       imageData:[],
       totalPage:0,
       currentPage : 1,
-      perPage : 10
+      perPage : 10,
+      simNumber:'',
+      floorsNumber:''
     };
   },
   components: {
@@ -936,7 +958,7 @@ Vue.use(VueClipboard)
       this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
       this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
       this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
-      this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter
+      this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter,this.testfloorsNumber=response.data.assets[0].floorsNumber, this.testsimNumber=response.data.assets[0].simNumber
       }});
         console.log(this.testid);
     },
@@ -945,7 +967,7 @@ Vue.use(VueClipboard)
       "category": this.testcategory,"description":this.testdescription, "currentStatus": this.testcurrentStatus, "trademark": this.testtrademark, "amount": this.tesamount,"stumpDiameter": this.tesstumpDiameter,"height": this.tesheight,
       "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.testbedroomsNumber, "gear": this.tesgear, "fuel": this.tesfuel, "yearOld": this.tesyearold,
       "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.testpicture,
-      "shape": this.tesshape,"weight": this.tesweight, "birghtness":this.tesbirghtness
+      "shape": this.tesshape,"weight": this.tesweight, "birghtness":this.tesbirghtness, "floorsNumber": this.testfloorsNumber,"simNumber":this.testsimNumber
       
       }, {
       headers: {

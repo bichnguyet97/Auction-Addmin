@@ -631,6 +631,36 @@ Vue.use(VueClipboard)
 </script>
 
 <style lang="scss">
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  
+}
+
+.pagination li {
+  border: 0.1rem solid green;
+  display: block;
+  margin: 0 0.5rem;
+  height: 1.5rem;
+  width: 3rem;
+  text-align: center;
+  border-radius:2.5rem;
+}
+
+.pagination li a {
+  display: block;
+}
+
+.pagination li a:focus {
+  outline: none;
+}
+
+.pagination li.active {
+  background-color: #4CAF50;
+  color: white;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

@@ -328,6 +328,16 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
+                                                <label class="col-form-label font-weight-600">Số tầng</label>
+                                            </div>
+                                            <div class="col-12 col-md-4">
+                                                <input v-model="floorsNumber" type="text" class="form-control form-control-user fs-090" value="0" maxlength="500">
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="form-group">
+                                        <div class="row">
+                                            <div class="col-12 col-md-3">
                                                 <label class="col-form-label font-weight-600">Số phòng vệ sinh</label>
                                             </div>
                                             <div class="col-12 col-md-4">
@@ -584,7 +594,7 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="category=='Sim số đẹp'">
+                                    <div v-if="category=='Sim số'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
@@ -599,6 +609,16 @@
                                                         <option>Vinaphone</option>
                                                         <option>Gmobile(Beeline)</option>
                                                     </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Số sim</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="simNumber" type="text" class="form-control form-control-user fs-090" maxlength="20">
                                                 </div>
                                             </div>
                                         </div>
@@ -865,7 +885,10 @@ Vue.use(VueClipboard)
       searchCate:'',
       imageSrc: '',
       imageData:[],
-      image:null
+      image:null,
+      antiques:'',
+      simNumber:'',
+      floorsNumber:''
     };
   },
   components: {
@@ -896,7 +919,7 @@ Vue.use(VueClipboard)
       "direction": this.direction,"acreage":this.acreage, "bedroomsNumber": this.bedroomsNumber, "homeNetwork": this.homeNetwork, "type": this.type,
       "seatsNumber": this.seatsNumber,"origin": this.origin,"color": this.color, "manufactureYear": this.manufactureYear, "trademark": this.trademark,
       "toiletsNumber": this.toiletsNumber, "interiorColor": this.interiorColor,"gear": this.gear, "fuel": this.fuel, "consume": this.consume, "shape": this.shape,
-      "amount": this.amount,"yearOld":this.yearOld, "height":this.height, "stumpDiameter": this.stumpDiameter
+      "amount": this.amount,"yearOld":this.yearOld, "height":this.height, "stumpDiameter": this.stumpDiameter,"simNumber":this.simNumber,"floorsNumber":this.floorsNumber
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }

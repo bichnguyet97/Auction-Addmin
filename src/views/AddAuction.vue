@@ -215,12 +215,20 @@
                                                 <input v-model="stepPrice" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div>
-                                        <div class="col-12 col-md-6">
+                                        <!-- <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Tiền huỷ cọc <span class="text-danger">*</span>
                                                 </label>
                                                 <input v-model="cancelRegisterFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                            </div>
+                                        </div> -->
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                    Phí đăng kí <span class="text-danger">*</span>
+                                                </label>
+                                                <input v-model="registrationFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -233,16 +241,66 @@
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                    Phần trăm <span class="text-danger">*</span>
+                                                </label>
+                                                <input v-model="percent" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <small class="form-text text-muted">Số phần trăm của tiền cọc</small>
+                                            </div>
+                                        </div>
+                                        <div class="col-12 col-md-6">
                                             <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                 Kiểu đấu giá <span class="text-danger">*</span>
                                             </label>
-                                            <div class="form-check">
-                                            <input v-model="traditional" class="form-check-input" type="checkbox" value="" id="flexCheckChecked" checked>
+                                            <!-- <div class="form-check">
+                                            <input v-model="type" class="form-check-input" type="checkbox" value="Normal" id="flexCheckChecked" checked>
                                             <label class="form-check-label" for="flexCheckChecked">
                                                 Truyền thống
                                             </label>
                                             </div>
+
+                                            <div class="form-check">
+                                            <input v-model="type" class="form-check-input" type="checkbox" value="Reverse" id="flexCheckChecked" checked>
+                                            <label class="form-check-label" for="flexCheckChecked">
+                                                Ngược
+                                            </label>
+                                            </div> -->
+
+                                            <div>
+                                                <b-form-group label="" v-slot="{ ariaDescribedby }">
+                                                <b-form-radio v-model="type" :aria-describedby="ariaDescribedby" name="some-radios" value="Normal">Truyền thống</b-form-radio>
+                                                <b-form-radio v-model="type" :aria-describedby="ariaDescribedby" name="some-radios" value="Reverse">Ngược</b-form-radio>
+                                                </b-form-group>
+
+                                                <!-- <div class="mt-3">type: <strong>{{ type }}</strong></div> -->
+                                            </div>
                                         </div>
+                                        <!-- <div class="form-group">
+                                            <div class="input-group rounded-0">
+                                                <div class="custom-file rounded-0">
+                                                     
+                                                    <b-form-file
+                                                    @change="previewImage"  
+                                                    placeholder="Choose a file or drop it here..."
+                                                    drop-placeholder="Drop file here..."
+                                                     
+                                                    id="inputGroupFile02"
+                                                    ></b-form-file>
+                                                     
+                                                </div>
+                                                <div class="input-group-append">
+                                                    <button @click="onUpload" class="btn btn-warning">
+                                                        <i class="las la-plus-circle"></i>
+                                                        Thêm
+                                                    </button>
+                                                </div>
+                                            </div>
+                                             
+                                            <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều file để thêm vào thư viện.</small>
+                                             
+                                            
+                                        </div> -->
                                         <div class="col-12 col-md-6">
                                             <div class="col-2 offset-8">
                                                 <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
@@ -268,6 +326,7 @@
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
+import Firebase from 'firebase';
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
@@ -332,7 +391,12 @@ Vue.use(VueClipboard)
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',
       attendanceDeadline:'',
-      asset:[]
+      asset:[],
+      percent:'',
+      registrationFee:'',
+      type:'',
+      file1: null,
+
     };
   },
   components: {
@@ -340,7 +404,7 @@ Vue.use(VueClipboard)
   },
   methods: { 
     clickAdd1:async function(){
-    await this.axios.post(this.url+'/auction/',{ "assest": this.assest,"traditional":this.traditional,
+    await this.axios.post(this.url+'/auction/',{ "assest": this.assest,"type":this.type,"registrationFee":this.registrationFee,"percent":this.percent,"regulation":this.pic,
       "bidPrice": this.bidPrice,"endAt": this.endAt, "startAt": this.startAt, "warranty": this.warranty, "stepPrice": this.stepPrice, "buyPrice": this.buyPrice,
         "area": this.area, "note": this.note,"attendanceDeadline":this.attendanceDeadline, "seller": this.seller, "cancelRegisterFee": this.cancelRegisterFee
       },{
@@ -348,6 +412,48 @@ Vue.use(VueClipboard)
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }
       ).then((response) => console.log(response));
+    },
+    previewImage(event){
+        // this.uploadValue=0;
+         
+        for( var i = 0; i < document.querySelector("#inputGroupFile02").files.length; i++ ){     
+        this.pic=null;
+        this.fileData[i]=event.target.files[i];
+        this.uploadValue=0;
+        console.log(this.i)
+        }
+    },
+    onUpload(){
+        // var today = new Date();
+        // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+        // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+        // dateTime = date+' '+time;
+        for( var i = 0; i < this.fileData.length; i++ ){
+        console.log(this.file1)
+        this.pic='';
+        const storageRef=Firebase.storage().ref(`${this.fileData[i].name}`+`${this.fileData[i].lastModified}`).put(this.fileData[i]);
+        storageRef.on(`state_changed`,snapshot=>{
+            this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+            }, error =>{console.log(error.message)},
+            ()=>{this.uploadValue=100;
+        
+            storageRef.snapshot.ref.getDownloadURL().then((url)=>{
+                if(this.pic==this.pic){
+                    this.pic=this.pic + url + ',' ;
+                }else {
+                    return this.pic=url;
+                }
+
+                // if(this.picture==0){
+                //   return  this.picture=url
+                // }
+                 
+                console.log(this.pic);
+            });
+
+            }
+            );
+        }
     },
     getCookie: function(cname) {
       var name = cname + "=";

@@ -512,7 +512,7 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/active',{
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/Active',{
     headers: {
       Authorization: this.getCookie('AC-ACCESS-KEY') }
       }).then((response) =>  { this.auction=response.data});

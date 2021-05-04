@@ -106,7 +106,7 @@ Vue.use(VueClipboard)
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.auction=response.data, this.auction2 = response.data.slice(0, this.perPage-1), console.log(response),
+        }).then((response) => { this.auction=response.data, this.auction2 = response.data.slice(0, this.perPage-1),  
           this.totalPage = Math.ceil(response.data.length / this.perPage)
         });
     console.log(auction);

@@ -160,6 +160,7 @@
                 </div>
             </div>
         </div>
+        <!-- <b-button type="button" class="download-btn" v-on:click="download" variant="outline-primary">Xuất file <b-icon icon="cloud-download" aria-hidden="true"></b-icon></b-button> -->
 <!-- <vue /> -->
     </div>
 </template>
@@ -168,6 +169,7 @@
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
+import XLSX from 'xlsx';
 import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
@@ -228,6 +230,12 @@ Vue.use(VueClipboard)
       close.classList.add('openIn')
       this.save=true
     },
+    download : function() {
+        const data = XLSX.utils.json_to_sheet(this.category)
+        const wb = XLSX.utils.book_new()
+        XLSX.utils.book_append_sheet(wb, data, 'data')
+        XLSX.writeFile(wb,'category.xlsx')
+      },
     openEdit: function () {
       var close = document.querySelector('.closeEdit')
       close.classList.add('openEdit')

@@ -16,33 +16,7 @@
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3">
                                         Thông tin chung
                                     </h3>
-
-                                    <!-- <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Ảnh đại diện<span class="text-danger">*</span></label>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <div class="user-avatar mb-3 mb-sm-0 text-center">
-                                                    <img src="img/no-image.jpg" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
-                                                </div>
-                                            </div>
-                                            <div class="col-12 col-md-5">
-                                                <p class="pt-2 f-13">Nhấp chuột vào ảnh để chọn hoặc thay đổi ảnh đại diện. Ảnh đại diện phải là: <span class="font-weight-bold">jpg, png, gif</span> dung lượng tối đa <span class="font-weight-bold">500Kb</span>. Kích thước tối đa <span class="font-weight-bold">300px</span></p>
-                                            </div>
-                                        </div>
-                                    </div> -->
-
-                                    <!-- <div class="form-group">
-                                        <div class="row">
-                                            <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Mã tài sản<span class="text-danger">*</span></label>
-                                            </div>
-                                            <div class="col-12 col-md-4">
-                                                <input type="text" class="form-control form-control-user fs-090" maxlength="20">
-                                            </div>
-                                        </div>
-                                    </div> -->
+  
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
@@ -90,8 +64,9 @@
                                                     <option>Đá quý</option>
                                                     <option>Nghệ thuật</option>
                                                     <option>Điện thoại</option>
-                                                    <option>Đồ gia dụng</option>
+                                                    <option>Gia dụng</option>
                                                     <option>Nghe nhìn</option>
+                                                    <option>Máy tính</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -132,11 +107,7 @@
                                             <img :src="picture" alt="">
                                         </div>
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
-                                        <!-- <input type="file" ref="file" multiple="multiple">
-                                        <button @click="submitFiles" class="btn btn-warning">
-                                            <i class="las la-plus-circle"></i>
-                                            Thêm
-                                        </button> -->
+                                         
                                         
                                     </div>
                                         
@@ -269,16 +240,7 @@
 
                                                 </select>
                                             </div>
-                                            <!-- <div class="col-12 col-md-5">
-                                                <select class="form-control select-default selectpickernone">
-                                                    <option disable value="">Chọn quận huyện</option>
-                                                    <option>Hoàn Kiếm</option>
-                                                    <option>Hai bà trưng</option>
-                                                    <option>Đống đa</option>
-                                                    <option>Hoàng Mai</option>
-                                                    <option>Thanh Xuân</option>
-                                                </select>
-                                            </div> -->
+                                             
                                         </div>
                                     </div>
 
@@ -493,7 +455,7 @@
                                                     <select v-model="trademark" class="form-control select-default selectpickernone">
                                                         <option disable value="">Chọn hãng xe</option>
                                                         <option>Abarth</option>
-                                                        <option> Zenos</option>
+                                                        <option>Zenos</option>
                                                         <option>Alfa Romeo</option>
                                                         <option>Volvo</option>
                                                         <option>Aston Martin</option>
@@ -908,41 +870,79 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div v-if="category=='Đồ gia dụng'">
+                                    <div v-if="category=='Gia dụng'">
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></label>
+                                                    <label class="col-form-label font-weight-600">Hãng sản xuất</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="trademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Công suất</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="wattage" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Bảo Hành</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="guarantee" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="homeNetwork" class="form-control select-default selectpickernone">
-                                                        <option disable value="">Chọn nhà mạng</option>
-                                                        <option>Viettel</option>
-                                                        <option>MobiFone</option>
-                                                        <option>Vietnamobile</option>
-                                                        <option>Vinaphone</option>
-                                                        <option>Gmobile(Beeline)</option>
+                                                    <select v-model="color" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh dương</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu Bạc</option>
+                                                        <option>Màu nâu đen</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
+                                         
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Số sim</label>
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
                                                 </div>
-                                                <div class="col-12 col-md-4">
-                                                    <input v-model="simNumber" type="text" class="form-control form-control-user fs-090" maxlength="20">
-                                                </div>
-                                            </div>
-                                        </div>
-                                        <div class="form-group">
-                                            <div class="row">
-                                                <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Loại sim</label>
-                                                </div>
-                                                <div class="col-12 col-md-4">
-                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="origin" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn xuất xứ</option>
+                                                        <option>Hàn quốc</option>
+                                                        <option>Nhật bản</option>
+                                                        <option>Trung quốc</option>
+                                                        <option>Mỹ</option>
+                                                        <option>Việt nam</option>
+                                                        <option>Đức</option>
+                                                        <option>Thuỵ điển</option>
+                                                        <option>Úc</option>
+                                                        <option>Ấn độ</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -951,37 +951,152 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></label>
+                                                    <label class="col-form-label font-weight-600">Hãng sản xuất</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="trademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Công suất</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="wattage" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Bảo Hành</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="guarantee" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc<span class="text-danger">*</span></label>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="homeNetwork" class="form-control select-default selectpickernone">
-                                                        <option disable value="">Chọn nhà mạng</option>
-                                                        <option>Viettel</option>
-                                                        <option>MobiFone</option>
-                                                        <option>Vietnamobile</option>
-                                                        <option>Vinaphone</option>
-                                                        <option>Gmobile(Beeline)</option>
+                                                    <select v-model="color" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh dương</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu Bạc</option>
+                                                        <option>Màu nâu đen</option>
                                                     </select>
                                                 </div>
                                             </div>
                                         </div>
+                                         
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Số sim</label>
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="origin" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn xuất xứ</option>
+                                                        <option>Hàn quốc</option>
+                                                        <option>Nhật bản</option>
+                                                        <option>Trung quốc</option>
+                                                        <option>Mỹ</option>
+                                                        <option>Việt nam</option>
+                                                        <option>Đức</option>
+                                                        <option>Thuỵ điển</option>
+                                                        <option>Úc</option>
+                                                        <option>Ấn độ</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div v-if="category=='Máy tính'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Hãng sản xuất</label>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="simNumber" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                    <input v-model="trademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Loại sim</label>
+                                                    <label class="col-form-label font-weight-600">Công suất</label>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="type" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                    <input v-model="wattage" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Bảo Hành</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="guarantee" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="color" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh dương</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu Bạc</option>
+                                                        <option>Màu nâu đen</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="origin" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn xuất xứ</option>
+                                                        <option>Hàn quốc</option>
+                                                        <option>Nhật bản</option>
+                                                        <option>Trung quốc</option>
+                                                        <option>Mỹ</option>
+                                                        <option>Việt nam</option>
+                                                        <option>Đức</option>
+                                                        <option>Thuỵ điển</option>
+                                                        <option>Úc</option>
+                                                        <option>Ấn độ</option>
+                                                    </select>
                                                 </div>
                                             </div>
                                         </div>
@@ -1125,7 +1240,9 @@ Vue.use(VueClipboard)
       sim:'',
       ram:'',
       rom:'',
-      cpu:''
+      cpu:'',
+      wattage:'',
+      guarantee:''
     };
   },
   components: {
@@ -1153,8 +1270,8 @@ Vue.use(VueClipboard)
     clickAdd1:async function(){
      await this.axios.post(this.url+'/asset',{ "name": this.name,"initPrice": this.initPrice,"weight": this.weight,"brightness":this.brightness,"ram":this.ram,"rom":this.rom,"cpu":this.cpu,
       "category": this.category, "images":this.picture,"description":this.description, "currentStatus": this.currentStatus, "area": this.area,
-      "direction": this.direction,"acreage":this.acreage, "bedroomsNumber": this.bedroomsNumber, "homeNetwork": this.homeNetwork, "type": this.type,
-      "seatsNumber": this.seatsNumber,"origin": this.origin,"color": this.color, "manufactureYear": this.manufactureYear, "trademark": this.trademark,
+      "direction": this.direction,"acreage":this.acreage, "bedroomsNumber": this.bedroomsNumber, "homeNetwork": this.homeNetwork, "type": this.type,"guarantee":this.guarantee,
+      "seatsNumber": this.seatsNumber,"origin": this.origin,"color": this.color, "manufactureYear": this.manufactureYear, "trademark": this.trademark,"wattage":this.wattage,
       "toiletsNumber": this.toiletsNumber, "interiorColor": this.interiorColor,"gear": this.gear, "fuel": this.fuel, "consume": this.consume, "shape": this.shape,
       "amount": this.amount,"yearOld":this.yearOld, "height":this.height, "stumpDiameter": this.stumpDiameter,"simNumber":this.simNumber,"floorsNumber":this.floorsNumber,
       "resolution":this.resolution,"screenSize":this.screenSize,"operatingSystem":this.operatingSystem,"camera":this.camera,"batteryCapacity":this.batteryCapacity,"sim":this.sim

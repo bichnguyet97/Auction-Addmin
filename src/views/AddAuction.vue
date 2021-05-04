@@ -226,7 +226,7 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                    Phí đăng kí <span class="text-danger">*</span>
+                                                    Phí tham gia đấu giá <span class="text-danger">*</span>
                                                 </label>
                                                 <input v-model="registrationFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
@@ -455,6 +455,7 @@ Vue.use(VueClipboard)
             );
         }
     },
+    
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);

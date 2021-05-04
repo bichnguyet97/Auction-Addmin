@@ -25,6 +25,11 @@ import firebase from "firebase"
 import ArgonDashboard from './plugins/argon-dashboard'
 import { BootstrapVue, IconsPlugin } from 'bootstrap-vue'
 import 'bootstrap-vue/dist/bootstrap-vue.css'
+import VueExcelXlsx from "vue-excel-xlsx";
+
+
+Vue.use(VueExcelXlsx);
+
 Vue.use(BootstrapVue)
 
 Vue.use(IconsPlugin)

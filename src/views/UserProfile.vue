@@ -33,7 +33,7 @@
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(users.id)">SearchID</button>
                         </div>
                         <div id="smtaomoi1" class="col-2 offset-8">
-                          <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button>
+                          <!-- <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button> -->
                           <b-modal id="modal-1" title="Tạo mới">
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="">Email<strong>*</strong></label>
@@ -82,7 +82,8 @@
                             <td class="test">{{user.name}}</td>
                             <td class="test">{{user.email}}</td>
                             <td class="test"><a :href="user.avatar">{{user.avatar}}</a></td>
-                            <td>{{user.password}}</td>
+                            <!-- <td>{{user.password}}</td> -->
+                            <td>*********</td>
                             <td>{{user.group}}</td>
                             <td>{{user.created}}</td>
                             <td>{{user.updated}}</td>
@@ -147,7 +148,7 @@
                             <td class="test">{{userSearch.data.name}}</td>
                             <td class="test">{{userSearch.data.email}}</td>
                             <td class="test"><a :href="userSearch.data.avatar">{{userSearch.data.avatar}}</a></td>
-                            <td>{{userSearch.data.password}}</td>
+                            <td >{{userSearch.data.password}}</td>
                             <td>{{userSearch.data.group}}</td>
                             <td class="test">{{userSearch.data.created}}</td>
                             <td class="test">{{userSearch.data.updated}}</td>

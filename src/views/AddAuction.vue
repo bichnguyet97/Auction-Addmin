@@ -307,8 +307,11 @@
                                             </div>
                                         </div>
                                         <b-modal id="modalPopover" title="Thông báo" ok-only>
-                                            <p>
+                                            <!-- <p>
                                             Tạo cuộc đấu giá thành công !
+                                            </p> -->
+                                            <p>
+                                                {{loi?loi:'Tạo cuộc đấu giá thành công !'}}
                                             </p>
                                         </b-modal>
                                     </div>
@@ -392,6 +395,7 @@ Vue.use(VueClipboard)
       searchCate:'',
       attendanceDeadline:'',
       asset:[],
+      loi:null,
       percent:'',
       registrationFee:'',
       type:'',
@@ -411,7 +415,9 @@ Vue.use(VueClipboard)
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }
-      ).then((response) => console.log(response));
+      ).then((response) => console.log(response))
+      .catch((error) => { this.loi=error
+        })
     },
     previewImage(event){
         // this.uploadValue=0;

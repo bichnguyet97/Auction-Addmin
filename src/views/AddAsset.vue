@@ -1140,6 +1140,7 @@
                                             <p>
                                             Tạo tài sản thành công !
                                             </p>
+                                            <p>{{loi?loi:'Tạo cuộc đấu giá thành công !'}}</p>
                                     </b-modal>
                                 </div>
                             </div>
@@ -1237,6 +1238,7 @@ Vue.use(VueClipboard)
       operatingSystem:'',
       camera:'',
       batteryCapacity:'',
+      loi:null,
       sim:'',
       ram:'',
       rom:'',
@@ -1279,7 +1281,9 @@ Vue.use(VueClipboard)
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
       }
-      ).then((response) => console.log(response));
+      ).then((response) => console.log(response))
+       .catch((error) => { this.loi=error
+        })
     },
     previewImage(event){
         // this.uploadValue=0;

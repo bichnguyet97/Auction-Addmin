@@ -771,6 +771,126 @@
                                      
                                 </div>
                                 </div>
+                                <div v-if="asse.category=='Gia dụng'">
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá: </span>
+                                            <strong>{{auc.id}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại: </span>
+                                            <strong>{{auc.area}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.amount}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự: </span>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá: </span>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá: </span>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
+                                        </span>
+                                    </div>
+                                     
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái: </span>
+                                            <strong>{{asse.currentStatus}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục: </span>
+                                            <strong>{{asse.category}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Chủng loại: </span>
+                                            <strong>{{asse.type}}</strong>
+                                        </span>
+                                    </div>
+                                     
+                                </div>
+                                </div>
+                                <div v-if="asse.category=='Máy tính'">
+                                <div class="row">
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Mã đấu giá: </span>
+                                            <strong>{{auc.id}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Đấu giá tại: </span>
+                                            <strong>{{auc.area}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Số lượng: </span>
+                                            <strong>{{asse.amount}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Hạn tham dự: </span>
+                                            <strong class="text-danger">{{auc.attendanceDeadline}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Bắt đầu đấu giá: </span>
+                                            <strong class="text-danger">{{auc.startAt}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Kết thúc đấu giá: </span>
+                                            <strong class="text-danger">{{auc.endAt}}</strong>
+                                        </span>
+                                    </div>
+                                     
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Trạng thái: </span>
+                                            <strong>{{asse.currentStatus}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Danh mục: </span>
+                                            <strong>{{asse.category}}</strong>
+                                        </span>
+                                    </div>
+                                    <div class="col-12 col-xl-4 col-lg-4 col-md-6">
+                                        <span class="mb-2 d-block">
+                                            <span>Chủng loại: </span>
+                                            <strong>{{asse.type}}</strong>
+                                        </span>
+                                    </div>
+                                     
+                                </div>
+                                </div>
                             </div>
                             <div class="video-pro mb-3">
                                 <h3 class="f-17 border-bottom pb-3 mb-3">Video giới thiệu</h3>

@@ -1137,9 +1137,9 @@
                                         <em class="text-danger f-13 d-block d-sm-inline float-left float-sm-right">* là trường bắt buộc nhập dữ liệu</em>
                                     </div>
                                     <b-modal id="modalPopover" title="Thông báo" ok-only>
-                                            <p>
+                                            <!-- <p>
                                             Tạo tài sản thành công !
-                                            </p>
+                                            </p> -->
                                             <p>{{loi?loi:'Tạo cuộc đấu giá thành công !'}}</p>
                                     </b-modal>
                                 </div>

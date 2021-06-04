@@ -49,7 +49,7 @@
                             <!-- <td>{{category.created}}</td> -->
                             <td>{{category.name}}</td>
                             <td>{{formatPrice(category.ticket)}}</td>
-                            <td>{{formatPrice(category.wararanty)}}</td>
+                            <td>{{formatPrice(category.warranty)}}</td>
                             <td>{{formatPrice(category.rest)}}</td>
                             <!-- <td>{{category.ticket}}</td> -->
                             <td>{{formatPrice(category.sum)}}</td>
@@ -97,7 +97,7 @@ Vue.use(VueClipboard)
       close4:true,
       info:'',
       sum:'',
-      wararanty:'',
+      warranty:'',
       add:true,
       sessionId:'',
       save:true,
@@ -127,7 +127,7 @@ Vue.use(VueClipboard)
         const data = XLSX.utils.json_to_sheet(this.category)
         const wb = XLSX.utils.book_new()
         XLSX.utils.book_append_sheet(wb, data, 'data')
-        XLSX.writeFile(wb,'DANHTHU.xlsx')
+        XLSX.writeFile(wb,'DOANHTHU.xlsx')
       },
     openEdit: function () {
       var close = document.querySelector('.closeEdit')

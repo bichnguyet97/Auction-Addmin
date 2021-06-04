@@ -82,8 +82,8 @@
                             <td class="test">{{user.name}}</td>
                             <td class="test">{{user.email}}</td>
                             <td class="test"><a :href="user.avatar">{{user.avatar}}</a></td>
-                            <!-- <td>{{user.password}}</td> -->
-                            <td>*********</td>
+                            <td>{{user.password}}</td>
+                            <!-- <td>*********</td> -->
                             <td>{{user.group}}</td>
                             <td>{{user.created}}</td>
                             <td>{{user.updated}}</td>

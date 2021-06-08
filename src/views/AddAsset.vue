@@ -71,6 +71,7 @@
                                                     <option>Nội thất</option>
                                                     <option>Mỹ phẩm</option>
                                                     <option>Thời trang</option>
+                                                    <option>Voucher</option>
                                                 </select>
                                             </div>
                                         </div>

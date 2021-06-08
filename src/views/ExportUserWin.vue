@@ -18,42 +18,55 @@
                         <div class="col-2 offset-8">
                           <b-button type="button" class="download-btn" v-on:click="download" variant="outline-primary">Xuất file <b-icon icon="cloud-download" aria-hidden="true"></b-icon></b-button>
                         </div>
+                        <div id="smbutton1" class="col-2 offset-8">
+                          <input v-model="startAt" class="form-control mr-sm-2" type="startAt" placeholder="Search" aria-label="Search">
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch(exportWin.startAt)">Search</button>
+                        </div>
                       </div>
                        
                       <div class="">
                       <table class="table table-striped">
                         <thead>
                           <tr>
-                            <th scope="col">MÃ SP</th>
-                            <th scope="col">Hình Thức Đấu giá</th>
-                            <th scope="col">Ngày Bắt Đấu Giá</th>
-                            <th scope="col">Danh Mục</th>
                             <th scope="col">Tên Sản Phẩm</th>
-                            <th scope="col">Vé</th>
-                            <!-- <th scope="col">Lượt BIDs</th> -->
-                            <th scope="col">Doanh Thu Giá Bán(cọc)</th>
-                            <th scope="col">Giá Bán(Còn lại)</th>
-                            <th scope="col">Tổng DT</th>
-                            <th></th>
+                            <th scope="col">Tên Người Trúng</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Tiền cọc</th>
+                            <th scope="col">Giá Trúng</th>
+                            <th scope="col">Địa chỉ</th>
+                            <th scope="col">Số Điện Thoại</th>
+                             
                           </tr>
                         </thead>
                         <tbody>
-                          <tr class="test" v-for="category in category" v-bind:key="category.id">
-                            <th scope="row">{{category.id}}</th>
+                            <!-- <tr>
+                            <td colspan="7"></td>
                             <td>
+                               <div class="col-12 col-md-6">
+                                    <div class="form-group">
+                                        <base-input v-model="startAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
+                                        <b-button v-b-modal.modalPopover style="margin-top:5px;width:53%;" size="sm" @click="clickSearch(exportWin.startAt)" variant="info">Chọn</b-button>
+                                    </div>
+                                </div>  
+                            </td>
+                            </tr> -->
+                          <tr v-for="exportWin2 in exportWin2" v-bind:key="exportWin2.id">
+                            <th scope="row">{{exportWin2.asset}}</th>
+                            <!-- <td>
                               <option v-if="category.type == 'Normal'">Truyền thống</option>
                               <option v-if="category.type == 'Reverse'">Đấu giá ngược</option> 
-                            </td>
-                            <td>{{category.startAt}}</td>
-                            <td>{{category.category}}</td>
+                            </td> -->
+                            <td>{{exportWin2.username}}</td>
+                            <td>{{exportWin2.email}}</td>
                             <!-- <td>{{category.created}}</td> -->
-                            <td>{{category.name}}</td>
-                            <td>{{formatPrice(category.ticket)}}</td>
+                            <td>{{exportWin2.deposit}}</td>
+                            <!-- <td>{{formatPrice(category.ticket)}}</td>
                             <td>{{formatPrice(category.warranty)}}</td>
-                            <td>{{formatPrice(category.rest)}}</td>
+                            <td>{{formatPrice(category.rest)}}</td> -->
                             <!-- <td>{{category.ticket}}</td> -->
-                            <td>{{formatPrice(category.sum)}}</td>
-                            <td></td>
+                            <td>{{formatPrice(exportWin2.winPrice)}}</td>
+                            <td>{{exportWin2.address}}</td>
+                            <td>{{exportWin2.mobile}}</td>
                           </tr>
                         </tbody>
                       </table>
@@ -63,6 +76,13 @@
                 </div>
             </div>
         </div>
+        <paginate
+            :page-count="totalPage"
+            :click-handler="onclick"
+            :prev-text="'Prev'"
+            :next-text="'Next'"
+            class="pagination">
+        </paginate>
         
 <!-- <vue /> -->
     </div>
@@ -73,6 +93,8 @@ import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import XLSX from 'xlsx';
+import Paginate from 'vuejs-paginate'
+Vue.component('paginate', Paginate)
 import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
@@ -81,12 +103,12 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    var category = [];
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/admin/report',{
+    var exportWin = [];
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/admin/statistical?startAt='+this.startAt+'25',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.category=response.data});
-    console.log(category);
+        }).then((response) => { this.exportWin=response.data});
+    console.log(exportWin);
     return {
       alias: '',
       id: '',
@@ -105,12 +127,25 @@ Vue.use(VueClipboard)
       category:'',
       type:'',
       ticket:'',
+      email:'',
+      deposit:'',
+      winPrice:'',
       picture:'',
       hihi:'true',
       rest:'',
       Reverse:'',
+      address:'',
+      username:'',
       startAt:'',
+      asset:'',
+      mobile:'',
+      currentPage : 1,
+      perPage : 10,
+      totalPage:0,
+      page: 10,
       Normal:'',
+      exportWin:[],
+      exportWin2:[],
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
     };
   },
@@ -118,6 +153,17 @@ Vue.use(VueClipboard)
     // Login
   },
   methods: {
+    //tim kiem
+    clickSearch: async function(){
+       await this.axios.get(this.url+'/admin/statistical?startAt='+this.startAt+'25').then((response) => this.exportWin = response.data,
+       this.exportWin2 = this.exportWin.slice(0, this.perPage-1), 
+          this.totalPage = Math.ceil(this.exportWin.length / this.perPage));
+       console.log(this.exportWin);
+    },
+     onclick(page){
+      console.log(page);
+      this.exportWin2 = this.exportWin.slice((page-1)*this.perPage,page*this.perPage-1)
+    },
     openIn: function () {
       var close = document.querySelector('.closeIn')
       close.classList.add('openIn')
@@ -125,10 +171,10 @@ Vue.use(VueClipboard)
     },
     //xuất file
     download : function() {
-        const data = XLSX.utils.json_to_sheet(this.category)
+        const data = XLSX.utils.json_to_sheet(this.exportWin2)
         const wb = XLSX.utils.book_new()
         XLSX.utils.book_append_sheet(wb, data, 'data')
-        XLSX.writeFile(wb,'DOANHTHU.xlsx')
+        XLSX.writeFile(wb,'DANHSACHNGUOITRUNG.xlsx')
       },
     openEdit: function () {
       var close = document.querySelector('.closeEdit')
@@ -206,7 +252,6 @@ Vue.use(VueClipboard)
           }
           );
     },
-    //get-cookie
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
@@ -228,6 +273,36 @@ Vue.use(VueClipboard)
 </script>
 
 <style lang="scss">
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  
+}
+
+.pagination li {
+  border: 0.1rem solid green;
+  display: block;
+  margin: 0 0.5rem;
+  height: 1.5rem;
+  width: 3rem;
+  text-align: center;
+  border-radius:2.5rem;
+}
+
+.pagination li a {
+  display: block;
+}
+
+.pagination li a:focus {
+  outline: none;
+}
+
+.pagination li.active {
+  background-color: #4CAF50;
+  color: white;
+}
 #app {
   font-family: 'Avenir', Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
@@ -274,5 +349,9 @@ employee-list{
     white-space: nowrap; 
     text-overflow: ellipsis;
 
+}
+#smbutton1{
+  padding:10px 5px;
+  display:flex;
 }
 </style>

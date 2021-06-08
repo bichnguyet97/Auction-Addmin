@@ -996,6 +996,7 @@
                                                         <option>Màu xanh dương</option>
                                                         <option>Màu xanh lá</option>
                                                         <option>Màu hồng</option>
+                                                        <option>Xanh hồng</option>
                                                         <option>Màu vàng</option>
                                                         <option>Màu da cam</option>
                                                         <option>Màu tím</option>
@@ -1023,6 +1024,7 @@
                                                         <option>Thuỵ điển</option>
                                                         <option>Úc</option>
                                                         <option>Ấn độ</option>
+                                                        <option>Singapore</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1073,6 +1075,7 @@
                                                         <option>Màu xanh dương</option>
                                                         <option>Màu xanh lá</option>
                                                         <option>Màu hồng</option>
+                                                        <option>Xanh hồng</option>
                                                         <option>Màu vàng</option>
                                                         <option>Màu da cam</option>
                                                         <option>Màu tím</option>
@@ -1100,6 +1103,7 @@
                                                         <option>Thuỵ điển</option>
                                                         <option>Úc</option>
                                                         <option>Ấn độ</option>
+                                                        <option>Singapore</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1150,6 +1154,7 @@
                                                         <option>Màu xanh dương</option>
                                                         <option>Màu xanh lá</option>
                                                         <option>Màu hồng</option>
+                                                        <option>Xanh hồng</option>
                                                         <option>Màu vàng</option>
                                                         <option>Màu da cam</option>
                                                         <option>Màu tím</option>
@@ -1177,6 +1182,7 @@
                                                         <option>Thuỵ điển</option>
                                                         <option>Úc</option>
                                                         <option>Ấn độ</option>
+                                                        <option>Singapore</option>
                                                     </select>
                                                 </div>
                                             </div>
@@ -1548,7 +1554,7 @@ employee-list{
 //     text-overflow: ellipsis;
 // }
 #edit{
-    margin-left: 880px;
+    margin-left: 960px;
     margin-top: -144px;
 }
 #sizeimage{

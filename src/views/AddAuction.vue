@@ -172,7 +172,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập giá khởi điểm <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="bidPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                                <input v-on:input ="getwarranty" v-model="bidPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -231,6 +231,29 @@
                                                 <input v-model="registrationFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div>
+                                        <!-- <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                    Tiền cọc đấu giá <span class="text-danger">*</span>
+                                                </label>
+                                                <input v-model="warranty" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <small class="form-text text-muted">Tiền cọc phải nhỏ hơn 10% của giá niêm yết</small>
+                                            </div>
+                                        </div> -->
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                    Phần trăm <span class="text-danger">*</span>
+                                                </label>
+                                                <input
+                                                v-on:input ="getwarranty"
+                                                
+                                                 v-model="percent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(bidPrice*percent)/100}}</small>
+                                            </div>
+                                        </div>
+
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
@@ -240,33 +263,20 @@
                                                 <small class="form-text text-muted">Tiền cọc phải nhỏ hơn 10% của giá niêm yết</small>
                                             </div>
                                         </div>
+
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                    Phần trăm <span class="text-danger">*</span>
+                                                    Số người tham dự <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="percent" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                <small class="form-text text-muted">Số phần trăm của tiền cọc</small>
+                                                <input v-model="attendingUser" type="number" class="form-control form-control-user fs-090" value="">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                 Kiểu đấu giá <span class="text-danger">*</span>
                                             </label>
-                                            <!-- <div class="form-check">
-                                            <input v-model="type" class="form-check-input" type="checkbox" value="Normal" id="flexCheckChecked" checked>
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Truyền thống
-                                            </label>
-                                            </div>
-
-                                            <div class="form-check">
-                                            <input v-model="type" class="form-check-input" type="checkbox" value="Reverse" id="flexCheckChecked" checked>
-                                            <label class="form-check-label" for="flexCheckChecked">
-                                                Ngược
-                                            </label>
-                                            </div> -->
-
+                                              
                                             <div>
                                                 <b-form-group label="" v-slot="{ ariaDescribedby }">
                                                 <b-form-radio v-model="type" :aria-describedby="ariaDescribedby" name="some-radios" value="Normal">Truyền thống</b-form-radio>
@@ -304,14 +314,17 @@
                                         <div class="col-12 col-md-6">
                                             <div class="col-2 offset-8">
                                                 <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
+                                                <!-- <button id="but" v-b-modal.modalPopover type="button" class="btn btn-success" @click="clickSearch2(user.id)">Update</button>
+                                                <input id="button"  type="" class="form-control form-control-user fs-090" value=""> -->
                                             </div>
                                         </div>
+                                         
                                         <b-modal id="modalPopover" title="Thông báo" ok-only>
                                             <!-- <p>
                                             Tạo cuộc đấu giá thành công !
                                             </p> -->
                                             <p>
-                                                {{loi?loi:'Tạo cuộc đấu giá thành công !'}}
+                                                {{loi?loi: 'Tạo cuộc đấu giá thành công !'}}
                                             </p>
                                         </b-modal>
                                     </div>
@@ -359,7 +372,7 @@ Vue.use(VueClipboard)
       startAt:'',
       buyPrice:'',
       creaded:'',
-      area:'',
+      area:'Hà Nội',
       warranty:'',
       regulation:'',
       auctions:[],
@@ -381,7 +394,7 @@ Vue.use(VueClipboard)
       email:'',
       mobile:'',
       note:'',
-      seller:'',
+      seller:'504',
       save:true,
       assest:'',
       traditional:'',
@@ -400,7 +413,7 @@ Vue.use(VueClipboard)
       registrationFee:'',
       type:'',
       file1: null,
-
+      attendingUser:''
     };
   },
   components: {
@@ -410,7 +423,7 @@ Vue.use(VueClipboard)
     clickAdd1:async function(){
     await this.axios.post(this.url+'/auction/',{ "assest": this.assest,"type":this.type,"registrationFee":this.registrationFee,"percent":this.percent,"regulation":this.pic,
       "bidPrice": this.bidPrice,"endAt": this.endAt, "startAt": this.startAt, "warranty": this.warranty, "stepPrice": this.stepPrice, "buyPrice": this.buyPrice,
-        "area": this.area, "note": this.note,"attendanceDeadline":this.attendanceDeadline, "seller": this.seller, "cancelRegisterFee": this.cancelRegisterFee
+        "area": this.area, "note": this.note,"attendanceDeadline":this.attendanceDeadline, "seller": this.seller, "cancelRegisterFee": this.cancelRegisterFee, "attendingUser":this.attendingUser
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -428,6 +441,15 @@ Vue.use(VueClipboard)
         this.uploadValue=0;
         console.log(this.i)
         }
+    },
+    clickSearch2(id){
+      this.axios.get(this.url+'/user/'+id)
+      .then((response) => { this.Search=response.data});
+        console.log(this.Search);
+      this.axios.get(this.url+'/user',{
+      headers: {
+        Authorization: this.getCookie('AC-ACCESS-KEY') }
+        }).then((response) => console.log(response));
     },
     onUpload(){
         // var today = new Date();
@@ -461,7 +483,11 @@ Vue.use(VueClipboard)
             );
         }
     },
-    
+    //get warranty
+    getwarranty(){
+        this.warranty =  (this.bidPrice*this.percent)/100
+    },
+    // get cookie
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
@@ -505,5 +531,13 @@ Vue.use(VueClipboard)
 }
 #right{
   margin-top:-137px;
+}
+#but{
+    margin-top: -4rem;
+    margin-left:6rem;
+}
+#button{
+    margin-top: -4rem;
+    margin-left: 14rem;
 }
 </style>

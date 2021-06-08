@@ -79,7 +79,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập mã tài sản <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="assest" type="" class="form-control form-control-user fs-090" value="2502" maxlength="20">
+                                                <input v-model="inassest" type="" class="form-control form-control-user fs-090" value="2502" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -88,7 +88,7 @@
                                                 Khu vực<span class="text-danger">*</span>
                                             </label>
                                             <base-input>
-                                            <select v-model="area" class="form-control form-control-user fs-090">
+                                            <select v-model="inarea" class="form-control form-control-user fs-090">
                                                 <option disable value="">Chọn khu vực</option>
                                                 <option >Hà Nội</option>
                                                 <option>Hồ Chí Minh</option>
@@ -163,7 +163,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập ID người đăng bán <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="seller" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                                <input v-model="inseller" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
                                             </div>
                                         </div>
                                         
@@ -172,7 +172,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập giá khởi điểm <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-on:input ="getwarranty" v-model="bidPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                                <input v-on:input ="getwarranty" v-model="inbidPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -180,7 +180,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập giá bán ngay <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="buyPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                                <input v-model="inbuyPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -188,7 +188,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Hạn tham dự <span class="text-danger">*</span>
                                                 </label>
-                                                <base-input v-model="attendanceDeadline" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
+                                                <base-input v-model="inattendanceDeadline" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -196,7 +196,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Thời gian bắt đầu <span class="text-danger">*</span>
                                                 </label>
-                                                <base-input v-model="startAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
+                                                <base-input v-model="instartAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -204,7 +204,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Thời gian kết thúc <span class="text-danger">*</span>
                                                 </label>
-                                                <base-input v-model="endAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
+                                                <base-input v-model="inendAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -212,7 +212,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Bước giá <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="stepPrice" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <input v-model="instepPrice" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div>
                                         <!-- <div class="col-12 col-md-6">
@@ -220,7 +220,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Tiền huỷ cọc <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="cancelRegisterFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <input v-model="incancelRegisterFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div> -->
                                         <div class="col-12 col-md-6">
@@ -228,7 +228,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Phí tham gia đấu giá <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="registrationFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <input v-model="inregistrationFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                             </div>
                                         </div>
                                         <!-- <div class="col-12 col-md-6">
@@ -249,7 +249,7 @@
                                                 <input
                                                 v-on:input ="getwarranty"
                                                 
-                                                 v-model="percent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                 v-model="inpercent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 <small class="form-text text-muted">Số phần trăm của tiền cọc {{(bidPrice*percent)/100}}</small>
                                             </div>
                                         </div>
@@ -259,7 +259,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Tiền cọc đấu giá <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="warranty" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <input v-model="inwarranty" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                                                 <small class="form-text text-muted">Tiền cọc phải nhỏ hơn 10% của giá niêm yết</small>
                                             </div>
                                         </div>
@@ -269,7 +269,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Số người tham dự <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="attendingUser" type="number" class="form-control form-control-user fs-090" value="">
+                                                <input v-model="inattendingUser" type="number" class="form-control form-control-user fs-090" value="">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -279,8 +279,8 @@
                                               
                                             <div>
                                                 <b-form-group label="" v-slot="{ ariaDescribedby }">
-                                                <b-form-radio v-model="type" :aria-describedby="ariaDescribedby" name="some-radios" value="Normal">Truyền thống</b-form-radio>
-                                                <b-form-radio v-model="type" :aria-describedby="ariaDescribedby" name="some-radios" value="Reverse">Ngược</b-form-radio>
+                                                <b-form-radio v-model="intype" :aria-describedby="ariaDescribedby" name="some-radios" value="Normal">Truyền thống</b-form-radio>
+                                                <b-form-radio v-model="intype" :aria-describedby="ariaDescribedby" name="some-radios" value="Reverse">Ngược</b-form-radio>
                                                 </b-form-group>
 
                                                 <!-- <div class="mt-3">type: <strong>{{ type }}</strong></div> -->
@@ -314,8 +314,8 @@
                                         <div class="col-12 col-md-6">
                                             <div class="col-2 offset-8">
                                                 <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
-                                                <!-- <button id="but" v-b-modal.modalPopover type="button" class="btn btn-success" @click="clickSearch2(user.id)">Update</button>
-                                                <input id="button"  type="" class="form-control form-control-user fs-090" value=""> -->
+                                                <button id="but" type="button" class="btn btn-success" @click="clickSearch2(id1,Search.id1)">Update</button>
+                                                <input v-model="id1" id="button"  type="" class="form-control form-control-user fs-090" value="">
                                             </div>
                                         </div>
                                          
@@ -384,6 +384,7 @@ Vue.use(VueClipboard)
       alias:'',
       actions:'',
       id: '',
+      id1:'',
       created:'',
       name: '',
       updated:'',
@@ -408,12 +409,29 @@ Vue.use(VueClipboard)
       searchCate:'',
       attendanceDeadline:'',
       asset:[],
+      Search:[],
       loi:null,
       percent:'',
       registrationFee:'',
       type:'',
       file1: null,
-      attendingUser:''
+      attendingUser:'',
+      inassest:'',
+      inarea:'',
+      intype:'',
+      inregistrationFee:'',
+      inpercent:'',
+      inbidPrice:'',
+      inendAt:'',
+      instartAt:'',
+      inwarranty:'',
+      instepPrice:'',
+      inbuyPrice:'',
+      inattendanceDeadline:'',
+      inseller:'',
+      incancelRegisterFee:'',
+      inattendingUser:''
+    
     };
   },
   components: {
@@ -421,9 +439,9 @@ Vue.use(VueClipboard)
   },
   methods: { 
     clickAdd1:async function(){
-    await this.axios.post(this.url+'/auction/',{ "assest": this.assest,"type":this.type,"registrationFee":this.registrationFee,"percent":this.percent,"regulation":this.pic,
-      "bidPrice": this.bidPrice,"endAt": this.endAt, "startAt": this.startAt, "warranty": this.warranty, "stepPrice": this.stepPrice, "buyPrice": this.buyPrice,
-        "area": this.area, "note": this.note,"attendanceDeadline":this.attendanceDeadline, "seller": this.seller, "cancelRegisterFee": this.cancelRegisterFee, "attendingUser":this.attendingUser
+    await this.axios.post(this.url+'/auction/',{ "assest": this.inassest,"type":this.intype,"registrationFee":this.inregistrationFee,"percent":this.inpercent,"regulation":this.pic,
+      "bidPrice": this.inbidPrice,"endAt": this.inendAt, "startAt": this.instartAt, "warranty": this.inwarranty, "stepPrice": this.instepPrice, "buyPrice": this.inbuyPrice,
+        "area": this.inarea, "note": this.note,"attendanceDeadline":this.inattendanceDeadline, "seller": this.inseller, "cancelRegisterFee": this.incancelRegisterFee, "attendingUser":this.inattendingUser
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -431,6 +449,33 @@ Vue.use(VueClipboard)
       ).then((response) => console.log(response))
       .catch((error) => { this.loi=error
         })
+    },
+    //tìm auction
+    clickSearch2(id1){
+      this.axios.get(this.url+'/auction/recreate/'+id1)
+      .then((response) => {
+        this.Search=response.data, 
+        this.inassest= response.data.assest,
+        this.inarea= response.data.area,
+        this.intype= response.data.intype,
+        this.inregistrationFee=response.data.registrationFee,
+        this.inpercent=response.data.percent,
+        this.inbidPrice=response.data.bidPrice,
+        this.inendAt=response.data.endAt,
+        this.instartAt=response.data.startAt,
+        this.inwarranty=response.data.warranty,
+        this.instepPrice=response.data.stepPrice,
+        this.inbuyPrice= response.data.buyPrice, 
+        this.inattendanceDeadline=response.data.attendanceDeadline,
+        this.inseller=response.data.seller,
+        this.incancelRegisterFee=response.data.cancelRegisterFee,
+        this.inattendingUser=response.data.attendingUser
+      });
+        console.log(this.Search);
+      this.axios.get(this.url+'/user',{
+      headers: {
+        Authorization: this.getCookie('AC-ACCESS-KEY') }
+        }).then((response) => { this.users=response.data});
     },
     previewImage(event){
         // this.uploadValue=0;
@@ -442,15 +487,15 @@ Vue.use(VueClipboard)
         console.log(this.i)
         }
     },
-    clickSearch2(id){
-      this.axios.get(this.url+'/user/'+id)
-      .then((response) => { this.Search=response.data});
-        console.log(this.Search);
-      this.axios.get(this.url+'/user',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => console.log(response));
-    },
+    // clickSearch2(id){
+    //   this.axios.get(this.url+'/user/'+id)
+    //   .then((response) => { this.Search=response.data});
+    //     console.log(this.Search);
+    //   this.axios.get(this.url+'/user',{
+    //   headers: {
+    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
+    //     }).then((response) => console.log(response));
+    // },
     onUpload(){
         // var today = new Date();
         // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();

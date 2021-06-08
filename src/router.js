@@ -119,6 +119,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Export.vue')
         },
         {
+          path: '/export-win',
+          name: 'export-win',
+          component: () => import(/* webpackChunkName: "demo" */ './views/ExportUserWin.vue')
+        },
+        {
           path: '/bid-controller',
           name: 'bid-controller',
           component: () => import(/* webpackChunkName: "demo" */ './views/Bidcontroller.vue')

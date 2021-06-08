@@ -34,10 +34,11 @@
         <sidebar-item :link="{name: 'Thêm Đấu Giá', icon: 'fa fa-plus text-blue', path: '/addauction-controller'}"/>
         <sidebar-item :link="{name: 'Xác Nhận Đấu Giá', icon: 'fa fa-check text-blue', path: '/cfaution-controller'}"/>
         <sidebar-item :link="{name: 'Đấu Giá Đã Xác Nhận', icon: 'fa fa-check-circle text-green', path: '/active-controller'}"/>
-        <sidebar-item :link="{name: 'Lịch Sử Giao Dịch', icon: 'fa fa-check-circle text-green', path: '/transaction'}"/>
+        <sidebar-item :link="{name: 'Lịch Sử Giao Dịch', icon: 'fa fa-address-book text-green', path: '/transaction'}"/>
         <!-- <sidebar-item :link="{name: 'Kiểm soát đấu giá', icon: 'fa fa-balance-scale text-blue', path: '/bid-controller'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">EXPORT</h6>
         <sidebar-item :link="{name: 'Export', icon: 'fa fa-table text-warning', path: '/export-controller'}"/>
+        <sidebar-item :link="{name: 'Export Win', icon: 'fa fa-table text-warning', path: '/export-win'}"/>
         <h6 id="tl" class="navbar-heading text-muted">Admin</h6>
         <sidebar-item :link="{name: 'login', icon: 'ni ni-key-25 text-info', path: '/login'}"/>
         <!-- <sidebar-item :link="{name: 'Maps', icon: 'ni ni-pin-3 text-orange', path: '/maps'}"/> -->

@@ -3,78 +3,60 @@
     <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-8">
     </base-header>
      <div>
-         <vue-scrolling-table>
          <table class="table table-striped">
             <thead>
                 <tr>
-                    
-                <th scope="col">Hình ảnh</th>
-                <th scope="col">Thông Tin tài sản</th>
-                <th scope="col">Thông tin đấu giá</th>
-                <th scope="col">Thông tin đại lý</th>
+                <th scope="col">ID</th>
+                <th scope="col">Số lượng</th>
+                <th scope="col">Giao dịch</th>
+                <th scope="col">Tin nhắn</th>
+                <th scope="col">Ngày tháng</th>
                 <th scope="col">Actions </th>
                 </tr>
             </thead>
             <tbody>
 
-                <tr>
-                        <td colspan="4"></td>
-                    <td>
+                <!-- <tr>
+                <td colspan="4"></td>
+                <td>
                     <span>
-                    <b-button v-b-modal.modalPopover style="margin-top:5px;width:50%;" size="sm" v-on:click="clickConfirm3(auction.auction.id)" variant="info">Xác nhận tất cả</b-button>
+                    <b-button v-b-modal.modalPopover style="margin-top:5px;width:53%;" size="sm" v-on:click="clickConfirm3(auction.auction.id)" variant="info">Xác nhận tất cả</b-button>
                     <b-button v-b-modal.modalPopover style="margin-top:5px;width:50%;" size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Huỷ tất cả</b-button>
                     </span>
                 </td>
-                </tr>
-                <tr v-for="auction in auction" v-bind:key="auction.id">
-                    
-                <td scope="row">
+                </tr> -->
+                <tr v-for="transactions in transactions" v-bind:key="transactions.id">
+                <!-- <td scope="row">
                     <img style="width: 200px;" class="" :src="auction.asset.images.split(',',1)" alt="">
+                </td> -->
+                <td style="white-space: normal;width:10%;" scope="row">
+                    {{transactions.id}}
                 </td>
-                <td class="test">
-                    <div class="">
-                        <p class="f-17 mb-2 font-weight-bold">Tên tài sản: {{auction.asset.name}}</p>
-                    </div>
-                                    <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auction.asset.id}}</span>
-                                    <span class="f-13 mr-1 d-block mb-1">Loại: {{auction.asset.category}}</span>                            
-                                    <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auction.asset.created}}</span>
-                                    <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auction.asset.updated}}</span></td>
-                <td><span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auction.auction.id}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Đấu giá tại: {{auction.auction.area}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.auction.startAt}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.auction.endAt}}</span></td>
-                <td><div class="d-flex align-items-center">
-                        <b-avatar :src="auction.user.avatar" size="6rem"></b-avatar>
-                        <div class="user-sum ml-3">
-                            <h5 class="f-15 mb-2 font-weight-600">{{auction.user.name}}</h5>
-                            <p class="f-13 mb-0">
-                            <span class="d-block">
-                                <i class="fa fa-phone" aria-hidden="true"></i>
-                                {{auction.user.mobile}}
-                            </span>
-                            <span class="d-block">
-                                <i class="fa fa-envelope" aria-hidden="true"></i>
-                                {{auction.user.email}}
-                            </span>
-                            <span class="d-block">
-                                <i class="fa fa-share" aria-hidden="true"></i>
-                                {{auction.user.province}}
-                            </span>
-                            </p>
-                        </div>
-                        </div></td>
+                <td style="white-space: normal;width:25%;">
+                    {{transactions.amount}}
+                </td>
+                <td><span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions.fromUser}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ gửi: {{transactions.fromAddress}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">ID người nhận: {{transactions.toUser}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ nhận: {{transactions.toAddress}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions.toAddress}}</span></td>
+                <td style="white-space: normal;width:25%;">{{transactions.note}}</td>
+                <td style="white-space: normal;width:25%;">{{transactions.created}}</td>
                 <td>
                     <span>
-                    <b-button v-b-modal.modalPopover style="margin-top:5px;width:50%;margin-top: 75%;" size="sm" v-on:click="clickConfirm3(auction.auction.id)" variant="info">Xác nhận</b-button>
-                    <b-button v-b-modal.modalPopover style="margin-top:5px;width:50%;margin-top: 75%; " size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Huỷ xác nhận</b-button>
+                    <b-button style=" width:100%;" size="sm" variant="info" v-if="transactions.status == 'complete'">HOÀN THÀNH</b-button>
+                    <b-button style=" width:100%;" size="sm" variant="danger" v-if="transactions.status == 'Pending'">ĐANG XỬ LÝ</b-button>
                     </span>
                 </td>
+                <!-- <td>
+                    <option v-if="transactions.status == 'complete'">HOÀN THÀNH</option>
+                    <option v-if="transactions.status == 'Pending'">ĐANG XỬ LÝ</option> 
+                </td> -->
                 </tr>
                     
             </tbody>
                 
         </table>
-        </vue-scrolling-table>
      </div>
      
   </div>
@@ -91,16 +73,16 @@ Vue.use(VueClipboard);
 export default {
   data() {
     this.axios.get(
-        process.env.VUE_APP_MY_ENV_VARIABLE + "/auction/auction_status/New",
+        process.env.VUE_APP_MY_ENV_VARIABLE + "/wallet/transactions",
         {
           headers: {
             Authorization: this.getCookie("AC-ACCESS-KEY"),
           },
         }
       ).then((response) => {
-        this.auction = response.data;
+        this.transactions = response.data;
       });
-    console.log(this.auction);
+    console.log(this.transactions);
     this.axios.get(
         process.env.VUE_APP_MY_ENV_VARIABLE +"/auction/auction_status/Upcoming",
         {
@@ -125,8 +107,10 @@ export default {
       status: "",
       startAt: "",
       auctionnn: [],
+      transactions:[],
       creaded: "",
       tags: "",
+      
       shape: "",
       avatar: "",
       weight: "",
@@ -301,9 +285,7 @@ export default {
     clickConfirm1(id) {
       this.axios.post(
           this.url +
-            "/auction/update/" +
-            id +"?note=Thông tin tài sản của bạn bị thiếu hoặc sai, vui lòng nhập lại! cảm ơn!&status=Unaccept",
-          { status: this.status, note: this.note },
+            "/auction/update/" +id +"?note=Thông tin tài sản của bạn bị thiếu hoặc sai, vui lòng nhập lại! cảm ơn!&status=Unaccept",{ status: this.status, note: this.note },
           {
             headers: {
               Authorization: this.getCookie("AC-ACCESS-KEY"),
@@ -421,7 +403,7 @@ employee-list {
   font-weight: bold;
   color: #ca425f;
 }
-// .test td{
+// .test td {
 //     max-width: 100px;
 //     overflow: hidden;
 //     white-space: nowrap;

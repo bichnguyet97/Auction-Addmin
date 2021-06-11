@@ -18,9 +18,18 @@
                         <div class="col-2 offset-8">
                           <b-button type="button" class="download-btn" v-on:click="download" variant="outline-primary">Xuất file <b-icon icon="cloud-download" aria-hidden="true"></b-icon></b-button>
                         </div>
+                    
                         <div id="smbutton1" class="col-2 offset-8">
-                          <input v-model="startAt" class="form-control mr-sm-2" type="startAt" placeholder="Search" aria-label="Search">
-                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch(exportWin.startAt)">Search</button>
+                          <!-- <base-input v-model="startAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/> -->
+                          <b-container>
+                            <b-row class="my-1" v-for="type in types" :key="type">
+                              <b-col sm="12">
+                                <b-form-input v-model="startAt" :id="`type-${type}`" :type="type"></b-form-input>
+                              </b-col>
+                            </b-row>
+                          </b-container>
+                          <!-- <input v-model="startAt" class="form-control mr-sm-2" type="startAt" placeholder="Search" aria-label="Search"> -->
+                          <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch(exportWin2.startAt)">Search</button>
                         </div>
                       </div>
                        
@@ -28,6 +37,7 @@
                       <table class="table table-striped">
                         <thead>
                           <tr>
+                            <th scope="col">Mã Phiên</th>
                             <th scope="col">Tên Sản Phẩm</th>
                             <th scope="col">Tên Người Trúng</th>
                             <th scope="col">Email</th>
@@ -35,7 +45,7 @@
                             <th scope="col">Giá Trúng</th>
                             <th scope="col">Địa chỉ</th>
                             <th scope="col">Số Điện Thoại</th>
-                             
+                            <th scope="col">Trạng Thái</th>
                           </tr>
                         </thead>
                         <tbody>
@@ -51,6 +61,7 @@
                             </td>
                             </tr> -->
                           <tr v-for="exportWin2 in exportWin2" v-bind:key="exportWin2.id">
+                            <th scope="row">{{exportWin2.id}}</th>
                             <th scope="row">{{exportWin2.asset}}</th>
                             <!-- <td>
                               <option v-if="category.type == 'Normal'">Truyền thống</option>
@@ -67,6 +78,13 @@
                             <td>{{formatPrice(exportWin2.winPrice)}}</td>
                             <td>{{exportWin2.address}}</td>
                             <td>{{exportWin2.mobile}}</td>
+                            <!-- <td>{{exportWin2.status}}</td> -->
+                            <td>
+                              <span>
+                              <b-button style=" width:100%;" size="sm" variant="info" v-if="exportWin2.status == 'Đã thanh toán'">Đã Thanh Toán</b-button>
+                              <b-button style=" width:100%;" size="sm" variant="danger" v-if="exportWin2.status == 'Chưa thanh toán'">Chưa Thanh Toán</b-button>
+                              </span>
+                          </td>
                           </tr>
                         </tbody>
                       </table>
@@ -147,6 +165,9 @@ Vue.use(VueClipboard)
       exportWin:[],
       exportWin2:[],
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
+      types: [
+          'date',
+        ]
     };
   },
   components: {
@@ -155,7 +176,7 @@ Vue.use(VueClipboard)
   methods: {
     //tim kiem
     clickSearch: async function(){
-       await this.axios.get(this.url+'/admin/statistical?startAt='+this.startAt+'25').then((response) => this.exportWin = response.data,
+       await this.axios.get(this.url+'/admin/statistical?startAt='+this.startAt+'%25').then((response) => this.exportWin = response.data,
        this.exportWin2 = this.exportWin.slice(0, this.perPage-1), 
           this.totalPage = Math.ceil(this.exportWin.length / this.perPage));
        console.log(this.exportWin);
@@ -353,5 +374,7 @@ employee-list{
 #smbutton1{
   padding:10px 5px;
   display:flex;
+  margin-left: -8rem;
+  margin-top: 0.65rem;
 }
 </style>

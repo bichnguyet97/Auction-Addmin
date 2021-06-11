@@ -250,7 +250,7 @@
                                                 v-on:input ="getwarranty"
                                                 
                                                  v-model="inpercent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(bidPrice*percent)/100}}</small>
+                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(inbidPrice*inpercent)/100}}</small>
                                             </div>
                                         </div>
 
@@ -315,7 +315,97 @@
                                             <div class="col-2 offset-8">
                                                 <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
                                                 <button id="but" type="button" class="btn btn-success" @click="clickSearch2(id1,Search.id1)">Update</button>
-                                                <input v-model="id1" id="button"  type="" class="form-control form-control-user fs-090" value="">
+                                                <!-- <input v-model="id1" id="button"  type="" class="form-control form-control-user fs-090" value=""> -->
+                                                <div id="button" class="form-group">
+                                                <base-input >
+                                            <select v-model="id1" class="form-control form-control-user fs-090">
+                                                <option disable value="">Chọn mã</option>
+                                                <option id="16h30-17h">93002</option>
+                                                <option>93003</option>
+                                                <option>93004</option>
+                                                <option>93005</option>
+                                                <option>93006</option>
+                                                <option>93007</option>
+                                                <option>93008</option>
+                                                <option>93009</option>
+                                                <option>93010</option>
+                                                <option>93011</option>
+                                                <option>93012</option>
+                                                <option>93013</option>
+                                                <option>93014</option>
+                                                <option>93015</option>
+                                                <option>93016</option>
+                                                <option>93017</option>
+                                                <option>93018</option>
+                                                <option>93019</option>
+                                                <option>93020</option>
+                                                <option>93021</option>
+                                                <option>93022</option>
+                                                <option>93023</option>
+                                                <!-- 
+                                                <option id="9h30-10">93502</option>
+                                                <option>93516</option>
+                                                <option>93517</option>
+                                                <option>93518</option>
+                                                <option>93519</option>
+                                                <option>93520</option>
+                                                <option>93521</option>
+                                                <option>93522</option>
+                                                <option>93523</option>
+                                                <option>93524</option>
+                                                <option>93525</option>
+                                                <option>93526</option>
+                                                <option>93527</option>
+                                                <option>93528</option>
+                                                <option>93529</option>
+                                                <option>93530</option>
+                                                <option>93531</option>
+                                                <option>93532</option>
+                                                <option>93533</option>
+                                                <option>93534</option>
+                                                <option>93535</option>
+                                                <option>93536</option> -->
+                                                <!-- <option>Nghệ An</option>
+                                                <option>Phú Thọ</option>
+                                                <option>Phú Yên</option>
+                                                <option>Quảng Bình</option>
+                                                <option>Quảng Nam</option>
+                                                <option>Quảng Ngãi</option>
+                                                <option>Quảng Trị</option>
+                                                <option>Sóc Trăng</option>
+                                                <option>Sơn La</option>
+                                                <option>Tây Ninh</option>
+                                                <option>Tiền Giang</option>
+                                                <option>Tuyên Quang</option>
+                                                <option>Thái Bình</option>
+                                                <option>Thái Nguyên</option>
+                                                <option>Thanh Hóa</option>
+                                                <option>Trà Vinh</option>
+                                                <option>Vĩnh Long</option>
+                                                <option>Vĩnh Phúc</option>
+                                                <option>Yên Bái</option>
+                                                <option>Nghệ An</option>
+                                                <option>Phú Thọ</option>
+                                                <option>Phú Yên</option>
+                                                <option>Quảng Bình</option>
+                                                <option>Quảng Nam</option>
+                                                <option>Quảng Ngãi</option>
+                                                <option>Quảng Trị</option>
+                                                <option>Sóc Trăng</option>
+                                                <option>Sơn La</option>
+                                                <option>Tây Ninh</option>
+                                                <option>Tiền Giang</option>
+                                                <option>Tuyên Quang</option>
+                                                <option>Thái Bình</option>
+                                                <option>Thái Nguyên</option>
+                                                <option>Thanh Hóa</option>
+                                                <option>Trà Vinh</option>
+                                                <option>Vĩnh Long</option>
+                                                <option>Vĩnh Phúc</option>
+                                                <option>Yên Bái</option> -->
+                                            </select>
+                                            </base-input>
+                                                </div>
                                             </div>
                                         </div>
                                          
@@ -396,6 +486,7 @@ Vue.use(VueClipboard)
       mobile:'',
       note:'',
       seller:'504',
+       
       save:true,
       assest:'',
       traditional:'',
@@ -417,7 +508,7 @@ Vue.use(VueClipboard)
       file1: null,
       attendingUser:'',
       inassest:'',
-      inarea:'',
+      inarea:'Hà Nội',
       intype:'',
       inregistrationFee:'',
       inpercent:'',
@@ -428,7 +519,7 @@ Vue.use(VueClipboard)
       instepPrice:'',
       inbuyPrice:'',
       inattendanceDeadline:'',
-      inseller:'',
+      inseller:'504',
       incancelRegisterFee:'',
       inattendingUser:''
     
@@ -457,7 +548,7 @@ Vue.use(VueClipboard)
         this.Search=response.data, 
         this.inassest= response.data.assest,
         this.inarea= response.data.area,
-        this.intype= response.data.intype,
+        this.intype= response.data.type,
         this.inregistrationFee=response.data.registrationFee,
         this.inpercent=response.data.percent,
         this.inbidPrice=response.data.bidPrice,
@@ -530,7 +621,7 @@ Vue.use(VueClipboard)
     },
     //get warranty
     getwarranty(){
-        this.warranty =  (this.bidPrice*this.percent)/100
+        this.inwarranty =  (this.inbidPrice*this.inpercent)/100
     },
     // get cookie
     getCookie: function(cname) {
@@ -578,11 +669,11 @@ Vue.use(VueClipboard)
   margin-top:-137px;
 }
 #but{
-    margin-top: -4rem;
+    margin-top: -4.4rem;
     margin-left:6rem;
 }
 #button{
-    margin-top: -4rem;
+    margin-top: -4.4rem;
     margin-left: 14rem;
 }
 </style>

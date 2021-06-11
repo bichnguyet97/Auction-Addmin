@@ -25,27 +25,27 @@
                     </span>
                 </td>
                 </tr> -->
-                <tr v-for="transactions in transactions" v-bind:key="transactions.id">
+                <tr v-for="transactions2 in transactions2" v-bind:key="transactions2.id">
                 <!-- <td scope="row">
                     <img style="width: 200px;" class="" :src="auction.asset.images.split(',',1)" alt="">
                 </td> -->
                 <td style="white-space: normal;width:10%;" scope="row">
-                    {{transactions.id}}
+                    {{transactions2.id}}
                 </td>
                 <td style="white-space: normal;width:25%;">
-                    {{transactions.amount}}
+                    {{transactions2.amount}}
                 </td>
-                <td><span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions.fromUser}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ gửi: {{transactions.fromAddress}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">ID người nhận: {{transactions.toUser}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ nhận: {{transactions.toAddress}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions.toAddress}}</span></td>
-                <td style="white-space: normal;width:25%;">{{transactions.note}}</td>
-                <td style="white-space: normal;width:25%;">{{transactions.created}}</td>
+                <td><span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions2.fromUser}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ gửi: {{transactions2.fromAddress}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">ID người nhận: {{transactions2.toUser}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ nhận: {{transactions2.toAddress}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span></td>
+                <td style="white-space: normal;width:25%;">{{transactions2.note}}</td>
+                <td style="white-space: normal;width:25%;">{{transactions2.created}}</td>
                 <td>
                     <span>
-                    <b-button style=" width:100%;" size="sm" variant="info" v-if="transactions.status == 'complete'">HOÀN THÀNH</b-button>
-                    <b-button style=" width:100%;" size="sm" variant="danger" v-if="transactions.status == 'Pending'">ĐANG XỬ LÝ</b-button>
+                    <b-button style=" width:100%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
+                    <b-button style=" width:100%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
                     </span>
                 </td>
                 <!-- <td>
@@ -58,6 +58,13 @@
                 
         </table>
      </div>
+     <paginate
+        :page-count="totalPage"
+        :click-handler="onclick"
+        :prev-text="'Prev'"
+        :next-text="'Next'"
+        class="pagination">
+      </paginate>
      
   </div>
 </template>
@@ -81,6 +88,8 @@ export default {
         }
       ).then((response) => {
         this.transactions = response.data;
+        this.transactions2 = response.data.slice(0, this.perPage-1), 
+        this.totalPage = Math.ceil(response.data.length / this.perPage)
       });
     console.log(this.transactions);
     this.axios.get(
@@ -110,7 +119,7 @@ export default {
       transactions:[],
       creaded: "",
       tags: "",
-      
+      transactions2:[],
       shape: "",
       avatar: "",
       weight: "",
@@ -155,6 +164,10 @@ export default {
       url: process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate: "",
       users: [],
+      currentPage : 1,
+      perPage : 10,
+      totalPage:0,
+      page: 10
     };
   },
   components: {
@@ -170,6 +183,10 @@ export default {
       var close = document.querySelector(".closeEdit");
       close.classList.add("openEdit");
       this.save = true;
+    },
+    onclick(page){
+      console.log(page);
+      this.transactions2 = this.transactions.slice((page-1)*this.perPage,page*this.perPage-1)
     },
     clickinfo() {
       this.axios
@@ -363,6 +380,36 @@ export default {
 </script>
 
 <style lang="scss">
+.pagination {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1.5rem;
+  
+}
+
+.pagination li {
+  border: 0.1rem solid green;
+  display: block;
+  margin: 0 0.5rem;
+  height: 1.5rem;
+  width: 3rem;
+  text-align: center;
+  border-radius:2.5rem;
+}
+
+.pagination li a {
+  display: block;
+}
+
+.pagination li a:focus {
+  outline: none;
+}
+
+.pagination li.active {
+  background-color: #4CAF50;
+  color: white;
+}
 #app {
   font-family: "Avenir", Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;

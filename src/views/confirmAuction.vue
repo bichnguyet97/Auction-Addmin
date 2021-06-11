@@ -323,20 +323,20 @@ export default {
             .then((response) => (this.auction = response.data));
         });
     },
-    clickSearch2(id) {
-      this.axios.get(this.url + "/asset/id/" + id).then((response) => {
-        if (response.data) {
-          (this.image = response.data.assets[0].images.split(",")),
-            (this.Search1 = response.data),
-            (this.Search = response.data.assets[0]),
-            (this.Searchh = response.data.auctions[0]),
-            (this.auc = response.data.auctions[0]),
-            (this.asse = response.data.assets[0]),
-            (this.teid = response.data.assets[0].auctions[0].id);
-        }
-      });
-      console.log(this.Searchh);
-    },
+    // clickSearch2(id) {
+    //   this.axios.get(this.url + "/asset/id/" + id).then((response) => {
+    //     if (response.data) {
+    //       (this.image = response.data.assets[0].images.split(",")),
+    //         (this.Search1 = response.data),
+    //         (this.Search = response.data.assets[0]),
+    //         (this.Searchh = response.data.auctions[0]),
+    //         (this.auc = response.data.auctions[0]),
+    //         (this.asse = response.data.assets[0]),
+    //         (this.teid = response.data.assets[0].auctions[0].id);
+    //     }
+    //   });
+    //   console.log(this.Searchh);
+    // },
     formatPrice(value) {
       let val = (value / 1).toFixed(2).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");

@@ -93,9 +93,15 @@
                             <th scope="row">{{category.id}}</th>
                             <td>{{category.name}}</td>
                             <td>{{category.alias}}</td>
-                            <td>{{category.avatar}}</td>
-                            <td>{{category.created}}</td>
-                            <td>{{category.updated}}</td>
+                            <td><a href="" target="_blank">{{category.avatar}}</a></td>
+                            <td>
+                              <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(category.created,'date')"></span>
+                              <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(category.created,'time')"></span>
+                            </td>
+                            <td>
+                              <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(category.updated,'date')"></span>
+                              <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(category.updated,'time')"></span>
+                            </td>
                             <td>
                               <span>
                                 <!-- <button type="button" class="btn btn-danger" v-on:click="clickdelete1(category.id)">Delete</button> -->
@@ -322,6 +328,17 @@ Vue.use(VueClipboard)
         }
       }
       return "";
+    },
+    formatDatetime: function (datetime,type) {
+      var a =datetime.split("T");
+        if(type=='date'){
+          return a[0];
+
+        }else{
+            var b = a[1].split(".");
+            return b[0]
+        }
+
     }
     // getData(){
     //   this.axios.get('http://52.77.244.234/category').then((response)=>{

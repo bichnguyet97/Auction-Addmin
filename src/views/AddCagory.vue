@@ -1,3 +1,4 @@
+<script src="https://cdnjs.cloudflare.com/ajax/libs/vue/2.5.13/vue.js"></script>
 <template>
     <div>
         <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
@@ -69,7 +70,10 @@
                             <div class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4">
                                     <div class="user-avatar mb-3 text-center">
-                                        <img class="w-100" src="img/brand/s500.jpg" alt="">
+                                        <!-- <img class="w-100" src="img/brand/s500.jpg" alt=""> -->
+                                        <div id="preview">
+                                            <img v-if="urlimg" v-bind:src="urlimg" />
+                                        </div>
                                     </div>
                                 </div>
                                 <div class="col-12 col-xl-9 col-lg-9 col-md-8">
@@ -93,7 +97,7 @@
                                         <div class="col-12 col-md-6">
                                             
                                             <div class="input-group rounded-0">
-                                                <div class="custom-file rounded-0">
+                                                <!-- <div class="custom-file rounded-0">
                                                      
                                                     <b-form-file
                                                     class="z-index-inputFile"
@@ -109,11 +113,16 @@
                                                         <i class="las la-plus-circle"></i>
                                                         Thêm
                                                     </button>
-                                                </div>
+                                                </div> -->
+                                                <input type="file" @change="onFileChange" />
+
+                                                <!-- <div id="preview">
+                                                    <img v-if="urlimg" v-bind:src="urlimg" />
+                                                </div> -->
                                             </div>
-                                            <div id="topimage" class="user-avatar mb-3 text-center">
+                                            <!-- <div id="topimage" class="user-avatar mb-3 text-center">
                                                 <img id="sizeimage" :src="picture" alt="">
-                                            </div>
+                                            </div> -->
                                         </div>
                                         <div class="col-12 col-md-6">
                                             <div class="col-2 offset-8">
@@ -194,7 +203,8 @@ Vue.use(VueClipboard)
       searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',
-      asset:[]
+      asset:[],
+      urlimg:null
     };
   },
   components: {
@@ -203,7 +213,7 @@ Vue.use(VueClipboard)
   methods: { 
     clickAdd1:async function(){
      await this.axios.post(this.url+'/category',{ "name": this.name,
-      "alias": this.alias, "avatar":this.picture
+      "alias": this.alias, "avatar":this.urlimg
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -255,6 +265,10 @@ Vue.use(VueClipboard)
         }
       }
       return "";
+    },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.urlimg = URL.createObjectURL(file);
     }
     },
   }
@@ -291,5 +305,16 @@ Vue.use(VueClipboard)
 }
 #topimage{
     margin-top:10px;
+}
+
+#preview {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#preview img {
+  max-width: 100%;
+  max-height: 500px;
 }
 </style>

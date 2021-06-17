@@ -81,8 +81,9 @@
                             <!-- <td>{{exportWin2.status}}</td> -->
                             <td>
                               <span>
-                              <b-button style=" width:100%;" size="sm" variant="info" v-if="exportWin2.status == 'Đã thanh toán'">Đã Thanh Toán</b-button>
-                              <b-button style=" width:100%;" size="sm" variant="danger" v-if="exportWin2.status == 'Chưa thanh toán'">Chưa Thanh Toán</b-button>
+                              <b-button style=" width:100%;" size="sm" variant="info" v-if="exportWin2.status == 'Paid'">Đã Thanh Toán</b-button>
+                              <b-button style=" width:100%;" size="sm" variant="danger" v-if="exportWin2.status == 'Ended'">Chưa Thanh Toán</b-button>
+                              <b-button style=" width:100%;" size="sm" variant="success" v-if="exportWin2.status == 'SellOff'">Đã Thanh Lý</b-button>
                               </span>
                           </td>
                           </tr>

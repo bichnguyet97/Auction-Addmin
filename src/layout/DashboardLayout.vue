@@ -27,13 +27,14 @@
         <h6 id="tl" class="navbar-heading text-muted">Tài Sản</h6>
         <sidebar-item :link="{name: 'Danh Sách Tài Sản', icon: 'fa fa-anchor text-blue', path: '/asset-controller'}"/>
         <sidebar-item :link="{name: 'Thêm tài sản', icon: 'fa fa-cart-plus text-blue', path: '/addasset-controller'}"/>
-        <sidebar-item :link="{name: 'Xác Nhận Tài Sản', icon: 'fa fa-check text-blue', path: '/cfirmasset-controller'}"/>
-        <sidebar-item :link="{name: 'Sửa Tài Sản', icon: 'fa fa-wrench text-blue', path: '/editasset-controller'}"/>
+        <!-- <sidebar-item :link="{name: 'Xác Nhận Tài Sản', icon: 'fa fa-check text-blue', path: '/cfirmasset-controller'}"/> -->
+        <!-- <sidebar-item :link="{name: 'Sửa Tài Sản', icon: 'fa fa-wrench text-blue', path: '/editasset-controller'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">Đấu Giá</h6>
         <sidebar-item :link="{name: 'Danh Sách Đấu Giá', icon: 'fa fa-gavel text-blue', path: '/auction-controller'}"/>
         <sidebar-item :link="{name: 'Thêm Đấu Giá', icon: 'fa fa-plus text-blue', path: '/addauction-controller'}"/>
         <sidebar-item :link="{name: 'Xác Nhận Đấu Giá', icon: 'fa fa-check text-blue', path: '/cfaution-controller'}"/>
         <sidebar-item :link="{name: 'Đấu Giá Đã Xác Nhận', icon: 'fa fa-check-circle text-green', path: '/active-controller'}"/>
+        <h6 id="tl" class="navbar-heading text-muted">Transaction</h6>
         <sidebar-item :link="{name: 'Lịch Sử Giao Dịch', icon: 'fa fa-address-book text-green', path: '/transaction'}"/>
         <!-- <sidebar-item :link="{name: 'Kiểm soát đấu giá', icon: 'fa fa-balance-scale text-blue', path: '/bid-controller'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">EXPORT</h6>

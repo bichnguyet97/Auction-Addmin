@@ -3,71 +3,8 @@
         <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
         </base-header>
 
-        <div v-if="hinh" class="col-12 col-xl-12 col-lg-12">
-            <div class="edit-profile">
-                <div class="card border-0 rounded-0 shadow-sm">
-                    <div class="card-body p-3 rounded-0 border-0">
-                        <div class="card-text pt-1">
-                            <div v-for="asset in asset2" v-bind:key="asset.id" class="row">
-                                <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
-                                    <div class="user-avatar mb-3 text-center">
-                                      <img @click="hinh=false,clickSearch2(asset.id)" class="w-100" :src="asset.images" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-9 col-md-6 border-top">
-                                    <div class="start-pro-info p-3 p-md-4 p-lg-3 h-100">
-                                        <div class="row h-100 align-items-center">
-                                            <div class="col-12 col-xl-7 col-lg-7">
-                                              <h3 class="f-17 mb-2 font-weight-bold">Tên tài sản: {{asset.name}}</h3>
-                                              <div class="pri-bid mb-3 mb-sm-0">
-                                                <span class="f-13 mr-1 d-block mb-1">Mã: {{asset.id}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Loại: {{asset.category}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Giá niêm yết: {{formatPrice(asset.initPrice)}}</span>
-                                                <!-- <span class="f-13 mr-1 d-block mb-1">Giá hiện tại: {{asset.currentPrice}}</span> -->
-                                                <span class="f-13 mr-1 d-block mb-1">Ngày đăng: {{asset.created}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật: {{asset.updated}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Thông tin của tài sản: {{asset.description}}</span>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div >
-                                <!-- <router-link v-bind:to="'/editasset/'">  -->
-                                <div id="edit" class="col-12 col-xl-5 col-lg-5">
-                                    <div class="text-right bid-pri-box">
-                                        <div class="link-box">
-                                            <!-- <a class="btn btn-primary btn-sm text-white"> -->
-
-                                                <router-link :to="{ name: 'editasset', params: { id: asset.id }}">Sửa tài sản</router-link>
-                                                <i class="las la-edit" ></i>
-                                                Sửa tài sản
-                                            <!-- </a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- </router-link> -->
-                                </div>
-                                 
-                            </div>
-                            <b-modal id="modalPopover" title="Thông báo" ok-only>
-                              <p>
-                              Bạn đã xác nhận tài sản thành công !
-                              </p>
-                          </b-modal>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <paginate
-            :page-count="totalPage"
-            :click-handler="onclick"
-            :prev-text="'Prev'"
-            :next-text="'Next'"
-            class="pagination">
-            </paginate>
-        </div>
-        <div v-else>
+         
+        <div>
             <div class="col-12 col-lg-12">
             <div class="edit-profile">
                 <div class="card border-0 rounded-0 shadow-sm">
@@ -90,7 +27,7 @@
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <div class="user-avatar mb-3 mb-sm-0 text-center">
-                                                    <img :src="tespicture" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
+                                                    <img :src="tespicture" class="edit-avatar" style="max-width:300px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-5">
@@ -105,7 +42,7 @@
                                                 <label class="col-form-label font-weight-600">Tên tài sản<span class="text-danger">*</span></label>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input v-model="testName" type="text" class="form-control form-control-user fs-090" maxlength="200" value="">
+                                                <input v-model="testName"  type="text" class="form-control form-control-user fs-090" maxlength="200" >
                                             </div>
                                         </div>
                                     </div>
@@ -165,7 +102,7 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <div class="input-group rounded-0">
+                                        <!-- <div class="input-group rounded-0">
                                             <div class="custom-file rounded-0">
                                                 <b-form-file
                                                 class="z-index-inputFile"
@@ -184,9 +121,10 @@
                                                     Thêm
                                                 </button>
                                             </div>
-                                        </div>
-                                        <div id="topimage" class="user-avatar mb-3 text-center">
-                                            <img id="sizeimage" :src="tespicture" alt="">
+                                        </div> -->
+                                        <input type="file" @change="onFileChange" />
+                                        <div id="preview">
+                                            <img v-if="urlimg" v-bind:src="urlimg" />
                                         </div>
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
                                     </div>
@@ -1254,13 +1192,26 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    var asset = [];
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset'
-        ).then((response) => { this.asset=response.data, this.asset2 = response.data.slice(0, this.perPage-1), 
-          this.totalPage = Math.ceil(response.data.length / this.perPage)  
-          });
-    console.log(asset);
+    
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset/id/' + this.$route.params.id
+        ).then((response) => 
+        // {
+        //      this.asset=response.data.assets[0];
+        //      console.log(response.data.assets[0].id);
+        //       console.log(this.asset.assets.name);
+        //   }
+        {if(response.data){ this.asset=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
+      this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
+      this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
+      this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
+      this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
+      this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter,this.testfloorsNumber=response.data.assets[0].floorsNumber, this.testsimNumber=response.data.assets[0].simNumber,
+      this.testresolution=response.data.assets[0].resolution,this.testram= response.data.assets[0].ram,this.testrom= response.data.assets[0].rom,this.testscreenSize=response.data.assets[0].screenSize,this.testoperatingSystem= response.data.assets[0].operatingSystem,this.testcamera=response.data.assets[0].camera, this.testsim=response.data.assets[0].sim,
+      this.testbatteryCapacity=response.data.assets[0].batteryCapacity, this.testwattage= response.data.assets[0].wattage,this.testguarantee= response.data.assets[0].guarantee
+      }}
+          );
     return {
+     asEdit:null,
       initPrice: '',
       close2:'true',
       currentPrice:'',
@@ -1307,7 +1258,7 @@ Vue.use(VueClipboard)
       type:'',
       area:'',
       origin:'',
-      asset: [],
+      asset: null,
       add:true,
       sessionId:'',
       save:true,
@@ -1343,36 +1294,20 @@ Vue.use(VueClipboard)
       rom:'',
       cpu:'',
       wattage:'',
-      guarantee:''
+      guarantee:'',
+      testtrademark:'',
+      urlimg:null
     };
   },
   components: {
     // Login
   },
   methods: {
-    clickUpdate1:async function(){
-      this.axios.get(this.url+'/asset'
-       ).then((response) => { this.asset=response.data})
-    },
-    // clickSearch2(id){
-    //   this.axios.get(this.url+'/asset/id/'+id)
-    //   .then((response) => {if(response.data){ this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
-    //   this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
-    //   this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
-    //   this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
-    //   this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
-    //   this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter,this.testfloorsNumber=response.data.assets[0].floorsNumber, this.testsimNumber=response.data.assets[0].simNumber,
-    //   this.testresolution=response.data.assets[0].resolution,this.testram= response.data.assets[0].ram,this.testrom= response.data.assets[0].rom,this.testscreenSize=response.data.assets[0].screenSize,this.testoperatingSystem= response.data.assets[0].operatingSystem,this.testcamera=response.data.assets[0].camera, this.testsim=response.data.assets[0].sim,
-    //   this.testbatteryCapacity=response.data.assets[0].batteryCapacity, this.testwattage= response.data.assets[0].wattage,this.testguarantee= response.data.assets[0].guarantee
-    //   }});
-    //     console.log(this.testid);
-    // },
-     
     clickEdit(id){
       this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,
       "category": this.testcategory,"description":this.testdescription, "currentStatus": this.testcurrentStatus, "trademark": this.testtrademark, "amount": this.tesamount,"stumpDiameter": this.tesstumpDiameter,"height": this.tesheight,
       "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.testbedroomsNumber, "gear": this.tesgear, "fuel": this.tesfuel, "yearOld": this.tesyearold,
-      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.testpicture,
+      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.urlimg,
       "shape": this.tesshape,"weight": this.tesweight, "birghtness":this.tesbirghtness, "floorsNumber": this.testfloorsNumber,"simNumber":this.testsimNumber,"resolution":this.testresolution,"ram":this.testram,"rom":this.testrom,"operatingSystem":this.testoperatingSystem,
       "screenSize":this.testscreenSize,"camera":this.testcamera,"sim":this.testsim, "batteryCapacity":this.testbatteryCapacity,"wattage": this.testwattage, "guarantee":this.testguarantee
       
@@ -1418,45 +1353,7 @@ Vue.use(VueClipboard)
                     );
             }
         },
-    onclick(page){
-        console.log(page);
-        this.asset2 = this.asset.slice((page-1)*this.perPage,page*this.perPage-1)
-    },
-    // clickSearch1: async function(){
-    //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);
-    //   console.log(this.userSearch.data.name);
-    //   this.searchCheck=2;
-    // },
-    // clickSearch: async function(){
-    //   await this.axios.get(this.url+'/asset/byCategory/'+this.category).then((response) => this.userSearch = response);
-    //   this.searchCate=this.userSearch;
-    //   this.searchCheck=3;
-    //   console.log(this.userSearch.data);
-    // }
-    // clickConfirm(id){
-    //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status="+this.status,{"status":this.status},{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
-    // clickdelete1(id){
-    //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=deleted",{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
-    clickconfirm(id){
-      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=Đã xác nhận",{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate1();
-          });
-    },
+     
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -1476,24 +1373,11 @@ Vue.use(VueClipboard)
       }
       return "";
     },
-    // handleClick(id) {
-    //   let assetObj;
-
-    //   var urlEdit ="";
-    //   this.asset.forEach( e =>{ 
-    //       if(e.id == id){
-    //         assetObj = e;
-    //         urlEdit = "editasset/" + e.id;
-    //       }
-          
-
-    //   });
-    //   this.$router.push({
-    //     name: urlEdit,
-    //     params: { assetObj }
-    //   });
-    // }
-    },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.urlimg = URL.createObjectURL(file);
+    }
+    }
   }
 </script>
 

@@ -59,6 +59,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/UserProfile.vue')
         },
         {
+          path: '/detailUser/:id',
+          name: 'detailUser',
+          component: () => import(/* webpackChunkName: "demo" */ './views/DetailUser.vue')
+        },
+        {
           path: '/adduser-controller',
           name: 'adduser-controller',
           component: () => import(/* webpackChunkName: "demo" */ './views/AddUser.vue')
@@ -92,6 +97,16 @@ export default new Router({
           path: '/editasset-controller',
           name: 'editasset-controller',
           component: () => import(/* webpackChunkName: "demo" */ './views/EditAsset.vue')
+        },
+        {
+          path: '/detailEditAsset/:id',
+          name: 'detailEditAsset',
+          component: () => import(/* webpackChunkName: "demo" */ './views/DetailEditAsset.vue')
+        },
+        {
+          path: '/editasset/:id',
+          name: 'editasset',
+          component: () => import(/* webpackChunkName: "demo" */ './views/EditAssets.vue')
         },
         {
           path: '/auction-controller',

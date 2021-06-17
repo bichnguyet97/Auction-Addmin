@@ -76,10 +76,15 @@
                                     <div class="row">
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
-                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                               <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập mã tài sản <span class="text-danger">*</span>
-                                                </label>
-                                                <input v-model="inassest" type="" class="form-control form-control-user fs-090" value="2502" maxlength="20">
+                                                </label> 
+                                               <!--   <input v-model="inassest" type="" class="form-control form-control-user fs-090" value="2502" maxlength="20">-->
+                                                <select v-model="inassest" class="form-control form-control-user fs-090">
+                                                   <option v-for="option in asset" v-bind:key="option.id" v-bind:value="option.id">
+                                                        {{ option.id }} - {{option.name}}
+                                                    </option>
+                                                </select>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -267,6 +272,18 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
+                                                    Phần trăm thanh lý <span class="text-danger">*</span>
+                                                </label>
+                                                <input
+                                                
+                                                 v-model="sellOffPercent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(inbuyPrice*sellOffPercent)/100}}</small>
+                                            </div>
+                                        </div>
+
+                                        <div class="col-12 col-md-6">
+                                            <div class="form-group">
+                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Số người tham dự <span class="text-danger">*</span>
                                                 </label>
                                                 <input v-model="inattendingUser" type="number" class="form-control form-control-user fs-090" value="">
@@ -440,11 +457,18 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/new',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) =>  { this.asset=response.data});
-      console.log(this.asset);
+    // this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/new',{
+    //   headers: {
+    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
+    //     }).then((response) =>  { this.asset=response.data});
+    //   console.log(this.asset);
+
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset'
+        ).then((response) => { 
+            console.log( "response" + response.data);
+            this.asset=response.data;
+        });
+  
       // console.log(response.data[0].auctions[0].id)
     // for(var i =0;i>auction.length;i++) {
     //     for(var j =0;j<auction.lenght;j++) {
@@ -486,7 +510,7 @@ Vue.use(VueClipboard)
       mobile:'',
       note:'',
       seller:'504',
-       
+      sellOffPercent:'',
       save:true,
       assest:'',
       traditional:'',
@@ -532,7 +556,8 @@ Vue.use(VueClipboard)
     clickAdd1:async function(){
     await this.axios.post(this.url+'/auction/',{ "assest": this.inassest,"type":this.intype,"registrationFee":this.inregistrationFee,"percent":this.inpercent,"regulation":this.pic,
       "bidPrice": this.inbidPrice,"endAt": this.inendAt, "startAt": this.instartAt, "warranty": this.inwarranty, "stepPrice": this.instepPrice, "buyPrice": this.inbuyPrice,
-        "area": this.inarea, "note": this.note,"attendanceDeadline":this.inattendanceDeadline, "seller": this.inseller, "cancelRegisterFee": this.incancelRegisterFee, "attendingUser":this.inattendingUser
+        "area": this.inarea, "note": this.note,"attendanceDeadline":this.inattendanceDeadline, "seller": this.inseller, "cancelRegisterFee": this.incancelRegisterFee, "attendingUser":this.inattendingUser,
+        "sellOffPercent": this.sellOffPercent
       },{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -623,6 +648,9 @@ Vue.use(VueClipboard)
     getwarranty(){
         this.inwarranty =  (this.inbidPrice*this.inpercent)/100
     },
+    // getwarranty2(){
+    //     this.inwarranty2 =  (this.inbuyPrice*this.sellOffPercent)/100
+    // },
     // get cookie
     getCookie: function(cname) {
       var name = cname + "=";

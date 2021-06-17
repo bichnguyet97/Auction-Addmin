@@ -66,8 +66,8 @@
                             <th scope="col">Hình ảnh</th>
                             <th scope="col">Giá niêm yết</th>
                             <th scope="col">Giá hiện tại</th>
-                            <th scope="col">Tạo</th>
-                            <th scope="col">Cập nhật</th>
+                            <th scope="col">Ngày tạo</th>
+                            <th scope="col">Ngày Cập nhật</th>
                             <th scope="col">Trạng thái</th>
                             <th scope="col">Actions</th>
                           </tr>
@@ -75,18 +75,40 @@
                         <tbody v-if="searchCheck==1">
                           <tr v-for="asset in asset2" v-bind:key="asset.id">
                             <th scope="row">{{asset.id}}</th>
-                            <td>{{asset.name}}</td>
+                            <td style="white-space: normal;">{{asset.name}}</td>
                             <td>{{asset.category}}</td>
-                            <td class="test"><a :href="asset.images">{{asset.images}}</a></td>
+                            <td>
+                              <!-- <a :href="asset.images">{{asset.images}}</a> -->
+                              <img style="width: 82px;" class="" :src="asset.images" alt="">
+                            </td>
                             <td>{{formatPrice(asset.initPrice)}}</td>
                             <td>{{formatPrice(asset.currentPrice)}}</td>
-                            <td>{{asset.created}}</td>
-                            <td>{{asset.updated}}</td>
-                            <td style="color:red;">{{asset.status}}</td>
+                            <td>
+                              <!-- {{asset.created}} -->
+                              <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(asset.created,'date')"></span>
+                              <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(asset.created,'time')"></span>
+                            </td>
+                            <td>
+                              <!-- {{asset.updated}} -->
+                              <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(asset.updated,'date')"></span>
+                              <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(asset.updated,'time')"></span>
+                            </td>
+                            <td>
+                              <!-- {{asset.status}} -->
+                              <span>
+                                <b-button style=" width:70%;" size="sm" variant="info" v-if="asset.status == 'waiting'">MỚI</b-button>
+                                <b-button style=" width:80%;" size="sm" variant="danger" v-if="asset.status == 'Paid'">ĐÃ BÁN</b-button>
+                              </span>
+                            </td>
                             <td>
                               <span>
                                 <base-button size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
-                                 
+                                <base-button size="sm" outline type="info" @click="handleClick(asset.id)" >
+                                  <router-link :to="{ name: 'editasset', params: { id: asset.id }}">Sửa</router-link>
+                                </base-button>
+                                <base-button size="sm" outline type="info" @click="handleClick(asset.id)" >
+                                  <router-link :to="{ name: 'detailEditAsset', params: { id: asset.id }}">Chi tiết</router-link>
+                                </base-button>
                               </span>
                             </td>
                           </tr>
@@ -145,6 +167,7 @@
 <!-- <vue /> -->
     </div>
 </template>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
 <script>
 
 import Vue from 'vue'
@@ -292,6 +315,27 @@ Vue.use(VueClipboard)
         }
       }
       return "";
+    },
+    formatDatetime: function (datetime,type) {
+      var a =datetime.split("T");
+        if(type=='date'){
+          return a[0];
+
+        }else{
+            var b = a[1].split(".");
+            return b[0]
+        }
+
+    },
+      handleClick(id) {
+      let assetObj;
+      this.asset.forEach( e =>{ 
+          if(e.id == id)assetObj = e;
+      });
+      this.$router.push({
+        name: "editasset",
+        params: { assetObj }
+      });
     }
     },
   }

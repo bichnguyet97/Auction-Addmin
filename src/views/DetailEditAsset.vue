@@ -3,71 +3,8 @@
         <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
         </base-header>
 
-        <div v-if="hinh" class="col-12 col-xl-12 col-lg-12">
-            <div class="edit-profile">
-                <div class="card border-0 rounded-0 shadow-sm">
-                    <div class="card-body p-3 rounded-0 border-0">
-                        <div class="card-text pt-1">
-                            <div v-for="asset in asset2" v-bind:key="asset.id" class="row">
-                                <div class="col-12 col-xl-3 col-lg-3 col-md-4 border-top">
-                                    <div class="user-avatar mb-3 text-center">
-                                      <img @click="hinh=false,clickSearch2(asset.id)" class="w-100" :src="asset.images" alt="">
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-9 col-md-6 border-top">
-                                    <div class="start-pro-info p-3 p-md-4 p-lg-3 h-100">
-                                        <div class="row h-100 align-items-center">
-                                            <div class="col-12 col-xl-7 col-lg-7">
-                                              <h3 class="f-17 mb-2 font-weight-bold">Tên tài sản: {{asset.name}}</h3>
-                                              <div class="pri-bid mb-3 mb-sm-0">
-                                                <span class="f-13 mr-1 d-block mb-1">Mã: {{asset.id}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Loại: {{asset.category}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Giá niêm yết: {{formatPrice(asset.initPrice)}}</span>
-                                                <!-- <span class="f-13 mr-1 d-block mb-1">Giá hiện tại: {{asset.currentPrice}}</span> -->
-                                                <span class="f-13 mr-1 d-block mb-1">Ngày đăng: {{asset.created}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật: {{asset.updated}}</span>
-                                                <span class="f-13 mr-1 d-block mb-1">Thông tin của tài sản: {{asset.description}}</span>
-                                              </div>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                                <div >
-                                <!-- <router-link v-bind:to="'/editasset/'">  -->
-                                <div id="edit" class="col-12 col-xl-5 col-lg-5">
-                                    <div class="text-right bid-pri-box">
-                                        <div class="link-box">
-                                            <!-- <a class="btn btn-primary btn-sm text-white"> -->
-
-                                                <router-link :to="{ name: 'editasset', params: { id: asset.id }}">Sửa tài sản</router-link>
-                                                <i class="las la-edit" ></i>
-                                                Sửa tài sản
-                                            <!-- </a> -->
-                                        </div>
-                                    </div>
-                                </div>
-                                <!-- </router-link> -->
-                                </div>
-                                 
-                            </div>
-                            <b-modal id="modalPopover" title="Thông báo" ok-only>
-                              <p>
-                              Bạn đã xác nhận tài sản thành công !
-                              </p>
-                          </b-modal>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <paginate
-            :page-count="totalPage"
-            :click-handler="onclick"
-            :prev-text="'Prev'"
-            :next-text="'Next'"
-            class="pagination">
-            </paginate>
-        </div>
-        <div v-else>
+         
+        <div>
             <div class="col-12 col-lg-12">
             <div class="edit-profile">
                 <div class="card border-0 rounded-0 shadow-sm">
@@ -86,11 +23,14 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Ảnh đại diện<span class="text-danger">*</span></label>
+                                                <!-- <label class="col-form-label font-weight-600">Ảnh đại diện<span class="text-danger">*</span></label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Ảnh đại diện <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <div class="user-avatar mb-3 mb-sm-0 text-center">
-                                                    <img :src="tespicture" class="edit-avatar" style="max-width:280px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
+                                                    <img :src="tespicture" class="edit-avatar" style="max-width:300px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-5">
@@ -102,30 +42,39 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Tên tài sản<span class="text-danger">*</span></label>
+                                                <!-- <label class="col-form-label font-weight-600">Tên tài sản<span class="text-danger">*</span></label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Tên tài sản <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input v-model="testName" type="text" class="form-control form-control-user fs-090" maxlength="200" value="">
+                                                <input v-model="testName"  type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Nhập số lượng<span class="text-danger">*</span></label>
+                                                <!-- <label class="col-form-label font-weight-600">Nhập số lượng<span class="text-danger">*</span></label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Nhập số lượng <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input v-model="tesamount" type="text" class="form-control form-control-user fs-090" maxlength="200" value="">
+                                                <input v-model="tesamount" type="text" class="form-control form-control-user fs-090" maxlength="200" value="" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Nhập giá bán<span class="text-danger">*</span></label>
+                                                <!-- <label class="col-form-label font-weight-600">Nhập giá bán<span class="text-danger">*</span></label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Nhập giá bán <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <input v-model="testinitPrice" type="text" class="form-control form-control-user fs-090" value="0">
+                                                <input v-model="testinitPrice" type="text" class="form-control form-control-user fs-090" value="0" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                     </div>
@@ -133,10 +82,13 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Danh mục đấu giá<span class="text-danger">*</span></label>
+                                                <!-- <label class="col-form-label font-weight-600">Danh mục đấu giá<span class="text-danger">*</span></label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Danh mục đấu giá <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-9">
-                                                <select v-model="testcategory" class="form-control form-control-user fs-090">
+                                                <select v-model="testcategory" class="form-control form-control-user fs-090" :disabled="validated ? disabled : ''">
                                                     <option disable value="">Chọn</option>
                                                     <option>Bất động sản</option>
                                                     <option>Xe hơi</option>
@@ -154,9 +106,9 @@
                                         </div>
                                     </div>
 
-                                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
+                                    <!-- <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Thư viện ảnh
-                                    </h3>
+                                    </h3> -->
                                     <div class="row">
                                         <div class="col-12">
                                             <div class="list-photo-pro mini-col">
@@ -164,8 +116,8 @@
                                             </div>
                                         </div>
                                     </div>
-                                    <div class="form-group">
-                                        <div class="input-group rounded-0">
+                                    <!-- <div class="form-group"> -->
+                                        <!-- <div class="input-group rounded-0">
                                             <div class="custom-file rounded-0">
                                                 <b-form-file
                                                 class="z-index-inputFile"
@@ -184,12 +136,13 @@
                                                     Thêm
                                                 </button>
                                             </div>
-                                        </div>
-                                        <div id="topimage" class="user-avatar mb-3 text-center">
-                                            <img id="sizeimage" :src="tespicture" alt="">
+                                        </div> -->
+                                        <!-- <input type="file" @change="onFileChange" />
+                                        <div id="preview">
+                                            <img v-if="urlimg" v-bind:src="urlimg" />
                                         </div>
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
-                                    </div>
+                                    </div> -->
 
                                     <!-- <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Video gới thiệu
@@ -249,10 +202,13 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class=" col-form-label pb-1 pt-0 font-weight-600">Khu vực<span class="text-danger">*</span></label>
+                                                <!-- <label class=" col-form-label pb-1 pt-0 font-weight-600">Khu vực<span class="text-danger">*</span></label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Khu vực <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                <select v-model="testarea" class="form-control select-default selectpickernone">
+                                                <select v-model="testarea" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                     <option disable value="">Chọn khu vực</option>
                                                     <option >Hà Nội</option>
                                                     <option>Hồ Chí Minh</option>
@@ -326,10 +282,13 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Chủng loại</label>
+                                                <!-- <label class="col-form-label font-weight-600">Chủng loại</label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Chủng loại <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <select v-model="testtype" class="form-control select-default selectpickernone">
+                                                <select v-model="testtype" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                     <option disable value="">Đất thổ cư, đất dự án</option>
                                                     <option>Căn hộ chung cư</option>
                                                     <option>Nhà riêng, nhà phố, biệt thự</option>
@@ -343,10 +302,13 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Diện tích</label>
+                                                <!-- <label class="col-form-label font-weight-600">Diện tích</label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Diện tích <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <input v-model="testacreage" type="text" class="form-control form-control-user fs-090" value="0" maxlength="20">
+                                                <input v-model="testacreage" type="text" class="form-control form-control-user fs-090" value="0" maxlength="20" :disabled="validated ? disabled : ''">
                                                 <small id="emailHelp" class="form-text text-muted">Đơn vị là m2</small>
                                             </div>
                                         </div>
@@ -354,10 +316,13 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Số phòng ngủ</label>
+                                                <!-- <label class="col-form-label font-weight-600">Số phòng ngủ</label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Số phòng ngủ <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <select v-model="testbedroomsNumber" class="form-control select-default selectpickernone">
+                                                <select v-model="testbedroomsNumber" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                     <option disable value="">Chọn số phòng</option>
                                                     <option>1</option>
                                                     <option>2</option>
@@ -372,20 +337,26 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Số tầng</label>
+                                                <!-- <label class="col-form-label font-weight-600">Số tầng</label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Số tầng <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <input v-model="testfloorsNumber" type="text" class="form-control form-control-user fs-090" value="0" maxlength="500">
+                                                <input v-model="testfloorsNumber" type="text" class="form-control form-control-user fs-090" value="0" maxlength="500" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                     </div>
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Số phòng vệ sinh</label>
+                                                <!-- <label class="col-form-label font-weight-600">Số phòng vệ sinh</label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Số phòng vệ sinh <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <select v-model="testtoiletsNumber" class="form-control select-default selectpickernone">
+                                                <select v-model="testtoiletsNumber" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                     <option disable value="">Chọn số phòng</option>
                                                     <option>1</option>
                                                     <option>2</option>
@@ -400,10 +371,13 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Hướng</label>
+                                                <!-- <label class="col-form-label font-weight-600">Hướng</label> -->
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">
+                                                    Hướng <span class="text-danger">*</span>
+                                                </h3>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <select v-model="testdirection" class="form-control select-default selectpickernone">
+                                                <select v-model="testdirection" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                     <option disable value="">Chọn hướng</option>
                                                     <option>Đông</option>
                                                     <option>Tây</option>
@@ -420,10 +394,10 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Thương hiệu</label>
+                                                <h3 class="col-form-label font-weight-600">Thương hiệu</h3>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <select v-model="testtrademark" class="form-control select-default selectpickernone">
+                                                <select v-model="testtrademark" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                     <option disable value="">Chọn thương hiệu</option>
                                                     <option>Vin</option>
                                                     <option>Green city</option>
@@ -439,10 +413,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu xe<span class="text-danger">*</span></label>
+                                                    <h3 class=" col-form-label pb-1 pt-0 font-weight-600">Màu xe<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tescolor" class="form-control select-default selectpickernone">
+                                                    <select v-model="tescolor" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn màu sắc</option>
                                                         <option>Màu đỏ</option>
                                                         <option>Màu trắng</option>
@@ -461,30 +435,30 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Màu nội thất</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Màu nội thất</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesinteriorColor" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesinteriorColor" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Năm sản xuất</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Năm sản xuất</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesmanufactureYear" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesmanufactureYear" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Hộp số<span class="text-danger">*</span></label>
+                                                    <h3 class=" col-form-label pb-1 pt-0 font-weight-600">Hộp số<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tesgear" class="form-control select-default selectpickernone">
+                                                    <select v-model="tesgear" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn hộp số</option>
                                                         <option>Hộp số sàn/ số tay</option>
                                                         <option>Hộp số tự động</option>
@@ -497,10 +471,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhiên liệu<span class="text-danger">*</span></label>
+                                                    <h3 class=" col-form-label pb-1 pt-0 font-weight-600">Nhiên liệu<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tesfuel" class="form-control select-default selectpickernone">
+                                                    <select v-model="tesfuel" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn nhiên liệu</option>
                                                         <option>Khí hóa lỏng (LPG)</option>
                                                         <option>Hydrogen</option>
@@ -516,10 +490,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Tiêu thụ</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Tiêu thụ</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesconsume" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesconsume" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                     <small id="emailHelp" class="form-text text-muted">Tiêu thụ bao nhiêu lít xăng/100km</small>
                                                 </div>
                                         
@@ -528,10 +502,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Hãng xe<span class="text-danger">*</span></label>
+                                                    <h3 class=" col-form-label pb-1 pt-0 font-weight-600">Hãng xe<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="testtrademark" class="form-control select-default selectpickernone">
+                                                    <select v-model="testtrademark" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn hãng xe</option>
                                                         <option>Abarth</option>
                                                         <option> Zenos</option>
@@ -596,10 +570,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Số chỗ<span class="text-danger">*</span></label>
+                                                    <h3 class=" col-form-label pb-1 pt-0 font-weight-600">Số chỗ<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tesseatsNumber" class="form-control select-default selectpickernone">
+                                                    <select v-model="tesseatsNumber" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn số chỗ</option>
                                                         <option>2</option>
                                                         <option>4</option>
@@ -619,10 +593,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                    <h3 class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone">
+                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn xuất xứ</option>
                                                         <option>Hàn quốc</option>
                                                         <option>Nhật bản</option>
@@ -642,10 +616,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></label>
+                                                    <h3 class=" col-form-label pb-1 pt-0 font-weight-600">Nhà mạng<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="teshomeNetwork" class="form-control select-default selectpickernone">
+                                                    <select v-model="teshomeNetwork" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn nhà mạng</option>
                                                         <option>Viettel</option>
                                                         <option>MobiFone</option>
@@ -659,20 +633,20 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Số sim</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Số sim</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testsimNumber" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                    <input v-model="testsimNumber" type="text" class="form-control form-control-user fs-090" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Loại sim</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Loại sim</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
@@ -681,10 +655,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu<span class="text-danger">*</span></label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Màu<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tescolor" class="form-control select-default selectpickernone">
+                                                    <select v-model="tescolor" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn màu sắc</option>
                                                         <option>Màu đỏ</option>
                                                         <option>Màu trắng</option>
@@ -703,40 +677,40 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Loại đá quý</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Loại đá quý</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Hình dạng</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Hình dạng</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesshape" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesshape" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Trọng lượng</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Trọng lượng</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesweight" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesweight" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Độ sáng</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Độ sáng</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesbrightness" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesbrightness" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
@@ -748,20 +722,20 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Loại đồ cổ</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Loại đồ cổ</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Tuổi đời</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Tuổi đời</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesyearOld" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesyearOld" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
@@ -770,17 +744,17 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Loại cây</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Loại cây</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="testtype" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Kiểu dáng</label>
+                                                    <h3 class="col-form-h3 font-weight-600">Kiểu dáng</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
                                                     <input v-model=""  type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
@@ -790,20 +764,20 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Chiều cao của cây</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Chiều cao của cây</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesheight" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesheight" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Đường kính gốc cây</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Đường kính gốc cây</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="tesstumpDiameter" type="text" class="form-control form-control-user fs-090" value="" maxlength="20">
+                                                    <input v-model="tesstumpDiameter" type="text" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
@@ -812,37 +786,37 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Độ phân giải</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Độ phân giải</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testresolution" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testresolution" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Ram</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Ram</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testram" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testram" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Rom</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Rom</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testrom" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testrom" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <!-- <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">CPU</label>
+                                                    <h3 class="col-form-h3 font-weight-600">CPU</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
                                                     <input v-model="cpu" type="text" class="form-control form-control-user fs-090" maxlength="200">
@@ -852,70 +826,70 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Kích thước màn hình</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Kích thước màn hình</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testscreenSize" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testscreenSize" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Hệ điều hành</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Hệ điều hành</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testoperatingSystem" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                    <input v-model="testoperatingSystem" type="text" class="form-control form-control-user fs-090" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Độ phân giải camera</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Độ phân giải camera</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testcamera" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testcamera" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Sim</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Sim</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testsim" type="text" class="form-control form-control-user fs-090" maxlength="20">
+                                                    <input v-model="testsim" type="text" class="form-control form-control-user fs-090" maxlength="20" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Dung lượng pin</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Dung lượng pin</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testbatteryCapacity" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testbatteryCapacity" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Hãng điện thoại</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Hãng điện thoại</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testtrademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testtrademark" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc điện thoại<span class="text-danger">*</span></label>
+                                                    <h3 class=" card-title f-17 mb-3 font-weight-700 pb-3">Màu sắc điện thoại<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tescolor" class="form-control select-default selectpickernone">
+                                                    <select v-model="tescolor" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn màu sắc</option>
                                                         <option>Màu đỏ</option>
                                                         <option>Màu trắng</option>
@@ -936,10 +910,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                    <h3 class=" card-title f-17 mb-3 font-weight-700 pb-3">Xuất xứ<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone">
+                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn xuất xứ</option>
                                                         <option>Hàn quốc</option>
                                                         <option>Nhật bản</option>
@@ -959,40 +933,40 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Hãng sản xuất</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Hãng sản xuất</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testtrademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testtrademark" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Công suất</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Công suất</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testwattage" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testwattage" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Bảo Hành</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Bảo Hành</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testguarantee" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testguarantee" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc<span class="text-danger">*</span></label>
+                                                    <h3 class=" card-title f-17 mb-3 font-weight-700 pb-3">Màu sắc<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tescolor" class="form-control select-default selectpickernone">
+                                                    <select v-model="tescolor" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn màu sắc</option>
                                                         <option>Màu đỏ</option>
                                                         <option>Màu trắng</option>
@@ -1014,10 +988,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                    <h3 class=" card-title f-17 mb-3 font-weight-700 pb-3">Xuất xứ<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone">
+                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn xuất xứ</option>
                                                         <option>Hàn quốc</option>
                                                         <option>Nhật bản</option>
@@ -1038,40 +1012,40 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Hãng sản xuất</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Hãng sản xuất</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testtrademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testtrademark" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Công suất</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Công suất</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testwattage" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testwattage" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Bảo Hành</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Bảo Hành</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testguarantee" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testguarantee" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc<span class="text-danger">*</span></label>
+                                                    <h3 class=" card-title f-17 mb-3 font-weight-700 pb-3">Màu sắc<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tescolor" class="form-control select-default selectpickernone">
+                                                    <select v-model="tescolor" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn màu sắc</option>
                                                         <option>Màu đỏ</option>
                                                         <option>Màu trắng</option>
@@ -1093,10 +1067,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                    <h3 class=" card-title f-17 mb-3 font-weight-700 pb-3">Xuất xứ<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone">
+                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn xuất xứ</option>
                                                         <option>Hàn quốc</option>
                                                         <option>Nhật bản</option>
@@ -1117,40 +1091,40 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Hãng sản xuất</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Hãng sản xuất</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testtrademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testtrademark" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Công suất</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Công suất</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testwattage" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testwattage" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class="col-form-label font-weight-600">Bảo Hành</label>
+                                                    <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Bảo Hành</h3>
                                                 </div>
                                                 <div class="col-12 col-md-4">
-                                                    <input v-model="testguarantee" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                    <input v-model="testguarantee" type="text" class="form-control form-control-user fs-090" maxlength="200" :disabled="validated ? disabled : ''">
                                                 </div>
                                             </div>
                                         </div>
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc<span class="text-danger">*</span></label>
+                                                    <h3 class=" card-title f-17 mb-3 font-weight-700 pb-3">Màu sắc<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tescolor" class="form-control select-default selectpickernone">
+                                                    <select v-model="tescolor" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn màu sắc</option>
                                                         <option>Màu đỏ</option>
                                                         <option>Màu trắng</option>
@@ -1172,10 +1146,10 @@
                                         <div class="form-group">
                                             <div class="row">
                                                 <div class="col-12 col-md-3">
-                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                    <h3 class=" card-title f-17 mb-3 font-weight-700 pb-3">Xuất xứ<span class="text-danger">*</span></h3>
                                                 </div>
                                                 <div class="col-12 col-md-4 mb-2 mb-sm-0">
-                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone">
+                                                    <select v-model="tesorigin" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                         <option disable value="">Chọn xuất xứ</option>
                                                         <option>Hàn quốc</option>
                                                         <option>Nhật bản</option>
@@ -1196,7 +1170,7 @@
                                         Chi tiết tài sản
                                     </h3>
                                     <div class="form-group">
-                                        <textarea v-model="testdescription" class="form-control" rows="8"></textarea>
+                                        <textarea v-model="testdescription" class="form-control" rows="8" :disabled="validated ? disabled : ''"></textarea>
                                         <!-- <small id="emailHelp" class="form-text text-muted">Lập trình viên tự chọn TextEditor phù hợp vào ô trên</small> -->
                                     </div>
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
@@ -1205,10 +1179,10 @@
                                     <div class="form-group">
                                         <div class="row">
                                             <div class="col-12 col-md-3">
-                                                <label class="col-form-label font-weight-600">Tình trạng</label>
+                                                <h3 class="card-title f-17 mb-3 font-weight-700 pb-3">Tình trạng</h3>
                                             </div>
                                             <div class="col-12 col-md-4">
-                                                <select v-model="testcurrentStatus" class="form-control select-default selectpickernone">
+                                                <select v-model="testcurrentStatus" class="form-control select-default selectpickernone" :disabled="validated ? disabled : ''">
                                                     <option disable value="">Chọn tình trạng</option>
                                                     <option>Cũ</option>
                                                     <option>Mới</option>
@@ -1219,8 +1193,8 @@
                                         </div>
                                     </div>
                                      
-                                    <hr class="pt-3 mb-1" />
-                                    <div class="clearfix">
+                                    <!-- <hr class="pt-3 mb-1" /> -->
+                                    <!-- <div class="clearfix">
                                         <button v-b-modal.modalPopover @click="clickEdit(Search.assets[0].id)" class="btn btn-primary mb-2">
                                             <i class="las la-save"></i>
                                             Sửa tài sản
@@ -1231,7 +1205,7 @@
                                             <p>
                                             Sửa tài sản thành công !
                                             </p>
-                                    </b-modal>
+                                    </b-modal> -->
                                 </div>
                             </div>
                         </div>
@@ -1254,13 +1228,26 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    var asset = [];
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset'
-        ).then((response) => { this.asset=response.data, this.asset2 = response.data.slice(0, this.perPage-1), 
-          this.totalPage = Math.ceil(response.data.length / this.perPage)  
-          });
-    console.log(asset);
+    
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset/id/' + this.$route.params.id
+        ).then((response) => 
+        // {
+        //      this.asset=response.data.assets[0];
+        //      console.log(response.data.assets[0].id);
+        //       console.log(this.asset.assets.name);
+        //   }
+        {if(response.data){ this.asset=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
+      this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
+      this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
+      this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
+      this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
+      this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter,this.testfloorsNumber=response.data.assets[0].floorsNumber, this.testsimNumber=response.data.assets[0].simNumber,
+      this.testresolution=response.data.assets[0].resolution,this.testram= response.data.assets[0].ram,this.testrom= response.data.assets[0].rom,this.testscreenSize=response.data.assets[0].screenSize,this.testoperatingSystem= response.data.assets[0].operatingSystem,this.testcamera=response.data.assets[0].camera, this.testsim=response.data.assets[0].sim,
+      this.testbatteryCapacity=response.data.assets[0].batteryCapacity, this.testwattage= response.data.assets[0].wattage,this.testguarantee= response.data.assets[0].guarantee
+      }}
+          );
     return {
+     asEdit:null,
       initPrice: '',
       close2:'true',
       currentPrice:'',
@@ -1307,7 +1294,7 @@ Vue.use(VueClipboard)
       type:'',
       area:'',
       origin:'',
-      asset: [],
+      asset: null,
       add:true,
       sessionId:'',
       save:true,
@@ -1343,36 +1330,20 @@ Vue.use(VueClipboard)
       rom:'',
       cpu:'',
       wattage:'',
-      guarantee:''
+      guarantee:'',
+      testtrademark:'',
+      urlimg:null
     };
   },
   components: {
     // Login
   },
   methods: {
-    clickUpdate1:async function(){
-      this.axios.get(this.url+'/asset'
-       ).then((response) => { this.asset=response.data})
-    },
-    // clickSearch2(id){
-    //   this.axios.get(this.url+'/asset/id/'+id)
-    //   .then((response) => {if(response.data){ this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
-    //   this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
-    //   this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
-    //   this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
-    //   this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
-    //   this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter,this.testfloorsNumber=response.data.assets[0].floorsNumber, this.testsimNumber=response.data.assets[0].simNumber,
-    //   this.testresolution=response.data.assets[0].resolution,this.testram= response.data.assets[0].ram,this.testrom= response.data.assets[0].rom,this.testscreenSize=response.data.assets[0].screenSize,this.testoperatingSystem= response.data.assets[0].operatingSystem,this.testcamera=response.data.assets[0].camera, this.testsim=response.data.assets[0].sim,
-    //   this.testbatteryCapacity=response.data.assets[0].batteryCapacity, this.testwattage= response.data.assets[0].wattage,this.testguarantee= response.data.assets[0].guarantee
-    //   }});
-    //     console.log(this.testid);
-    // },
-     
     clickEdit(id){
       this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,
       "category": this.testcategory,"description":this.testdescription, "currentStatus": this.testcurrentStatus, "trademark": this.testtrademark, "amount": this.tesamount,"stumpDiameter": this.tesstumpDiameter,"height": this.tesheight,
       "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.testbedroomsNumber, "gear": this.tesgear, "fuel": this.tesfuel, "yearOld": this.tesyearold,
-      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.testpicture,
+      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.urlimg,
       "shape": this.tesshape,"weight": this.tesweight, "birghtness":this.tesbirghtness, "floorsNumber": this.testfloorsNumber,"simNumber":this.testsimNumber,"resolution":this.testresolution,"ram":this.testram,"rom":this.testrom,"operatingSystem":this.testoperatingSystem,
       "screenSize":this.testscreenSize,"camera":this.testcamera,"sim":this.testsim, "batteryCapacity":this.testbatteryCapacity,"wattage": this.testwattage, "guarantee":this.testguarantee
       
@@ -1418,45 +1389,7 @@ Vue.use(VueClipboard)
                     );
             }
         },
-    onclick(page){
-        console.log(page);
-        this.asset2 = this.asset.slice((page-1)*this.perPage,page*this.perPage-1)
-    },
-    // clickSearch1: async function(){
-    //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);
-    //   console.log(this.userSearch.data.name);
-    //   this.searchCheck=2;
-    // },
-    // clickSearch: async function(){
-    //   await this.axios.get(this.url+'/asset/byCategory/'+this.category).then((response) => this.userSearch = response);
-    //   this.searchCate=this.userSearch;
-    //   this.searchCheck=3;
-    //   console.log(this.userSearch.data);
-    // }
-    // clickConfirm(id){
-    //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status="+this.status,{"status":this.status},{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
-    // clickdelete1(id){
-    //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=deleted",{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
-    clickconfirm(id){
-      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=Đã xác nhận",{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate1();
-          });
-    },
+     
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -1476,24 +1409,11 @@ Vue.use(VueClipboard)
       }
       return "";
     },
-    // handleClick(id) {
-    //   let assetObj;
-
-    //   var urlEdit ="";
-    //   this.asset.forEach( e =>{ 
-    //       if(e.id == id){
-    //         assetObj = e;
-    //         urlEdit = "editasset/" + e.id;
-    //       }
-          
-
-    //   });
-    //   this.$router.push({
-    //     name: urlEdit,
-    //     params: { assetObj }
-    //   });
-    // }
-    },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.urlimg = URL.createObjectURL(file);
+    }
+    }
   }
 </script>
 

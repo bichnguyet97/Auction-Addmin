@@ -3,12 +3,20 @@
     <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-8">
     </base-header>
      <div>
+
+            <div class="row">
+                 <div class="search-wrapper panel-heading col-sm-12">
+                     <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                </div>                        
+            </div>
          <table class="table table-striped">
             <thead>
                 <tr>
                 <th scope="col">ID</th>
                 <th scope="col">Số lượng</th>
-                <th scope="col">Giao dịch</th>
+                <th scope="col">ID người gửi</th>
+                <th scope="col">ID người nhận</th>
+                <th scope="col">Mã hash</th>
                 <th scope="col">Tin nhắn</th>
                 <th scope="col">Ngày tháng</th>
                 <th scope="col">Actions </th>
@@ -25,27 +33,43 @@
                     </span>
                 </td>
                 </tr> -->
-                <tr v-for="transactions2 in transactions2" v-bind:key="transactions2.id">
+                <tr v-for="transactions2 in resultQuery" v-bind:key="transactions2.id">
                 <!-- <td scope="row">
                     <img style="width: 200px;" class="" :src="auction.asset.images.split(',',1)" alt="">
                 </td> -->
-                <td style="white-space: normal;width:10%;" scope="row">
+                <td style="white-space: normal;" scope="row">
                     {{transactions2.id}}
                 </td>
-                <td style="white-space: normal;width:25%;">
+                <td style="white-space: normal;">
                     {{transactions2.amount}}
                 </td>
-                <td><span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions2.fromUser}}</span>
+                <td style="white-space: normal;">
+                  {{transactions2.fromUser}}
+                </td>
+                <td style="white-space: normal;">
+                  {{transactions2.toUser}}
+                </td>
+                <td style="white-space: normal;">
+                  <!-- <a href="https://tronscan.org/#/transaction/+'transactions2.hash'" target="_blank">{{transactions2.hash}}</a> -->
+                  <a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Chi tiết</a>
+                  <!-- {{transactions2.hash}} -->
+                </td>
+                <!-- <td><span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions2.fromUser}}</span>
                                         <span class="f-13 mr-1 d-block mb-1">Địa chỉ gửi: {{transactions2.fromAddress}}</span>
                                         <span class="f-13 mr-1 d-block mb-1">ID người nhận: {{transactions2.toUser}}</span>
                                         <span class="f-13 mr-1 d-block mb-1">Địa chỉ nhận: {{transactions2.toAddress}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span></td>
-                <td style="white-space: normal;width:25%;">{{transactions2.note}}</td>
-                <td style="white-space: normal;width:25%;">{{transactions2.created}}</td>
+                                        <span class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span></td> -->
+                <td style="white-space: normal;">{{transactions2.note}}</td>
+                <td style="white-space: normal;">
+                  <!-- {{transactions2.created}} -->
+                    <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(transactions2.created,'date')"></span>
+                    <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(transactions2.created,'time')"></span>
+
+                </td>
                 <td>
                     <span>
-                    <b-button style=" width:100%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
-                    <b-button style=" width:100%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
+                    <b-button style=" width:70%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
+                    <b-button style=" width:70%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
                     </span>
                 </td>
                 <!-- <td>
@@ -88,7 +112,7 @@ export default {
         }
       ).then((response) => {
         this.transactions = response.data;
-        this.transactions2 = response.data.slice(0, this.perPage-1), 
+        this.transactions2 = this.transactions.slice(0, this.perPage-1), 
         this.totalPage = Math.ceil(response.data.length / this.perPage)
       });
     console.log(this.transactions);
@@ -109,6 +133,8 @@ export default {
     //     Authorization: this.getCookie('AC-ACCESS-KEY') }
     //     }).then((response) => { this.auction=response.data});
     // console.log(auction);
+
+  
     return {
       bidPrice: "",
       currentPrice: "",
@@ -167,7 +193,8 @@ export default {
       currentPage : 1,
       perPage : 10,
       totalPage:0,
-      page: 10
+      page: 10,
+      searchQuery: ""
     };
   },
   components: {
@@ -187,6 +214,7 @@ export default {
     onclick(page){
       console.log(page);
       this.transactions2 = this.transactions.slice((page-1)*this.perPage,page*this.perPage-1)
+      // this.page=page;
     },
     clickinfo() {
       this.axios
@@ -375,7 +403,49 @@ export default {
       }
       return "";
     },
+    formatDatetime: function (datetime,type) {
+      var a =datetime.split("T");
+        if(type=='date'){
+          return a[0];
+
+        }else{
+            var b = a[1].split(".");
+            return b[0]
+        }
+
+    }
   },
+computed: {
+    
+
+
+
+    resultQuery(){
+      if(this.searchQuery){
+        return  this.transactions.filter((item)=>{                
+        return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.fromAddress + '').toLowerCase().includes(v) 
+                || (item.toAddress + '').toLowerCase().includes(v))
+                || (item.toUser + '').toLowerCase().includes(v)
+                || (item.fromUser + '').toLowerCase().includes(v)
+                || (item.hash + '').toLowerCase().includes(v)
+                )
+        });
+
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        // this.totalPage = Math.ceil(list.length /  this.perPage);
+        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
+        // this.transactions2=list;
+        // return '';  
+      }else{
+        console.log("3");
+        return this.transactions2;
+        
+      }
+    }
+
+}
+
+
 };
 </script>
 

@@ -1332,7 +1332,8 @@ Vue.use(VueClipboard)
       wattage:'',
       guarantee:'',
       testtrademark:'',
-      urlimg:null
+      urlimg:null,
+      validated:''
     };
   },
   components: {

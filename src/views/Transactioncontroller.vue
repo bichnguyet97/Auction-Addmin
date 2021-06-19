@@ -19,7 +19,8 @@
                 <th scope="col">Mã hash</th>
                 <th scope="col">Tin nhắn</th>
                 <th scope="col">Ngày tháng</th>
-                <th scope="col">Actions </th>
+                <th scope="col">Trạng thái</th>
+                <th scope="col">Actions</th>
                 </tr>
             </thead>
             <tbody>
@@ -51,7 +52,7 @@
                 </td>
                 <td style="white-space: normal;">
                   <!-- <a href="https://tronscan.org/#/transaction/+'transactions2.hash'" target="_blank">{{transactions2.hash}}</a> -->
-                  <a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Chi tiết</a>
+                  <a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Xem</a>
                   <!-- {{transactions2.hash}} -->
                 </td>
                 <!-- <td><span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions2.fromUser}}</span>
@@ -68,16 +69,92 @@
                 </td>
                 <td>
                     <span>
-                    <b-button style=" width:70%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
-                    <b-button style=" width:70%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
+                    <b-button style=" width:55%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
+                    <b-button style=" width:55%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
+                    </span>
+                    
+                </td>
+                <td>
+                    <span>
+                      <!-- <base-button size="sm" outline type="info" @click="handleClick(asset.id)" >
+                       
+                        <router-link :to="{ name: 'detailEditAsset', params: { }}">Chi tiết</router-link>
+                      </base-button> -->
+                      <base-button  outline type="info" id="show-btn" @click="$bvModal.show('bv-modal-example')">Chi tiết</base-button>
+
                     </span>
                 </td>
+
                 <!-- <td>
                     <option v-if="transactions.status == 'complete'">HOÀN THÀNH</option>
                     <option v-if="transactions.status == 'Pending'">ĐANG XỬ LÝ</option> 
                 </td> -->
                 </tr>
-                    
+                  <b-modal id="bv-modal-example" hide-footer>
+                    <template #modal-title>
+                       Lịch Sử Giao Dịch
+                    </template>
+                    <div class="d-block text-center">
+                         <div class="modal-body">
+                           <ul   >
+                            <!-- <li class="pt-0"> -->
+                              <div class="row mb-3">
+                                <div class="col-auto font-weight-bold ng-binding">Mã giao dịch</div>
+                                <div class="col ng-binding">TTB82DD42</div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-auto font-weight-bold ng-binding">Số tiền</div>
+                                <div class="col text-danger font-weight-bold ng-binding">371,000 VNDT</div>
+                              </div>
+                              <div class="row align-items-center mb-4">
+                                <div class="col-auto font-weight-bold ng-binding">Trạng thái</div>
+                                <div class="col">
+                                  <b-button size="sm" variant="info">Hoàn thành</b-button>
+                                </div>
+                              </div>	
+                            <!-- </li> -->
+                            <!-- <li> -->
+                              <div class="row mb-3">
+                                <div class="col-auto font-weight-bold ng-binding">Địa chỉ</div>
+                                <div class="col ng-binding">TMJ65byZaKTSrrPqa7moKEcunBeJvo1c42</div>
+                              </div>
+                              <div class="row mb-4">
+                                <div class="col-auto font-weight-bold">Txid</div>
+                                <div style="word-break: break-all;" class="col ng-binding">30629b9831b89892a736e7f1145ed887081e8e29757477ca54d04f6219ff627d</div>
+                              </div>
+                               
+                              <!-- <div class="row mb-3" ng-show="choosedTran.additionInfo.bankName!=undefined">
+                                <div class="col-auto font-weight-bold ng-binding">Tên ngân hàng</div>
+                                <div class="col ng-binding">TCB</div>
+                              </div> -->
+                              <div class="row mb-3" ng-show="choosedTran.additionInfo.accountNumber!=undefined">
+                                <div class="col-auto font-weight-bold ng-binding">Số tài khoản</div>
+                                <div class="col ng-binding">19036154149010</div>
+                              </div>
+                              <div class="row mb-3" ng-show="choosedTran.additionInfo.accountName!=undefined">
+                                <div class="col-auto font-weight-bold ng-binding">Chủ tài khoản</div>
+                                <div class="col ng-binding">TRINH THI TUYET</div>
+                              </div>
+                              <div class="row mb-3">
+                                <div class="col-auto font-weight-bold ng-binding">Ngày tháng</div>
+                                <div class="col ng-binding">2021-06-12 10:01:54</div>
+                              </div>
+                              <div class="row">
+                                <div class="col-auto font-weight-bold ng-binding">Nội dung</div>
+                                <div class="col ng-binding">chuyen xien mua my pham nhe tuyet</div>
+                              </div>
+                            <!-- </li> -->
+                          </ul>
+                         </div>
+                      <!-- <span style="margin-left: -21rem;" class="f-13 mr-1 d-block mb-1">Mã giao dịch:{{transactions2.fromUser}}</span>
+                      <span style="margin-left: -24rem;" class="f-13 mr-1 d-block mb-1">Số tiền: {{transactions2.fromAddress}}</span>
+                      <span style="margin-left: -22.5rem;" class="f-13 mr-1 d-block mb-1">Trạng thái: {{transactions2.toUser}}</span>
+                      <span style="margin-left: -24rem;" class="f-13 mr-1 d-block mb-1">Địa chỉ: {{transactions2.toAddress}}</span>
+                      <span style="margin-left: -23rem;" class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span>
+                      <span style="margin-left: -23rem;" class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span> -->
+                    </div>
+                    <b-button class="mt-3" block><a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Check Export</a></b-button>
+                  </b-modal>
             </tbody>
                 
         </table>
@@ -459,7 +536,7 @@ computed: {
 }
 
 .pagination li {
-  border: 0.1rem solid green;
+  border: 0.1rem solid rgb(68, 185, 240);
   display: block;
   margin: 0 0.5rem;
   height: 1.5rem;
@@ -477,7 +554,7 @@ computed: {
 }
 
 .pagination li.active {
-  background-color: #4CAF50;
+  background-color: #34c0c0;
   color: white;
 }
 #app {

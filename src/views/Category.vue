@@ -16,8 +16,10 @@
                         </div>
                          
                         <div class="col-2 offset-8">
-                          <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button>
-                          <b-modal id="modal-1" title="Tạo mới">
+                          <b-button   variant="outline-warning">
+                            <router-link :to="{ name: 'addcategory-controller'}">Tạo mới</router-link>
+                          </b-button>
+                          <!-- <b-modal id="modal-1" title="Tạo mới">
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="">Name<strong>*</strong></label>
                               <div class="col-md-9"> 
@@ -35,7 +37,7 @@
                                 <button type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
                               </div>
                             </div>
-                          </b-modal>
+                          </b-modal> -->
                         </div>
                       </div>
                       <div class="closeIn">
@@ -82,7 +84,7 @@
                             <th scope="col">ID</th>
                             <th scope="col">Tên</th>
                             <th scope="col">Alias</th>
-                            <th scope="col">Avatar</th>
+                            <th scope="col">Ảnh</th>
                             <th scope="col">Tạo</th>
                             <th scope="col">Cập nhật</th>
                             <th scope="col">Actions</th>
@@ -93,7 +95,10 @@
                             <th scope="row">{{category.id}}</th>
                             <td>{{category.name}}</td>
                             <td>{{category.alias}}</td>
-                            <td><a href="" target="_blank">{{category.avatar}}</a></td>
+                            <td>
+                              <!-- <a href="" target="_blank">{{category.avatar}}</a> -->
+                              <img style="width: 82px;" class="" :src="category.avatar" alt="">
+                            </td>
                             <td>
                               <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(category.created,'date')"></span>
                               <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(category.created,'time')"></span>
@@ -110,12 +115,26 @@
                                 <span>
                                   <!-- <b-button size="sm" variant="warning" @click="close4=true">Sửa</b-button> -->
                                   <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="category=buffer.id">Sửa</b-button> -->
-                                  <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=category.id">Sửa</b-button>
+                                  <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=category.id">Sửa</b-button> -->
+                                  <b-button size="sm" variant="warning" id="show-btn" @click="buffer=category.id">Sửa</b-button>
                                 </span>
                               </span>
                             </td>
                           </tr>
-                          <b-modal id="modal-3" title="Sửa người dùng">
+                          <!-- <b-modal id="bv-modal-example" hide-footer>
+                            <template #modal-title>
+                              Using <code>$bvModal</code> Methods
+                            </template>
+                            <div class="d-block text-center">
+                              <h3>Hello From This Modal!</h3>
+                            </div>
+                            <b-button class="mt-3" block @click="$bvModal.hide('bv-modal-example')">save</b-button>
+                          </b-modal> -->
+                          <b-modal id="bv-modal-example" hide-footer>
+                            <template #modal-title>
+                              Sửa loại
+                            </template>
+                            <div class="d-block">
                             <div v-if="close4" class="form-group">
                               <label class="col-md-3 control-label" for="">Tên<strong>*</strong></label>
                               <div class="col-md-9"> 
@@ -129,7 +148,7 @@
                               <div class="col-md-9"> 
                               <!-- <input v-model="avatar" class="form-control" id="avatar" name="avatar" type="text" placeholder="avatar"> -->
                               <div class="input-group rounded-0">
-                                  <div class="custom-file rounded-0">
+                                  <!-- <div class="custom-file rounded-0">
                                       <b-form-file
                                       class="z-index-inputFile"
                                       @change="previewImage"
@@ -144,13 +163,19 @@
                                           <i class="las la-plus-circle"></i>
                                           Thêm
                                       </button>
+                                  </div> -->
+                                  <input type="file" @change="onFileChange" />
+                                  <div id="preview">
+                                    <img v-if="urlimg" v-bind:src="urlimg" />
                                   </div>
                               </div>
                               </div>
-                              <div class="col-2 offset-8">
+                              <!-- <div class="col-2 offset-8">
                                 <button type="button" class="btn btn-primary" @click="clickEdit(buffer)">Save</button>
-                              </div>
+                              </div> -->
                             </div>
+                            </div>
+                            <b-button class="mt-3" variant="warning" block @click="clickEdit(buffer)">save</b-button>
                           </b-modal>
                         </tbody>
                       </table>
@@ -207,6 +232,7 @@ Vue.use(VueClipboard)
       picture:'',
       hihi:'true',
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
+      urlimg:null
     };
   },
   components: {
@@ -269,7 +295,7 @@ Vue.use(VueClipboard)
       ).then((response) => { this.category=response.data})
     },
     clickEdit(id){
-      this.axios.put(this.url+'/edit/category/'+id ,{ "name": this.name,"avatar":this.picture,
+      this.axios.put(this.url+'/edit/category/'+id ,{ "name": this.name,"avatar":this.urlimg,
         "alias": this.alias, "category":this.category}, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -339,7 +365,12 @@ Vue.use(VueClipboard)
             return b[0]
         }
 
-    }
+    },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.urlimg = URL.createObjectURL(file);
+    },
+     
     // getData(){
     //   this.axios.get('http://52.77.244.234/category').then((response)=>{
     //     console.warn(response)

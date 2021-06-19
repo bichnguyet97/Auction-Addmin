@@ -114,6 +114,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/Auctioncontroller.vue')
         },
         {
+          path: '/detailauction/:id',
+          name: 'detailauction',
+          component: () => import(/* webpackChunkName: "demo" */ './views/DetailAuction.vue')
+        },
+        {
           path: '/addauction-controller',
           name: 'addauction-controller',
           component: () => import(/* webpackChunkName: "demo" */ './views/AddAuction.vue')

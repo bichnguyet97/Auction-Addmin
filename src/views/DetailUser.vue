@@ -15,22 +15,22 @@
         
          
         <div class="mt--7">
+            
           <div class="card border-0 rounded-0 shadow-sm">
+             
             <div class="card-body p-3 rounded-0 border-0">
+                 <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+                    Thông Tin Người Dùng
+                </h3>
               <div class="card-text pt-1">
-                  <div class="col-12 col-xl-9 col-lg-10 col-md-12">
-
-                        <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3">
-                            Thông Tin NGười Dùng
-                        </h3>
-                    </div>
+                   
                 <div class="row">
                   <div class="col-12 col-xl-3 col-lg-3 col-md-4">
                     <div class="user-sum ml-7">
                       <b-avatar style="width:128px; height:128px" :src="inavatar"></b-avatar>
                     </div>
                     <div class="user-sum ml-6">
-                        <button v-b-modal.modal-1 class="btn btn-warning btn-sm" @click="changeAvatar=true">
+                        <button v-b-modal.modal-1 class="btn btn-success btn-sm" @click="changeAvatar=true">
                             <b-icon icon="check2" font-scale="1.5"></b-icon>
                             Thay đổi
                         </button>
@@ -215,7 +215,7 @@
                           </base-input>
                         </div>
                       </div>
-                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-primary mb-2" @click="clickEdit(Search.id)">Cập nhật thông tin</button>
+                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-success mb-2" @click="clickEdit(Search.id)">Cập nhật thông tin</button>
                       <b-modal id="modalPopover" title="Thông báo" ok-only>
                         <p>
                         Cập nhật thông tin tài khoản thành công !
@@ -234,7 +234,7 @@
                               <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
                           </div>
                           <div class="input-group-append">
-                              <button @click="onUpload" class="btn btn-warning">
+                              <button @click="onUpload" class="btn btn-success">
                                   <i class="las la-plus-circle"></i>
                                   Thay đổi
                               </button>
@@ -247,14 +247,67 @@
                     </b-modal>
                     </div>
                   </div>
-                  <div class="col-12 col-xl-9 col-lg-10 col-md-12">
-
-                    <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3">
-                        Thông Tin Giao Dịch
-                    </h3>
-                </div>
                 </div>
               </div>
+              <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+                    Thông Tin Giao Dịch
+              </h3>
+              <div>
+                  <table class="table table-striped">
+                    <thead>
+                        <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Số lượng</th>
+                        <th scope="col">Giao dịch</th>
+                        <!-- <th scope="col">ID người nhận</th>
+                         -->
+                        <th scope="col">Mã hash</th>
+                        <th scope="col">Nội dung</th>
+                        <th scope="col">Ngày tháng</th>
+                        <th scope="col">Trạng thái</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr v-for="transactions2 in resultQuery" v-bind:key="transactions2.id">
+                        <td style="white-space: normal;" scope="row">
+                            {{transactions2.id}}
+                        </td>
+                        <td style="white-space: normal;">
+                            {{transactions2.amount}}
+                        </td>
+                        <!-- <td style="white-space: normal;">
+                        {{transactions2.fromUser}}
+                        </td> -->
+                        <!-- <td style="white-space: normal;">
+                        {{transactions2.toUser}}
+                        </td> -->
+                        <td style="white-space: normal;">
+                        <a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Chi tiết</a>
+                        </td>
+                        <td style="white-space: normal;">{{transactions2.note}}</td>
+                        <td style="white-space: normal;">
+                            <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(transactions2.created,'date')"></span>
+                            <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(transactions2.created,'time')"></span>
+                        </td>
+                        <td>
+                            <span>
+                            <b-button style=" width:70%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
+                            <b-button style=" width:70%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
+                            </span>
+                        </td>
+                        </tr>
+                            
+                    </tbody>
+                        
+                </table>
+              </div>
+            <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+                Đấu Giá Đã Tham Gia
+            </h3>
+            <div> hihi</div>
+            <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+                Đấu Giá Đã Trúng
+            </h3>
             </div>
           </div>
           

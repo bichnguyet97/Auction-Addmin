@@ -33,7 +33,7 @@
         <sidebar-item :link="{name: 'Danh Sách Đấu Giá', icon: 'fa fa-gavel text-blue', path: '/auction-controller'}"/>
         <sidebar-item :link="{name: 'Thêm Đấu Giá', icon: 'fa fa-plus text-blue', path: '/addauction-controller'}"/>
         <sidebar-item :link="{name: 'Xác Nhận Đấu Giá', icon: 'fa fa-check text-blue', path: '/cfaution-controller'}"/>
-        <sidebar-item :link="{name: 'Đấu Giá Đã Xác Nhận', icon: 'fa fa-check-circle text-green', path: '/active-controller'}"/>
+        <!-- <sidebar-item :link="{name: 'Đấu Giá Đã Xác Nhận', icon: 'fa fa-check-circle text-green', path: '/active-controller'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">Transaction</h6>
         <sidebar-item :link="{name: 'Lịch Sử Giao Dịch', icon: 'fa fa-address-book text-green', path: '/transaction'}"/>
         <!-- <sidebar-item :link="{name: 'Kiểm soát đấu giá', icon: 'fa fa-balance-scale text-blue', path: '/bid-controller'}"/> -->

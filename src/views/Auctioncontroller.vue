@@ -26,25 +26,54 @@
                         <thead>
                           <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Tạo</th>
-                            <th scope="col">Cập nhật</th>
-                            <th scope="col">Bắt đầu</th>
-                            <th scope="col">Kết thúc</th>
+                            <th scope="col">Hình ảnh</th>
+                            <th scope="col">Ngày tạo</th>
+                            <!-- <th scope="col">Cập nhật</th> -->
+                            <th scope="col">Ngày bắt đầu</th>
+                            <th scope="col">Ngày kết thúc</th>
                             <th scope="col">Giá dự thầu</th>
                             <th scope="col">Trạng thái</th>
+                            <th scope="col">ACTIONS</th>
                           </tr>
                         </thead>
                         <tbody class="test">
                           <tr v-for="auction in auction2" v-bind:key="auction.id">
                             <th scope="row">{{auction.id}}</th>
-                            <td>{{auction.created}}</td>
-                            <td>{{auction.updated}}</td>
-                            <td>{{auction.startAt}}</td>
-                            <td>{{auction.endAt}}</td>
+                            <td></td>
+                            <td>
+                              <!-- {{auction.created}} -->
+                              <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(auction.created,'date')"></span>
+                              <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(auction.created,'time')"></span>
+                            </td>
+                            <!-- <td>{{auction.updated}}</td> -->
+                            <td>
+                              <!-- {{auction.startAt}} -->
+                              <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(auction.startAt,'date')"></span>
+                              <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(auction.startAt,'time')"></span>
+                            </td>
+                            <td>
+                              <!-- {{auction.endAt}} -->
+                              <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(auction.endAt,'date')"></span>
+                              <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(auction.endAt,'time')"></span>
+                            </td>
                             <td>{{formatPrice(auction.bidPrice)}}</td>
-                            <td style="color:red;">{{auction.status}}</td>
+                            <td>
+                              <!-- {{auction.status}} -->
+                              <span>
+                                <b-button style=" width:60%;" size="sm" variant="info" v-if="auction.status == 'New'">CHỜ XÁC NHẬN</b-button>
+                                <b-button style=" width:60%;" size="sm" variant="warning" v-if="auction.status == 'Upcoming'">SẮP BẮT ĐẦU</b-button>
+                                <b-button style=" width:60%;" size="sm" variant="success" v-if="auction.status == 'Active'">ĐANG ĐẤU GIÁ</b-button>
+                                <b-button style=" width:60%;" size="sm" variant="danger" v-if="auction.status == 'Ended'">ĐÃ KẾT THÚC</b-button>
+                                <b-button style=" width:60%;" size="sm" variant="primary" v-if="auction.status == 'Paid'">ĐÃ THANH TOÁN</b-button>
+                              </span>
+                            </td>
+                            <td>
+                              <base-button size="sm" outline type="success"  >
+                                <router-link :to="{ name: 'detailauction', params: { id: auction.id }}">Chi tiết</router-link>
+                              </base-button>
+                            </td>
                           </tr>
-                          <b-modal id="modal-3" title="Thông tin người đăng đấu giá">
+                          <!-- <b-modal id="modal-3" title="Thông tin người đăng đấu giá">
                             <div class="form-group">
                               <label class="col-md-3 control-label" for="">Tên<strong>*</strong></label>
                               <div class="col-md-9"> 
@@ -59,9 +88,9 @@
                               <a :href="users.avatar">{{users.avatar}}</a>
                               </div>
                             </div>
-                          </b-modal>
+                          </b-modal> -->
                         </tbody>
-                        <tbody class="test" v-if="searchCheck==2">
+                        <!-- <tbody class="test" v-if="searchCheck==2">
                           <tr>
                             <th scope="row">{{userSearch.data.id}}</th>
                             <td>{{userSearch.data.created}}</td>
@@ -71,7 +100,7 @@
                             <td>{{userSearch.data.bidPrice}}</td>
                             <td style="color:red;">{{userSearch.data.status}}</td>
                           </tr>
-                        </tbody>
+                        </tbody> -->
                       </table>
                       </div>
                     </div>
@@ -221,6 +250,17 @@ Vue.use(VueClipboard)
         }
       }
       return "";
+    },
+    formatDatetime: function (datetime,type) {
+      var a =datetime.split("T");
+        if(type=='date'){
+          return a[0];
+
+        }else{
+            var b = a[1].split(".");
+            return b[0]
+        }
+
     }
     },
   }

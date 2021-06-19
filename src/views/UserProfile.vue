@@ -24,14 +24,18 @@
                             <i class="fa fa-reply" aria-hidden="true"></i>
                           </span>
                         </div>
-                        <div id="smbutton1" class="col-2 offset-8">
+                            <div class="search-wrapper panel-heading col-sm-12">
+                                <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                                <!-- <input name="name" type="text" v-model="searchQuery" /> -->
+                          </div>                        
+                        <!-- <div id="smbutton1" class="col-2 offset-8">
                           <input v-model="email" class="form-control mr-sm-2" type="email" placeholder="Search a Email" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch(users.email)">SearchEmail</button>
                         </div>
                         <div id="smbutton1" class="col-2 offset-8">
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(users.id)">SearchID</button>
-                        </div>
+                        </div> -->
                         <div id="smtaomoi1" class="col-2 offset-8">
                           <!-- <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button> -->
                           <b-modal id="modal-1" title="Tạo mới">
@@ -77,7 +81,7 @@
                           </tr>
                         </thead>
                         <tbody v-if="searchCheck==false" >
-                          <tr v-for="user in users2" v-bind:key="user.id">
+                          <tr v-for="user in resultQuery" v-bind:key="user.id">
                             <th scope="row">{{user.id}}</th>
                             <td style="white-space: normal;">{{user.name}}</td>
                             <td style="white-space: normal;">{{user.email}}</td>
@@ -111,10 +115,10 @@
                                 <base-button size="sm" outline type="danger" v-on:click="clickdelete1(user.id)">Xoá</base-button>
                                 <span> 
                                   <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button> -->
-                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="close3=false,clickSearch2(user.id)">
+                                  <base-button size="sm" outline type="success" >
                                     <!-- Thông tin chi tiết -->
                                     <router-link :to="{ name: 'detailUser', params: { id: user.id }}">Thông tin chi tiết</router-link>
-                                  </b-button>
+                                  </base-button>
                                 </span>
                               </span>
                             </td>
@@ -527,7 +531,9 @@ Vue.use(VueClipboard)
       avatar:'',
       mobile:'',
       tel:'',
-      url:process.env.VUE_APP_MY_ENV_VARIABLE
+      url:process.env.VUE_APP_MY_ENV_VARIABLE,
+      searchQuery: "",
+      filter:''
     };
   },
   components: {
@@ -668,7 +674,33 @@ Vue.use(VueClipboard)
       }
       return "";
     }
+    
     },
+    computed: {
+    //  filteredCats() {
+    //   return this.users.filter(c => {
+    //     if(this.filter == '') return true;
+    //     return c.name.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0;
+    //   })
+    // },
+    resultQuery(){
+      if(this.searchQuery){
+        return  this.users.filter((item)=>{                
+        return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
+                || (item.email + '').toLowerCase().includes(v))
+                || (item.toUser + '').toLowerCase().includes(v)
+                || (item.fromUser + '').toLowerCase().includes(v)
+                || (item.hash + '').toLowerCase().includes(v)
+                )
+        });
+ 
+      }else{
+        console.log("3");
+        return this.users2;
+        
+      }
+    }
+}
   }
 </script>
 <style lang="scss">

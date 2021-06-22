@@ -39,7 +39,7 @@
                             Hủy bỏ
                         </button>
                     </div>
-                    <div class="user-sum ml-7">
+                    <div class="user-sum ml-7 mt-2">
                       <h5><i class="fa fa-user" aria-hidden="true"></i>: {{users.name}}</h5>
                     </div>
                     <div class="user-sum ml-7">
@@ -252,7 +252,7 @@
               <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
                     Thông Tin Giao Dịch
               </h3>
-              <div>
+              <div style="overflow-x:auto;">
                   <table class="table table-striped">
                     <thead>
                         <tr>
@@ -268,7 +268,7 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="transactions2 in resultQuery" v-bind:key="transactions2.id">
+                        <tr v-for="transactions2 in transactions2" v-bind:key="transactions2.id">
                         <td style="white-space: normal;" scope="row">
                             {{transactions2.id}}
                         </td>
@@ -346,8 +346,8 @@ Vue.use(VueClipboard)
           this.inmobile= response.data.mobile,
           this.inprovince= response.data.province
         //   console.log( "1"+this.users.name);
-          this.users2 = response.data.slice(0, this.perPage-1), 
-          this.totalPage = Math.ceil(response.data.length / this.perPage)
+        //   this.users2 = response.data.slice(0, this.perPage-1), 
+        //   this.totalPage = Math.ceil(response.data.length / this.perPage)
          });
       
     return {
@@ -368,6 +368,7 @@ Vue.use(VueClipboard)
       info:'',
       gender:'',
       users: [],
+      transactions2:[],
       users2:[],
       totalPage:0,
       add:true,
@@ -654,10 +655,10 @@ employee-list{
 #topimage{
     margin-top:10px;
 }
-@media (max-width: 768px) {
-  .testLinh{
-    display:none;
-  }
-}
+// @media (max-width: 768px) {
+//   .testLinh{
+//     display:none;
+//   }
+// }
 </style>
 

@@ -14,14 +14,18 @@
                               <i class="fa fa-reply" aria-hidden="true"></i>
                             </span>
                         </div>
-                        <div id="smbutton2" class="col-2 offset-8">
+                        <div class="search-wrapper panel-heading col-sm-12">
+                              <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                              <!-- <input name="name" type="text" v-model="searchQuery" /> -->
+                        </div>
+                        <!-- <div id="smbutton2" class="col-2 offset-8">
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(auction.id)">SearchID</button>
                         </div>
-                         
+                          -->
                       </div>
                        
-                      <div class="">
+                      <div style="overflow-x:auto;" class="">
                       <table class="table table-striped">
                         <thead>
                           <tr>
@@ -37,7 +41,7 @@
                           </tr>
                         </thead>
                         <tbody class="test">
-                          <tr v-for="auction in auction2" v-bind:key="auction.id">
+                          <tr v-for="auction in resultQuery" v-bind:key="auction.id">
                             <th scope="row">{{auction.id}}</th>
                             <td></td>
                             <td>
@@ -168,7 +172,9 @@ Vue.use(VueClipboard)
       auction2:'',
       totalPage:0,
       currentPage : 1,
-      perPage : 20
+      perPage : 20,
+      searchQuery: "",
+      filter:''
     };
   },
   components: {
@@ -263,6 +269,26 @@ Vue.use(VueClipboard)
 
     }
     },
+    computed: {
+     
+    resultQuery(){
+      if(this.searchQuery){
+        return  this.auction.filter((item)=>{                
+        return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
+                || (item.category + '').toLowerCase().includes(v))
+                || (item.id + '').toLowerCase().includes(v)
+                || (item.fromUser + '').toLowerCase().includes(v)
+                || (item.hash + '').toLowerCase().includes(v)
+                )
+        });
+ 
+      }else{
+        console.log("3");
+        return this.auction2;
+        
+      }
+    }
+}
   }
 </script>
 

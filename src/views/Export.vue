@@ -20,7 +20,7 @@
                         </div>
                       </div>
                        
-                      <div class="">
+                      <div style="overflow-x:auto;" class="">
                       <table class="table table-striped">
                         <thead>
                           <tr>

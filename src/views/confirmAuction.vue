@@ -2,7 +2,7 @@
   <div>
     <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-8">
     </base-header>
-     <div>
+     <div style="overflow-x:auto;">
          <table class="table table-striped">
             <thead>
                 <tr>

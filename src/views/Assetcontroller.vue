@@ -14,14 +14,18 @@
                             <i class="fa fa-reply" aria-hidden="true"></i>
                           </span>
                         </div>
-                        <div id="smbutton" class="col-2 offset-8">
+                        <div class="search-wrapper panel-heading col-sm-12">
+                              <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                              <!-- <input name="name" type="text" v-model="searchQuery" /> -->
+                        </div>
+                        <!-- <div id="smbutton" class="col-2 offset-8">
                           <input v-model="category" class="form-control mr-sm-2" type="category" placeholder="Search a type" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch(asset.category)">SearchType</button>
                         </div>
                         <div id="smbutton" class="col-2 offset-8">
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(asset.id)">SearchID</button>
-                        </div>
+                        </div> -->
                          
                         <div id="smtaomoi" class="col-2 offset-8">
                           <!-- <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button> -->
@@ -56,7 +60,7 @@
                         </div>
                       </div>
 
-                      <div class="asset_controller">
+                      <div style="overflow-x:auto;" class="asset_controller">
                       <table class="table table-dark table-striped">
                         <thead>
                           <tr>
@@ -73,7 +77,7 @@
                           </tr>
                         </thead>
                         <tbody v-if="searchCheck==1">
-                          <tr v-for="asset in asset2" v-bind:key="asset.id">
+                          <tr v-for="asset in resultQuery" v-bind:key="asset.id">
                             <th scope="row">{{asset.id}}</th>
                             <td style="white-space: normal;">{{asset.name}}</td>
                             <td>{{asset.category}}</td>
@@ -220,7 +224,9 @@ Vue.use(VueClipboard)
       searchCate:'',
       totalPage:0,
       currentPage : 1,
-      perPage : 10
+      perPage : 10,
+      searchQuery: "",
+      filter:''
     };
   },
   components: {
@@ -338,6 +344,26 @@ Vue.use(VueClipboard)
       });
     }
     },
+    computed: {
+     
+    resultQuery(){
+      if(this.searchQuery){
+        return  this.asset.filter((item)=>{                
+        return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
+                || (item.category + '').toLowerCase().includes(v))
+                || (item.id + '').toLowerCase().includes(v)
+                || (item.fromUser + '').toLowerCase().includes(v)
+                || (item.hash + '').toLowerCase().includes(v)
+                )
+        });
+ 
+      }else{
+        console.log("3");
+        return this.asset2;
+        
+      }
+    }
+}
   }
 </script>
 

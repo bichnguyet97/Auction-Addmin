@@ -64,7 +64,7 @@
                           </b-modal>
                         </div>
                       </div>
-                      <div class="">
+                      <div style="overflow-x:auto;" class="">
                       <table class="table table-striped">
                         <thead>
                           <tr>
@@ -809,10 +809,10 @@ employee-list{
 #topimage{
     margin-top:10px;
 }
-@media (max-width: 768px) {
-  .testLinh{
-    display:none;
-  }
-}
+// @media (max-width: 556px) {
+//   .testLinh{
+//     display:none;
+//   }
+// }
 </style>
 

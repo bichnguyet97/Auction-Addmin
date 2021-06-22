@@ -77,7 +77,7 @@
                         </div>
                       </div>
                       </div>
-                      <div class="">
+                      <div style="overflow-x:auto;" class="">
                       <table class="table table-striped">
                         <thead>
                           <tr>
@@ -116,7 +116,7 @@
                                   <!-- <b-button size="sm" variant="warning" @click="close4=true">Sửa</b-button> -->
                                   <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="category=buffer.id">Sửa</b-button> -->
                                   <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=category.id">Sửa</b-button> -->
-                                  <b-button size="sm" variant="warning" id="show-btn" @click="buffer=category.id">Sửa</b-button>
+                                  <b-button v-b-modal.bv-modal-example size="sm" variant="warning" id="show-btn" @click="buffer=category.id">Sửa</b-button>
                                 </span>
                               </span>
                             </td>

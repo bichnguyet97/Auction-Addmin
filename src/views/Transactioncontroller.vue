@@ -2,13 +2,14 @@
   <div>
     <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-8">
     </base-header>
-     <div>
+     <div >
 
             <div class="row">
                  <div class="search-wrapper panel-heading col-sm-12">
                      <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
                 </div>                        
             </div>
+          <div style="overflow-x:auto;">
          <table class="table table-striped">
             <thead>
                 <tr>
@@ -158,6 +159,7 @@
             </tbody>
                 
         </table>
+        </div>
      </div>
      <paginate
         :page-count="totalPage"

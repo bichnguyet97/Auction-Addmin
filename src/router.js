@@ -46,7 +46,7 @@ export default new Router({
         {
           path: '/Category',
           name: 'Category',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Category.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
         },
         {
           path: '/addcategory-controller',
@@ -156,7 +156,7 @@ export default new Router({
         {
           path: '/tables',
           name: 'tables',
-          component: () => import(/* webpackChunkName: "demo" */ './views/Tables.vue')
+          component: () => import(/* webpackChunkName: "demo" */ './views/Category.vue')
         },
         {
           path: '/transaction',

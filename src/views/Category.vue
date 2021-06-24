@@ -166,7 +166,7 @@
                                   </div> -->
                                   <input type="file" @change="onFileChange" />
                                   <div id="preview">
-                                    <img v-if="urlimg" v-bind:src="urlimg" />
+                                    <img style="width:236px" v-if="urlimg" v-bind:src="urlimg" />
                                   </div>
                               </div>
                               </div>
@@ -370,6 +370,11 @@ Vue.use(VueClipboard)
       const file = e.target.files[0];
       this.urlimg = URL.createObjectURL(file);
     },
+    // categoryEdit(id){
+    //   for(var i=0; i<id.length; i++) {
+
+    //   }
+    // }
      
     // getData(){
     //   this.axios.get('http://52.77.244.234/category').then((response)=>{
@@ -379,6 +384,9 @@ Vue.use(VueClipboard)
     // }
     
     },
+    computed: {
+     
+}
   }
 </script>
 

@@ -18,16 +18,22 @@
                 <div class="col">
                     <div class="card shadow">
                       <div class="row">
-                        <div @click="searchCheck=false" class="col-2 point">
-                          Users
-                          <span>
-                            <i class="fa fa-reply" aria-hidden="true"></i>
-                          </span>
-                        </div>
-                            <div class="search-wrapper panel-heading col-sm-12">
+                            
+                          <div class="row ml-3 mt-2">
+                              <h5 style="margin-top:10px;">Search</h5>
+                              <div class="search-wrapper panel-heading col-sm-4 m">
                                 <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
-                                <!-- <input name="name" type="text" v-model="searchQuery" /> -->
-                          </div>                        
+                              </div>
+                              <h5 style="margin-top:10px;">Trạng thái</h5>
+                              <div class="search-wrapper panel-heading col-sm-4 m">
+                                <select v-model="searchStatus" class="form-control">
+                                  <option disable value="">All</option>
+                                  <option value="true">Đã Hoạt Động</option>
+                                  <option value="false">Chưa Hoạt Động</option>
+                                </select>
+                              </div>  
+                                                  
+                          </div>                      
                         <!-- <div id="smbutton1" class="col-2 offset-8">
                           <input v-model="email" class="form-control mr-sm-2" type="email" placeholder="Search a Email" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch(users.email)">SearchEmail</button>
@@ -87,7 +93,7 @@
                             <td style="white-space: normal;">{{user.email}}</td>
                             <td>
                               <!-- <a :href="user.avatar">{{user.avatar}}</a> -->
-                              <img style="width: 82px;" class="" :src="user.avatar" alt="">
+                              <img style="width: 40px;" class="" :src="user.avatar" alt="">
                             </td>
                             <!-- <td>{{user.password}}</td> -->
                             <!-- <td>*********</td> -->
@@ -104,15 +110,17 @@
                               <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(user.updated,'time')"></span>
                             </td>
                             <td>
-                              {{user.isActive}}
-                              <!-- <span>
-                                <b-button style=" width:10%;" size="sm" variant="info" v-if="user.isActive == 'true'">ĐÃ HOẠT ĐỘNG</b-button>
-                                <b-button style=" width:10%;" size="sm" variant="danger" v-if="user.isActive == 'false'">CHƯA HOẠT ĐỘNG</b-button>
-                              </span> -->
+                              <!-- {{user.isActive}} -->
+                              <span>
+                                <!-- <b-button style=" width:auto;" size="sm" variant="info" v-if="user.isActive ">ĐÃ HOẠT ĐỘNG </b-button>
+                                <b-button style=" width:auto;" size="sm" variant="danger" v-if="!user.isActive ">CHƯA HOẠT ĐỘNG</b-button> -->
+                              </span>
+                              <span class="badge badge-success wf-85" v-if="user.isActive ">ĐÃ HOẠT ĐỘNG</span>
+                              <span class="badge badge-warning wf-85" v-if="!user.isActive ">CHƯA HOẠT ĐỘNG</span>
                             </td>
                             <td>
                               <span>
-                                <base-button size="sm" outline type="danger" v-on:click="clickdelete1(user.id)">Xoá</base-button>
+                                <!-- <base-button size="sm" outline type="danger" v-on:click="clickdelete1(user.id)">Xoá</base-button> -->
                                 <span> 
                                   <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button> -->
                                   <base-button size="sm" outline type="success" >
@@ -524,7 +532,6 @@ Vue.use(VueClipboard)
       showInfo3:false,
       showInfo4:false,
       showInfo5:false,
-      searchQuery:null,
       searchCheck: false,
       hihi:'true',
       address:'',
@@ -533,7 +540,9 @@ Vue.use(VueClipboard)
       tel:'',
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchQuery: "",
+      searchStatus:"",
       filter:''
+     
     };
   },
   components: {
@@ -684,24 +693,33 @@ Vue.use(VueClipboard)
     //   })
     // },
     resultQuery(){
-      if(this.searchQuery){
-        return  this.users.filter((item)=>{                
-        return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
-                || (item.email + '').toLowerCase().includes(v))
-                || (item.toUser + '').toLowerCase().includes(v)
-                || (item.fromUser + '').toLowerCase().includes(v)
-                || (item.hash + '').toLowerCase().includes(v)
-                )
-        });
- 
+        if(this.searchQuery){
+
+         return this.users.filter((item)=>{  
+              var checkStatus;
+              if(this.searchStatus) checkStatus = (JSON.stringify(item.isActive) === this.searchStatus);else checkStatus = true;
+              // console.log("test: " + test);
+              
+             return   this.searchQuery.toLowerCase().split(' ').every(v => ((
+                      (item.name + '').toLowerCase().includes(v) 
+                      || (item.email + '').toLowerCase().includes(v)
+                      || (item.id + '').toLowerCase().includes(v)
+                      || (item.group + '').toLowerCase().includes(v)
+                      
+                    ) && checkStatus)
+                  ) 
+          });
+    
+         
       }else{
-        console.log("3");
-        return this.users2;
+        return  this.users2;
         
       }
+      
+       
     }
-}
   }
+}
 </script>
 <style lang="scss">
 

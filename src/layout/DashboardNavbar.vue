@@ -18,7 +18,7 @@
                     <div class="media align-items-center" slot="title">
                 <span class="avatar avatar-sm rounded-circle">
                   <!-- <img alt="Image placeholder" src="img/theme/team-4-800x800.jpg"> -->
-                  <b-avatar :src="user.avatar"></b-avatar>
+                  <b-avatar v-if="user.avatar" :src="user.avatar"></b-avatar>
                 </span>
                         <div class="media-body ml-2 d-none d-lg-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{user.name}}</span>
@@ -63,13 +63,12 @@ import VueCookies from 'vue-cookies';
 Vue.use(VueCookies)
   export default {
     data() {
-      var user = [];
       this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
         headers: {
           Authorization: this.getCookie('AC-ACCESS-KEY') }
           }
           ).then((response) => { this.user=response.data});
-      console.log(user.avatar);
+     
       return {
         activeNotifications: false,
         showMenu: false,

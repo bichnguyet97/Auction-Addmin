@@ -61,7 +61,7 @@
                       </div>
 
                       <div style="overflow-x:auto;" class="asset_controller">
-                      <table class="table table-dark table-striped">
+                      <table class="table table-striped">
                         <thead>
                           <tr>
                             <th scope="col">ID</th>
@@ -72,7 +72,7 @@
                             <th scope="col">Giá hiện tại</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Ngày Cập nhật</th>
-                            <th scope="col">Trạng thái</th>
+                            <!-- <th scope="col">Trạng thái</th> -->
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>
@@ -97,13 +97,15 @@
                               <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(asset.updated,'date')"></span>
                               <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(asset.updated,'time')"></span>
                             </td>
-                            <td>
-                              <!-- {{asset.status}} -->
+                            <!-- <td>
+                              {{asset.status}}
                               <span>
                                 <b-button style=" width:70%;" size="sm" variant="info" v-if="asset.status == 'waiting'">MỚI</b-button>
                                 <b-button style=" width:80%;" size="sm" variant="danger" v-if="asset.status == 'Paid'">ĐÃ BÁN</b-button>
                               </span>
-                            </td>
+                              <span class="badge badge-success wf-85" v-if="asset.status == 'waiting'">MỚI</span>
+                              <span class="badge badge-warning wf-85" variant="danger" v-if="asset.status == 'Paid'">ĐÃ BÁN</span>
+                            </td> -->
                             <td>
                               <span>
                                 <base-button size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>

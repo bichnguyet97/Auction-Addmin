@@ -4,13 +4,22 @@
     </base-header>
      <div >
 
-            <div class="row">
-                 <div class="search-wrapper panel-heading col-sm-12">
-                     <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+            <div class="row ml-2 mt-2">
+                <h5 style="margin-top:10px;">Search</h5>
+                <div class="search-wrapper panel-heading col-sm-2 m">
+                  <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                </div>
+                <h5 style="margin-top:10px;">Trạng thái</h5>
+                <div class="search-wrapper panel-heading col-sm-2 m">
+                  <select v-model="searchQuery" class="form-control">
+                    <option disable value="">All</option>
+                    <option value="complete">Hoàn Thành</option>
+                    <option value="Pending">Chưa Hoàn Thành</option>
+                  </select>
                 </div>                        
             </div>
           <div style="overflow-x:auto;">
-         <table class="table table-striped">
+         <table class="table table-striped mt-2">
             <thead>
                 <tr>
                 <th scope="col">ID</th>
@@ -46,14 +55,15 @@
                     {{transactions2.amount}}
                 </td>
                 <td style="white-space: normal;">
-                  {{transactions2.fromUser}}
+                  <!-- {{transactions2.fromUser}} -->
+                  <router-link :to="{ name: 'detailUser', params: { id: transactions2.fromUser }}">{{transactions2.fromUser}}</router-link>
                 </td>
                 <td style="white-space: normal;">
                   {{transactions2.toUser}}
                 </td>
-                <td style="white-space: normal;">
+                <td  class="test" style="white-space: normal;">
                   <!-- <a href="https://tronscan.org/#/transaction/+'transactions2.hash'" target="_blank">{{transactions2.hash}}</a> -->
-                  <a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Xem</a>
+                  <a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">{{transactions2.hash}}</a>
                   <!-- {{transactions2.hash}} -->
                 </td>
                 <!-- <td><span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions2.fromUser}}</span>
@@ -69,11 +79,12 @@
 
                 </td>
                 <td>
-                    <span>
+                    <!-- <span>
                     <b-button style=" width:55%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
                     <b-button style=" width:55%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
-                    </span>
-                    
+                    </span> -->
+                  <span class="badge badge-success wf-85" v-if="transactions2.status == 'complete' ">HOÀN THÀNH</span>
+                  <span class="badge badge-warning wf-85" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</span>
                 </td>
                 <td>
                     <span>
@@ -81,7 +92,7 @@
                        
                         <router-link :to="{ name: 'detailEditAsset', params: { }}">Chi tiết</router-link>
                       </base-button> -->
-                      <base-button  outline type="info" id="show-btn" @click="$bvModal.show('bv-modal-example')">Chi tiết</base-button>
+                      <base-button style="width:auto;" outline type="info" id="show-btn" @click="$bvModal.show('bv-modal-example'),clickDetail(setId=transactions2.id)">Chi tiết</base-button>
 
                     </span>
                 </td>
@@ -97,31 +108,38 @@
                     </template>
                     <div class="d-block text-center">
                          <div class="modal-body">
-                           <ul   >
+                           <ul  style="padding:0" >
                             <!-- <li class="pt-0"> -->
                               <div class="row mb-3">
                                 <div class="col-auto font-weight-bold ng-binding">Mã giao dịch</div>
-                                <div class="col ng-binding">TTB82DD42</div>
+                                <div class="col ng-binding">{{detail.id}}</div>
                               </div>
                               <div class="row mb-3">
                                 <div class="col-auto font-weight-bold ng-binding">Số tiền</div>
-                                <div class="col text-danger font-weight-bold ng-binding">371,000 VNDT</div>
+                                <div class="col text-danger font-weight-bold ng-binding">{{detail.amount}} {{detail.currency}}</div>
                               </div>
                               <div class="row align-items-center mb-4">
                                 <div class="col-auto font-weight-bold ng-binding">Trạng thái</div>
                                 <div class="col">
-                                  <b-button size="sm" variant="info">Hoàn thành</b-button>
+                                  <!-- <b-button size="sm" variant="info"></b-button> -->
+                                  <b-button size="sm" variant="info" v-if="detail.status == 'complete'">HOÀN THÀNH</b-button>
+                                  <b-button size="sm" variant="danger" v-if="detail.status == 'Pending'">ĐANG XỬ LÝ</b-button>
                                 </div>
                               </div>	
                             <!-- </li> -->
                             <!-- <li> -->
                               <div class="row mb-3">
-                                <div class="col-auto font-weight-bold ng-binding">Địa chỉ</div>
-                                <div class="col ng-binding">TMJ65byZaKTSrrPqa7moKEcunBeJvo1c42</div>
+                                <div class="col-auto font-weight-bold ng-binding">Địa chỉ người gửi</div>
+                                <div style="word-break: break-all;" class="col ng-binding">{{detail.fromAddress}}</div>
                               </div>
+
+                              <!-- <div class="row mb-3">
+                                <div class="col-auto font-weight-bold ng-binding">Địa chỉ người nhận</div>
+                                <div class="col ng-binding">{{detail.toAddress}}/div> 
+                              </div> -->
                               <div class="row mb-4">
                                 <div class="col-auto font-weight-bold">Txid</div>
-                                <div style="word-break: break-all;" class="col ng-binding">30629b9831b89892a736e7f1145ed887081e8e29757477ca54d04f6219ff627d</div>
+                                <div style="word-break: break-all;" class="col ng-binding">{{detail.hash}}</div>
                               </div>
                                
                               <!-- <div class="row mb-3" ng-show="choosedTran.additionInfo.bankName!=undefined">
@@ -129,32 +147,30 @@
                                 <div class="col ng-binding">TCB</div>
                               </div> -->
                               <div class="row mb-3" ng-show="choosedTran.additionInfo.accountNumber!=undefined">
-                                <div class="col-auto font-weight-bold ng-binding">Số tài khoản</div>
-                                <div class="col ng-binding">19036154149010</div>
+                                <div class="col-auto font-weight-bold ng-binding">ID người gửi</div>
+                                <div class="col ng-binding">{{detail.fromUser}}</div>
                               </div>
                               <div class="row mb-3" ng-show="choosedTran.additionInfo.accountName!=undefined">
-                                <div class="col-auto font-weight-bold ng-binding">Chủ tài khoản</div>
-                                <div class="col ng-binding">TRINH THI TUYET</div>
+                                <div class="col-auto font-weight-bold ng-binding">ID người nhận</div>
+                                <div class="col ng-binding">{{detail.toUser}}</div>
                               </div>
                               <div class="row mb-3">
                                 <div class="col-auto font-weight-bold ng-binding">Ngày tháng</div>
-                                <div class="col ng-binding">2021-06-12 10:01:54</div>
+                                <div class="col ng-binding">{{formatDatetime(detail.created,'date')}} {{formatDatetime(detail.created,'time')}}</div>
+                                <!-- <div class="col ng-binding">{{formatDatetime(detail.created,'date')}} {{formatDatetime(detail.created,'time')}}</div> -->
+                                <!-- <span class="col ng-binding" v-html="formatDatetime(detail.created,'date') "> </span>
+                                <span class=" " v-html="formatDatetime(detail.created,'time') "> </span> -->
+                                 
                               </div>
                               <div class="row">
                                 <div class="col-auto font-weight-bold ng-binding">Nội dung</div>
-                                <div class="col ng-binding">chuyen xien mua my pham nhe tuyet</div>
+                                <div class="col ng-binding">{{detail.note}}</div>
                               </div>
                             <!-- </li> -->
                           </ul>
                          </div>
-                      <!-- <span style="margin-left: -21rem;" class="f-13 mr-1 d-block mb-1">Mã giao dịch:{{transactions2.fromUser}}</span>
-                      <span style="margin-left: -24rem;" class="f-13 mr-1 d-block mb-1">Số tiền: {{transactions2.fromAddress}}</span>
-                      <span style="margin-left: -22.5rem;" class="f-13 mr-1 d-block mb-1">Trạng thái: {{transactions2.toUser}}</span>
-                      <span style="margin-left: -24rem;" class="f-13 mr-1 d-block mb-1">Địa chỉ: {{transactions2.toAddress}}</span>
-                      <span style="margin-left: -23rem;" class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span>
-                      <span style="margin-left: -23rem;" class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span> -->
                     </div>
-                    <b-button class="mt-3" block><a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Check Export</a></b-button>
+                    <b-button class="mt-3" block><a v-bind:href="'https://tronscan.org/#/transaction/'+ detail.hash" target="_blank">Check Export</a></b-button>
                   </b-modal>
             </tbody>
                 
@@ -215,6 +231,19 @@ export default {
 
   
     return {
+      detail:{
+        id:'',
+        fromUser:'',
+        fromAddress:'',
+        toUser:'',
+        note:'',
+        toAddress:'',
+        status:'',
+        currency:'',
+        amount:'',
+        hash:'',
+        created:''
+      },
       bidPrice: "",
       currentPrice: "",
       finalPrice: "",
@@ -483,15 +512,41 @@ export default {
       return "";
     },
     formatDatetime: function (datetime,type) {
-      var a =datetime.split("T");
-        if(type=='date'){
-          return a[0];
 
-        }else{
-            var b = a[1].split(".");
-            return b[0]
-        }
+      if(datetime != ''){
+        var a =datetime.split("T");
 
+          if(a.length > 1){
+           if(type=='date'){
+                return a[0];
+
+              }else{
+                  var b = a[1].split(".");
+                  return b[0]
+              }
+          }return "";
+      }return "";
+     
+
+    },
+    clickDetail(id){
+      console.log("id: " + id);
+      this.transactions.forEach(item => {
+          if(item.id === id){
+            console.log("hi"+item);
+            this.detail.id=item.id;
+            this.detail.amount = item.amount;           
+            this.detail.status=item.status;
+            this.detail.fromUser=item.fromUser;
+            this.detail.fromAddress=item.fromAddress;
+            this.detail.toUser=item.toUser;
+            this.detail.toAddress=item.toAddress;
+            this.detail.note=item.note;
+            this.detail.currency=item.currency;
+            this.detail.hash=item.hash;
+            this.detail.created=item.created;
+          }
+      })
     }
   },
 computed: {
@@ -501,20 +556,22 @@ computed: {
 
     resultQuery(){
       if(this.searchQuery){
+        
         return  this.transactions.filter((item)=>{                
         return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.fromAddress + '').toLowerCase().includes(v) 
                 || (item.toAddress + '').toLowerCase().includes(v))
                 || (item.toUser + '').toLowerCase().includes(v)
                 || (item.fromUser + '').toLowerCase().includes(v)
                 || (item.hash + '').toLowerCase().includes(v)
+                || (item.status + '').toLowerCase().includes(v)
                 )
         });
-
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         // this.totalPage = Math.ceil(list.length /  this.perPage);
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         // this.transactions2=list;
         // return '';  
+         
       }else{
         console.log("3");
         return this.transactions2;
@@ -636,5 +693,11 @@ employee-list {
 .sze {
   height: 900px;
   width: 400px;
+}
+.test{
+  max-width: 100px;
+  overflow: hidden;
+  // white-space: nowrap; 
+  text-overflow: ellipsis;
 }
 </style>

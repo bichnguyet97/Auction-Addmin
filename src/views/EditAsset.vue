@@ -1354,19 +1354,19 @@ Vue.use(VueClipboard)
       this.axios.get(this.url+'/asset'
        ).then((response) => { this.asset=response.data})
     },
-    // clickSearch2(id){
-    //   this.axios.get(this.url+'/asset/id/'+id)
-    //   .then((response) => {if(response.data){ this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
-    //   this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
-    //   this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
-    //   this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
-    //   this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
-    //   this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter,this.testfloorsNumber=response.data.assets[0].floorsNumber, this.testsimNumber=response.data.assets[0].simNumber,
-    //   this.testresolution=response.data.assets[0].resolution,this.testram= response.data.assets[0].ram,this.testrom= response.data.assets[0].rom,this.testscreenSize=response.data.assets[0].screenSize,this.testoperatingSystem= response.data.assets[0].operatingSystem,this.testcamera=response.data.assets[0].camera, this.testsim=response.data.assets[0].sim,
-    //   this.testbatteryCapacity=response.data.assets[0].batteryCapacity, this.testwattage= response.data.assets[0].wattage,this.testguarantee= response.data.assets[0].guarantee
-    //   }});
-    //     console.log(this.testid);
-    // },
+    clickSearch2(id){
+      this.axios.get(this.url+'/asset/id/'+id)
+      .then((response) => {if(response.data){ this.Search=response.data, this.testName = response.data.assets[0].name, this.testinitPrice= response.data.assets[0].initPrice, this.testcategory= response.data.assets[0].category,this.testtype= response.data.assets[0].type,this.testtoiletsNumber= response.data.assets[0].toiletsNumber,
+      this.testdescription = response.data.assets[0].description, this.testcurrentStatus = response.data.assets[0].currentStatus, this.tespicture = response.data.assets[0].images.split(','),this.testtrademark= response.data.assets[0].trademark,this.tescolor= response.data.assets[0].color, this.tesinteriorColor= response.data.assets[0].interiorColor,
+      this.testdirection = response.data.assets[0].direction, this.testarea = response.data.assets[0].area, this.testacreage = response.data.assets[0].acreage, this.testbedroomsNumber = response.data.assets[0].bedroomsNumber,this.tesmanufactureYear= response.data.assets[0].manufactureYear,
+      this.tesgear= response.data.assets[0].gear,this.tesfuel= response.data.assets[0].fuel, this.tesconsume= response.data.assets[0].tesconsume,this.testpicture= response.data.assets[0].images,this.tesheight= response.data.assets[0].height,
+      this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
+      this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter,this.testfloorsNumber=response.data.assets[0].floorsNumber, this.testsimNumber=response.data.assets[0].simNumber,
+      this.testresolution=response.data.assets[0].resolution,this.testram= response.data.assets[0].ram,this.testrom= response.data.assets[0].rom,this.testscreenSize=response.data.assets[0].screenSize,this.testoperatingSystem= response.data.assets[0].operatingSystem,this.testcamera=response.data.assets[0].camera, this.testsim=response.data.assets[0].sim,
+      this.testbatteryCapacity=response.data.assets[0].batteryCapacity, this.testwattage= response.data.assets[0].wattage,this.testguarantee= response.data.assets[0].guarantee
+      }});
+        console.log(this.testid);
+    },
      
     clickEdit(id){
       this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,

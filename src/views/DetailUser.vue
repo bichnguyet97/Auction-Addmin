@@ -29,10 +29,10 @@
                     <div class="user-sum ml-7">
                       <b-avatar style="width:128px; height:128px" :src="inavatar"></b-avatar>
                     </div>
-                    <div class="user-sum ml-6">
+                    <div class="user-sum ml-6 mt-2">
                         <button v-b-modal.modal-1 class="btn btn-success btn-sm" @click="changeAvatar=true">
                             <b-icon icon="check2" font-scale="1.5"></b-icon>
-                            Thay đổi
+                            Chọn ảnh
                         </button>
                         <button class="btn btn-default btn-sm">
                             <b-icon icon="x" font-scale="1.5"></b-icon>
@@ -215,14 +215,17 @@
                           </base-input>
                         </div>
                       </div>
-                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-success mb-2" @click="clickEdit(Search.id)">Cập nhật thông tin</button>
+                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-success mb-2" @click="clickEdit(users.id)">Cập nhật thông tin</button>
                       <b-modal id="modalPopover" title="Thông báo" ok-only>
-                        <p>
+                        <!-- <p>
                         Cập nhật thông tin tài khoản thành công !
+                        </p> -->
+                        <p>
+                            {{loi?loi: 'Cập nhật thông tin tài khoản thành công !'}}
                         </p>
                       </b-modal>
-                      <b-modal id="modal-1" title="Chọn ảnh của tài sản bạn muốn đăng" hide-footer>
-                       <div class="input-group rounded-0">
+                      <b-modal id="modal-1" title="Chọn ảnh của bạn" hide-footer>
+                       <!-- <div class="input-group rounded-0">
                           <div class="custom-file rounded-0">
                               <b-form-file
                               class="z-index-inputFile"
@@ -239,9 +242,11 @@
                                   Thay đổi
                               </button>
                           </div>
-                      </div>
+                      </div> -->
+                      <input type="file" @change="onFileChange" />
                       <div id="topimage" class="user-avatar mb-3 text-center">
-                        <img id="sizeimage" :src="picture" alt="">
+                        <!-- <img id="sizeimage" :src="picture" alt=""> -->
+                        <img id="sizeimage" v-if="urlimg" v-bind:src="urlimg" />
                       </div>
                       <!-- <base-button v-if="uploadValue==0" outline type="success"  @click="onUpload()">Xem ảnh</base-button> -->
                     </b-modal>
@@ -268,16 +273,21 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <tr v-for="transactions2 in transactions2" v-bind:key="transactions2.id">
+                        <tr v-for="transactions2 in trans" v-bind:key="transactions2.id">
                         <td style="white-space: normal;" scope="row">
                             {{transactions2.id}}
                         </td>
                         <td style="white-space: normal;">
                             {{transactions2.amount}}
                         </td>
-                        <!-- <td style="white-space: normal;">
-                        {{transactions2.fromUser}}
-                        </td> -->
+                        <td style="white-space: normal;">
+                        <!-- {{transactions2.fromUser}} -->
+                        <span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions2.from_user}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ gửi: {{transactions2.from_address}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">ID người nhận: {{transactions2.to_user}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ nhận: {{transactions2.to_address}}</span>
+                                        <span class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span>
+                        </td>
                         <!-- <td style="white-space: normal;">
                         {{transactions2.toUser}}
                         </td> -->
@@ -291,8 +301,8 @@
                         </td>
                         <td>
                             <span>
-                            <b-button style=" width:70%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
-                            <b-button style=" width:70%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
+                            <b-button style=" width:auto;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
+                            <b-button style=" width:auto;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
                             </span>
                         </td>
                         </tr>
@@ -304,7 +314,65 @@
             <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
                 Đấu Giá Đã Tham Gia
             </h3>
-            <div> hihi</div>
+            <div>
+              <table class="table table-striped">
+                  <thead>
+                      <tr>
+                          
+                      <th scope="col">Hình ảnh</th>
+                      <th scope="col">Thông Tin tài sản</th>
+                      <th scope="col">Thông tin đấu giá</th>
+                      <th scope="col">Thông tin đại lý</th>
+                      <th scope="col">Actions</th>
+                      </tr>
+                  </thead>
+                  <tbody>
+                      <tr v-for="auction in auction" v-bind:key="auction.id">
+                          
+                      <td scope="row">
+                          <!-- <img style="width: 200px;" class="" :src="auction.images.split(',',1)" alt=""> -->
+                      </td>
+                      <td class="test" style="white-space: normal;">
+                        
+                              <h5 class="f-17 mb-2 font-weight-bold">Tên tài sản: auction.name}}</h5>
+                    
+                                          <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auction.assest_id}}</span>
+                                          <span class="f-13 mr-1 d-block mb-1">Loại: {{auction.category}}</span>                            
+                                          <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auction.created}}</span>
+                                          <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auction.updated}}</span></td>
+                      <td><span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auction.id}}</span>
+                                              <span class="f-13 mr-1 d-block mb-1">Đấu giá tại: {{auction.area}}</span>
+                                              <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.start_at}}</span>
+                                              <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.end_at}}</span></td>
+                      <!-- <td><div class="d-flex align-items-center">
+                              <b-avatar :src="auction.avatar" size="6rem"></b-avatar>
+                              <div class="user-sum ml-3">
+                                  <h5 class="f-15 mb-2 font-weight-600">{{auction.name}}</h5>
+                                  <p class="f-13 mb-0">
+                                  <span class="d-block">
+                                      <i class="fa fa-phone" aria-hidden="true"></i>
+                                      {{auction.mobile}}
+                                  </span>
+                                  <span class="d-block">
+                                      <i class="fa fa-envelope" aria-hidden="true"></i>
+                                      {{auction.email}}
+                                  </span>
+                                  <span class="d-block">
+                                      <i class="fa fa-share" aria-hidden="true"></i>
+                                      {{auction.province}}
+                                  </span>
+                                  </p>
+                              </div>
+                              </div></td> -->
+                      <td>
+                           
+                      </td>
+                      </tr>
+                          
+                  </tbody>
+                      
+              </table>
+            </div>
             <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
                 Đấu Giá Đã Trúng
             </h3>
@@ -330,27 +398,38 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/'+ this.$route.params.id,{
+    this.axios.post(process.env.VUE_APP_MY_ENV_VARIABLE+'/admin/user-info',{
+          "startAt":"2021-05-07",
+          "endAt":"2021-06-07",
+          "userId":this.$route.params.id
+          // "userId":100515
+      },{
       headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
+        Authorization: this.getCookie('AC-ACCESS-KEY') 
+      }
+      
         }).then((response) => {
-          this.users = response.data,
-          this.inname= response.data.name,
-          this.inavatar= response.data.avatar,
-          this.inemail= response.data.email,
-          this.indateofbirth= response.data.dateofbirth,
-          this.infullname= response.data.fullname,
-          this.ingender= response.data.gender,
-          this.ingroup= response.data.group,
-          this.inlastname= response.data.lastname,
-          this.inmobile= response.data.mobile,
-          this.inprovince= response.data.province
-        //   console.log( "1"+this.users.name);
+          this.users = response.data.user,
+          this.auction =response.data.auction,
+          this.trans =response.data.trans
+          this.inname= response.data.user.name,
+          this.inavatar= response.data.user.avatar,
+          this.inemail= response.data.user.email,
+          this.indateofbirth= response.data.user.dateofbirth,
+          this.infullname= response.data.user.fullname,
+          this.ingender= response.data.user.gender,
+          this.ingroup= response.data.user.group,
+          this.inlastname= response.data.user.lastname,
+          this.inmobile= response.data.user.mobile,
+          this.inprovince= response.data.user.province
+         
+          // console.log( "1"+-this.users.id);
         //   this.users2 = response.data.slice(0, this.perPage-1), 
         //   this.totalPage = Math.ceil(response.data.length / this.perPage)
          });
       
     return {
+      trans:[],
       email: '',
       password:'',
       id: '',
@@ -368,6 +447,7 @@ Vue.use(VueClipboard)
       info:'',
       gender:'',
       users: [],
+      auction:[],
       transactions2:[],
       users2:[],
       totalPage:0,
@@ -404,8 +484,10 @@ Vue.use(VueClipboard)
       address:'',
       avatar:'',
       mobile:'',
+      loi:null,
       tel:'',
-      url:process.env.VUE_APP_MY_ENV_VARIABLE
+      url:process.env.VUE_APP_MY_ENV_VARIABLE,
+       urlimg:null
     };
   },
   components: {
@@ -452,20 +534,31 @@ Vue.use(VueClipboard)
        this.searchCheck=true;
     },
     clickEdit(id){
-      this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.picture, "gender": this.ingender,
+      this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.urlimg, "gender": this.ingender,
         "province": this.inprovince, "mobile": this.inmobile, "lastname": this.inlastname, "email": this.inemail, "group":this.ingroup, "dateofbirth":this.indateofbirth, "fullname": this.infullname}, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then(() => {
             this.clickUpdate();
-          });
+          }).catch((error) => { this.loi=error
+        })
     },
     clickSearch2(id){
       this.axios.get(this.url+'/user/'+id)
-      .then((response) => { this.Search=response.data, this.inlastname= response.data.lastname,this.infullname= response.data.fullname, this.indateofbirth= response.data.dateofbirth,
-                            this.inname=response.data.name,this.inmobile=response.data.mobile,this.inprovince=response.data.province,
-                            this.inemail=response.data.email,this.ingroup=response.data.group,this.inavatar=response.data.avatar,
-                            this.ingender= response.data.gender});
+      .then((response) => { 
+        this.Search=response.data,
+        this.inId=response.data.id,
+        this.inlastname= response.data.lastname,
+        this.infullname= response.data.fullname,
+        this.indateofbirth= response.data.dateofbirth,
+        this.inname=response.data.name,
+        this.inmobile=response.data.mobile,
+        this.inprovince=response.data.province,
+        this.inemail=response.data.email,
+        this.ingroup=response.data.group,
+        this.inavatar=response.data.avatar,
+        this.ingender= response.data.gender
+        });
         console.log(this.Search);
       this.axios.get(this.url+'/user',{
       headers: {
@@ -545,6 +638,10 @@ Vue.use(VueClipboard)
         }
       }
       return "";
+    },
+    onFileChange(e) {
+      const file = e.target.files[0];
+      this.urlimg = URL.createObjectURL(file);
     }
     },
   }

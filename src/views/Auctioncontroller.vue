@@ -41,7 +41,7 @@
                           </tr>
                         </thead>
                         <tbody class="test">
-                          <tr v-for="auction in resultQuery" v-bind:key="auction.id">
+                          <tr v-for="auction in resultQuery" v-bind:key="auction.id ">
                             <th scope="row">{{auction.id}}</th>
                             <td></td>
                             <td>
@@ -63,13 +63,19 @@
                             <td>{{formatPrice(auction.bidPrice)}}</td>
                             <td>
                               <!-- {{auction.status}} -->
-                              <span>
+                              <!-- <span>
                                 <b-button style=" width:60%;" size="sm" variant="info" v-if="auction.status == 'New'">CHỜ XÁC NHẬN</b-button>
                                 <b-button style=" width:60%;" size="sm" variant="warning" v-if="auction.status == 'Upcoming'">SẮP BẮT ĐẦU</b-button>
                                 <b-button style=" width:60%;" size="sm" variant="success" v-if="auction.status == 'Active'">ĐANG ĐẤU GIÁ</b-button>
                                 <b-button style=" width:60%;" size="sm" variant="danger" v-if="auction.status == 'Ended'">ĐÃ KẾT THÚC</b-button>
                                 <b-button style=" width:60%;" size="sm" variant="primary" v-if="auction.status == 'Paid'">ĐÃ THANH TOÁN</b-button>
-                              </span>
+                              </span> -->
+                              <span class="badge badge-success wf-85" v-if="auction.status == 'New' ">CHỜ XÁC NHẬN</span>
+                              <span class="badge badge-warning wf-85" v-if="auction.status == 'Upcoming'">SẮP BẮT ĐẦU</span>
+                              <span class="badge badge-success wf-85" v-if="auction.status == 'Active' ">ĐANG ĐẤU GIÁ</span>
+                              <span class="badge badge-warning wf-85" v-if="auction.status == 'Ended'">ĐÃ KẾT THÚC</span>
+                              <span class="badge badge-success wf-85" v-if="auction.status == 'Paid'">ĐÃ THANH TOÁN</span>
+                               
                             </td>
                             <td>
                               <base-button size="sm" outline type="success"  >
@@ -130,6 +136,9 @@ import VueAxios from 'vue-axios'
 import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 import VueCookies from 'vue-cookies'
+import SortedTablePlugin from "vue-sorted-table";
+
+Vue.use(SortedTablePlugin);
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
@@ -174,7 +183,9 @@ Vue.use(VueClipboard)
       currentPage : 1,
       perPage : 20,
       searchQuery: "",
-      filter:''
+      filter:'',
+      sortKey: 'name',
+    reverse: false
     };
   },
   components: {
@@ -267,7 +278,7 @@ Vue.use(VueClipboard)
             return b[0]
         }
 
-    }
+    },
     },
     computed: {
      

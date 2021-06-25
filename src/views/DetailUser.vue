@@ -27,7 +27,7 @@
                 <div class="row">
                   <div class="col-12 col-xl-3 col-lg-3 col-md-4">
                     <div class="user-sum ml-7">
-                      <b-avatar style="width:128px; height:128px" :src="inavatar"></b-avatar>
+                      <b-avatar style="width:128px; height:128px" :src="user.avatar"></b-avatar>
                     </div>
                     <div class="user-sum ml-6 mt-2">
                         <button v-b-modal.modal-1 class="btn btn-success btn-sm" @click="changeAvatar=true">
@@ -40,25 +40,25 @@
                         </button>
                     </div>
                     <div class="user-sum ml-7 mt-2">
-                      <h5><i class="fa fa-user" aria-hidden="true"></i>: {{users.name}}</h5>
+                      <h5><i class="fa fa-user" aria-hidden="true"></i>: {{user.name}}</h5>
                     </div>
                     <div class="user-sum ml-7">
-                      <h5><i class="fa fa-envelope" aria-hidden="true"></i>: {{users.email}}</h5>
+                      <h5><i class="fa fa-envelope" aria-hidden="true"></i>: {{user.email}}</h5>
                     </div>
                     <div class="user-sum ml-7">
-                      <h5><i class="fa fa-phone" aria-hidden="true"></i>: {{users.mobile}}</h5>
+                      <h5><i class="fa fa-phone" aria-hidden="true"></i>: {{user.mobile}}</h5>
                     </div>
                     <div class="user-sum ml-7">
-                      <h5><i class="fa fa-home" aria-hidden="true"></i>: {{users.province}}</h5>
+                      <h5><i class="fa fa-home" aria-hidden="true"></i>: {{user.province}}</h5>
                     </div>
                     <div class="user-sum ml-7">
-                      <h5><i class="fa fa-transgender" aria-hidden="true"></i>: {{users.gender}}</h5>
+                      <h5><i class="fa fa-transgender" aria-hidden="true"></i>: {{user.gender}}</h5>
                     </div>
                     <div class="user-sum ml-7">
-                      <h5><i class="fa fa-users" aria-hidden="true"></i>: {{users.group}}</h5>
+                      <h5><i class="fa fa-users" aria-hidden="true"></i>: {{user.group}}</h5>
                     </div>
                     <div class="user-sum ml-7">
-                      <h5><i class="fa fa-birthday-cake" aria-hidden="true"></i>: {{users.dateofbirth}}</h5>
+                      <h5><i class="fa fa-birthday-cake" aria-hidden="true"></i>: {{user.dateofbirth}}</h5>
                     </div>
                   </div>
                   <div class="col-12 col-xl-9 col-lg-9 col-md-8">
@@ -68,7 +68,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Tên đăng nhập<span class="text-danger">*</span>
                           </label>
-                          <input type="text" class="form-control form-control-user fs-090" :value="inname" maxlength="20">
+                          <input type="text" class="form-control form-control-user fs-090" :value="user.name" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -76,7 +76,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Địa chỉ Email<span class="text-danger">*</span>
                           </label>
-                          <input v-model="inemail" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                          <input v-model="user.email" type="" class="form-control form-control-user fs-090" value="user.email" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -84,7 +84,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Họ và đệm<span class="text-danger">*</span>
                           </label>
-                          <input v-model="inlastname" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                          <input v-model="user.lastname" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -92,7 +92,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Tên<span class="text-danger">*</span>
                           </label>
-                          <input v-model="infullname" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                          <input v-model="user.fullname" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -101,7 +101,7 @@
                             Giới tính<span class="text-danger">*</span>
                           </label>
                           <base-input>
-                          <select v-model="ingender" class="form-control form-control-user fs-090">
+                          <select v-model="user.gender" class="form-control form-control-user fs-090">
                             <option disable value="">Chọn</option>
                             <option>Nam</option>
                             <option>Nữ</option>
@@ -114,7 +114,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Ngày sinh<span class="text-danger">*</span>
                           </label>
-                          <base-input v-model="indateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
+                          <base-input v-model="user.dateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -122,7 +122,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Số điện thoại<span class="text-danger">*</span>
                           </label>
-                          <input v-model="inmobile" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
+                          <input v-model="user.mobile" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -131,7 +131,7 @@
                             Tỉnh thành<span class="text-danger">*</span>
                           </label>
                           <base-input>
-                          <select v-model="inprovince" class="form-control form-control-user fs-090">
+                          <select v-model="user.province" class="form-control form-control-user fs-090">
                             <option disable value="">Chọn</option>
                             <option >Hà Nội</option>
                             <option>Hồ Chí Minh</option>
@@ -206,7 +206,7 @@
                             Phân quyền <span class="text-danger">*</span>
                           </label>
                           <base-input>
-                          <select v-model="ingroup" class="form-control form-control-user fs-090">
+                          <select v-model="user.group" class="form-control form-control-user fs-090">
                             <option disable value="">Chọn</option>
                             <option>Admin</option>
                             <option>Agency</option>
@@ -215,100 +215,69 @@
                           </base-input>
                         </div>
                       </div>
-                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-success mb-2" @click="clickEdit(users.id)">Cập nhật thông tin</button>
+                        <button id="buttontt" v-b-modal.modalPopover class="btn btn-success mb-2" @click="clickEdit(user.id)">Cập nhật thông tin</button>
                       <b-modal id="modalPopover" title="Thông báo" ok-only>
-                        <!-- <p>
-                        Cập nhật thông tin tài khoản thành công !
-                        </p> -->
                         <p>
-                            {{loi?loi: 'Cập nhật thông tin tài khoản thành công !'}}
+                          {{loi?loi: 'Cập nhật thông tin tài khoản thành công !'}}
                         </p>
                       </b-modal>
                       <b-modal id="modal-1" title="Chọn ảnh của bạn" hide-footer>
-                       <!-- <div class="input-group rounded-0">
-                          <div class="custom-file rounded-0">
-                              <b-form-file
-                              class="z-index-inputFile"
-                              @change="previewImage"
-                              placeholder="Select file"
-                              drop-placeholder="Drop file here..."
-                              accept="image/*"
-                              ></b-form-file>
-                              <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
-                          </div>
-                          <div class="input-group-append">
-                              <button @click="onUpload" class="btn btn-success">
-                                  <i class="las la-plus-circle"></i>
-                                  Thay đổi
-                              </button>
-                          </div>
-                      </div> -->
-                      <input type="file" @change="onFileChange" />
-                      <div id="topimage" class="user-avatar mb-3 text-center">
-                        <!-- <img id="sizeimage" :src="picture" alt=""> -->
-                        <img id="sizeimage" v-if="urlimg" v-bind:src="urlimg" />
-                      </div>
-                      <!-- <base-button v-if="uploadValue==0" outline type="success"  @click="onUpload()">Xem ảnh</base-button> -->
+                        <input type="file" @change="onFileChange" />
+                        <div id="topimage" class="user-avatar mb-3 text-center">
+                          <img id="sizeimage" v-if="urlimg" v-bind:src="urlimg" />
+                        </div>
                     </b-modal>
                     </div>
                   </div>
                 </div>
               </div>
               <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
-                    Thông Tin Giao Dịch
+                Thông Tin Giao Dịch
               </h3>
               <div style="overflow-x:auto;">
                   <table class="table table-striped">
                     <thead>
                         <tr>
-                        <th scope="col">ID</th>
-                        <th scope="col">Số lượng</th>
-                        <th scope="col">Giao dịch</th>
-                        <!-- <th scope="col">ID người nhận</th>
-                         -->
-                        <th scope="col">Mã hash</th>
-                        <th scope="col">Nội dung</th>
-                        <th scope="col">Ngày tháng</th>
-                        <th scope="col">Trạng thái</th>
+                          <th scope="col">ID</th>
+                          <th scope="col">Số lượng</th>
+                          <th scope="col">Giao dịch</th>
+                          <th scope="col">Mã hash</th>
+                          <th scope="col">Nội dung</th>
+                          <th scope="col">Ngày tháng</th>
+                          <th scope="col">Trạng thái</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr v-for="transactions2 in trans" v-bind:key="transactions2.id">
-                        <td style="white-space: normal;" scope="row">
+                          <td style="white-space: normal;" scope="row">
                             {{transactions2.id}}
-                        </td>
-                        <td style="white-space: normal;">
+                          </td>
+                          <td style="white-space: normal;">
                             {{transactions2.amount}}
-                        </td>
-                        <td style="white-space: normal;">
-                        <!-- {{transactions2.fromUser}} -->
-                        <span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions2.from_user}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ gửi: {{transactions2.from_address}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">ID người nhận: {{transactions2.to_user}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Địa chỉ nhận: {{transactions2.to_address}}</span>
-                                        <span class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span>
-                        </td>
-                        <!-- <td style="white-space: normal;">
-                        {{transactions2.toUser}}
-                        </td> -->
-                        <td style="white-space: normal;">
-                        <a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Chi tiết</a>
-                        </td>
-                        <td style="white-space: normal;">{{transactions2.note}}</td>
-                        <td style="white-space: normal;">
+                          </td>
+                          <td style="white-space: normal;">
+                            <span class="f-13 mr-1 d-block mb-1">ID người gửi: {{transactions2.from_user}}</span>
+                            <span class="f-13 mr-1 d-block mb-1">Địa chỉ gửi: {{transactions2.from_address}}</span>
+                            <span class="f-13 mr-1 d-block mb-1">ID người nhận: {{transactions2.to_user}}</span>
+                            <span class="f-13 mr-1 d-block mb-1">Địa chỉ nhận: {{transactions2.to_address}}</span>
+                            <span class="f-13 mr-1 d-block mb-1">Mã hash: {{transactions2.hash}}</span>
+                          </td>
+                          <td style="white-space: normal;">
+                            <a v-bind:href="'https://tronscan.org/#/transaction/'+ transactions2.hash" target="_blank">Xem</a>
+                          </td>
+                          <td style="white-space: normal;">{{transactions2.note}}</td>
+                          <td style="white-space: normal;">
                             <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(transactions2.created,'date')"></span>
                             <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(transactions2.created,'time')"></span>
-                        </td>
-                        <td>
+                          </td>
+                          <td>
                             <span>
-                            <b-button style=" width:auto;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
-                            <b-button style=" width:auto;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
+                              <b-button style=" width:auto;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
+                              <b-button style=" width:auto;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
                             </span>
-                        </td>
-                        </tr>
-                            
-                    </tbody>
-                        
+                          </td>
+                        </tr>    
+                    </tbody>    
                 </table>
               </div>
             <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
@@ -317,70 +286,53 @@
             <div>
               <table class="table table-striped">
                   <thead>
-                      <tr>
-                          
+                      <tr>  
                       <th scope="col">Hình ảnh</th>
                       <th scope="col">Thông Tin tài sản</th>
                       <th scope="col">Thông tin đấu giá</th>
-                      <th scope="col">Thông tin đại lý</th>
+                      <!-- <th scope="col">Thông tin đại lý</th> -->
                       <th scope="col">Actions</th>
                       </tr>
                   </thead>
                   <tbody>
-                      <tr v-for="auction in auction" v-bind:key="auction.id">
-                          
-                      <td scope="row">
-                          <!-- <img style="width: 200px;" class="" :src="auction.images.split(',',1)" alt=""> -->
-                      </td>
-                      <td class="test" style="white-space: normal;">
-                        
-                              <h5 class="f-17 mb-2 font-weight-bold">Tên tài sản: auction.name}}</h5>
-                    
-                                          <span class="f-13 mr-1 d-block mb-1">Mã tài sản: {{auction.assest_id}}</span>
-                                          <span class="f-13 mr-1 d-block mb-1">Loại: {{auction.category}}</span>                            
-                                          <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{auction.created}}</span>
-                                          <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật tài sản: {{auction.updated}}</span></td>
-                      <td><span class="f-13 mr-1 d-block mb-1">Mã đấu giá: {{auction.id}}</span>
-                                              <span class="f-13 mr-1 d-block mb-1">Đấu giá tại: {{auction.area}}</span>
-                                              <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{auction.start_at}}</span>
-                                              <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{auction.end_at}}</span></td>
-                      <!-- <td><div class="d-flex align-items-center">
-                              <b-avatar :src="auction.avatar" size="6rem"></b-avatar>
-                              <div class="user-sum ml-3">
-                                  <h5 class="f-15 mb-2 font-weight-600">{{auction.name}}</h5>
-                                  <p class="f-13 mb-0">
-                                  <span class="d-block">
-                                      <i class="fa fa-phone" aria-hidden="true"></i>
-                                      {{auction.mobile}}
-                                  </span>
-                                  <span class="d-block">
-                                      <i class="fa fa-envelope" aria-hidden="true"></i>
-                                      {{auction.email}}
-                                  </span>
-                                  <span class="d-block">
-                                      <i class="fa fa-share" aria-hidden="true"></i>
-                                      {{auction.province}}
-                                  </span>
-                                  </p>
-                              </div>
-                              </div></td> -->
-                      <td>
-                           
-                      </td>
-                      </tr>
-                          
-                  </tbody>
-                      
+                      <tr v-for="auction in auction" v-bind:key="auction.id"> 
+                        <td scope="row">
+                            <!-- <img style="width: 200px;" class="" :src="auction.images.split(',',1)" alt=""> -->
+                        </td>
+                        <td class="test" style="white-space: normal;">
+                          <h5 class="f-17 mb-2 font-weight-bold">Tên tài sản: auction.name}}</h5>
+                          <span class="f-13 mr-1 d-block mb-1">Mã tài sản: <router-link :to="{ name: 'detailEditAsset', params: { id: auction.assest_id }}">{{auction.assest_id}}</router-link></span>
+                          <span class="f-13 mr-1 d-block mb-1">Loại: {{auction.category}}</span>                            
+                          <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{formatDatetime(auction.created,'date')}} {{formatDatetime(auction.created,'time')}}</span>
+                          <span class="f-13 mr-1 d-block mb-1">Ngày cập nhật: {{formatDatetime(auction.updated,'date')}} {{formatDatetime(auction.updated,'time')}}</span>
+                        </td>
+                        <td>
+                          <span class="f-13 mr-1 d-block mb-1">Mã đấu giá: <router-link :to="{ name: 'detailauction', params: { id: auction.id }}">{{auction.id}}</router-link></span>
+                          <span class="f-13 mr-1 d-block mb-1">Đấu giá tại: {{auction.area}}</span>
+                          <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{formatDatetime(auction.start_at,'date')}} {{formatDatetime(auction.start_at,'time')}}</span>
+                          <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{formatDatetime(auction.end_at,'date')}} {{formatDatetime(auction.end_at,'time')}}</span>
+                          <span class="f-13 mr-1 d-block mb-1">Số user tham gia:{{auction.attending_user}}</span>
+                        </td>
+                        <!-- <td>
+                          <span class="f-13 mr-1 d-block mb-1">ID người bán: <router-link :to="{ name: 'detailUser', params: { id: auction.user_id }}">{{auction.user_id}}</router-link></span>
+                        </td> -->
+                        <td>
+                          <span>
+                            <!-- <b-button style=" width:70%;" size="sm" variant="info" v-if="auction.winner==">TRÚNG ĐẤU GIÁ</b-button> -->
+                            <span class="badge badge-success wf-85" v-if="auction.winner == user.id">Trúng Đấu Giá</span>
+                            <span class="badge badge-warning wf-85" v-if="auction.winner != user.id">FALSE</span>
+                          </span>
+                        </td>
+                      </tr> 
+                  </tbody>         
               </table>
             </div>
             <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
-                Đấu Giá Đã Trúng
+              Đấu Giá Đã Trúng
             </h3>
             </div>
           </div>
-          
         </div>
-         
     </div>
 </template>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -409,19 +361,19 @@ Vue.use(VueClipboard)
       }
       
         }).then((response) => {
-          this.users = response.data.user,
+          this.user = response.data.user,
           this.auction =response.data.auction,
           this.trans =response.data.trans
-          this.inname= response.data.user.name,
-          this.inavatar= response.data.user.avatar,
-          this.inemail= response.data.user.email,
-          this.indateofbirth= response.data.user.dateofbirth,
-          this.infullname= response.data.user.fullname,
-          this.ingender= response.data.user.gender,
-          this.ingroup= response.data.user.group,
-          this.inlastname= response.data.user.lastname,
-          this.inmobile= response.data.user.mobile,
-          this.inprovince= response.data.user.province
+          // this.inname= response.data.user.name,
+          // this.inavatar= response.data.user.avatar,
+          // this.inemail= response.data.user.email,
+          // this.indateofbirth= response.data.user.dateofbirth,
+          // this.infullname= response.data.user.fullname,
+          // this.ingender= response.data.user.gender,
+          // this.ingroup= response.data.user.group,
+          // this.inlastname= response.data.user.lastname,
+          // this.inmobile= response.data.user.mobile,
+          // this.inprovince= response.data.user.province
          
           // console.log( "1"+-this.users.id);
         //   this.users2 = response.data.slice(0, this.perPage-1), 
@@ -446,48 +398,34 @@ Vue.use(VueClipboard)
       updated:'',
       info:'',
       gender:'',
-      users: [],
+      user: {
+          id:'',
+          email:"",
+          avatar:"",        
+          name:"",
+          fullname:null,
+          lastname:null,
+          mobile:null,
+          gender:null,
+          dateofbirth:null,
+          province:null,
+          resetToken:"",
+          isActive:true,
+          walletAddress:"",
+          bonusAddress:"",
+          code:"",
+          bidTurn:0,
+          created:"",
+          updated:"",
+          group:""
+     
+
+      },
       auction:[],
       transactions2:[],
-      users2:[],
-      totalPage:0,
-      add:true,
-      Search:[],
-      dateofbirth:'',
-      fullname:'',
-      lastname:'',
-      sessionId:'',
-      save:true,
-      saveof:false,
-      close3:true,
-      close4:true,
-      search: '',
-      inprovince:'',
-      ingroup:'',
-      isActive:'',
-      inmobile:'',
-      indateofbirth:'',
-      ingender:'',
-      infullname:'',
-      inlastname:'',
-      inemail:'',
-      inname:'',
-      picture:'',
-      showInfo1:false,
-      showInfo2:false,
-      showInfo3:false,
-      showInfo4:false,
-      showInfo5:false,
-      searchQuery:null,
-      searchCheck: false,
-      hihi:'true',
-      address:'',
-      avatar:'',
-      mobile:'',
+      urlimg:null,
       loi:null,
-      tel:'',
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
-       urlimg:null
     };
   },
   components: {
@@ -497,82 +435,19 @@ Vue.use(VueClipboard)
         this.axios.get(this.url+'/user',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.users=response.data});
+        }).catch((error) => { this.loi=error
+        }).then((response) => { this.users=response.data})
     //  console.log(this.url);
     },
-    openIn: function () {
-      var close = document.querySelector('.closeIn')
-      close.classList.add('openIn')
-      this.save=true
-    },
-    openEdit: function () {
-      var close = document.querySelector('.closeEdit')
-      close.classList.add('openEdit')
-      this.save=true
-    },
-    clickAdd1:async function(){
-      await this.axios.post(this.url+'/user/register',{ "email": this.email,"name": this.name,
-      "password": this.password
-      },{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }
-      ).then((response) => console.log(response));
-      await this.axios.get(this.url+'/user',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.users=response.data});
-    },
-    clickSearch: async function(){
-       await this.axios.get(this.url+'/user/email/'+this.email).then((response) => this.userSearch = response);
-       console.log(this.userSearch.data.name);
-       this.searchCheck=true;
-    },
-    clickSearch1: async function(){
-      await this.axios.get(this.url+'/user/'+this.id).then((response) => this.userSearch = response);
-       console.log(this.userSearch.data.name);
-       this.searchCheck=true;
-    },
+    
     clickEdit(id){
-      this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.urlimg, "gender": this.ingender,
-        "province": this.inprovince, "mobile": this.inmobile, "lastname": this.inlastname, "email": this.inemail, "group":this.ingroup, "dateofbirth":this.indateofbirth, "fullname": this.infullname}, {
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate();
-          }).catch((error) => { this.loi=error
-        })
-    },
-    clickSearch2(id){
-      this.axios.get(this.url+'/user/'+id)
-      .then((response) => { 
-        this.Search=response.data,
-        this.inId=response.data.id,
-        this.inlastname= response.data.lastname,
-        this.infullname= response.data.fullname,
-        this.indateofbirth= response.data.dateofbirth,
-        this.inname=response.data.name,
-        this.inmobile=response.data.mobile,
-        this.inprovince=response.data.province,
-        this.inemail=response.data.email,
-        this.ingroup=response.data.group,
-        this.inavatar=response.data.avatar,
-        this.ingender= response.data.gender
+    this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.urlimg, "gender": this.user.gender,
+      "province": this.user.province, "mobile": this.user.mobile, "lastname": this.user.lastname, "email": this.user.email, "group":this.user.group, "dateofbirth":this.user.dateofbirth, "fullname": this.user.fullname}, {
+    headers: {
+      Authorization: this.getCookie('AC-ACCESS-KEY') }
+      }).then(() => {
+          this.clickUpdate();
         });
-        console.log(this.Search);
-      this.axios.get(this.url+'/user',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => { this.users=response.data});
-    },
-    clickdelete1(id){
-      this.axios.delete(this.url+'/user/'+id, {
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate();
-          });
-        console.log(this.hihi);
     },
     previewImage(event){
       // this.uploadValue=0;
@@ -581,29 +456,7 @@ Vue.use(VueClipboard)
       this.uploadValue=0;
         
     },
-    onUpload(){
-      this.picture=null;
-        
-      const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
-      storageRef.on(`state_changed`,snapshot=>{
-        this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-        }, error =>{console.log(error.message)},
-        ()=>{this.uploadValue=100;
-    
-        storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
-          this.picture=url1;
-          console.log(this.picture);
-        });
-
-        }
-        );
-        
-    },
-    
-    onclick(page){
-      console.log(page);
-      this.users2 = this.users.slice((page-1)*this.perPage,page*this.perPage-1)
-    },
+     
     formatDatetime: function (datetime,type) {
       if(datetime != null){
       var a = String(datetime).split("T");
@@ -619,11 +472,7 @@ Vue.use(VueClipboard)
 
 
     },
-    // get itemsForList() {
-    //   return this.data.slice(
-    //     (this.currentPage - 1) * this.perPage,
-    //     this.currentPage * this.perPage,
-    //   );},
+    
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);

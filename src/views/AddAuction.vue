@@ -359,67 +359,7 @@
                                                 <option>93021</option>
                                                 <option>93022</option>
                                                 <option>93023</option>
-                                                <!-- 
-                                                <option id="9h30-10">93502</option>
-                                                <option>93516</option>
-                                                <option>93517</option>
-                                                <option>93518</option>
-                                                <option>93519</option>
-                                                <option>93520</option>
-                                                <option>93521</option>
-                                                <option>93522</option>
-                                                <option>93523</option>
-                                                <option>93524</option>
-                                                <option>93525</option>
-                                                <option>93526</option>
-                                                <option>93527</option>
-                                                <option>93528</option>
-                                                <option>93529</option>
-                                                <option>93530</option>
-                                                <option>93531</option>
-                                                <option>93532</option>
-                                                <option>93533</option>
-                                                <option>93534</option>
-                                                <option>93535</option>
-                                                <option>93536</option> -->
-                                                <!-- <option>Nghệ An</option>
-                                                <option>Phú Thọ</option>
-                                                <option>Phú Yên</option>
-                                                <option>Quảng Bình</option>
-                                                <option>Quảng Nam</option>
-                                                <option>Quảng Ngãi</option>
-                                                <option>Quảng Trị</option>
-                                                <option>Sóc Trăng</option>
-                                                <option>Sơn La</option>
-                                                <option>Tây Ninh</option>
-                                                <option>Tiền Giang</option>
-                                                <option>Tuyên Quang</option>
-                                                <option>Thái Bình</option>
-                                                <option>Thái Nguyên</option>
-                                                <option>Thanh Hóa</option>
-                                                <option>Trà Vinh</option>
-                                                <option>Vĩnh Long</option>
-                                                <option>Vĩnh Phúc</option>
-                                                <option>Yên Bái</option>
-                                                <option>Nghệ An</option>
-                                                <option>Phú Thọ</option>
-                                                <option>Phú Yên</option>
-                                                <option>Quảng Bình</option>
-                                                <option>Quảng Nam</option>
-                                                <option>Quảng Ngãi</option>
-                                                <option>Quảng Trị</option>
-                                                <option>Sóc Trăng</option>
-                                                <option>Sơn La</option>
-                                                <option>Tây Ninh</option>
-                                                <option>Tiền Giang</option>
-                                                <option>Tuyên Quang</option>
-                                                <option>Thái Bình</option>
-                                                <option>Thái Nguyên</option>
-                                                <option>Thanh Hóa</option>
-                                                <option>Trà Vinh</option>
-                                                <option>Vĩnh Long</option>
-                                                <option>Vĩnh Phúc</option>
-                                                <option>Yên Bái</option> -->
+                                               
                                             </select>
                                             </base-input>
                                                 </div>

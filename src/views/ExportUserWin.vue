@@ -114,7 +114,6 @@ import axios from 'axios'
 import XLSX from 'xlsx';
 import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
-import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
@@ -122,12 +121,12 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    var exportWin = [];
+    // var exportWin = [];
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/admin/statistical?startAt='+this.startAt+'25',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then((response) => { this.exportWin=response.data});
-    console.log(exportWin);
+    // console.log(exportWin);
     return {
       alias: '',
       id: '',
@@ -180,17 +179,13 @@ Vue.use(VueClipboard)
        await this.axios.get(this.url+'/admin/statistical?startAt='+this.startAt+'%25').then((response) => this.exportWin = response.data,
        this.exportWin2 = this.exportWin.slice(0, this.perPage-1), 
           this.totalPage = Math.ceil(this.exportWin.length / this.perPage));
-       console.log(this.exportWin);
+      //  console.log(this.exportWin);
     },
      onclick(page){
       console.log(page);
       this.exportWin2 = this.exportWin.slice((page-1)*this.perPage,page*this.perPage-1)
     },
-    openIn: function () {
-      var close = document.querySelector('.closeIn')
-      close.classList.add('openIn')
-      this.save=true
-    },
+     
     //xuất file
     download : function() {
         const data = XLSX.utils.json_to_sheet(this.exportWin2)
@@ -198,82 +193,14 @@ Vue.use(VueClipboard)
         XLSX.utils.book_append_sheet(wb, data, 'data')
         XLSX.writeFile(wb,'DANHSACHNGUOITRUNG.xlsx')
       },
-    openEdit: function () {
-      var close = document.querySelector('.closeEdit')
-      close.classList.add('openEdit')
-      this.save=true
-    },
+    
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
-    clickUpdate1:async function(){
-      this.axios.get(this.url+'/category',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }
-      ).then((response) => { this.category=response.data})
-    },
-    clickAdd1:async function(){
-     await this.axios.post(this.url+'/category',{ "name": this.name,
-      "alias": this.alias, "category":this.category
-      },{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }
-      ).then((response) => console.log(response));
-     await this.axios.get(this.url+'/category',{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }
-      ).then((response) => { this.category=response.data})
-    },
-    clickEdit(id){
-      this.axios.put(this.url+'/edit/category/'+id ,{ "name": this.name,"avatar":this.picture,
-        "alias": this.alias, "category":this.category}, {
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate1();
-          });
-    },
-    clickdelete1(id){
-      this.axios.delete(this.url+'/category/'+id , {
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            // console.warn(response)
-            // this.category=response.data
-            this.clickUpdate1();
-          });
-      console.log(this.hihi);
-    },
-    previewImage(event){
-      // this.uploadValue=0;
-      this.picture=null;
-      this.imageData=event.target.files[0];
-      this.uploadValue=0;
-    },
-    onUpload(){
-      // var today = new Date();
-      // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-      // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-      // dateTime = date+' '+time;
-      this.picture=null;
-      const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
-      storageRef.on(`state_changed`,snapshot=>{
-          this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-          }, error =>{console.log(error.message)},
-          ()=>{this.uploadValue=100;
-      
-          storageRef.snapshot.ref.getDownloadURL().then((url)=>{
-              this.picture=url;
-              console.log(this.picture);
-          });
-
-          }
-          );
-    },
+    
+   
+     
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);

@@ -97,6 +97,7 @@
                                         <div class="col-12 col-md-6">
                                             
                                             <div class="input-group rounded-0">
+                                                <input type="file" @change="onFileChange" />
                                                 <!-- <div class="custom-file rounded-0">
                                                      
                                                     <b-form-file
@@ -114,7 +115,7 @@
                                                         Thêm
                                                     </button>
                                                 </div> -->
-                                                <input type="file" @change="onFileChange" />
+                                                
 
                                                 <!-- <div id="preview">
                                                     <img v-if="urlimg" v-bind:src="urlimg" />
@@ -192,15 +193,8 @@ Vue.use(VueClipboard)
       auction: [],
       add:true,
       endAt:'',
-      save:true,
       assest:'',
       picture: null,
-      showInfo1:false,
-      showInfo2:false,
-      showInfo3:false,
-      showInfo4:false,
-      showInfo5:false,
-      searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',
       asset:[],
@@ -225,32 +219,32 @@ Vue.use(VueClipboard)
         }
       ).then((response) => { this.category=response.data})
     },
-    previewImage(event){
-            // this.uploadValue=0;
-            this.picture=null;
-            this.imageData=event.target.files[0];
-            this.uploadValue=0;
-        },
-    onUpload(){
-            // var today = new Date();
-            // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
-            // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
-            // dateTime = date+' '+time;
-            this.picture=null;
-            const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
-            storageRef.on(`state_changed`,snapshot=>{
-                this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-                }, error =>{console.log(error.message)},
-                ()=>{this.uploadValue=100;
+    // previewImage(event){
+    //         // this.uploadValue=0;
+    //         this.picture=null;
+    //         this.imageData=event.target.files[0];
+    //         this.uploadValue=0;
+    //     },
+    // onUpload(){
+    //         // var today = new Date();
+    //         // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    //         // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    //         // dateTime = date+' '+time;
+    //         this.picture=null;
+    //         const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
+    //         storageRef.on(`state_changed`,snapshot=>{
+    //             this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+    //             }, error =>{console.log(error.message)},
+    //             ()=>{this.uploadValue=100;
             
-                storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
-                    this.picture=url1;
-                    console.log(this.picture);
-                });
+    //             storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
+    //                 this.picture=url1;
+    //                 console.log(this.picture);
+    //             });
 
-                }
-                );
-        },
+    //             }
+    //             );
+    //     },
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);

@@ -18,7 +18,6 @@
                 <div class="col">
                     <div class="card shadow">
                       <div class="row">
-                            
                           <div class="row ml-3 mt-2">
                               <h5 style="margin-top:10px;">Search</h5>
                               <div class="search-wrapper panel-heading col-sm-4 m">
@@ -31,8 +30,7 @@
                                   <option value="true">Đã Hoạt Động</option>
                                   <option value="false">Chưa Hoạt Động</option>
                                 </select>
-                              </div>  
-                                                  
+                              </div>         
                           </div>                      
                         <!-- <div id="smbutton1" class="col-2 offset-8">
                           <input v-model="email" class="form-control mr-sm-2" type="email" placeholder="Search a Email" aria-label="Search">
@@ -44,30 +42,6 @@
                         </div> -->
                         <div id="smtaomoi1" class="col-2 offset-8">
                           <!-- <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button> -->
-                          <b-modal id="modal-1" title="Tạo mới">
-                            <div class="form-group">
-                              <label class="col-md-3 control-label" for="">Email<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="email" class="form-control" id="email" name="email" type="text" placeholder="hi@gmail.com" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Name<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="name" class="form-control" id="name" name="name" type="text" placeholder="hi" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Password <strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="password" class="form-control" id="password" name="password" type="text" placeholder="12335fgg" value>
-                              </div>
-                              <div class="col-2 offset-8">
-                                <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
-                              </div>
-                            </div>
-                          </b-modal>
-                          <b-modal id="modalPopover" title="Thông báo" ok-only>
-                            <p>
-                              Tạo tài khoản thành công !
-                            </p>
-                          </b-modal>
                         </div>
                       </div>
                       <div style="overflow-x:auto;" class="">
@@ -78,7 +52,6 @@
                             <th scope="col">Tên</th>
                             <th scope="col">Email</th>
                             <th scope="col">Ảnh</th>
-                            <!-- <th scope="col">Password</th> -->
                             <th scope="col">Nhóm</th>
                             <th scope="col">Ngày tạo</th>
                             <th scope="col">Ngày cập nhật</th>
@@ -86,43 +59,32 @@
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>
-                        <tbody v-if="searchCheck==false" >
+                        <tbody >
                           <tr v-for="user in resultQuery" v-bind:key="user.id">
                             <th scope="row">{{user.id}}</th>
                             <td style="white-space: normal;">{{user.name}}</td>
                             <td style="white-space: normal;">{{user.email}}</td>
                             <td>
-                              <!-- <a :href="user.avatar">{{user.avatar}}</a> -->
                               <img style="width: 40px;" class="" :src="user.avatar" alt="">
                             </td>
-                            <!-- <td>{{user.password}}</td> -->
-                            <!-- <td>*********</td> -->
                             <td>{{user.group}}</td>
-                            <td>
-                              <!-- {{user.created}} -->
-                              <!-- <span class="f-13 mr-1 d-block mb-1" v-html="user.created"></span> -->
+                            <td> 
                               <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(user.created,'date')"></span>
                               <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(user.created,'time')"></span>
                             </td>
                             <td>
-                              <!-- {{user.updated}} -->
                               <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(user.updated,'date')"></span>
                               <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(user.updated,'time')"></span>
                             </td>
                             <td>
-                              <!-- {{user.isActive}} -->
                               <span>
-                                <!-- <b-button style=" width:auto;" size="sm" variant="info" v-if="user.isActive ">ĐÃ HOẠT ĐỘNG </b-button>
-                                <b-button style=" width:auto;" size="sm" variant="danger" v-if="!user.isActive ">CHƯA HOẠT ĐỘNG</b-button> -->
                               </span>
                               <span class="badge badge-success wf-85" v-if="user.isActive ">ĐÃ HOẠT ĐỘNG</span>
                               <span class="badge badge-warning wf-85" v-if="!user.isActive ">CHƯA HOẠT ĐỘNG</span>
                             </td>
                             <td>
                               <span>
-                                <!-- <base-button size="sm" outline type="danger" v-on:click="clickdelete1(user.id)">Xoá</base-button> -->
                                 <span> 
-                                  <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button> -->
                                   <base-button size="sm" outline type="success" >
                                     <!-- Thông tin chi tiết -->
                                     <router-link :to="{ name: 'detailUser', params: { id: user.id }}">Thông tin chi tiết</router-link>
@@ -131,79 +93,6 @@
                               </span>
                             </td>
                           </tr>
-                            <b-modal id="modal-3" title="Sửa thông tin người dùng">
-                              <div class="form-group">
-                                <label class="col-md-3 control-label" for="">Fullname<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <input v-model="fullname" class="form-control" id="fullname" name="fullname" type="text" :placeholder="Search.fullname" value>
-                                </div>
-                                <label class="col-md-3 control-label" for="">Lastname<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <input v-model="lastname" class="form-control" id="lastname" name="lastname" type="text" :placeholder="Search.lastname" value>
-                                </div>
-                                <label class="col-md-3 control-label" for="">Ngày sinh<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <base-input v-model="dateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
-                                </div>
-                                <label class="col-md-3 control-label" for="">Địa chỉ Email<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <input v-model="email" class="form-control" id="email" name="email" type="text" :placeholder="Search.email" value>
-                                </div>
-                                <label class="col-md-3 control-label" for="">Địa chỉ<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <input v-model="province" class="form-control" id="province" name="province" type="text" :placeholder="Search.province" value>
-                                </div>
-                                <label class="col-md-3 control-label" for="">Ảnh<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <input v-model="avatar" class="form-control" id="avatar" name="avatar" type="text" :placeholder="Search.avatar" value>
-                                </div>
-                                <label class="col-md-3 control-label" for="">Số điện thoại<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <input v-model="mobile" class="form-control" id="mobile" name="mobile" type="text" :placeholder="Search.mobile" value>
-                                </div>
-                                <label class="col-md-3 control-label" for="">Giới tính<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <input v-model="gender" class="form-control" id="gender" name="gender" type="text" :placeholder="Search.gender" value>
-                                </div>
-                                <label class="col-md-3 control-label" for="">Group<strong>*</strong></label>
-                                <div class="col-md-9">
-                                <input v-model="group" class="form-control" id="group" name="group" type="text" :placeholder="Search.group" value>
-                                </div>
-                                <div class="col-2 offset-8">
-                                  <button v-b-modal.modalPopover1 type="button" class="btn btn-primary" @click="clickEdit(buffer)">Save</button>
-                                </div>
-                              </div>
-                            </b-modal>
-                        </tbody>
-                        <tbody class="test" v-else >
-                          <tr>
-                            <th scope="row">{{userSearch.data.id}}</th>
-                            <td class="test">{{userSearch.data.name}}</td>
-                            <td class="test">{{userSearch.data.email}}</td>
-                            <td class="test"><a :href="userSearch.data.avatar">{{userSearch.data.avatar}}</a></td>
-                            <td >{{userSearch.data.password}}</td>
-                            <td>{{userSearch.data.group}}</td>
-                            <td class="test">{{userSearch.data.created}}</td>
-                            <td class="test">{{userSearch.data.updated}}</td>
-                            <td style="color:red;">{{userSearch.data.isActive}}</td>
-                            <td>
-                              <span>
-                                <base-button size="sm" outline type="danger" v-on:click="clickdelete1(users.id)">Xoá</base-button>
-                                <span>
-                                  <!-- <b-button size="sm" v-b-modal.modal-3 variant="warning" @click="close4=true,buffer=users.id,clickSearch2(users.id)">Sửa</b-button> -->
-                                  <b-button size="sm" v-b-modal.modal-5 variant="info" @click="close3=false,clickSearch2(users.id)">
-                                    <!-- <router-link :to="{ name: 'detailuser', params: { id: users.id }}">Thông tin chi tiết</router-link> -->
-                                  </b-button>
-                                </span>
-                              </span>
-                            </td>
-                          </tr>
-                           
-                          <b-modal id="modalPopover" title="Thông báo" ok-only>
-                            <p>
-                              Cập nhật thành công !
-                            </p>
-                          </b-modal>
                         </tbody>
                       </table>
                       </div>
@@ -527,12 +416,6 @@ Vue.use(VueClipboard)
       inemail:'',
       inname:'',
       picture:'',
-      showInfo1:false,
-      showInfo2:false,
-      showInfo3:false,
-      showInfo4:false,
-      showInfo5:false,
-      searchCheck: false,
       hihi:'true',
       address:'',
       avatar:'',
@@ -542,7 +425,6 @@ Vue.use(VueClipboard)
       searchQuery: "",
       searchStatus:"",
       filter:''
-     
     };
   },
   components: {
@@ -618,32 +500,6 @@ Vue.use(VueClipboard)
           });
         console.log(this.hihi);
     },
-    previewImage(event){
-      // this.uploadValue=0;
-      this.picture=null;
-      this.imageData =event.target.files[0];
-      this.uploadValue=0;
-        
-    },
-    onUpload(){
-      this.picture=null;
-        
-      const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
-      storageRef.on(`state_changed`,snapshot=>{
-        this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
-        }, error =>{console.log(error.message)},
-        ()=>{this.uploadValue=100;
-    
-        storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
-          this.picture=url1;
-          console.log(this.picture);
-        });
-
-        }
-        );
-        
-    },
-    
     onclick(page){
       console.log(page);
       this.users2 = this.users.slice((page-1)*this.perPage,page*this.perPage-1)
@@ -653,21 +509,13 @@ Vue.use(VueClipboard)
       var a = String(datetime).split("T");
         if(type=='date'){
           return a[0];
-
         }else{
-            var b = a[1].split(".");
-            return b[0]
+          var b = a[1].split(".");
+          return b[0]
         }
-
       }else return '';
-
-
     },
-    // get itemsForList() {
-    //   return this.data.slice(
-    //     (this.currentPage - 1) * this.perPage,
-    //     this.currentPage * this.perPage,
-    //   );},
+     
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);
@@ -682,7 +530,32 @@ Vue.use(VueClipboard)
         }
       }
       return "";
-    }
+    },
+     // previewImage(event){
+    //   // this.uploadValue=0;
+    //   this.picture=null;
+    //   this.imageData =event.target.files[0];
+    //   this.uploadValue=0;
+        
+    // },
+    // onUpload(){
+    //   this.picture=null;
+        
+    //   const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
+    //   storageRef.on(`state_changed`,snapshot=>{
+    //     this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+    //     }, error =>{console.log(error.message)},
+    //     ()=>{this.uploadValue=100;
+    
+    //     storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
+    //       this.picture=url1;
+    //       console.log(this.picture);
+    //     });
+
+    //     }
+    //     );
+        
+    // },
     
     },
     computed: {
@@ -694,12 +567,10 @@ Vue.use(VueClipboard)
     // },
     resultQuery(){
         if(this.searchQuery){
-
          return this.users.filter((item)=>{  
               var checkStatus;
               if(this.searchStatus) checkStatus = (JSON.stringify(item.isActive) === this.searchStatus);else checkStatus = true;
               // console.log("test: " + test);
-              
              return   this.searchQuery.toLowerCase().split(' ').every(v => ((
                       (item.name + '').toLowerCase().includes(v) 
                       || (item.email + '').toLowerCase().includes(v)
@@ -709,14 +580,9 @@ Vue.use(VueClipboard)
                     ) && checkStatus)
                   ) 
           });
-    
-         
       }else{
         return  this.users2;
-        
       }
-      
-       
     }
   }
 }

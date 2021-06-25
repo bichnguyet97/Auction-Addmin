@@ -177,33 +177,22 @@ export default {
         },
       })
       .then((response) => {
-        console.log(response.data);
+        // console.log(response.data);
         this.category = response.data;
-
-        
       });
-
     return {
       obj:{
         name:'',
         alias: '',
-        urlimg: '',
-
+        urlimg: ''
       },
       category: [],
-
       alias: '',
       id: '',
       name: '',
       created:'',
       updated:'',
-      close3:true,
-      close4:true,
       info:'',
-      
-      add:true,
-      sessionId:'',
-      save:true,
       avatar:'',
       picture:'',
       hihi:'true',

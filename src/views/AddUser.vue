@@ -81,20 +81,7 @@ Vue.use(VueClipboard)
       updated:'',
       info:'',
       users: [],
-      add:true,
       sessionId:'',
-      save:true,
-      saveof:false,
-      close3:true,
-      close4:true,
-      search: '',
-      showInfo1:false,
-      showInfo2:false,
-      showInfo3:false,
-      showInfo4:false,
-      showInfo5:false,
-      searchQuery:null,
-      searchCheck: false,
       hihi:'true',
       address:'',
       avatar:'',
@@ -113,16 +100,7 @@ Vue.use(VueClipboard)
         }).then((response) => { this.users=response.data});
     //  console.log(this.url);
     },
-    openIn: function () {
-      var close = document.querySelector('.closeIn')
-      close.classList.add('openIn')
-      this.save=true
-    },
-    openEdit: function () {
-      var close = document.querySelector('.closeEdit')
-      close.classList.add('openEdit')
-      this.save=true
-    },
+     
     clickAdd1:async function(){
       await this.axios.post(this.url+'/user/register',{ "email": this.email,"name": this.name,
       "password": this.password
@@ -135,38 +113,6 @@ Vue.use(VueClipboard)
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then((response) => { this.users=response.data});
-    },
-    clickSearch: async function(){
-       await this.axios.get(this.url+'/user/email/'+this.email).then((response) => this.userSearch = response);
-       console.log(this.userSearch.data.name);
-       this.searchCheck=true;
-    },
-    clickSearch1: async function(){
-       await this.axios.get(this.url+'/user/'+this.id).then((response) => this.userSearch = response);
-       console.log(this.userSearch.data.name);
-       this.searchCheck=true;
-    },
-    clickSearch2(id){
-       this.axios.get(this.url+'/user/'+id).then((response) => this.usersearch1 = response);
-       console.log(this.usersearch1.data.email);
-    },
-    clickEdit(id){
-      this.axios.put(this.url+'/edit/user/'+id ,{ "avatar": this.avatar, "tel": this.tel,
-        "address": this.address, "mobile": this.mobile, "name": this.name }, {
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate();
-          });
-    },
-    clickdelete1(id){
-      this.axios.delete(this.url+'/user/'+id, {
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate();
-          });
-        console.log(this.hihi);
     },
     getCookie: function(cname) {
       var name = cname + "=";

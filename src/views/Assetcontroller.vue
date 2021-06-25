@@ -29,29 +29,7 @@
                          
                         <div id="smtaomoi" class="col-2 offset-8">
                           <!-- <b-button v-b-modal.modal-1 variant="primary">Tạo mới</b-button> -->
-                          <b-modal id="modal-1" title="Tạo mới">
-                            <div v-if="close2" class="form-group">
-                              <label class="col-md-3 control-label" for="">Name<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="name" class="form-control" id="name" name="name" type="text" placeholder="name" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Images<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="images" class="form-control" id="images" name="images" type="text" placeholder="Link ảnh" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Category<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="category" class="form-control" id="category" name="category" type="text" placeholder="ID" value>
-                              </div>
-                              <label class="col-md-3 control-label" for="">Init Price<strong>*</strong></label>
-                              <div class="col-md-9"> 
-                              <input v-model="initPrice" class="form-control" id="initPrice" name="initPrice" type="text" placeholder="giá" value>
-                              </div>
-                              <div class="col-2 offset-8">
-                                <button v-b-modal.modalPopover type="button" class="btn btn-primary" @click="clickAdd1">Save</button>
-                              </div>
-                            </div>
-                          </b-modal>
+                          
                           <b-modal id="modalPopover" title="Thông báo" ok-only>
                             <p>
                               Thêm tài sản thành công !
@@ -97,15 +75,7 @@
                               <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(asset.updated,'date')"></span>
                               <span class="f-13 mr-1 d-block mb-1" style="padding-left: 0.3rem;" v-html="formatDatetime(asset.updated,'time')"></span>
                             </td>
-                            <!-- <td>
-                              {{asset.status}}
-                              <span>
-                                <b-button style=" width:70%;" size="sm" variant="info" v-if="asset.status == 'waiting'">MỚI</b-button>
-                                <b-button style=" width:80%;" size="sm" variant="danger" v-if="asset.status == 'Paid'">ĐÃ BÁN</b-button>
-                              </span>
-                              <span class="badge badge-success wf-85" v-if="asset.status == 'waiting'">MỚI</span>
-                              <span class="badge badge-warning wf-85" variant="danger" v-if="asset.status == 'Paid'">ĐÃ BÁN</span>
-                            </td> -->
+                             
                             <td>
                               <span>
                                 <base-button size="sm" outline type="info" v-on:click="clickdelete1(asset.id)">Xoá</base-button>
@@ -207,11 +177,6 @@ Vue.use(VueClipboard)
       actions:'',
       id: '',
       name: '',
-      showInfo1:false,
-      showInfo2:false,
-      showInfo3:false,
-      showInfo4:false,
-      showInfo5:false,
       updated:'',
       info:'',
       status:'',
@@ -235,16 +200,7 @@ Vue.use(VueClipboard)
     // Login
   },
   methods: {
-    openIn: function () {
-      var close = document.querySelector('.closeIn')
-      close.classList.add('openIn')
-      this.save=true
-    },
-    openEdit: function () {
-      var close = document.querySelector('.closeEdit')
-      close.classList.add('openEdit')
-      this.save=true
-    },
+     
     clickUpdate1:async function(){
       this.axios.get(this.url+'/asset'
        ).then((response) => { this.asset=response.data})
@@ -260,25 +216,25 @@ Vue.use(VueClipboard)
     await this.axios.get(this.url+'/asset'
       ).then((response) => { this.asset=response.data})
     },
-    clickSearch1: async function(){
-      await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);
-      console.log(this.userSearch.data.name);
-      this.searchCheck=2;
-    },
-    clickSearch: async function(){
-      await this.axios.get(this.url+'/asset/byCategory/'+this.category).then((response) => this.userSearch = response);
-      this.searchCate=this.userSearch;
-      this.searchCheck=3;
-      console.log(this.userSearch.data);
-    },
-    clickConfirm(id){
-      this.axios.post(this.url+'/asset/updateStatus/'+id+"?status="+this.status,{"status":this.status},{
-      headers: {
-        Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then(() => {
-            this.clickUpdate1();
-          });
-    },
+    // clickSearch1: async function(){
+    //   await this.axios.get(this.url+'/asset/id/'+this.id).then((response) => this.userSearch = response);
+    //   console.log(this.userSearch.data.name);
+    //   this.searchCheck=2;
+    // },
+    // clickSearch: async function(){
+    //   await this.axios.get(this.url+'/asset/byCategory/'+this.category).then((response) => this.userSearch = response);
+    //   this.searchCate=this.userSearch;
+    //   this.searchCheck=3;
+    //   console.log(this.userSearch.data);
+    // },
+    // clickConfirm(id){
+    //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status="+this.status,{"status":this.status},{
+    //   headers: {
+    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
+    //     }).then(() => {
+    //         this.clickUpdate1();
+    //       });
+    // },
     formatPrice(value) {
         let val = (value/1).toFixed(2).replace('.', ',')
         return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
@@ -302,13 +258,13 @@ Vue.use(VueClipboard)
             this.clickUpdate1();
           });
     },
-    deleteAssest:async function(){
-      await axios.post(this.url+'/asset/updateStatus/'+this.buffer+'?status=deleted',{
-          headers: {
-            Authorization: this.$cookies.get("AC-ACCESS-KEY=") }
-        }).then(response => console.log(response))
-        this.$router.go();
-    },
+    // deleteAssest:async function(){
+    //   await axios.post(this.url+'/asset/updateStatus/'+this.buffer+'?status=deleted',{
+    //       headers: {
+    //         Authorization: this.$cookies.get("AC-ACCESS-KEY=") }
+    //     }).then(response => console.log(response))
+    //     this.$router.go();
+    // },
     getCookie: function(cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);

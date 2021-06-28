@@ -114,7 +114,14 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Ngày sinh<span class="text-danger">*</span>
                           </label>
-                          <base-input v-model="user.dateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
+                          <!-- <base-input v-model="user.dateofbirth" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/> -->
+                           
+                            <b-row v-for="type in types" :key="type">
+                              <b-col  >
+                                <b-form-input  v-model="user.dateofbirth" :id="`type-${type}`" :type="type"></b-form-input>
+                              </b-col>
+                            </b-row>
+                           
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -231,24 +238,26 @@
                   </div>
                 </div>
               </div>
-              <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+              <h3 v-b-toggle.collapse-3 style="border-bottom: 1px solid green ;" class=" pb-3">
                 Thông Tin Giao Dịch
               </h3>
               <div style="overflow-x:auto;">
-                  <table class="table table-striped">
+                <b-collapse visible id="collapse-3">
+                  <sorted-table class="table table-striped" v-bind:values="trans">
                     <thead>
                         <tr>
-                          <th scope="col">ID</th>
-                          <th scope="col">Số lượng</th>
-                          <th scope="col">Giao dịch</th>
-                          <th scope="col">Mã hash</th>
-                          <th scope="col">Nội dung</th>
-                          <th scope="col">Ngày tháng</th>
-                          <th scope="col">Trạng thái</th>
+                          <th scope="col"><sort-link name="id">ID</sort-link></th>
+                          <th scope="col"><sort-link name="amount">Số lượng</sort-link></th>
+                          <th scope="col"><sort-link name="from_user">Giao dịch</sort-link></th>
+                          <th scope="col"><sort-link name="hash">Mã hash</sort-link></th>
+                          <th scope="col"><sort-link name="note">Nội dung</sort-link></th>
+                          <th scope="col"><sort-link name="created">Ngày tháng</sort-link></th>
+                          <th scope="col"><sort-link name="status">Trạng thái</sort-link></th>
                         </tr>
                     </thead>
+                    <template #body="sort">
                     <tbody>
-                        <tr v-for="transactions2 in trans" v-bind:key="transactions2.id">
+                        <tr v-for="transactions2 in sort.values" v-bind:key="transactions2.id">
                           <td style="white-space: normal;" scope="row">
                             {{transactions2.id}}
                           </td>
@@ -277,25 +286,48 @@
                             </span>
                           </td>
                         </tr>    
-                    </tbody>    
-                </table>
+                    </tbody>
+                    </template>   
+                  </sorted-table>
+                </b-collapse>
               </div>
-            <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
-                Đấu Giá Đã Tham Gia
+            <h3 v-b-toggle.collapse-2 style="border-bottom: 1px solid green ;" class=" pb-3 mt-4">
+              Đấu Giá Đã Tham Gia
             </h3>
             <div>
-              <table class="table table-striped">
+              <div style="display:flex;">
+                <h5 style="margin-top:10px;">Search Win</h5>
+                <div class="search-wrapper panel-heading col-sm-2 m">
+                  <!-- <select v-model="searchQuery" class="form-control ml-4">
+                    <option disable value="">All</option>
+                    <option value="Trúng Đấu Giá">Trúng Đấu Giá</option>
+                    <option value="False">False</option>
+                  </select> -->
+                  <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                </div>
+                <h5 style="margin-top:10px;">Trạng thái</h5>
+                <div class="search-wrapper panel-heading col-sm-2 m">
+                  <select v-model="searchStatus" class="form-control ml-4">
+                    <option disable value="">All</option>
+                    <option value="true">Trúng Đấu Giá</option>
+                    <option value="false">False</option>
+                  </select>
+                  <!-- <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" /> -->
+                </div>
+              </div>
+              <b-collapse visible id="collapse-2">
+              <table class="table table-striped mt-2">
                   <thead>
-                      <tr>  
+                      <tr>
                       <th scope="col">Hình ảnh</th>
                       <th scope="col">Thông Tin tài sản</th>
                       <th scope="col">Thông tin đấu giá</th>
                       <!-- <th scope="col">Thông tin đại lý</th> -->
-                      <th scope="col">Actions</th>
+                      <th scope="col">Trạng Thái</th>
                       </tr>
                   </thead>
                   <tbody>
-                      <tr v-for="auction in auction" v-bind:key="auction.id"> 
+                      <tr v-for="auction in resultQuery" v-bind:key="auction.id"> 
                         <td scope="row">
                             <!-- <img style="width: 200px;" class="" :src="auction.images.split(',',1)" alt=""> -->
                         </td>
@@ -312,6 +344,7 @@
                           <span class="f-13 mr-1 d-block mb-1">Thời gian bắt đầu đấu giá: {{formatDatetime(auction.start_at,'date')}} {{formatDatetime(auction.start_at,'time')}}</span>
                           <span class="f-13 mr-1 d-block mb-1">Thời gian kết thúc đấu giá: {{formatDatetime(auction.end_at,'date')}} {{formatDatetime(auction.end_at,'time')}}</span>
                           <span class="f-13 mr-1 d-block mb-1">Số user tham gia:{{auction.attending_user}}</span>
+                          <span class="f-13 mr-1 d-block mb-1">User win:{{auction.winner}}</span>
                         </td>
                         <!-- <td>
                           <span class="f-13 mr-1 d-block mb-1">ID người bán: <router-link :to="{ name: 'detailUser', params: { id: auction.user_id }}">{{auction.user_id}}</router-link></span>
@@ -326,10 +359,11 @@
                       </tr> 
                   </tbody>         
               </table>
+              </b-collapse>
             </div>
-            <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+            <!-- <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
               Đấu Giá Đã Trúng
-            </h3>
+            </h3> -->
             </div>
           </div>
         </div>
@@ -340,19 +374,20 @@
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
-import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
+import SortedTablePlugin from "vue-sorted-table";
 import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
+Vue.use(SortedTablePlugin);
   export default {
   data() {
     this.axios.post(process.env.VUE_APP_MY_ENV_VARIABLE+'/admin/user-info',{
           "startAt":"2021-05-07",
-          "endAt":"2021-06-07",
+          "endAt":"2021-06-26",
           "userId":this.$route.params.id
           // "userId":100515
       },{
@@ -426,6 +461,11 @@ Vue.use(VueClipboard)
       urlimg:null,
       loi:null,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
+      searchQuery:"",
+      searchStatus:'',
+      types:[
+        'date'
+      ]
     };
   },
   components: {
@@ -492,8 +532,41 @@ Vue.use(VueClipboard)
       const file = e.target.files[0];
       this.urlimg = URL.createObjectURL(file);
     }
-    },
+  },
+  computed: {
+
+  
+function(){
+  console.log('qqqqq');
+},
+    resultQuery(){
+        if(this.searchQuery){
+         return this.auction.filter((item)=>{  
+              var checkStatus;
+              if(this.searchStatus) checkStatus = (JSON.stringify(item.winner === this.user.id) === this.searchStatus);else checkStatus = true;
+              // console.log("test: " + test);
+             return   this.searchQuery.toLowerCase().split(' ').every(v => ((
+                      (item.name + '').toLowerCase().includes(v) 
+                      || (item.area + '').toLowerCase().includes(v)
+                      || (item.id + '').toLowerCase().includes(v)
+                      || (item.winner + '').toLowerCase().includes(v)
+                      
+                    ) && checkStatus)
+                  ) 
+          });
+      }else if(this.searchStatus != undefined){
+        return this.auction.filter((item)=>{  
+          var checkStatus;
+          if(this.searchStatus) checkStatus = (JSON.stringify(item.winner === this.user.id) === this.searchStatus);else checkStatus = true;
+          return  checkStatus;
+        }); 
+      }
+      else{ 
+        return  this.auction;
+      }
+    }
   }
+}
 </script>
 <style lang="scss">
 

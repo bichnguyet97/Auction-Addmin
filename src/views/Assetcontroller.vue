@@ -8,16 +8,29 @@
                 <div class="col">
                     <div class="card shadow">
                       <div class="row">
-                        <div @click="searchCheck=1" class="col-2">
+                        <!-- <div @click="searchCheck=1" class="col-2">
                           Asset Controller
                           <span>
                             <i class="fa fa-reply" aria-hidden="true"></i>
                           </span>
-                        </div>
-                        <div class="search-wrapper panel-heading col-sm-12">
-                              <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
-                              <!-- <input name="name" type="text" v-model="searchQuery" /> -->
-                        </div>
+                        </div> -->
+                        <!-- <div class="search-wrapper panel-heading col-sm-12">
+                          <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                        </div> -->
+                        <div class="row ml-3 mt-2">
+                              <h5 style="margin-top:10px;">Search</h5>
+                              <div class="search-wrapper panel-heading col-sm-7 m">
+                                <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                              </div>
+                              <!-- <h5 style="margin-top:10px;">Trạng thái</h5>
+                              <div class="search-wrapper panel-heading col-sm-4 m">
+                                <select v-model="searchStatus" class="form-control">
+                                  <option disable value="">All</option>
+                                  <option value="true">Đã Hoạt Động</option>
+                                  <option value="false">Chưa Hoạt Động</option>
+                                </select>
+                              </div>          -->
+                          </div>
                         <!-- <div id="smbutton" class="col-2 offset-8">
                           <input v-model="category" class="form-control mr-sm-2" type="category" placeholder="Search a type" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch(asset.category)">SearchType</button>

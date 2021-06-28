@@ -11,12 +11,12 @@
                             <div class="row">
                                 <div class="col-12 col-xl-3 col-lg-3 col-md-4">
                                     <div class="user-avatar mb-3 text-center">
-                                        <img class="w-100" src="img/brand/th4.jpg" alt="">
+                                        <img class="w-100" :src="auction.assetImg" alt="">
                                     </div>
                                     <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
-                                        Số User Tham Gia
+                                        Số User Tham Gia : {{auction.attendees}}
                                     </h3>
-                                    <div  >
+                                    <!-- <div  >
                                         <stats-card title="Total traffic"
                                                     type="gradient-red"
                                                     sub-title="350,897"
@@ -25,11 +25,11 @@
                                         >
 
                                             <template slot="footer">
-                                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
+                                                <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> {{auction.attendees}}</span>
                                                 <span class="text-nowrap">Since last month</span>
                                             </template>
                                         </stats-card>
-                                    </div>
+                                    </div> -->
                                 </div>
                                 <div class="col-12 col-xl-9 col-lg-9 col-md-8">
                                     <div class="row">
@@ -39,7 +39,7 @@
                                                     Nhập mã tài sản <span class="text-danger">*</span>
                                                 </label> 
                                                <!--   <input v-model="inassest" type="" class="form-control form-control-user fs-090" value="2502" maxlength="20">-->
-                                                <select v-model="inassest" class="form-control form-control-user fs-090" :disabled="validated ? disabled : ''">
+                                                <select v-model="auction.assest_id" class="form-control form-control-user fs-090" :disabled="validated ? disabled : ''">
                                                    <option v-for="option in asset" v-bind:key="option.id" v-bind:value="option.id">
                                                         {{ option.id }} - {{option.name}}
                                                     </option>
@@ -52,7 +52,7 @@
                                                 Khu vực<span class="text-danger">*</span>
                                             </label>
                                             <base-input>
-                                            <select v-model="inarea" class="form-control form-control-user fs-090" :disabled="validated ? disabled : ''">
+                                            <select v-model="auction.area" class="form-control form-control-user fs-090" :disabled="validated ? disabled : ''">
                                                 <option disable value="">Chọn khu vực</option>
                                                 <option >Hà Nội</option>
                                                 <option>Hồ Chí Minh</option>
@@ -127,7 +127,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập ID người đăng bán <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="inseller" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20" :disabled="validated ? disabled : ''">
+                                                <input v-model="auction.seller" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                         
@@ -136,7 +136,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập giá khởi điểm <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-on:input ="getwarranty" v-model="inbidPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20" :disabled="validated ? disabled : ''">
+                                                <input v-on:input ="getwarranty" v-model="auction.bid_price" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -144,7 +144,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập giá bán ngay <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="inbuyPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20" :disabled="validated ? disabled : ''">
+                                                <input v-model="auction.buy_price" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -152,7 +152,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Hạn tham dự <span class="text-danger">*</span>
                                                 </label>
-                                                <base-input v-model="inattendanceDeadline" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input" :disabled="validated ? disabled : ''"/>
+                                                <base-input   type="datetime-local" :value="formatDatetime(auction.attendance_deadline)" id="example-datetime-local-input" :disabled="validated ? disabled : ''"/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -160,7 +160,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Thời gian bắt đầu <span class="text-danger">*</span>
                                                 </label>
-                                                <base-input v-model="instartAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input" :disabled="validated ? disabled : ''"/>
+                                                <base-input  type="datetime-local" :value="formatDatetime(auction.start_at)" id="example-datetime-local-input" :disabled="validated ? disabled : ''"/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -168,7 +168,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Thời gian kết thúc <span class="text-danger">*</span>
                                                 </label>
-                                                <base-input v-model="inendAt" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input" :disabled="validated ? disabled : ''"/>
+                                                <base-input  type="datetime-local" :value="formatDatetime(auction.end_at)" id="example-datetime-local-input" :disabled="validated ? disabled : ''"/>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -176,7 +176,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Bước giá <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="instepPrice" type="" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
+                                                <input v-model="auction.step_price" type="" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                          
@@ -185,7 +185,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Phí tham gia đấu giá <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="inregistrationFee" type="" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
+                                                <input v-model="auction.registration_fee" type="" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                          
@@ -197,8 +197,8 @@
                                                 <input
                                                 v-on:input ="getwarranty"
                                                 
-                                                 v-model="inpercent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
-                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(inbidPrice*inpercent)/100}}</small>
+                                                 v-model="auction.percent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
+                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(auction.bid_price*auction.percent)/100}}</small>
                                             </div>
                                         </div>
 
@@ -207,7 +207,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Tiền cọc đấu giá <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="inwarranty" type="" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
+                                                <input v-model="auction.warranty" type="" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 <small class="form-text text-muted">Tiền cọc phải nhỏ hơn 10% của giá niêm yết</small>
                                             </div>
                                         </div>
@@ -219,7 +219,7 @@
                                                 </label>
                                                 <input
                                                 
-                                                 v-model="insellOffPercent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
+                                                 v-model="auction.sell_off_percent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20" :disabled="validated ? disabled : ''">
                                                 <small class="form-text text-muted">Số phần trăm của tiền thanh lý {{(inbuyPrice*sellOffPercent)/100}}</small>
                                             </div>
                                         </div>
@@ -229,7 +229,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Số người tham dự <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="inattendingUser" type="number" class="form-control form-control-user fs-090" value="" :disabled="validated ? disabled : ''">
+                                                <input v-model="auction.attending_user" type="number" class="form-control form-control-user fs-090" value="" :disabled="validated ? disabled : ''">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -239,8 +239,8 @@
                                               
                                             <div>
                                                 <b-form-group label="" v-slot="{ ariaDescribedby }">
-                                                <b-form-radio v-model="intype" :aria-describedby="ariaDescribedby" name="some-radios" value="Normal" :disabled="validated ? disabled : ''">Truyền thống</b-form-radio>
-                                                <b-form-radio v-model="intype" :aria-describedby="ariaDescribedby" name="some-radios" value="Reverse" :disabled="validated ? disabled : ''">Ngược</b-form-radio>
+                                                <b-form-radio v-model="auction.type" :aria-describedby="ariaDescribedby" name="some-radios" value="Normal" :disabled="validated ? disabled : ''">Truyền thống</b-form-radio>
+                                                <b-form-radio v-model="auction.type" :aria-describedby="ariaDescribedby" name="some-radios" value="Reverse" :disabled="validated ? disabled : ''">Ngược</b-form-radio>
                                                 </b-form-group>
  
                                             </div>
@@ -281,39 +281,44 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
-    // this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/auction_status/new',{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then((response) =>  { this.asset=response.data});
-    //   console.log(this.asset);
+    this.axios.post(process.env.VUE_APP_MY_ENV_VARIABLE+'/admin/auction-detail',
+        {
+        "auctionId":this.$route.params.id},
+        {
+      headers: {
+        Authorization: this.getCookie('AC-ACCESS-KEY') }
+        }).then((response) =>  { this.auction=response.data 
+        console.log("hi"+response.data.attendance_deadline)
+        });
+      console.log(this.auction);
 
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset'
         ).then((response) => { 
             // console.log( "response" + response.data);
             this.asset=response.data;
         });
-    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/recreate/'+ this.$route.params.id
-        ).then((response) => { 
-            console.log( "response" + this.inseller);
-            this.asset=response.data;
-            this.Search=response.data, 
-            this.inassest= response.data.assest,
-            this.inarea= response.data.area,
-            this.intype= response.data.type,
-            this.inregistrationFee=response.data.registrationFee,
-            this.inpercent=response.data.percent,
-            this.inbidPrice=response.data.bidPrice,
-            this.inendAt=response.data.endAt,
-            this.instartAt=response.data.startAt,
-            this.inwarranty=response.data.warranty,
-            this.instepPrice=response.data.stepPrice,
-            this.inbuyPrice= response.data.buyPrice, 
-            this.inattendanceDeadline=response.data.attendanceDeadline,
-            this.inseller=response.data.seller,
-            this.incancelRegisterFee=response.data.cancelRegisterFee,
-            this.inattendingUser=response.data.attendingUser,
-            this.insellOffPercent=response.data.sellOffPercent
-        });
+    // this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction/recreate/'+ this.$route.params.id
+    //     ).then((response) => { 
+    //         console.log( "response" + this.inseller);
+    //         this.asset=response.data;
+    //         this.Search=response.data, 
+    //         this.inassest= response.data.assest,
+    //         this.inarea= response.data.area,
+    //         this.intype= response.data.type,
+    //         this.inregistrationFee=response.data.registrationFee,
+    //         this.inpercent=response.data.percent,
+    //         this.inbidPrice=response.data.bidPrice,
+    //         this.inendAt=response.data.endAt,
+    //         this.instartAt=response.data.startAt,
+    //         this.inwarranty=response.data.warranty,
+    //         this.instepPrice=response.data.stepPrice,
+    //         this.inbuyPrice= response.data.buyPrice, 
+    //         this.inattendanceDeadline=response.data.attendanceDeadline,
+    //         this.inseller=response.data.seller,
+    //         this.incancelRegisterFee=response.data.cancelRegisterFee,
+    //         this.inattendingUser=response.data.attendingUser,
+    //         this.insellOffPercent=response.data.sellOffPercent
+    //     });
       // console.log(response.data[0].auctions[0].id)
     // for(var i =0;i>auction.length;i++) {
     //     for(var j =0;j<auction.lenght;j++) {
@@ -329,6 +334,42 @@ Vue.use(VueClipboard)
       finalPrice:'',
       status:'',
       startAt:'',
+      auction:{
+            assetName: " ",
+            note: "",
+            assetImg: " ",
+            step_price: " ",
+            attendance_deadline: " ",
+            attending_user: " ",
+            start_at: " ",
+            percent: " ",
+            end_at: " ",
+            area: " ",
+            time_left: null,
+            status: " ",
+            warranty:  " ",
+            user_id: " ",
+            type: " ",
+            winName: "",
+            bid_price: " ",
+            attendees: " ",
+            show_in_baner: " ",
+            assest_id: " ",
+            live_stream: " ",
+            category: " ",
+            seller: " ",
+            sell_off_percent: " ",
+            updated: " ",
+            win_price: null,
+            winner: " ",
+            id: " ",
+            regulation: null,
+            created: " ",
+            registration_fee: " ",
+            buy_price: " ",
+            current_winner:" ",
+            dash_end_in: null
+      },
       buyPrice:'',
       creaded:'',
       area:'Hà Nội',
@@ -348,7 +389,7 @@ Vue.use(VueClipboard)
       name: '',
       updated:'',
       info:'',
-      auction: [],
+       
       add:true,
       endAt:'',
       email:'',
@@ -391,7 +432,8 @@ Vue.use(VueClipboard)
       inseller:'504',
       incancelRegisterFee:'',
       inattendingUser:'',
-      validated:''
+      validated:'',
+      insellOffPercent:'',
     };
   },
   components: {
@@ -492,7 +534,8 @@ Vue.use(VueClipboard)
     },
     //get warranty
     getwarranty(){
-        this.inwarranty =  (this.inbidPrice*this.inpercent)/100
+        this.auction.warranty =  (this.auction.bid_price*this.auction.percent)/100
+
     },
     // getwarranty2(){
     //     this.inwarranty2 =  (this.inbuyPrice*this.sellOffPercent)/100
@@ -512,7 +555,16 @@ Vue.use(VueClipboard)
         }
       }
       return "";
-    }
+    },
+        formatDatetime: function (datetime) {
+
+            if(datetime != ''){
+                var a =datetime.split(".");
+                return a[0];
+            }else return "";
+
+
+        },
     },
   }
 </script>

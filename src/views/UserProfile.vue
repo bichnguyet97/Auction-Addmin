@@ -45,22 +45,23 @@
                         </div>
                       </div>
                       <div style="overflow-x:auto;" class="">
-                      <table class="table table-striped">
+                      <sorted-table class="table table-striped" v-bind:values="resultQuery">
                         <thead>
                           <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên</th>
-                            <th scope="col">Email</th>
-                            <th scope="col">Ảnh</th>
-                            <th scope="col">Nhóm</th>
-                            <th scope="col">Ngày tạo</th>
-                            <th scope="col">Ngày cập nhật</th>
-                            <th scope="col">Trạng thái</th>
-                            <th scope="col">Actions</th>
+                            <th scope="col"><sort-link name="id">ID</sort-link></th>
+                            <th scope="col"><sort-link name="name">Tên</sort-link></th>
+                            <th scope="col"><sort-link name="email">Email</sort-link></th>
+                            <th scope="col"><sort-link name="avatar">Ảnh</sort-link></th>
+                            <th scope="col"><sort-link name="group">Nhóm</sort-link></th>
+                            <th scope="col"><sort-link name="created">Ngày tạo</sort-link></th>
+                            <th scope="col"><sort-link name="updated">Ngày cập nhật</sort-link></th>
+                            <th scope="col"><sort-link name="isActive">Trạng thái</sort-link></th>
+                            <th scope="col"><sort-link name="Active">Actions</sort-link></th>
                           </tr>
                         </thead>
+                        <template #body="sort">
                         <tbody >
-                          <tr v-for="user in resultQuery" v-bind:key="user.id">
+                          <tr v-for="user in sort.values" v-bind:key="user.id">
                             <th scope="row">{{user.id}}</th>
                             <td style="white-space: normal;">{{user.name}}</td>
                             <td style="white-space: normal;">{{user.email}}</td>
@@ -94,7 +95,8 @@
                             </td>
                           </tr>
                         </tbody>
-                      </table>
+                        </template>
+                      </sorted-table>
                       </div>
                        
                       <b-modal id="modalPopover1" title="Thông báo" ok-only>
@@ -355,12 +357,14 @@ import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
+import SortedTablePlugin from "vue-sorted-table";
 import Paginate from 'vuejs-paginate'
 Vue.component('paginate', Paginate)
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
+Vue.use(SortedTablePlugin);
   export default {
   data() {
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user',{

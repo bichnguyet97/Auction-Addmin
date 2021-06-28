@@ -19,20 +19,39 @@
                 </div>                        
             </div>
           <div style="overflow-x:auto;">
-         <table class="table table-striped mt-2">
+         <sorted-table class="table table-striped mt-2" v-bind:values="resultQuery">
             <thead>
                 <tr>
-                <th scope="col">ID</th>
-                <th scope="col">Số lượng</th>
-                <th scope="col">ID người gửi</th>
-                <th scope="col">ID người nhận</th>
-                <th scope="col">Mã hash</th>
-                <th scope="col">Tin nhắn</th>
-                <th scope="col">Ngày tháng</th>
-                <th scope="col">Trạng thái</th>
-                <th scope="col">Actions</th>
+                <th scope="col">
+                  <sort-link name="id">ID</sort-link>
+                </th>
+                <th scope="col">
+                  <sort-link name="amount">Số lượng</sort-link>
+                </th>
+                <th scope="col">
+                  <sort-link name="fromUser">ID người gửi</sort-link>
+                </th>
+                <th scope="col">
+                  <sort-link name="toUser">ID người nhận</sort-link>
+                </th>
+                <th scope="col">
+                  <sort-link name="hash">Mã hash</sort-link>
+                </th>
+                <th scope="col">
+                  <sort-link name="note">Tin nhắn</sort-link>
+                </th>
+                <th scope="col">
+                  <sort-link name="created">Ngày tháng</sort-link>
+                </th>
+                <th scope="col">
+                  <sort-link name="status">Trạng thái</sort-link>
+                </th>
+                <th scope="col">
+                  <sort-link name="amount">Actions</sort-link>
+                </th>
                 </tr>
             </thead>
+            <template #body="sort">
             <tbody>
 
                 <!-- <tr>
@@ -44,7 +63,7 @@
                     </span>
                 </td>
                 </tr> -->
-                <tr v-for="transactions2 in resultQuery" v-bind:key="transactions2.id">
+                <tr v-for="transactions2 in sort.values" v-bind:key="transactions2.id">
                 <!-- <td scope="row">
                     <img style="width: 200px;" class="" :src="auction.asset.images.split(',',1)" alt="">
                 </td> -->
@@ -173,8 +192,8 @@
                     <b-button class="mt-3" block><a v-bind:href="'https://tronscan.org/#/transaction/'+ detail.hash" target="_blank">Check Export</a></b-button>
                   </b-modal>
             </tbody>
-                
-        </table>
+             </template>   
+        </sorted-table>
         </div>
      </div>
      <paginate
@@ -192,10 +211,12 @@ import Vue from "vue";
 import VueClipboard from "vue-clipboard2";
 import axios from "axios";
 import VueAxios from "vue-axios";
+import SortedTablePlugin from "vue-sorted-table";
 import VueCookies from "vue-cookies";
 Vue.use(VueCookies);
 Vue.use(VueAxios, axios);
 Vue.use(VueClipboard);
+Vue.use(SortedTablePlugin);
 export default {
   data() {
     this.axios.get(
@@ -530,10 +551,10 @@ export default {
 
     },
     clickDetail(id){
-      console.log("id: " + id);
+      // console.log("id: " + id);
       this.transactions.forEach(item => {
           if(item.id === id){
-            console.log("hi"+item);
+            // console.log("hi"+item);
             this.detail.id=item.id;
             this.detail.amount = item.amount;           
             this.detail.status=item.status;
@@ -550,10 +571,6 @@ export default {
     }
   },
 computed: {
-    
-
-
-
     resultQuery(){
       if(this.searchQuery){
         
@@ -571,14 +588,11 @@ computed: {
         // eslint-disable-next-line vue/no-side-effects-in-computed-properties
         // this.transactions2=list;
         // return '';  
-         
       }else{
         console.log("3");
         return this.transactions2;
-        
       }
     }
-
 }
 
 

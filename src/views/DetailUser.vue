@@ -329,10 +329,10 @@
                   <tbody>
                       <tr v-for="auction in resultQuery" v-bind:key="auction.id"> 
                         <td scope="row">
-                            <!-- <img style="width: 200px;" class="" :src="auction.images.split(',',1)" alt=""> -->
+                          <img style="width: 80px;" class="" :src="auction.images.split(',',1)" alt="">
                         </td>
                         <td class="test" style="white-space: normal;">
-                          <h5 class="f-17 mb-2 font-weight-bold">Tên tài sản: auction.name}}</h5>
+                          <h5 class="f-17 mb-2 font-weight-bold">Tên tài sản: {{auction.name}}</h5>
                           <span class="f-13 mr-1 d-block mb-1">Mã tài sản: <router-link :to="{ name: 'detailEditAsset', params: { id: auction.assest_id }}">{{auction.assest_id}}</router-link></span>
                           <span class="f-13 mr-1 d-block mb-1">Loại: {{auction.category}}</span>                            
                           <span class="f-13 mr-1 d-block mb-1">Ngày tạo tài sản: {{formatDatetime(auction.created,'date')}} {{formatDatetime(auction.created,'time')}}</span>

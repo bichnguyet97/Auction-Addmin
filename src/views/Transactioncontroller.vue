@@ -11,7 +11,7 @@
                 </div>
                 <h5 style="margin-top:10px;">Trạng thái</h5>
                 <div class="search-wrapper panel-heading col-sm-2 m">
-                  <select v-model="searchQuery" class="form-control">
+                  <select v-model="searchStatus" class="form-control">
                     <option disable value="">All</option>
                     <option value="complete">Hoàn Thành</option>
                     <option value="Pending">Chưa Hoàn Thành</option>
@@ -323,7 +323,8 @@ export default {
       perPage : 10,
       totalPage:0,
       page: 10,
-      searchQuery: ""
+      searchQuery: "",
+      searchStatus:''
     };
   },
   components: {
@@ -571,26 +572,51 @@ export default {
     }
   },
 computed: {
-    resultQuery(){
-      if(this.searchQuery){
+    // resultQuery(){
+    //   if(this.searchQuery){
         
-        return  this.transactions.filter((item)=>{                
-        return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.fromAddress + '').toLowerCase().includes(v) 
-                || (item.toAddress + '').toLowerCase().includes(v))
-                || (item.toUser + '').toLowerCase().includes(v)
-                || (item.fromUser + '').toLowerCase().includes(v)
-                || (item.hash + '').toLowerCase().includes(v)
-                || (item.status + '').toLowerCase().includes(v)
-                )
-        });
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        // this.totalPage = Math.ceil(list.length /  this.perPage);
-        // eslint-disable-next-line vue/no-side-effects-in-computed-properties
-        // this.transactions2=list;
-        // return '';  
-      }else{
-        console.log("3");
-        return this.transactions2;
+    //     return  this.transactions.filter((item)=>{                
+    //     return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.fromAddress + '').toLowerCase().includes(v) 
+    //             || (item.toAddress + '').toLowerCase().includes(v))
+    //             || (item.toUser + '').toLowerCase().includes(v)
+    //             || (item.fromUser + '').toLowerCase().includes(v)
+    //             || (item.hash + '').toLowerCase().includes(v)
+    //             || (item.status + '').toLowerCase().includes(v)
+    //             )
+    //     });
+        
+    //   }else{
+    //     console.log("3");
+    //     return this.transactions2;
+    //   }
+    // }
+    resultQuery(){
+        if(this.searchQuery){
+         return this.transactions.filter((item)=>{  
+              var checkStatus;
+              if(this.searchStatus) checkStatus = (item.status === this.searchStatus);
+              else checkStatus = true;
+              // console.log("test: " + test);
+             return   this.searchQuery.toLowerCase().split(' ').every(v => ((
+                      (item.toAddress + '').toLowerCase().includes(v) 
+                      || (item.toUser + '').toLowerCase().includes(v)
+                      || (item.fromUser + '').toLowerCase().includes(v)
+                      || (item.id + '').toLowerCase().includes(v)
+                      || (item.hash + '').toLowerCase().includes(v)
+                      || (item.status + '').toLowerCase().includes(v)
+                    ) && checkStatus)
+                  ) 
+          });
+      }else if(this.searchStatus != undefined){
+        return this.transactions.filter((item)=>{  
+          var checkStatus;
+          if(this.searchStatus) checkStatus = (item.status === this.searchStatus);
+          else checkStatus = true;
+          return  checkStatus;
+        }); 
+      }
+      else{ 
+        return  this.transactions2;
       }
     }
 }

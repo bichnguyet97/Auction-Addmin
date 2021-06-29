@@ -8,7 +8,24 @@
                 <div class="col">
                     <div class="card shadow">
                       <div class="row">
-                        <div @click="searchCheck=1" class="col-2">
+                        <div class="row ml-3 mt-2">
+                              <h5 style="margin-top:10px;">Search</h5>
+                              <div class="search-wrapper panel-heading col-sm-4 m">
+                                <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                              </div>
+                              <h5 style="margin-top:10px;">Trạng thái</h5>
+                              <div class="search-wrapper panel-heading col-sm-4 m">
+                                <select v-model="searchStatus" class="form-control">
+                                  <option disable value="">All</option>
+                                  <option value="Ended">Đã kết thúc</option>
+                                  <option value="Paid">Đã thanh toán</option>
+                                  <option value="Active">Đang đấu giá</option>
+                                  <option value="New">Chờ xác nhận</option>
+                                  <option value="Upcoming">Sắp bắt đầu</option>
+                                </select>
+                              </div>         
+                          </div>   
+                        <!-- <div @click="searchCheck=1" class="col-2">
                           Auction Controller
                             <span>
                               <i class="fa fa-reply" aria-hidden="true"></i>
@@ -16,8 +33,7 @@
                         </div>
                         <div class="search-wrapper panel-heading col-sm-12">
                               <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
-                              <!-- <input name="name" type="text" v-model="searchQuery" /> -->
-                        </div>
+                        </div> -->
                         <!-- <div id="smbutton2" class="col-2 offset-8">
                           <input v-model="id" class="form-control mr-sm-2" type="id" placeholder="Search a ID" aria-label="Search">
                           <button class="btn btn-outline-success my-2 my-sm-0" type="submit" @click="clickSearch1(auction.id)">SearchID</button>
@@ -26,11 +42,11 @@
                       </div>
                        
                       <div style="overflow-x:auto;" class="">
-                      <table class="table table-striped">
+                      <table class="table table-striped mt-2">
                         <thead>
                           <tr>
                             <th scope="col">ID</th>
-                            <th scope="col">Hình ảnh</th>
+                            <!-- <th scope="col">Hình ảnh</th> -->
                             <th scope="col">Ngày tạo</th>
                             <!-- <th scope="col">Cập nhật</th> -->
                             <th scope="col">Ngày bắt đầu</th>
@@ -43,7 +59,7 @@
                         <tbody class="test">
                           <tr v-for="auction in resultQuery" v-bind:key="auction.id ">
                             <th scope="row">{{auction.id}}</th>
-                            <td></td>
+                            <!-- <td><img style="width: 80px;" class="" :src="auction.assetImg" alt=""></td> -->
                             <td>
                               <!-- {{auction.created}} -->
                               <span class="f-13 mr-1 d-block mb-1" v-html="formatDatetime(auction.created,'date')"></span>
@@ -181,11 +197,13 @@ Vue.use(VueClipboard)
       auction2:'',
       totalPage:0,
       currentPage : 1,
-      perPage : 20,
+      perPage : 10,
       searchQuery: "",
       filter:'',
       sortKey: 'name',
-    reverse: false
+    reverse: false,
+    assetImg:'',
+    searchStatus:''
     };
   },
   components: {
@@ -282,21 +300,48 @@ Vue.use(VueClipboard)
     },
     computed: {
      
-    resultQuery(){
-      if(this.searchQuery){
-        return  this.auction.filter((item)=>{                
-        return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
-                || (item.category + '').toLowerCase().includes(v))
-                || (item.id + '').toLowerCase().includes(v)
-                || (item.fromUser + '').toLowerCase().includes(v)
-                || (item.hash + '').toLowerCase().includes(v)
-                )
-        });
+    // resultQuery(){
+    //   if(this.searchQuery){
+    //     return  this.auction.filter((item)=>{                
+    //     return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
+    //             || (item.category + '').toLowerCase().includes(v))
+    //             || (item.id + '').toLowerCase().includes(v)
+    //             || (item.fromUser + '').toLowerCase().includes(v)
+    //             || (item.hash + '').toLowerCase().includes(v)
+    //             )
+    //     });
  
-      }else{
-        console.log("3");
-        return this.auction2;
+    //   }else{
+    //     console.log("3");
+    //     return this.auction2;
         
+    //   }
+    // }
+    resultQuery(){
+        if(this.searchQuery){
+         return this.auction.filter((item)=>{  
+              var checkStatus;
+              if(this.searchStatus) checkStatus = (item.status === this.searchStatus);else checkStatus = true;
+              // console.log("test: " + test);
+             return   this.searchQuery.toLowerCase().split(' ').every(v => ((
+                      (item.id + '').toLowerCase().includes(v) 
+                      || (item.bidPrice + '').toLowerCase().includes(v)
+                      || (item.status + '').toLowerCase().includes(v)
+                      || (item.winner + '').toLowerCase().includes(v)
+                      
+                    ) && checkStatus)
+                  ) 
+          });
+      }else if(this.searchStatus != undefined){
+        return this.auction.filter((item)=>{  
+          var checkStatus;
+          if(this.searchStatus) checkStatus = (item.status === this.searchStatus);
+          else checkStatus = true;
+          return  checkStatus;
+        }); 
+      }
+      else{ 
+        return  this.auction2;
       }
     }
 }

@@ -569,11 +569,31 @@ Vue.use(SortedTablePlugin);
     //     return c.name.toLowerCase().indexOf(this.filter.toLowerCase()) >= 0;
     //   })
     // },
+    // resultQuery(){
+    //     if(this.searchQuery){
+    //      return this.users.filter((item)=>{  
+    //           var checkStatus;
+    //           if(this.searchStatus) checkStatus = (JSON.stringify(item.isActive) === this.searchStatus);else checkStatus = true;
+    //           // console.log("test: " + test);
+    //          return   this.searchQuery.toLowerCase().split(' ').every(v => ((
+    //                   (item.name + '').toLowerCase().includes(v) 
+    //                   || (item.email + '').toLowerCase().includes(v)
+    //                   || (item.id + '').toLowerCase().includes(v)
+    //                   || (item.group + '').toLowerCase().includes(v)
+                      
+    //                 ) && checkStatus)
+    //               ) 
+    //       });
+    //   }else{
+    //     return  this.users2;
+    //   }
+    // }
     resultQuery(){
         if(this.searchQuery){
          return this.users.filter((item)=>{  
               var checkStatus;
-              if(this.searchStatus) checkStatus = (JSON.stringify(item.isActive) === this.searchStatus);else checkStatus = true;
+              if(this.searchStatus) checkStatus = (JSON.stringify(item.isActive) === this.searchStatus);
+              else checkStatus = true;
               // console.log("test: " + test);
              return   this.searchQuery.toLowerCase().split(' ').every(v => ((
                       (item.name + '').toLowerCase().includes(v) 
@@ -584,7 +604,15 @@ Vue.use(SortedTablePlugin);
                     ) && checkStatus)
                   ) 
           });
-      }else{
+      }else if(this.searchStatus != undefined){
+        return this.users.filter((item)=>{  
+          var checkStatus;
+          if(this.searchStatus) checkStatus = (JSON.stringify(item.isActive) === this.searchStatus);
+          else checkStatus = true;
+          return  checkStatus;
+        }); 
+      }
+      else{ 
         return  this.users2;
       }
     }

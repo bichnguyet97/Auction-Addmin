@@ -1159,16 +1159,19 @@
                                      
                                     <hr class="pt-3 mb-1" />
                                     <div class="clearfix">
-                                        <button v-b-modal.modalPopover @click="clickEdit(Search.assets[0].id)" class="btn btn-primary mb-2">
+                                        <button v-b-modal.modalPopover @click="clickEdit()" class="btn btn-primary mb-2">
                                             <i class="las la-save"></i>
                                             Sửa tài sản
                                         </button>
                                         <em class="text-danger f-13 d-block d-sm-inline float-left float-sm-right">* là trường bắt buộc nhập dữ liệu</em>
                                     </div>
                                     <b-modal id="modalPopover" title="Thông báo" ok-only>
-                                            <p>
+                                            <!-- <p>
                                             Sửa tài sản thành công !
-                                            </p>
+                                            </p> -->
+                                        <p>
+                                            {{loi?loi: 'Sửa tài sản thành công !'}}
+                                        </p>
                                     </b-modal>
                                 </div>
                             </div>
@@ -1207,17 +1210,22 @@ Vue.use(VueClipboard)
       this.tesseatsNumber= response.data.assets[0].seatsNumber, this.tesorigin= response.data.assets[0].origin, this.teshomeNetwork= response.data.assets[0].homeNetwork,this.tesyearOld= response.data.assets[0].yearOld, this.testid= response.data.assets[0].id,
       this.tesshape=response.data.assets[0].shape,this.tesweight= response.data.assets[0].weight, this.tesbrightness= response.data.assets[0].brightness, this.tesamount= response.data.assets[0].amount,this.tesstumpDiameter= response.data.assets[0].stumpDiameter,this.testfloorsNumber=response.data.assets[0].floorsNumber, this.testsimNumber=response.data.assets[0].simNumber,
       this.testresolution=response.data.assets[0].resolution,this.testram= response.data.assets[0].ram,this.testrom= response.data.assets[0].rom,this.testscreenSize=response.data.assets[0].screenSize,this.testoperatingSystem= response.data.assets[0].operatingSystem,this.testcamera=response.data.assets[0].camera, this.testsim=response.data.assets[0].sim,
-      this.testbatteryCapacity=response.data.assets[0].batteryCapacity, this.testwattage= response.data.assets[0].wattage,this.testguarantee= response.data.assets[0].guarantee
+      this.testbatteryCapacity=response.data.assets[0].batteryCapacity, this.testwattage= response.data.assets[0].wattage,this.testguarantee= response.data.assets[0].guarantee, this.inId=response.data.assets[0].id
       }}
           );
     return {
      asEdit:null,
+     testwattage:'',
+     testguarantee:'',
+     tescolor:'',
+     tesorigin:'',
       initPrice: '',
       close2:'true',
       currentPrice:'',
       finalPrice:'',
       images:'',
       image:'',
+      inId:'',
       asset2:[],
       gear:'',
       amount:'',
@@ -1294,6 +1302,7 @@ Vue.use(VueClipboard)
       rom:'',
       cpu:'',
       wattage:'',
+      loi:null,
       guarantee:'',
       testtrademark:'',
       urlimg:null
@@ -1303,8 +1312,8 @@ Vue.use(VueClipboard)
     // Login
   },
   methods: {
-    clickEdit(id){
-      this.axios.put(this.url+'/asset/update/'+id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,
+    clickEdit(){
+      this.axios.put(this.url+'/asset/update/'+ this.$route.params.id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,
       "category": this.testcategory,"description":this.testdescription, "currentStatus": this.testcurrentStatus, "trademark": this.testtrademark, "amount": this.tesamount,"stumpDiameter": this.tesstumpDiameter,"height": this.tesheight,
       "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.testbedroomsNumber, "gear": this.tesgear, "fuel": this.tesfuel, "yearOld": this.tesyearold,
       "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.urlimg,
@@ -1314,7 +1323,10 @@ Vue.use(VueClipboard)
       }, {
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
-        }).then((response) => console.log(response));
+        }).then((response) => console.log(response)
+        .catch((error) => { this.loi=error
+        })
+        );
     },
     previewImage(event){
             // this.uploadValue=0;

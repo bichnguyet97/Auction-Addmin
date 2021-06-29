@@ -16,6 +16,20 @@
                                     <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
                                         Số User Tham Gia : {{auction.attendees}}
                                     </h3>
+                                    <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+                                        Người chiến thắng : {{auction.winName}} <router-link :to="{ name: 'detailUser', params: { id: auction.winner }}"> ({{auction.winner}})</router-link>
+                                    </h3>
+                                    <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+                                        Trạng thái : 
+                                        <span class="badge badge-success wf-85" v-if="auction.status == 'New' ">CHỜ XÁC NHẬN</span>
+                                        <span class="badge badge-warning wf-85" v-if="auction.status == 'Upcoming'">SẮP BẮT ĐẦU</span>
+                                        <span class="badge badge-success wf-85" v-if="auction.status == 'Active' ">ĐANG ĐẤU GIÁ</span>
+                                        <span class="badge badge-warning wf-85" v-if="auction.status == 'Ended'">ĐÃ KẾT THÚC</span>
+                                        <span class="badge badge-success wf-85" v-if="auction.status == 'Paid'">ĐÃ THANH TOÁN</span>
+                                    </h3>
+                                    <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+                                        Giá thắng : {{formatPrice(auction.win_price)}} VNDT
+                                    </h3>
                                     <!-- <div  >
                                         <stats-card title="Total traffic"
                                                     type="gradient-red"
@@ -288,7 +302,7 @@ Vue.use(VueClipboard)
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then((response) =>  { this.auction=response.data 
-        console.log("hi"+response.data.attendance_deadline)
+        // console.log("hi"+response.data.attendance_deadline)
         });
       console.log(this.auction);
 
@@ -506,7 +520,7 @@ Vue.use(VueClipboard)
         // var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
         // dateTime = date+' '+time;
         for( var i = 0; i < this.fileData.length; i++ ){
-        console.log(this.file1)
+        // console.log(this.file1)
         this.pic='';
         const storageRef=Firebase.storage().ref(`${this.fileData[i].name}`+`${this.fileData[i].lastModified}`).put(this.fileData[i]);
         storageRef.on(`state_changed`,snapshot=>{
@@ -536,6 +550,10 @@ Vue.use(VueClipboard)
     getwarranty(){
         this.auction.warranty =  (this.auction.bid_price*this.auction.percent)/100
 
+    },
+    formatPrice(value) {
+        let val = (value/1).toFixed(2).replace('.', ',')
+        return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".")
     },
     // getwarranty2(){
     //     this.inwarranty2 =  (this.inbuyPrice*this.sellOffPercent)/100

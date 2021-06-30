@@ -299,24 +299,7 @@ Vue.use(VueClipboard)
     },
     },
     computed: {
-     
-    // resultQuery(){
-    //   if(this.searchQuery){
-    //     return  this.auction.filter((item)=>{                
-    //     return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
-    //             || (item.category + '').toLowerCase().includes(v))
-    //             || (item.id + '').toLowerCase().includes(v)
-    //             || (item.fromUser + '').toLowerCase().includes(v)
-    //             || (item.hash + '').toLowerCase().includes(v)
-    //             )
-    //     });
- 
-    //   }else{
-    //     console.log("3");
-    //     return this.auction2;
-        
-    //   }
-    // }
+      
     resultQuery(){
         if(this.searchQuery){
          return this.auction.filter((item)=>{  
@@ -328,7 +311,8 @@ Vue.use(VueClipboard)
                       || (item.bidPrice + '').toLowerCase().includes(v)
                       || (item.status + '').toLowerCase().includes(v)
                       || (item.winner + '').toLowerCase().includes(v)
-                      
+                      || (item.created + '').toLowerCase().includes(v)
+                      || (item.startAt + '').toLowerCase().includes(v)
                     ) && checkStatus)
                   ) 
           });

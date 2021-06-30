@@ -19,8 +19,21 @@
                         </div> -->
                         <div class="row ml-3 mt-2">
                               <h5 style="margin-top:10px;">Search</h5>
-                              <div class="search-wrapper panel-heading col-sm-7 m">
+                              <div class="search-wrapper panel-heading col-sm-4 m">
                                 <input class="form-control" type="text" v-model="searchQuery" placeholder="Search" />
+                              </div>
+                              <h5 style="margin-top:10px;">Trạng thái</h5>
+                              <div class="search-wrapper panel-heading col-sm-4 m">
+                                <select v-model="searchStatus" class="form-control ml-4">
+                                  <option disable value="">All</option>
+                                  <option value="Nội thất">Nội thất</option>
+                                  <option value="Gia dụng">Gia dụng</option>
+                                  <option value="Nghe nhìn">Nghe nhìn</option>
+                                  <option value="Đồ điện tử">Đồ điện tử</option>
+                                  <option value="Mỹ phẩm">Mỹ phẩm</option>
+                                  <option value="Thời trang">Thời trang</option>
+                                  <option value="Sim số">Sim số</option>
+                                </select>
                               </div>
                               <!-- <h5 style="margin-top:10px;">Trạng thái</h5>
                               <div class="search-wrapper panel-heading col-sm-4 m">
@@ -52,23 +65,24 @@
                       </div>
 
                       <div style="overflow-x:auto;" class="asset_controller">
-                      <table class="table table-striped">
+                      <sorted-table class="table table-striped" v-bind:values="resultQuery">
                         <thead>
                           <tr>
-                            <th scope="col">ID</th>
-                            <th scope="col">Tên</th>
-                            <th scope="col">Loại</th>
-                            <th scope="col">Hình ảnh</th>
-                            <th scope="col">Giá niêm yết</th>
-                            <th scope="col">Giá hiện tại</th>
-                            <th scope="col">Ngày tạo</th>
-                            <th scope="col">Ngày Cập nhật</th>
+                            <th scope="col"><sort-link name="id">ID</sort-link></th>
+                            <th scope="col"><sort-link name="name">Tên</sort-link></th>
+                            <th scope="col"><sort-link name="category">Loại</sort-link></th>
+                            <th scope="col"><sort-link name="images">Hình ảnh</sort-link></th>
+                            <th scope="col"><sort-link name="initPrice">Giá niêm yết</sort-link></th>
+                            <th scope="col"><sort-link name="currentPrice">Giá hiện tại</sort-link></th>
+                            <th scope="col"><sort-link name="created">Ngày tạo</sort-link></th>
+                            <th scope="col"><sort-link name="updated">Ngày Cập nhật</sort-link></th>
                             <!-- <th scope="col">Trạng thái</th> -->
                             <th scope="col">Actions</th>
                           </tr>
                         </thead>
+                        <template #body="sort">
                         <tbody v-if="searchCheck==1">
-                          <tr v-for="asset in resultQuery" v-bind:key="asset.id">
+                          <tr v-for="asset in sort.values" v-bind:key="asset.id">
                             <th scope="row">{{asset.id}}</th>
                             <td style="white-space: normal;">{{asset.name}}</td>
                             <td>{{asset.category}}</td>
@@ -102,6 +116,7 @@
                             </td>
                           </tr>
                         </tbody>
+                        </template>
                         <tbody v-if="searchCheck==2">
                           <tr>
                             <th scope="row">{{userSearch.data.id}}</th>
@@ -140,7 +155,7 @@
                             </td>
                           </tr>
                         </tbody>
-                      </table>
+                      </sorted-table>
                       </div>
                     </div>
                 </div>
@@ -164,11 +179,13 @@ import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import Paginate from 'vuejs-paginate'
+import SortedTablePlugin from "vue-sorted-table";
 Vue.component('paginate', Paginate)
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
+Vue.use(SortedTablePlugin);
   export default {
   data() {
     var asset = [];
@@ -206,7 +223,8 @@ Vue.use(VueClipboard)
       currentPage : 1,
       perPage : 10,
       searchQuery: "",
-      filter:''
+      filter:'',
+      searchStatus:''
     };
   },
   components: {
@@ -317,21 +335,47 @@ Vue.use(VueClipboard)
     },
     computed: {
      
-    resultQuery(){
-      if(this.searchQuery){
-        return  this.asset.filter((item)=>{                
-        return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
-                || (item.category + '').toLowerCase().includes(v))
-                || (item.id + '').toLowerCase().includes(v)
-                || (item.fromUser + '').toLowerCase().includes(v)
-                || (item.hash + '').toLowerCase().includes(v)
-                )
-        });
+    // resultQuery(){
+    //   if(this.searchQuery){
+    //     return  this.asset.filter((item)=>{                
+    //     return   this.searchQuery.toLowerCase().split(' ').every(v => ((item.name + '').toLowerCase().includes(v) 
+    //             || (item.category + '').toLowerCase().includes(v))
+    //             || (item.id + '').toLowerCase().includes(v)
+    //             || (item.fromUser + '').toLowerCase().includes(v)
+    //             || (item.hash + '').toLowerCase().includes(v)
+    //             )
+    //     });
  
-      }else{
-        console.log("3");
-        return this.asset2;
+    //   }else{
+    //     console.log("3");
+    //     return this.asset2;
         
+    //   }
+    // }
+    resultQuery(){
+        if(this.searchQuery){
+         return this.asset.filter((item)=>{  
+              var checkStatus;
+              if(this.searchStatus) checkStatus = (item.category === this.searchStatus);else checkStatus = true;
+              // console.log("test: " + test);
+             return   this.searchQuery.toLowerCase().split(' ').every(v => ((
+                      (item.name + '').toLowerCase().includes(v) 
+                      || (item.initPrice + '').toLowerCase().includes(v)
+                      || (item.currentPrice + '').toLowerCase().includes(v)
+                      || (item.winner + '').toLowerCase().includes(v)
+                      || (item.id + '').toLowerCase().includes(v)
+                    ) && checkStatus)
+                  )
+          });
+      }else if(this.searchStatus != undefined){
+        return this.asset.filter((item)=>{  
+          var checkStatus;
+          if(this.searchStatus) checkStatus = (item.category  === this.searchStatus);else checkStatus = true;
+          return  checkStatus;
+        }); 
+      }
+      else{ 
+        return  this.asset2;
       }
     }
 }

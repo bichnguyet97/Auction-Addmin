@@ -77,11 +77,11 @@
                                         <div class="col-12 col-md-6">
                                             <div class="form-group">
                                                <label class="col-form-label pb-1 pt-0 font-weight-600">
-                                                    Nhập mã tài sản <span class="text-danger">*</span>
+                                                    Chọn tài sản <span class="text-danger">*</span>
                                                 </label> 
                                                <!--   <input v-model="inassest" type="" class="form-control form-control-user fs-090" value="2502" maxlength="20">-->
-                                                <select v-model="inassest" class="form-control form-control-user fs-090">
-                                                   <option v-for="option in asset" v-bind:key="option.id" v-bind:value="option.id">
+                                                <select @click="clickSearch3()" v-model="inassest" class="form-control form-control-user fs-090">
+                                                   <option  v-for="option in asset" v-bind:key="option.id" v-bind:value="option.id">
                                                         {{ option.id }} - {{option.name}}
                                                     </option>
                                                 </select>
@@ -177,7 +177,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập giá khởi điểm <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-on:input ="getwarranty" v-model="inbidPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                                <input v-on:input ="getwarranty" v-model="inbidPrice" type="" class="form-control form-control-user fs-090"  maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -404,9 +404,10 @@ Vue.use(VueClipboard)
     //   console.log(this.asset);
 
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset'
-        ).then((response) => { 
-            console.log( "response" + response.data);
+        ).then((response) => {
+            // console.log( "response" + response.data);
             this.asset=response.data;
+            this.auctions=response.data.auction[0]
         });
   
       // console.log(response.data[0].auctions[0].id)
@@ -506,6 +507,23 @@ Vue.use(VueClipboard)
       .catch((error) => { this.loi=error
         })
     },
+    //tìm asset
+    clickSearch3(){
+    //    console.log(this.inassest)
+        this.asset.forEach(test => {
+            if(this.inassest ==  test.id) {
+                this.inbidPrice = test.initPrice;
+            }
+        });
+    },
+    // clickSelect(){
+    //     this.auctions.forEach(ac =>{ 
+    //         if(this.inassest == ac.id){
+    //             console.log("buyPrice"+this.buyPrice)
+    //             this.inbuyPrice = ac.buyPrice
+    //         }
+    //     });
+    // },
     //tìm auction
     clickSearch2(id1){
       this.axios.get(this.url+'/auction/recreate/'+id1)

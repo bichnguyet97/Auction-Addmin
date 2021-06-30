@@ -54,15 +54,6 @@
             <template #body="sort">
             <tbody>
 
-                <!-- <tr>
-                <td colspan="4"></td>
-                <td>
-                    <span>
-                    <b-button v-b-modal.modalPopover style="margin-top:5px;width:53%;" size="sm" v-on:click="clickConfirm3(auction.auction.id)" variant="info">Xác nhận tất cả</b-button>
-                    <b-button v-b-modal.modalPopover style="margin-top:5px;width:50%;" size="sm" v-on:click="clickConfirm1(auction.auction.id)" variant="danger">Huỷ tất cả</b-button>
-                    </span>
-                </td>
-                </tr> -->
                 <tr v-for="transactions2 in sort.values" v-bind:key="transactions2.id">
                 <!-- <td scope="row">
                     <img style="width: 200px;" class="" :src="auction.asset.images.split(',',1)" alt="">
@@ -98,10 +89,6 @@
 
                 </td>
                 <td>
-                    <!-- <span>
-                    <b-button style=" width:55%;" size="sm" variant="info" v-if="transactions2.status == 'complete'">HOÀN THÀNH</b-button>
-                    <b-button style=" width:55%;" size="sm" variant="danger" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</b-button>
-                    </span> -->
                   <span class="badge badge-success wf-85" v-if="transactions2.status == 'complete' ">HOÀN THÀNH</span>
                   <span class="badge badge-warning wf-85" v-if="transactions2.status == 'Pending'">ĐANG XỬ LÝ</span>
                 </td>
@@ -116,10 +103,6 @@
                     </span>
                 </td>
 
-                <!-- <td>
-                    <option v-if="transactions.status == 'complete'">HOÀN THÀNH</option>
-                    <option v-if="transactions.status == 'Pending'">ĐANG XỬ LÝ</option> 
-                </td> -->
                 </tr>
                   <b-modal id="bv-modal-example" hide-footer>
                     <template #modal-title>
@@ -604,18 +587,19 @@ computed: {
                       || (item.id + '').toLowerCase().includes(v)
                       || (item.hash + '').toLowerCase().includes(v)
                       || (item.status + '').toLowerCase().includes(v)
+                      || (item.note + '').toLowerCase().includes(v)
                     ) && checkStatus)
                   ) 
           });
       }else if(this.searchStatus != undefined){
-        return this.transactions.filter((item)=>{  
+        return this.transactions.filter((item)=>{
           var checkStatus;
           if(this.searchStatus) checkStatus = (item.status === this.searchStatus);
           else checkStatus = true;
           return  checkStatus;
-        }); 
+        });
       }
-      else{ 
+      else{
         return  this.transactions2;
       }
     }

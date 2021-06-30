@@ -341,34 +341,7 @@ export default {
       let val = (value / 1).toFixed(2).replace(".", ",");
       return val.toString().replace(/\B(?=(\d{3})+(?!\d))/g, ".");
     },
-    // clickSearch3(id){
-    //   this.axios.get(this.url+'/auction/id/'+id)
-    //   .then((response) => {this., this.Search=response.data, this.auc=response.data.auctions[0], this.asse=response.data
-    //   });
-    //     console.log(this.auc);
-    // },
-    // clickdelete1(id){
-    //   this.axios.post(this.url+'/asset/updateStatus/'+id+"?status=deleted",{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
-    // clickSearch: async function(){
-    //    await this.axios.get(this.url+'/auction/category/'+this.category).then((response) => this.userSearch = response);
-    //    this.searchCate=this.userSearch;
-    //    this.searchCheck=3;
-    //    console.log(this.userSearch.data);
-    // },
-    // clickdelete1(id){
-    //   this.axios.delete(this.url+'/auction/delete/'+id , {
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then(() => {
-    //         this.clickUpdate1();
-    //       });
-    // },
+     
     getCookie: function (cname) {
       var name = cname + "=";
       var decodedCookie = decodeURIComponent(document.cookie);

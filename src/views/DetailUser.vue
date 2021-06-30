@@ -68,7 +68,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Tên đăng nhập<span class="text-danger">*</span>
                           </label>
-                          <input type="text" class="form-control form-control-user fs-090" :value="user.name" maxlength="20">
+                          <input type="text" class="form-control form-control-user fs-090" :value="user.name" maxlength="20" :disabled="validated ? disabled : ''">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">
@@ -76,7 +76,7 @@
                           <label class="col-form-label pb-1 pt-0 font-weight-600">
                             Địa chỉ Email<span class="text-danger">*</span>
                           </label>
-                          <input v-model="user.email" type="" class="form-control form-control-user fs-090" value="user.email" maxlength="20">
+                          <input v-model="user.email" type="" class="form-control form-control-user fs-090" value="user.email" maxlength="20" :disabled="validated ? disabled : ''">
                         </div>
                       </div>
                       <div class="col-12 col-md-6">

@@ -66,7 +66,8 @@
                             <td style="white-space: normal;">{{user.name}}</td>
                             <td style="white-space: normal;">{{user.email}}</td>
                             <td>
-                              <img style="width: 40px;" class="" :src="user.avatar" alt="">
+                              <!-- <img style="width: 40px;" class="" :src="user.avatar" alt=""> -->
+                              <b-avatar :src="user.avatar" size="3rem"></b-avatar>
                             </td>
                             <td>{{user.group}}</td>
                             <td> 

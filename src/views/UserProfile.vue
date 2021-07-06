@@ -391,7 +391,7 @@ Vue.use(SortedTablePlugin);
       group: '',
       inavatar:'',
       currentPage : 1,
-      perPage : 20,
+      perPage : 10,
       province:'',
       updated:'',
       info:'',
@@ -601,7 +601,7 @@ Vue.use(SortedTablePlugin);
                       || (item.email + '').toLowerCase().includes(v)
                       || (item.id + '').toLowerCase().includes(v)
                       || (item.group + '').toLowerCase().includes(v)
-                      
+                      || (item.category + '').toLowerCase().includes(v)
                     ) && checkStatus)
                   ) 
           });
@@ -613,7 +613,7 @@ Vue.use(SortedTablePlugin);
           return  checkStatus;
         }); 
       }
-      else{ 
+      else { 
         return  this.users2;
       }
     }

@@ -72,6 +72,7 @@
                                                     <option>Mỹ phẩm</option>
                                                     <option>Thời trang</option>
                                                     <option>Voucher</option>
+                                                    <option>Mẹ và bé</option>
                                                 </select>
                                             </div>
                                         </div>
@@ -1379,6 +1380,69 @@
                                             </div>
                                         </div>
                                     </div>
+                                    <div v-if="category=='Mẹ và bé'">
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class="col-form-label font-weight-600">Hãng sản xuất</label>
+                                                </div>
+                                                <div class="col-12 col-md-4">
+                                                    <input v-model="trademark" type="text" class="form-control form-control-user fs-090" maxlength="200">
+                                                </div>
+                                            </div>
+                                        </div>
+                                          
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Màu sắc<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="color" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn màu sắc</option>
+                                                        <option>Màu đỏ</option>
+                                                        <option>Màu trắng</option>
+                                                        <option>Màu đen</option>
+                                                        <option>Màu xanh dương</option>
+                                                        <option>Màu xanh lá</option>
+                                                        <option>Màu hồng</option>
+                                                        <option>Xanh hồng</option>
+                                                        <option>Màu vàng</option>
+                                                        <option>Màu da cam</option>
+                                                        <option>Màu tím</option>
+                                                        <option>Màu Bạc</option>
+                                                        <option>Màu nâu đen</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                         
+                                        <div class="form-group">
+                                            <div class="row">
+                                                <div class="col-12 col-md-3">
+                                                    <label class=" col-form-label pb-1 pt-0 font-weight-600">Xuất xứ<span class="text-danger">*</span></label>
+                                                </div>
+                                                <div class="col-12 col-md-4 mb-2 mb-sm-0">
+                                                    <select v-model="origin" class="form-control select-default selectpickernone">
+                                                        <option disable value="">Chọn xuất xứ</option>
+                                                        <option>Hàn quốc</option>
+                                                        <option>Nhật bản</option>
+                                                        <option>Trung quốc</option>
+                                                        <option>Mỹ</option>
+                                                        <option>Việt nam</option>
+                                                        <option>Đức</option>
+                                                        <option>Thuỵ điển</option>
+                                                        <option>Úc</option>
+                                                        <option>Ấn độ</option>
+                                                        <option>Nga</option>
+                                                        <option>Ý</option>
+                                                        <option>Thái lan</option>
+                                                        <option>Singapore</option>
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Chi tiết tài sản
                                     </h3>
@@ -1408,7 +1472,7 @@
                                      
                                     <hr class="pt-3 mb-1" />
                                     <div class="clearfix">
-                                        <button v-b-modal.modal1    Popover @click="clickAdd1" class="btn btn-primary mb-2">
+                                        <button v-b-modal.modalPopover @click="clickAdd1" class="btn btn-primary mb-2">
                                             <i class="las la-save"></i>
                                             Thêm tài sản
                                         </button>
@@ -1418,7 +1482,7 @@
                                             <!-- <p>
                                             Tạo tài sản thành công !
                                             </p> -->
-                                            <p>{{loi?loi:'Tạo cuộc tài sản thành công !'}}</p>
+                                            <p>{{error?'Tạo tài sản không thành công !':'Tạo tài sản thành công !'}}</p>
                                     </b-modal>
                                 </div>
                             </div>
@@ -1511,7 +1575,7 @@ Vue.use(VueClipboard)
       operatingSystem:'',
       camera:'',
       batteryCapacity:'',
-      loi:null,
+      error:null,
       sim:'',
       ram:'',
       rom:'',
@@ -1554,8 +1618,11 @@ Vue.use(VueClipboard)
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
       }
-      ).then((response) => console.log(response))
-       .catch((error) => { this.loi=error
+      ).then((response) => { 
+        if(response.status==200)
+            this.error=null
+        })
+       .catch((error) => { this.error=error
         })
     },
     previewImage(event){

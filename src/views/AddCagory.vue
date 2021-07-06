@@ -212,7 +212,11 @@ Vue.use(VueClipboard)
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }
-      ).then((response) => console.log(response));
+      ).then((response) => {
+          if(response.status==200) {
+              this.error=null
+          }
+      });
      await this.axios.get(this.url+'/category',{
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }

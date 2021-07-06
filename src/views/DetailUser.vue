@@ -238,12 +238,50 @@
                   </div>
                 </div>
               </div>
-              <h3 v-b-toggle.collapse-3 style="border-bottom: 1px solid green ;" class=" pb-3">
+              <h3 v-b-toggle.collapse-5 style="border-bottom: 1px solid green ;" class=" pb-3">
+                Thông tin ví
+              </h3>
+              <b-collapse visible id="collapse-5">
+                <div class="w-100" style="display: flex;margin-top:2rem;">
+                  
+                  <div class="col-12 col-md-3">
+                    <label for="" class="font-weight-500">
+                      <a v-bind:href="'https://tronscan.org/#/address/'+ user.walletAddress" target="_blank">Địa chỉ ví VNDT</a>
+                    </label>
+                    <div class="input-group mb-0">
+                        <input class="form-control form-control-user fs-090" type="text" v-model="user.walletAddress" :disabled="validated ? disabled : ''">
+                        <button type="button" @click="doCopy">Copy!</button>
+                    </div>
+                  </div>
+                  <div class="col-12 col-md-3">
+                    <label for="" class="font-weight-500">
+                      <a v-bind:href="'https://tronscan.org/#/address/'+ user.bonusAddress" target="_blank">Địa chỉ ví phụ</a>
+                    </label>
+                    <div class="input-group mb-0">
+                        <input class="form-control form-control-user fs-090" type="text" v-model="user.bonusAddress" :disabled="validated ? disabled : ''">
+                        <button type="button" @click="doCopy1">Copy!</button>
+                    </div>
+                  </div>
+                </div>
+                <div class="w-100" style="display: flex;">
+                  <div class="ml-3">
+                    <span class="d-block font-weight-light text-uppercase f-15 mt-4 m">Tài khoản chính: <strong class="font-weight-600 mr-2"><span class="cur-format">{{user.vndtbalance}}</span>
+                            VNDT</strong></span>
+                    <span class="d-block font-weight-light f-14 mt-2">
+                        Tổng số tiền đặt cọc: <strong class="font-weight-600 mr-2"><span class="cur-format">{{user.vndtfreeze}}</span>
+                            VNDT</strong>
+                    </span>
+                  </div>
+                    <span class="d-block font-weight-light text-uppercase f-15 mt-4 ml-9">Tài khoản phụ: <strong class="font-weight-600 mr-2"><span class="cur-format">{{user.bonusBalance}}</span>
+                            VNDT</strong></span>
+                </div>
+              </b-collapse>
+              <h3 v-b-toggle.collapse-3 style="border-bottom: 1px solid green ;" class=" pb-3 mt-4">
                 Thông Tin Giao Dịch
               </h3>
               <div style="overflow-x:auto;">
                 <b-collapse visible id="collapse-3">
-                  <sorted-table class="table table-striped" v-bind:values="trans">
+                  <sorted-table class="table table-striped" v-bind:values="trans2">
                     <thead>
                         <tr>
                           <th scope="col"><sort-link name="id">ID</sort-link></th>
@@ -289,6 +327,13 @@
                     </tbody>
                     </template>   
                   </sorted-table>
+                  <paginate
+                  :page-count="totalPage"
+                  :click-handler="onclick"
+                  :prev-text="'Prev'"
+                  :next-text="'Next'"
+                  class="pagination">
+                  </paginate>
                 </b-collapse>
               </div>
             <h3 v-b-toggle.collapse-2 style="border-bottom: 1px solid green ;" class=" pb-3 mt-4">
@@ -359,6 +404,13 @@
                       </tr> 
                   </tbody>         
               </table>
+              <paginate
+              :page-count="totalPage"
+              :click-handler="onclick"
+              :prev-text="'Prev'"
+              :next-text="'Next'"
+              class="pagination">
+              </paginate>
               </b-collapse>
             </div>
             <!-- <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
@@ -398,7 +450,7 @@ Vue.use(SortedTablePlugin);
         }).then((response) => {
           this.user = response.data.user,
           this.auction =response.data.auction,
-          this.trans =response.data.trans
+          this.trans =response.data.trans,
           // this.inname= response.data.user.name,
           // this.inavatar= response.data.user.avatar,
           // this.inemail= response.data.user.email,
@@ -413,6 +465,9 @@ Vue.use(SortedTablePlugin);
           // console.log( "1"+-this.users.id);
         //   this.users2 = response.data.slice(0, this.perPage-1), 
         //   this.totalPage = Math.ceil(response.data.length / this.perPage)
+          this.trans2 = response.data.trans.slice(0, this.perPage-1),
+          this.totalPage = Math.ceil(response.data.trans.length / this.perPage),
+          this.auction2= response.data.auction.slice(0, this.perPage-1)
          });
       
     return {
@@ -428,10 +483,12 @@ Vue.use(SortedTablePlugin);
       group: '',
       inavatar:'',
       currentPage : 1,
-      perPage : 20,
+      perPage : 10,
       province:'',
       updated:'',
       info:'',
+      trans2:[],
+      auction2:[],
       gender:'',
       user: {
           id:'',
@@ -452,16 +509,21 @@ Vue.use(SortedTablePlugin);
           bidTurn:0,
           created:"",
           updated:"",
-          group:""
-     
-
+          group:"",
+          vndtbalance: "",
+          vndtfreeze: "",
+          bonusBalance: "",
+          usdfbalance: "",
+          trxbalance: ""
       },
+
       auction:[],
       transactions2:[],
       urlimg:null,
       loi:null,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchQuery:"",
+      validated:"",
       searchStatus:'',
       types:[
         'date'
@@ -479,7 +541,14 @@ Vue.use(SortedTablePlugin);
         }).then((response) => { this.users=response.data})
     //  console.log(this.url);
     },
-    
+    onclick(page){
+      console.log(page);
+      this.trans2 = this.trans.slice((page-1)*this.perPage,page*this.perPage-1)
+    },
+    onclick2(page){
+      console.log(page);
+      this.auction2 = this.auction.slice((page-1)*this.perPage,page*this.perPage-1)
+    },
     clickEdit(id){
     this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.urlimg, "gender": this.user.gender,
       "province": this.user.province, "mobile": this.user.mobile, "lastname": this.user.lastname, "email": this.user.email, "group":this.user.group, "dateofbirth":this.user.dateofbirth, "fullname": this.user.fullname}, {
@@ -531,7 +600,25 @@ Vue.use(SortedTablePlugin);
     onFileChange(e) {
       const file = e.target.files[0];
       this.urlimg = URL.createObjectURL(file);
-    }
+    },
+    doCopy: function () {
+        this.$copyText(this.user.walletAddress).then(function (e) {
+          alert('Đã sao chép')
+          // console.log(e)
+        }, function (e) {
+          alert('Can not copy')
+          // console.log(e)
+        })
+      },
+      doCopy1: function () {
+        this.$copyText(this.user.bonusAddress).then(function (e) {
+          alert('Đã sao chép')
+          // console.log(e)
+        }, function (e) {
+          alert('Can not copy')
+          // console.log(e)
+        })
+      }
   },
   computed: {
 
@@ -550,7 +637,7 @@ function(){
                       || (item.area + '').toLowerCase().includes(v)
                       || (item.id + '').toLowerCase().includes(v)
                       || (item.winner + '').toLowerCase().includes(v)
-                      
+                      || (item.category + '').toLowerCase().includes(v)
                     ) && checkStatus)
                   ) 
           });

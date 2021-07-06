@@ -371,7 +371,7 @@
                                             Tạo cuộc đấu giá thành công !
                                             </p> -->
                                             <p>
-                                                {{loi?loi: 'Tạo cuộc đấu giá thành công !'}}
+                                                {{error?'Tạo đấu giá không thành công!': 'Tạo cuộc đấu giá thành công !'}}
                                             </p>
                                         </b-modal>
                                     </div>
@@ -407,7 +407,7 @@ Vue.use(VueClipboard)
         ).then((response) => {
             // console.log( "response" + response.data);
             this.asset=response.data;
-            this.auctions=response.data.auction[0]
+            // this.auctions=response.data.auction[0]
         });
   
       // console.log(response.data[0].auctions[0].id)
@@ -466,7 +466,7 @@ Vue.use(VueClipboard)
       attendanceDeadline:'',
       asset:[],
       Search:[],
-      loi:null,
+      error:null,
       percent:'',
       registrationFee:'',
       type:'',
@@ -503,8 +503,12 @@ Vue.use(VueClipboard)
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }
-      ).then((response) => console.log(response))
-      .catch((error) => { this.loi=error
+      ).then((response) => { 
+          if(response.status==200) {
+              this.error=null
+          }
+      })
+      .catch((error) => { this.error=error
         })
     },
     //tìm asset
@@ -516,15 +520,7 @@ Vue.use(VueClipboard)
             }
         });
     },
-    // clickSelect(){
-    //     this.auctions.forEach(ac =>{ 
-    //         if(this.inassest == ac.id){
-    //             console.log("buyPrice"+this.buyPrice)
-    //             this.inbuyPrice = ac.buyPrice
-    //         }
-    //     });
-    // },
-    //tìm auction
+     
     clickSearch2(id1){
       this.axios.get(this.url+'/auction/recreate/'+id1)
       .then((response) => {
@@ -561,15 +557,7 @@ Vue.use(VueClipboard)
         console.log(this.i)
         }
     },
-    // clickSearch2(id){
-    //   this.axios.get(this.url+'/user/'+id)
-    //   .then((response) => { this.Search=response.data});
-    //     console.log(this.Search);
-    //   this.axios.get(this.url+'/user',{
-    //   headers: {
-    //     Authorization: this.getCookie('AC-ACCESS-KEY') }
-    //     }).then((response) => console.log(response));
-    // },
+     
     onUpload(){
         // var today = new Date();
         // var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();

@@ -606,7 +606,7 @@ Vue.use(SortedTablePlugin);
                   ) 
           });
       }else if(this.searchStatus != undefined){
-        return this.users.filter((item)=>{  
+        return this.users2.filter((item)=>{  
           var checkStatus;
           if(this.searchStatus) checkStatus = (JSON.stringify(item.isActive) === this.searchStatus);
           else checkStatus = true;

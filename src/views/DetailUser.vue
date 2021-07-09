@@ -27,7 +27,7 @@
                 <div class="row">
                   <div class="col-12 col-xl-3 col-lg-3 col-md-4">
                     <div class="user-sum ml-7">
-                      <b-avatar style="width:128px; height:128px" :src="user.avatar"></b-avatar>
+                      <b-avatar style="width:128px; height:128px" :src="picture"></b-avatar>
                     </div>
                     <div class="user-sum ml-6 mt-2">
                         <button v-b-modal.modal-1 class="btn btn-success btn-sm" @click="changeAvatar=true">
@@ -229,10 +229,34 @@
                         </p>
                       </b-modal>
                       <b-modal id="modal-1" title="Chọn ảnh của bạn" hide-footer>
-                        <input type="file" @change="onFileChange" />
+                        <!-- <input type="file" @change="onFileChange" />
                         <div id="topimage" class="user-avatar mb-3 text-center">
                           <img id="sizeimage" v-if="urlimg" v-bind:src="urlimg" />
-                        </div>
+                        </div> -->
+                        <div class="input-group rounded-0">
+                          <div class="custom-file rounded-0">
+                              <b-form-file
+                              class="z-index-inputFile"
+                              @change="previewImage"
+                              placeholder="Select file"
+                              drop-placeholder="Drop file here..."
+                              accept="image/*"
+                              ></b-form-file>
+                              <label class="custom-file-label rounded-0" for="" aria-describedby="inputGroupFileAddon02">chọn ảnh</label>
+                          </div>
+                          <div class="input-group-append">
+                              <button @click="onUpload" class="btn btn-warning">
+                                  <i class="las la-plus-circle"></i>
+                                  Thay đổi
+                              </button>
+                          </div>
+                          </div>
+                       
+                          <div id="preview">
+                              <img style="width:20%" v-if="picture" v-bind:src="picture" />
+                          </div>
+                          <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
+                       
                     </b-modal>
                     </div>
                   </div>
@@ -406,7 +430,7 @@
               </table>
               <paginate
               :page-count="totalPage"
-              :click-handler="onclick"
+              :click-handler="onclick2"
               :prev-text="'Prev'"
               :next-text="'Next'"
               class="pagination">
@@ -426,6 +450,7 @@
 import Vue from 'vue'
 import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
+import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
 import SortedTablePlugin from "vue-sorted-table";
 import Paginate from 'vuejs-paginate'
@@ -452,7 +477,7 @@ Vue.use(SortedTablePlugin);
           this.auction =response.data.auction,
           this.trans =response.data.trans,
           // this.inname= response.data.user.name,
-          // this.inavatar= response.data.user.avatar,
+          this.picture= response.data.user.avatar,
           // this.inemail= response.data.user.email,
           // this.indateofbirth= response.data.user.dateofbirth,
           // this.infullname= response.data.user.fullname,
@@ -484,6 +509,7 @@ Vue.use(SortedTablePlugin);
       inavatar:'',
       currentPage : 1,
       perPage : 10,
+      totalPage:0,
       province:'',
       updated:'',
       info:'',
@@ -516,7 +542,7 @@ Vue.use(SortedTablePlugin);
           usdfbalance: "",
           trxbalance: ""
       },
-
+      picture:null,
       auction:[],
       transactions2:[],
       urlimg:null,
@@ -550,7 +576,7 @@ Vue.use(SortedTablePlugin);
       this.auction2 = this.auction.slice((page-1)*this.perPage,page*this.perPage-1)
     },
     clickEdit(id){
-    this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.urlimg, "gender": this.user.gender,
+    this.axios.put(this.url+'/user/edit/'+id ,{ "avatar": this.picture, "gender": this.user.gender,
       "province": this.user.province, "mobile": this.user.mobile, "lastname": this.user.lastname, "email": this.user.email, "group":this.user.group, "dateofbirth":this.user.dateofbirth, "fullname": this.user.fullname}, {
     headers: {
       Authorization: this.getCookie('AC-ACCESS-KEY') }
@@ -558,13 +584,13 @@ Vue.use(SortedTablePlugin);
           this.clickUpdate();
         });
     },
-    previewImage(event){
-      // this.uploadValue=0;
-      this.picture=null;
-      this.imageData =event.target.files[0];
-      this.uploadValue=0;
+    // previewImage(event){
+    //   // this.uploadValue=0;
+    //   this.picture=null;
+    //   this.imageData =event.target.files[0];
+    //   this.uploadValue=0;
         
-    },
+    // },
      
     formatDatetime: function (datetime,type) {
       if(datetime != null){
@@ -596,6 +622,32 @@ Vue.use(SortedTablePlugin);
         }
       }
       return "";
+    },
+    previewImage(event){
+      // this.uploadValue=0;
+      this.picture=null;
+      this.imageData =event.target.files[0];
+      this.uploadValue=0;
+      const file = event.target.files[0];
+      this.picture = URL.createObjectURL(file);
+    },
+    onUpload(){
+      this.picture=null;
+        
+      const storageRef=Firebase.storage().ref(`${this.imageData.name}`+`${this.imageData.lastModified}`).put(this.imageData);
+      storageRef.on(`state_changed`,snapshot=>{
+        this.uploadValue=(snapshot.bytesTransferred/snapshot.totalBytes)*100;
+        }, error =>{console.log(error.message)},
+        ()=>{this.uploadValue=100;
+    
+        storageRef.snapshot.ref.getDownloadURL().then((url1)=>{
+          this.picture=url1;
+          console.log(this.picture);
+        });
+
+        }
+        );
+        
     },
     onFileChange(e) {
       const file = e.target.files[0];
@@ -642,14 +694,14 @@ function(){
                   ) 
           });
       }else if(this.searchStatus != undefined){
-        return this.auction.filter((item)=>{  
+        return this.auction2.filter((item)=>{  
           var checkStatus;
           if(this.searchStatus) checkStatus = (JSON.stringify(item.winner === this.user.id) === this.searchStatus);else checkStatus = true;
           return  checkStatus;
         }); 
       }
       else{ 
-        return  this.auction;
+        return  this.auction2;
       }
     }
   }

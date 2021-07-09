@@ -27,7 +27,7 @@
                                             </div>
                                             <div class="col-12 col-md-4">
                                                 <div class="user-avatar mb-3 mb-sm-0 text-center">
-                                                    <img :src="tespicture" class="edit-avatar" style="max-width:300px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
+                                                    <img :src="testpicture" class="edit-avatar" style="max-width:300px; width:100%;" data-toggle="tooltip" data-placement="top" title="" data-original-title="Click vào đây để thay avatar">
                                                 </div>
                                             </div>
                                             <div class="col-12 col-md-5">
@@ -108,9 +108,10 @@
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <!-- <div class="input-group rounded-0">
+                                        <div class="input-group rounded-0">
                                             <div class="custom-file rounded-0">
                                                 <b-form-file
+                                                type="file"
                                                 class="z-index-inputFile"
                                                 @change="previewImage"
                                                 placeholder="Select file"
@@ -127,10 +128,10 @@
                                                     Thêm
                                                 </button>
                                             </div>
-                                        </div> -->
-                                        <input type="file" @change="onFileChange" />
+                                        </div>
+                                        <!-- <input type="file" @change="onFileChange" /> -->
                                         <div id="preview">
-                                            <img v-if="tespicture" v-bind:src="tespicture" />
+                                            <img style="width:50%" v-if="testpicture" v-bind:src="testpicture" />
                                         </div>
                                         <small id="emailHelp" class="form-text text-muted">Chọn một hoặc nhiều ảnh để thêm vào thư viện.</small>
                                     </div>
@@ -1611,7 +1612,7 @@ Vue.use(VueClipboard)
       error:null,
       guarantee:'',
       testtrademark:'',
-      tespicture:null
+      testpicture:null
     };
   },
   components: {
@@ -1622,7 +1623,7 @@ Vue.use(VueClipboard)
       this.axios.put(this.url+'/asset/update/'+ this.$route.params.id ,{ "name": this.testName, "initPrice": this.testinitPrice,"area": this.testarea,"type": this.testtype,"toiletsNumber": this.testtoiletsNumber,"color":this.tescolor,"interiorColor": this.tesinteriorColor,"manufactureYear":this.tesmanufactureYear,
       "category": this.testcategory,"description":this.testdescription, "currentStatus": this.testcurrentStatus, "trademark": this.testtrademark, "amount": this.tesamount,"stumpDiameter": this.tesstumpDiameter,"height": this.tesheight,
       "direction": this.testdirection,"acreage":this.testacreage, "bedroomsNumber": this.testbedroomsNumber, "gear": this.tesgear, "fuel": this.tesfuel, "yearOld": this.tesyearold,
-      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.tespicture,
+      "consume": this.tesconsume, "seatsNumber": this.tesseatsNumber, "origin": this.tesorigin, "homeNetwork": this.teshomeNetwork,"images": this.testpicture,
       "shape": this.tesshape,"weight": this.tesweight, "birghtness":this.tesbirghtness, "floorsNumber": this.testfloorsNumber,"simNumber":this.testsimNumber,"resolution":this.testresolution,"ram":this.testram,"rom":this.testrom,"operatingSystem":this.testoperatingSystem,
       "screenSize":this.testscreenSize,"camera":this.testcamera,"sim":this.testsim, "batteryCapacity":this.testbatteryCapacity,"wattage": this.testwattage, "guarantee":this.testguarantee
       
@@ -1630,7 +1631,9 @@ Vue.use(VueClipboard)
       headers: {
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then((response) => {
+            
             if(response.data==200){
+                console.log("hi"+response.data);
                 this.error=null;
             }
         }
@@ -1643,7 +1646,9 @@ Vue.use(VueClipboard)
                 this.testpicture=null;
                 this.imageData[i] =event.target.files[i];
                 this.uploadValue=0;
-                console.log(this.i)
+                console.log(this.i);
+                const file = event.target.files[0];
+                this.testpicture = URL.createObjectURL(file);
             }
         },
     onUpload(){

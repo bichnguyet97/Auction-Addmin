@@ -194,7 +194,7 @@ Vue.use(VueClipboard)
       url:process.env.VUE_APP_MY_ENV_VARIABLE,
       searchCate:'',
       users:[],
-      auction2:'',
+      auction2:[],
       totalPage:0,
       currentPage : 1,
       perPage : 10,
@@ -317,7 +317,7 @@ Vue.use(VueClipboard)
                   ) 
           });
       }else if(this.searchStatus != undefined){
-        return this.auction.filter((item)=>{  
+        return this.auction2.filter((item)=>{  
           var checkStatus;
           if(this.searchStatus) checkStatus = (item.status === this.searchStatus);
           else checkStatus = true;

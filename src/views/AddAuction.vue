@@ -277,7 +277,7 @@
                                                 <input
                                                 
                                                  v-model="sellOffPercent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(inbuyPrice*sellOffPercent)/100}}</small>
+                                                <small class="form-text text-muted">Số phần trăm của tiền thanh lý {{(inbuyPrice*sellOffPercent)/100}}</small>
                                             </div>
                                         </div>
 

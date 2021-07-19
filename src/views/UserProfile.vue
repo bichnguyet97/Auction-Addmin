@@ -12,7 +12,8 @@
                 </div>
             </div>
         </base-header>
-        
+        <!-- <div v-if="user.group=='Admin'"> -->
+        <div>
         <div class="mt--7" v-if="close3">
             <div class="row">
                 <div class="col">
@@ -348,7 +349,7 @@
             </div>
           </div>
         </div>
-         
+         </div>
     </div>
 </template>
 <script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
@@ -378,7 +379,12 @@ Vue.use(SortedTablePlugin);
           this.users2 = response.data.slice(0, this.perPage-1), 
           this.totalPage = Math.ceil(response.data.length / this.perPage)
          });
-      
+    //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
     return {
       email: '',
       password:'',
@@ -396,6 +402,7 @@ Vue.use(SortedTablePlugin);
       updated:'',
       info:'',
       gender:'',
+      user:[],
       users: [],
       users2:[],
       totalPage:0,

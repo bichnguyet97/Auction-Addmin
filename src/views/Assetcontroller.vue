@@ -3,7 +3,7 @@
         <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
         </base-header>
          
-        <div class="mt--7">
+        <div v-if="user.group=='Admin'" class="mt--7">
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
@@ -194,6 +194,12 @@ Vue.use(SortedTablePlugin);
           this.totalPage = Math.ceil(response.data.length / this.perPage)
         });
     console.log(asset);
+     //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
     return {
       initPrice: '',
       close2:'true',
@@ -213,6 +219,7 @@ Vue.use(SortedTablePlugin);
       staus1:'đã xoá',
       asset: [],
       asset2:[],
+      user:[],
       add:true,
       sessionId:'',
       save:true,

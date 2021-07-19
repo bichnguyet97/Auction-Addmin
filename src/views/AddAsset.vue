@@ -2,7 +2,7 @@
     <div>
         <base-header type="gradient-success" class="pb-6 pb-8 pt-5 pt-md-8">
         </base-header>
-        <div class="col-12 col-lg-12">
+        <div v-if="user.group=='Admin'" class="col-12 col-lg-12">
             <div class="edit-profile">
                 <div class="card border-0 rounded-0 shadow-sm">
 
@@ -1447,8 +1447,9 @@
                                         Chi tiết tài sản
                                     </h3>
                                     <div class="form-group">
-                                        <textarea v-model="description" class="form-control" rows="8"></textarea>
+                                        <!-- <textarea v-model="description" class="form-control" rows="8"></textarea> -->
                                         <!-- <small id="emailHelp" class="form-text text-muted">Lập trình viên tự chọn TextEditor phù hợp vào ô trên</small> -->
+                                        <ckeditor v-model="description" ></ckeditor>
                                     </div>
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Thông tin khác
@@ -1499,7 +1500,8 @@ import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import Firebase from 'firebase';
 import VueAxios from 'vue-axios'
- 
+import CKEditor from 'ckeditor4-vue';
+Vue.use( CKEditor );
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)
@@ -1510,6 +1512,12 @@ Vue.use(VueClipboard)
     this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/asset'
         ).then((response) => { this.asset=response.data});
     console.log(asset);
+    //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
     return {
       initPrice: '',
       close2:'true',
@@ -1524,6 +1532,7 @@ Vue.use(VueClipboard)
       tags:'',
       gear:'',
       consume:'',
+      
       seller:'',
       actions:'',
       id: '',
@@ -1560,6 +1569,7 @@ Vue.use(VueClipboard)
       color:'',
       imagess: [],
       file1:[],
+      user:[],
       save:true,
       searchCheck: 1,
       url:process.env.VUE_APP_MY_ENV_VARIABLE,

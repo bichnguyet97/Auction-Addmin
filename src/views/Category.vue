@@ -3,7 +3,7 @@
         <base-header type="gradient-warning" class="pb-6 pb-8 pt-5 pt-md-8">
         </base-header>
 
-        <div class="mt--7">
+        <div v-if="user.group=='Admin'" class="mt--7">
             <div class="row">
                 <div class="col">
                     <div class="card shadow">
@@ -215,6 +215,12 @@ Vue.use(VueClipboard)
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then((response) => { this.category=response.data});
     console.log(category);
+    //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
     return {
       alias: '',
       id: '',
@@ -225,6 +231,7 @@ Vue.use(VueClipboard)
       close4:true,
       info:'',
       category: [],
+      user:[],
       add:true,
       sessionId:'',
       save:true,

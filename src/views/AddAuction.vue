@@ -61,7 +61,7 @@
                 </div>
             </div>
         </base-header>
-        <div class="col-12 col-xl-12 col-lg-12">
+        <div v-if="user.group=='Admin'" class="col-12 col-xl-12 col-lg-12">
             <div class="edit-profile">
                 <div class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
@@ -80,7 +80,7 @@
                                                     Chọn tài sản <span class="text-danger">*</span>
                                                 </label> 
                                                <!--   <input v-model="inassest" type="" class="form-control form-control-user fs-090" value="2502" maxlength="20">-->
-                                                <select @click="clickSearch3()" v-model="inassest" class="form-control form-control-user fs-090">
+                                                <select v-on:input="getwarranty" @click="clickSearch3()" v-model="inassest" class="form-control form-control-user fs-090">
                                                    <option  v-for="option in asset" v-bind:key="option.id" v-bind:value="option.id">
                                                         {{ option.id }} - {{option.name}}
                                                     </option>
@@ -95,7 +95,7 @@
                                             <base-input>
                                             <select v-model="inarea" class="form-control form-control-user fs-090">
                                                 <option disable value="">Chọn khu vực</option>
-                                                <option >Hà Nội</option>
+                                                <option>Hà Nội</option>
                                                 <option>Hồ Chí Minh</option>
                                                 <option>Đà Nẵng</option>
                                                 <option>Hải Phòng</option>
@@ -177,7 +177,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập giá khởi điểm <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-on:input ="getwarranty" v-model="inbidPrice" type="" class="form-control form-control-user fs-090"  maxlength="20">
+                                                <input v-on:input="getwarranty" v-model="inbidPrice" type="" class="form-control form-control-user fs-090"  maxlength="20">
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -185,7 +185,9 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Nhập giá bán ngay <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="inbuyPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                                <input v-on:input ="getwarranty" v-model="inbuyPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20">
+                                                <!-- <input v-model="inbuyPrice" type="" class="form-control form-control-user fs-090" value="100000000" maxlength="20"> -->
+                                                <small class="form-text text-muted">Số tiền mua ngay: {{(inbidPrice*100)/30}}</small>
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -193,7 +195,7 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Hạn tham dự <span class="text-danger">*</span>
                                                 </label>
-                                                <base-input v-model="inattendanceDeadline" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input"/>
+                                                <base-input v-model="inattendanceDeadline" type="datetime-local" value="2021-1-25T10:30:00" id="example-datetime-local-input" />
                                             </div>
                                         </div>
                                         <div class="col-12 col-md-6">
@@ -255,7 +257,7 @@
                                                 v-on:input ="getwarranty"
                                                 
                                                  v-model="inpercent" type="number" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(inbidPrice*inpercent)/100}}</small>
+                                                <small class="form-text text-muted">Số phần trăm của tiền cọc {{(inbuyPrice*inpercent)/100}}</small>
                                             </div>
                                         </div>
 
@@ -264,8 +266,8 @@
                                                 <label class="col-form-label pb-1 pt-0 font-weight-600">
                                                     Tiền cọc đấu giá <span class="text-danger">*</span>
                                                 </label>
-                                                <input v-model="inwarranty" type="" class="form-control form-control-user fs-090" value="" maxlength="20">
-                                                <small class="form-text text-muted">Tiền cọc phải nhỏ hơn 10% của giá niêm yết</small>
+                                                <input v-model="inwarranty" type="" class="form-control form-control-user fs-090" value="" maxlength="200">
+                                                <small class="form-text text-muted">Tiền cọc phải = 20% của giá bán ngay</small>
                                             </div>
                                         </div>
 
@@ -409,7 +411,12 @@ Vue.use(VueClipboard)
             this.asset=response.data;
             // this.auctions=response.data.auction[0]
         });
-  
+    //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
       // console.log(response.data[0].auctions[0].id)
     // for(var i =0;i>auction.length;i++) {
     //     for(var j =0;j<auction.lenght;j++) {
@@ -431,6 +438,7 @@ Vue.use(VueClipboard)
       warranty:'',
       regulation:'',
       auctions:[],
+      user:[],
       tags:'',
       cancelRegisterFee:'',
       stepPrice:'',
@@ -451,7 +459,7 @@ Vue.use(VueClipboard)
       mobile:'',
       note:'',
       seller:'504',
-      sellOffPercent:'',
+      sellOffPercent:'80',
       save:true,
       assest:'',
       traditional:'',
@@ -474,14 +482,14 @@ Vue.use(VueClipboard)
       attendingUser:'',
       inassest:'',
       inarea:'Hà Nội',
-      intype:'',
+      intype:'Normal',
       inregistrationFee:'',
-      inpercent:'',
+      inpercent:'20',
       inbidPrice:'',
       inendAt:'',
       instartAt:'',
       inwarranty:'',
-      instepPrice:'',
+      instepPrice:'5000',
       inbuyPrice:'',
       inattendanceDeadline:'',
       inseller:'504',
@@ -590,10 +598,40 @@ Vue.use(VueClipboard)
             );
         }
     },
+    //get waranty
+     
     //get warranty
     getwarranty(){
-        this.inwarranty =  (this.inbidPrice*this.inpercent)/100
+        this.inwarranty =  (((this.inbidPrice*100)/30)*this.inpercent)/100
+        // console.log("hi"+this.inwarranty);
+        // this.inbuyPrice =  (this.inbidPrice*100)/30
+        if(this.inbuyPrice<1000000){
+            this.inregistrationFee=10000;
+        }else if(this.inbuyPrice==1000000){
+            this.inregistrationFee=12000;
+        }else if(this.inbuyPrice<2000000){
+            this.inregistrationFee=12000;
+        }else if(this.inbuyPrice==2000000){
+            this.inregistrationFee=14000;
+        }else if(this.inbuyPrice<3000000){
+            this.inregistrationFee=14000;
+        }else if(this.inbuyPrice==3000000){
+            this.inregistrationFee=16000;
+        }else if(this.inbuyPrice<4000000){
+            this.inregistrationFee=16000;
+        }else if(this.inbuyPrice==4000000){
+            this.inregistrationFee=20000;
+        }else if(this.inbuyPrice<5000000){
+            this.inregistrationFee=20000;
+        }else if(this.inbuyPrice==5000000){
+            this.inregistrationFee=(this.inbuyPrice*0.5)/100;
+        }else if(this.inbuyPrice>5000000){
+            this.inregistrationFee=(this.inbuyPrice*0.5)/100;
+        }
     },
+    // getbuyPrice(){
+    //     this.inbuyPrice =  (this.inbidPrice*100)/30
+    // },
     // getwarranty2(){
     //     this.inwarranty2 =  (this.inbuyPrice*this.sellOffPercent)/100
     // },

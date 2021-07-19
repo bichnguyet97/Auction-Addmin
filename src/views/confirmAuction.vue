@@ -2,7 +2,7 @@
   <div>
     <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-8">
     </base-header>
-     <div style="overflow-x:auto;">
+     <div v-if="user.group=='Admin'" style="overflow-x:auto;">
          <table class="table table-striped">
             <thead>
                 <tr>
@@ -110,6 +110,12 @@ export default {
         this.auctionnn = response.data;
       });
     console.log(this.auctionnn);
+    //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
     // var auction = [];
     // this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/auction',{
     //   headers: {
@@ -123,6 +129,7 @@ export default {
       status: "",
       startAt: "",
       auctionnn: [],
+      user:[],
       creaded: "",
       tags: "",
       shape: "",

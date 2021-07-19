@@ -1441,8 +1441,9 @@
                                         Chi tiết tài sản
                                     </h3>
                                     <div class="form-group">
-                                        <textarea v-model="testdescription" class="form-control" rows="8"></textarea>
+                                        <!-- <textarea v-model="testdescription" class="form-control" rows="8"></textarea> -->
                                         <!-- <small id="emailHelp" class="form-text text-muted">Lập trình viên tự chọn TextEditor phù hợp vào ô trên</small> -->
+                                        <ckeditor v-model="testdescription" :config="editorConfig"></ckeditor>
                                     </div>
                                     <h3 class="card-title f-17 mb-3 font-weight-700 border-bottom pb-3 mt-5">
                                         Thông tin khác
@@ -1496,6 +1497,8 @@ import VueClipboard from 'vue-clipboard2'
 import axios from 'axios'
 import Firebase from 'firebase'
 import VueAxios from 'vue-axios'
+import CKEditor from 'ckeditor4-vue';
+Vue.use( CKEditor );
 import VueCookies from 'vue-cookies'
 Vue.use(VueCookies)
 Vue.use(VueAxios, axios)

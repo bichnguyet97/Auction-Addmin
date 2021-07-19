@@ -216,6 +216,9 @@
                           <select v-model="user.group" class="form-control form-control-user fs-090">
                             <option disable value="">Chọn</option>
                             <option>Admin</option>
+                            <option>AdminLV1</option>
+                            <option>AdminLV2</option>
+                            <option>AdminLV3</option>
                             <option>Agency</option>
                             <option>User</option>
                           </select>
@@ -463,8 +466,8 @@ Vue.use(SortedTablePlugin);
   export default {
   data() {
     this.axios.post(process.env.VUE_APP_MY_ENV_VARIABLE+'/admin/user-info',{
-          "startAt":"2021-05-07",
-          "endAt":"2021-06-26",
+          "startAt":"2020-12-07",
+          "endAt":"2021-07-26",
           "userId":this.$route.params.id
           // "userId":100515
       },{

@@ -2,7 +2,7 @@
     <div>
         <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-8">
         </base-header>
-        <div class="col-12 col-xl-12 col-lg-12">
+        <div v-if="user.group=='Admin'" class="col-12 col-xl-12 col-lg-12">
             <div class="edit-profile">
                 <div class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
@@ -72,6 +72,12 @@ Vue.use(VueAxios, axios)
 Vue.use(VueClipboard)
   export default {
   data() {
+    //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
     return {
       email: '',
       password:'',
@@ -80,6 +86,7 @@ Vue.use(VueClipboard)
       created:'',
       updated:'',
       info:'',
+      user:[],
       users: [],
       sessionId:'',
       hihi:'true',

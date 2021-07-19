@@ -2,7 +2,7 @@
   <div>
     <base-header type="gradient-info" class="pb-6 pb-8 pt-5 pt-md-8">
     </base-header>
-    <div id="app">
+    <div v-if="user.group=='Admin'" id="app">
       <sorted-table class="table table-striped" v-bind:values="category">
         <thead>
           <tr>
@@ -180,6 +180,12 @@ export default {
         // console.log(response.data);
         this.category = response.data;
       });
+      //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
     return {
       obj:{
         name:'',
@@ -187,6 +193,7 @@ export default {
         urlimg: ''
       },
       category: [],
+      user:[],
       alias: '',
       id: '',
       name: '',

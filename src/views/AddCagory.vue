@@ -62,7 +62,7 @@
                 </div>
             </div>
         </base-header>
-        <div class="col-12 col-xl-12 col-lg-12">
+        <div v-if="user.group=='Admin'" class="col-12 col-xl-12 col-lg-12">
             <div class="edit-profile">
                 <div class="card border-0 rounded-0 shadow-sm">
                     <div class="card-body p-3 rounded-0 border-0">
@@ -163,6 +163,12 @@ Vue.use(VueClipboard)
         Authorization: this.getCookie('AC-ACCESS-KEY') }
         }).then((response) =>  { this.asset=response.data});
       console.log(this.asset);
+      //get user me
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/user/me',{
+        headers: {
+          Authorization: this.getCookie('AC-ACCESS-KEY') }
+          }
+          ).then((response) => { this.user=response.data});
       // console.log(response.data[0].auctions[0].id)
     // for(var i =0;i>auction.length;i++) {
     //     for(var j =0;j<auction.lenght;j++) {
@@ -180,6 +186,7 @@ Vue.use(VueClipboard)
       startAt:'',
       creaded:'',
       auctions:[],
+      user:[],
       tags:'',
       confirm:'',
       avatar:'',
@@ -223,6 +230,7 @@ Vue.use(VueClipboard)
         }
       ).then((response) => { this.category=response.data})
     },
+    
     // previewImage(event){
     //         // this.uploadValue=0;
     //         this.picture=null;

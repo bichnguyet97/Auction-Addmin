@@ -119,6 +119,11 @@ export default new Router({
           component: () => import(/* webpackChunkName: "demo" */ './views/DetailAuction.vue')
         },
         {
+          path: '/detailfeedback/:id',
+          name: 'detailfeedback',
+          component: () => import(/* webpackChunkName: "demo" */ './views/DetailFeedback.vue')
+        },
+        {
           path: '/addauction-controller',
           name: 'addauction-controller',
           component: () => import(/* webpackChunkName: "demo" */ './views/AddAuction.vue')
@@ -162,6 +167,11 @@ export default new Router({
           path: '/tables',
           name: 'tables',
           component: () => import(/* webpackChunkName: "demo" */ './views/Category.vue')
+        },
+        {
+          path: '/feedback',
+          name: 'feedback',
+          component: () => import(/* webpackChunkName: "demo" */ './views/Feedback.vue')
         },
         {
           path: '/transaction',

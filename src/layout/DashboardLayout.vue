@@ -39,7 +39,8 @@
         <!-- <sidebar-item :link="{name: 'Kiểm soát đấu giá', icon: 'fa fa-balance-scale text-blue', path: '/bid-controller'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">EXPORT</h6>
         <sidebar-item :link="{name: 'Export', icon: 'fa fa-table text-warning', path: '/export-controller'}"/>
-        <sidebar-item :link="{name: 'Export Win', icon: 'fa fa-table text-warning', path: '/export-win'}"/>
+        <sidebar-item :link="{name: 'Export Win', icon: 'fa fa-trophy text-info', path: '/export-win'}"/>
+         <sidebar-item :link="{name: 'Feedback', icon: 'fa fa-comments text-blue', path: '/feedback'}"/>
         <!-- <h6 id="tl" class="navbar-heading text-muted">Check Thông Tin Đấu Giá</h6>
         <sidebar-item :link="{name: 'Check Detail', icon: 'fa fa-book text-success', path: '/check-detail'}"/> -->
         <h6 id="tl" class="navbar-heading text-muted">Admin</h6>

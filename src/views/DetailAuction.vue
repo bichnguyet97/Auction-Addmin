@@ -275,6 +275,78 @@
                                     </div>
                                 </div>
                             </div>
+                            <h3 style="border-bottom: 1px solid green ;" class=" pb-3">
+                                Feedback
+                            </h3>
+                            <table class="table table-striped"  >
+                            <thead>
+                                <tr>
+                                <th scope="col" >
+                                    ID
+                                </th>
+                                <th scope="col" >
+                                    User 
+                                </th>
+                                <th scope="col" >
+                                    Auction 
+                                </th>
+                                <th scope="col" >
+                                    Số sao 
+                                </th>
+                                <th scope="col" >
+                                    Comment 
+                                </th>
+                                <th scope="col" >
+                                    Ngày Cập Nhật 
+                                </th>
+                                <th scope="col" >
+                                    Trạng thái 
+                                </th>
+                                <th scope="col" >
+                                    Actions 
+                                </th>
+                                </tr>
+                            </thead>
+                            <!-- <tbody>
+                                <tr>
+                                <td>{{ feedbackU.id }}</td>
+                                <td>{{feedbackU.user}}</td>
+                                <td>{{feedbackU.auction}}</td>
+                                <td>{{feedbackU.star}}</td>
+                                <td>{{feedbackU.comment}}</td>
+                                <td>{{feedbackU.created}} </td>
+                                <td>{{feedbackU.status}}</td>
+                                <td>s</td>
+                                </tr>
+                            </tbody> -->
+                                <tbody>
+                                <tr v-for="feedback in  feedbackU" v-bind:key="feedback.id">
+                                    <th scope="row">{{ feedback.id }}</th>
+                                    <td>{{feedback.user}}</td>
+                                    <td>{{feedback.auction}} </td>
+                                    <td>{{feedback.star}}</td>
+                                    <td>{{feedback.comment}}</td>
+                                    <td>
+                                    <span
+                                        class="f-13 mr-1 d-block mb-1"
+                                        v-html="formatDatetime(feedback.created, 'date')"
+                                    ></span>
+                                    <span
+                                        class="f-13 mr-1 d-block mb-1"
+                                        style="padding-left: 0.3rem"
+                                        v-html="formatDatetime(feedback.created, 'time')"
+                                    ></span>
+                                    </td>
+                                    <td>{{feedback.status}}</td>
+                                    <td>
+                                   <router-link :to="{ name: 'detailfeedback', params: { id: feedback.id }}"> Thông tin chi tiết </router-link>
+                                    </td>
+                                    
+                                </tr>
+                            
+                                </tbody>
+                            
+                            </table>
                         </div>
                     </div>
                 </div>
@@ -341,7 +413,16 @@ Vue.use(VueClipboard)
     //         }
     //     }
     // }
+    this.axios.get(process.env.VUE_APP_MY_ENV_VARIABLE+'/feedback/auction/'+this.$route.params.id,{
+      headers: {
+        Authorization: this.getCookie('AC-ACCESS-KEY') }
+        }
+        ).then((response) => { 
+            console.log( "hi " + response.data.auction);
+            this.feedbackU=response.data;
+        });
     return {
+        feedbackU:[],
       new:'',
       bidPrice: '',
       currentPrice:'',
